@@ -1,0 +1,227 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{B6B53D5E-A82B-4987-A614-4E12BA86A5C6}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>Sistema_Planillas_Contabilidad</RootNamespace>
+    <AssemblyName>Sistema Planillas Contabilidad</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.VisualBasic" />
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.IO.Compression" />
+    <Reference Include="System.IO.Compression.FileSystem" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="calculateSystem.cs" />
+    <Compile Include="generalDataAndAvoidData.cs" />
+    <Compile Include="generalMethods.cs" />
+    <Compile Include="GUI_CREAR_EMPRESA.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI_CREAR_EMPRESA.Designer.cs">
+      <DependentUpon>GUI_CREAR_EMPRESA.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GUI_CREAR_FORMULA.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI_CREAR_FORMULA.Designer.cs">
+      <DependentUpon>GUI_CREAR_FORMULA.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GUI_DUPLICAR_COPIAR_ELIMINAR_COMPANY.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI_DUPLICAR_COPIAR_ELIMINAR_COMPANY.Designer.cs">
+      <DependentUpon>GUI_DUPLICAR_COPIAR_ELIMINAR_COMPANY.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GUI_EDITAR_PLANTILLA.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI_EDITAR_PLANTILLA.Designer.cs">
+      <DependentUpon>GUI_EDITAR_PLANTILLA.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GUI_ELEGIR_COPIAR_COLUMNA.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI_ELEGIR_COPIAR_COLUMNA.Designer.cs">
+      <DependentUpon>GUI_ELEGIR_COPIAR_COLUMNA.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GUI_ELEGIR_COPIAR_FILA.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI_ELEGIR_COPIAR_FILA.Designer.cs">
+      <DependentUpon>GUI_ELEGIR_COPIAR_FILA.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GUI_ELEGIR_GENERAR_TOTALES.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI_ELEGIR_GENERAR_TOTALES.Designer.cs">
+      <DependentUpon>GUI_ELEGIR_GENERAR_TOTALES.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GUI_ELEGIR__TRABAJAR_EMPRESA.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI_ELEGIR__TRABAJAR_EMPRESA.Designer.cs">
+      <DependentUpon>GUI_ELEGIR__TRABAJAR_EMPRESA.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GUI_MENU_EDITAR_PLANTILLA.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI_MENU_EDITAR_PLANTILLA.Designer.cs">
+      <DependentUpon>GUI_MENU_EDITAR_PLANTILLA.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GUI_MENU_INICIO.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI_MENU_INICIO.Designer.cs">
+      <DependentUpon>GUI_MENU_INICIO.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GUI_SELECCIONAR_ASIENTOS.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI_SELECCIONAR_ASIENTOS.Designer.cs">
+      <DependentUpon>GUI_SELECCIONAR_ASIENTOS.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GUI_VISTA_ASIENTOS.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI_VISTA_ASIENTOS.Designer.cs">
+      <DependentUpon>GUI_VISTA_ASIENTOS.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GUI_VISTA_RAPIDA.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI_VISTA_RAPIDA.Designer.cs">
+      <DependentUpon>GUI_VISTA_RAPIDA.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GUI_WORK_COMPANY.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI_WORK_COMPANY.Designer.cs">
+      <DependentUpon>GUI_WORK_COMPANY.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MACHOTE_GENERAL_PLANILLA.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MACHOTE_GENERAL_PLANILLA.Designer.cs">
+      <DependentUpon>MACHOTE_GENERAL_PLANILLA.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MACHOTE_GENERAL_MENUS.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MACHOTE_GENERAL_MENUS.Designer.cs">
+      <DependentUpon>MACHOTE_GENERAL_MENUS.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="GUI_CREAR_EMPRESA.resx">
+      <DependentUpon>GUI_CREAR_EMPRESA.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI_CREAR_FORMULA.resx">
+      <DependentUpon>GUI_CREAR_FORMULA.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI_DUPLICAR_COPIAR_ELIMINAR_COMPANY.resx">
+      <DependentUpon>GUI_DUPLICAR_COPIAR_ELIMINAR_COMPANY.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI_EDITAR_PLANTILLA.resx">
+      <DependentUpon>GUI_EDITAR_PLANTILLA.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI_ELEGIR_COPIAR_COLUMNA.resx">
+      <DependentUpon>GUI_ELEGIR_COPIAR_COLUMNA.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI_ELEGIR_COPIAR_FILA.resx">
+      <DependentUpon>GUI_ELEGIR_COPIAR_FILA.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI_ELEGIR_GENERAR_TOTALES.resx">
+      <DependentUpon>GUI_ELEGIR_GENERAR_TOTALES.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI_ELEGIR__TRABAJAR_EMPRESA.resx">
+      <DependentUpon>GUI_ELEGIR__TRABAJAR_EMPRESA.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI_MENU_EDITAR_PLANTILLA.resx">
+      <DependentUpon>GUI_MENU_EDITAR_PLANTILLA.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI_MENU_INICIO.resx">
+      <DependentUpon>GUI_MENU_INICIO.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI_SELECCIONAR_ASIENTOS.resx">
+      <DependentUpon>GUI_SELECCIONAR_ASIENTOS.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI_VISTA_ASIENTOS.resx">
+      <DependentUpon>GUI_VISTA_ASIENTOS.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI_VISTA_RAPIDA.resx">
+      <DependentUpon>GUI_VISTA_RAPIDA.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI_WORK_COMPANY.resx">
+      <DependentUpon>GUI_WORK_COMPANY.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MACHOTE_GENERAL_PLANILLA.resx">
+      <DependentUpon>MACHOTE_GENERAL_PLANILLA.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MACHOTE_GENERAL_MENUS.resx">
+      <DependentUpon>MACHOTE_GENERAL_MENUS.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Templates\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

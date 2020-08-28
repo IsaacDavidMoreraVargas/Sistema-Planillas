@@ -1,0 +1,74 @@
+C:\Users\Alcatraz\source\repos\Sistema Planillas Contabilidad\Sistema Planillas Contabilidad\Sistema Planillas Contabilidad\bin\Debug\Sistema Planillas Contabilidad.exe.config
+C:\Users\Alcatraz\source\repos\Sistema Planillas Contabilidad\Sistema Planillas Contabilidad\Sistema Planillas Contabilidad\bin\Debug\Sistema Planillas Contabilidad.exe
+C:\Users\Alcatraz\source\repos\Sistema Planillas Contabilidad\Sistema Planillas Contabilidad\Sistema Planillas Contabilidad\bin\Debug\Sistema Planillas Contabilidad.pdb
+C:\Users\Alcatraz\source\repos\Sistema Planillas Contabilidad\Sistema Planillas Contabilidad\Sistema Planillas Contabilidad\obj\Debug\Sistema Planillas Contabilidad.csprojAssemblyReference.cache
+C:\Users\Alcatraz\source\repos\Sistema Planillas Contabilidad\Sistema Planillas Contabilidad\Sistema Planillas Contabilidad\obj\Debug\Sistema_Planillas_Contabilidad.GUI_CREAR_EMPRESA.resources
+C:\Users\Alcatraz\source\repos\Sistema Planillas Contabilidad\Sistema Planillas Contabilidad\Sistema Planillas Contabilidad\obj\Debug\Sistema_Planillas_Contabilidad.GUI_CREAR_PLANTILLA.resources
+C:\Users\Alcatraz\source\repos\Sistema Planillas Contabilidad\Sistema Planillas Contabilidad\Sistema Planillas Contabilidad\obj\Debug\Sistema_Planillas_Contabilidad.GUI_DUPLICAR_COPIAR_ELIMINAR_COMPANY.resources
+C:\Users\Alcatraz\source\repos\Sistema Planillas Contabilidad\Sistema Planillas Contabilidad\Sistema Planillas Contabilidad\obj\Debug\Sistema_Planillas_Contabilidad.GUI_DUPLICAR_ELIMINAR_PLANTILLA.resources
+C:\Users\Alcatraz\source\repos\Sistema Planillas Contabilidad\Sistema Planillas Contabilidad\Sistema Planillas Contabilidad\obj\Debug\Sistema_Planillas_Contabilidad.GUI_EDITAR_PLANTILLA.resources
+C:\Users\Alcatraz\source\repos\Sistema Planillas Contabilidad\Sistema Planillas Contabilidad\Sistema Planillas Contabilidad\obj\Debug\Sistema_Planillas_Contabilidad.GUI_ELEGIR_COPIAR_COLUMNA.resources
+C:\Users\Alcatraz\source\repos\Sistema Planillas Contabilidad\Sistema Planillas Contabilidad\Sistema Planillas Contabilidad\obj\Debug\Sistema_Planillas_Contabilidad.GUI_ELEGIR_COPIAR_FILA.resources
+C:\Users\Alcatraz\source\repos\Sistema Planillas Contabilidad\Sistema Planillas Contabilidad\Sistema Planillas Contabilidad\obj\Debug\Sistema_Planillas_Contabilidad.GUI_ELEGIR__TRABAJAR_EMPRESA.resources
+C:\Users\Alcatraz\source\repos\Sistema Planillas Contabilidad\Sistema Planillas Contabilidad\Sistema Planillas Contabilidad\obj\Debug\Sistema_Planillas_Contabilidad.GUI_MENU_EDITAR_PLANTILLA.resources
+C:\Users\Alcatraz\source\repos\Sistema Planillas Contabilidad\Sistema Planillas Contabilidad\Sistema Planillas Contabilidad\obj\Debug\Sistema_Planillas_Contabilidad.GUI_MENU_INICIO.resources
+C:\Users\Alcatraz\source\repos\Sistema Planillas Contabilidad\Sistema Planillas Contabilidad\Sistema Planillas Contabilidad\obj\Debug\Sistema_Planillas_Contabilidad.GUI_VISTA_RAPIDA.resources
+C:\Users\Alcatraz\source\repos\Sistema Planillas Contabilidad\Sistema Planillas Contabilidad\Sistema Planillas Contabilidad\obj\Debug\Sistema_Planillas_Contabilidad.GUI_WORK_COMPANY.resources
+C:\Users\Alcatraz\source\repos\Sistema Planillas Contabilidad\Sistema Planillas Contabilidad\Sistema Planillas Contabilidad\obj\Debug\Sistema_Planillas_Contabilidad.MACHOTE_GENERAL_PLANILLA.resources
+C:\Users\Alcatraz\source\repos\Sistema Planillas Contabilidad\Sistema Planillas Contabilidad\Sistema Planillas Contabilidad\obj\Debug\Sistema_Planillas_Contabilidad.MACHOTE_GENERAL_MENUS.resources
+C:\Users\Alcatraz\source\repos\Sistema Planillas Contabilidad\Sistema Planillas Contabilidad\Sistema Planillas Contabilidad\obj\Debug\Sistema_Planillas_Contabilidad.Properties.Resources.resources
+C:\Users\Alcatraz\source\repos\Sistema Planillas Contabilidad\Sistema Planillas Contabilidad\Sistema Planillas Contabilidad\obj\Debug\Sistema Planillas Contabilidad.csproj.GenerateResource.cache
+C:\Users\Alcatraz\source\repos\Sistema Planillas Contabilidad\Sistema Planillas Contabilidad\Sistema Planillas Contabilidad\obj\Debug\Sistema Planillas Contabilidad.csproj.CoreCompileInputs.cache
+C:\Users\Alcatraz\source\repos\Sistema Planillas Contabilidad\Sistema Planillas Contabilidad\Sistema Planillas Contabilidad\obj\Debug\Sistema Planillas Contabilidad.exe
+C:\Users\Alcatraz\source\repos\Sistema Planillas Contabilidad\Sistema Planillas Contabilidad\Sistema Planillas Contabilidad\obj\Debug\Sistema Planillas Contabilidad.pdb
+C:\Users\Alcatraz\source\repos\Sistema Planillas Contabilidad\Sistema Planillas Contabilidad\Sistema Planillas Contabilidad\obj\Debug\Sistema_Planillas_Contabilidad.GUI_CREATE_FORMULA.resources
+C:\Users\Alcatraz\source\repos\Sistema Planillas Contabilidad\Sistema Planillas Contabilidad\bin\Debug\Sistema Planillas Contabilidad.exe.config
+C:\Users\Alcatraz\source\repos\Sistema Planillas Contabilidad\Sistema Planillas Contabilidad\bin\Debug\Sistema Planillas Contabilidad.exe
+C:\Users\Alcatraz\source\repos\Sistema Planillas Contabilidad\Sistema Planillas Contabilidad\bin\Debug\Sistema Planillas Contabilidad.pdb
+C:\Users\Alcatraz\source\repos\Sistema Planillas Contabilidad\Sistema Planillas Contabilidad\obj\Debug\Sistema_Planillas_Contabilidad.GUI_CREAR_EMPRESA.resources
+C:\Users\Alcatraz\source\repos\Sistema Planillas Contabilidad\Sistema Planillas Contabilidad\obj\Debug\Sistema_Planillas_Contabilidad.GUI_CREATE_FORMULA.resources
+C:\Users\Alcatraz\source\repos\Sistema Planillas Contabilidad\Sistema Planillas Contabilidad\obj\Debug\Sistema_Planillas_Contabilidad.GUI_DUPLICAR_COPIAR_ELIMINAR_COMPANY.resources
+C:\Users\Alcatraz\source\repos\Sistema Planillas Contabilidad\Sistema Planillas Contabilidad\obj\Debug\Sistema_Planillas_Contabilidad.GUI_EDITAR_PLANTILLA.resources
+C:\Users\Alcatraz\source\repos\Sistema Planillas Contabilidad\Sistema Planillas Contabilidad\obj\Debug\Sistema_Planillas_Contabilidad.GUI_ELEGIR_COPIAR_COLUMNA.resources
+C:\Users\Alcatraz\source\repos\Sistema Planillas Contabilidad\Sistema Planillas Contabilidad\obj\Debug\Sistema_Planillas_Contabilidad.GUI_ELEGIR_COPIAR_FILA.resources
+C:\Users\Alcatraz\source\repos\Sistema Planillas Contabilidad\Sistema Planillas Contabilidad\obj\Debug\Sistema_Planillas_Contabilidad.GUI_ELEGIR_GENERAR_TOTALES.resources
+C:\Users\Alcatraz\source\repos\Sistema Planillas Contabilidad\Sistema Planillas Contabilidad\obj\Debug\Sistema_Planillas_Contabilidad.GUI_ELEGIR__TRABAJAR_EMPRESA.resources
+C:\Users\Alcatraz\source\repos\Sistema Planillas Contabilidad\Sistema Planillas Contabilidad\obj\Debug\Sistema_Planillas_Contabilidad.GUI_MENU_EDITAR_PLANTILLA.resources
+C:\Users\Alcatraz\source\repos\Sistema Planillas Contabilidad\Sistema Planillas Contabilidad\obj\Debug\Sistema_Planillas_Contabilidad.GUI_MENU_INICIO.resources
+C:\Users\Alcatraz\source\repos\Sistema Planillas Contabilidad\Sistema Planillas Contabilidad\obj\Debug\Sistema_Planillas_Contabilidad.GUI_SELECCIONAR_ASIENTOS.resources
+C:\Users\Alcatraz\source\repos\Sistema Planillas Contabilidad\Sistema Planillas Contabilidad\obj\Debug\Sistema_Planillas_Contabilidad.GUI_VISTA_ASIENTOS.resources
+C:\Users\Alcatraz\source\repos\Sistema Planillas Contabilidad\Sistema Planillas Contabilidad\obj\Debug\Sistema_Planillas_Contabilidad.GUI_VISTA_RAPIDA.resources
+C:\Users\Alcatraz\source\repos\Sistema Planillas Contabilidad\Sistema Planillas Contabilidad\obj\Debug\Sistema_Planillas_Contabilidad.GUI_WORK_COMPANY.resources
+C:\Users\Alcatraz\source\repos\Sistema Planillas Contabilidad\Sistema Planillas Contabilidad\obj\Debug\Sistema_Planillas_Contabilidad.MACHOTE_GENERAL_PLANILLA.resources
+C:\Users\Alcatraz\source\repos\Sistema Planillas Contabilidad\Sistema Planillas Contabilidad\obj\Debug\Sistema_Planillas_Contabilidad.MACHOTE_GENERAL_MENUS.resources
+C:\Users\Alcatraz\source\repos\Sistema Planillas Contabilidad\Sistema Planillas Contabilidad\obj\Debug\Sistema_Planillas_Contabilidad.Properties.Resources.resources
+C:\Users\Alcatraz\source\repos\Sistema Planillas Contabilidad\Sistema Planillas Contabilidad\obj\Debug\Sistema Planillas Contabilidad.csproj.GenerateResource.cache
+C:\Users\Alcatraz\source\repos\Sistema Planillas Contabilidad\Sistema Planillas Contabilidad\obj\Debug\Sistema Planillas Contabilidad.csproj.CoreCompileInputs.cache
+C:\Users\Alcatraz\source\repos\Sistema Planillas Contabilidad\Sistema Planillas Contabilidad\obj\Debug\Sistema Planillas Contabilidad.exe
+C:\Users\Alcatraz\source\repos\Sistema Planillas Contabilidad\Sistema Planillas Contabilidad\obj\Debug\Sistema Planillas Contabilidad.pdb
+C:\Users\Alcatraz\source\repos\Sistema Planillas Contabilidad\Sistema Planillas Contabilidad\obj\Debug\Sistema Planillas Contabilidad.csprojAssemblyReference.cache
+C:\Users\Alcatraz\Desktop\Sistema Planillas Contabilidad\Sistema Planillas Contabilidad\bin\Debug\Sistema Planillas Contabilidad.exe.config
+C:\Users\Alcatraz\Desktop\Sistema Planillas Contabilidad\Sistema Planillas Contabilidad\bin\Debug\Sistema Planillas Contabilidad.exe
+C:\Users\Alcatraz\Desktop\Sistema Planillas Contabilidad\Sistema Planillas Contabilidad\bin\Debug\Sistema Planillas Contabilidad.pdb
+C:\Users\Alcatraz\Desktop\Sistema Planillas Contabilidad\Sistema Planillas Contabilidad\obj\Debug\Sistema_Planillas_Contabilidad.GUI_CREAR_EMPRESA.resources
+C:\Users\Alcatraz\Desktop\Sistema Planillas Contabilidad\Sistema Planillas Contabilidad\obj\Debug\Sistema_Planillas_Contabilidad.GUI_CREATE_FORMULA.resources
+C:\Users\Alcatraz\Desktop\Sistema Planillas Contabilidad\Sistema Planillas Contabilidad\obj\Debug\Sistema_Planillas_Contabilidad.GUI_DUPLICAR_COPIAR_ELIMINAR_COMPANY.resources
+C:\Users\Alcatraz\Desktop\Sistema Planillas Contabilidad\Sistema Planillas Contabilidad\obj\Debug\Sistema_Planillas_Contabilidad.GUI_EDITAR_PLANTILLA.resources
+C:\Users\Alcatraz\Desktop\Sistema Planillas Contabilidad\Sistema Planillas Contabilidad\obj\Debug\Sistema_Planillas_Contabilidad.GUI_ELEGIR_COPIAR_COLUMNA.resources
+C:\Users\Alcatraz\Desktop\Sistema Planillas Contabilidad\Sistema Planillas Contabilidad\obj\Debug\Sistema_Planillas_Contabilidad.GUI_ELEGIR_COPIAR_FILA.resources
+C:\Users\Alcatraz\Desktop\Sistema Planillas Contabilidad\Sistema Planillas Contabilidad\obj\Debug\Sistema_Planillas_Contabilidad.GUI_ELEGIR_GENERAR_TOTALES.resources
+C:\Users\Alcatraz\Desktop\Sistema Planillas Contabilidad\Sistema Planillas Contabilidad\obj\Debug\Sistema_Planillas_Contabilidad.GUI_ELEGIR__TRABAJAR_EMPRESA.resources
+C:\Users\Alcatraz\Desktop\Sistema Planillas Contabilidad\Sistema Planillas Contabilidad\obj\Debug\Sistema_Planillas_Contabilidad.GUI_MENU_EDITAR_PLANTILLA.resources
+C:\Users\Alcatraz\Desktop\Sistema Planillas Contabilidad\Sistema Planillas Contabilidad\obj\Debug\Sistema_Planillas_Contabilidad.GUI_MENU_INICIO.resources
+C:\Users\Alcatraz\Desktop\Sistema Planillas Contabilidad\Sistema Planillas Contabilidad\obj\Debug\Sistema_Planillas_Contabilidad.GUI_SELECCIONAR_ASIENTOS.resources
+C:\Users\Alcatraz\Desktop\Sistema Planillas Contabilidad\Sistema Planillas Contabilidad\obj\Debug\Sistema_Planillas_Contabilidad.GUI_VISTA_ASIENTOS.resources
+C:\Users\Alcatraz\Desktop\Sistema Planillas Contabilidad\Sistema Planillas Contabilidad\obj\Debug\Sistema_Planillas_Contabilidad.GUI_VISTA_RAPIDA.resources
+C:\Users\Alcatraz\Desktop\Sistema Planillas Contabilidad\Sistema Planillas Contabilidad\obj\Debug\Sistema_Planillas_Contabilidad.GUI_WORK_COMPANY.resources
+C:\Users\Alcatraz\Desktop\Sistema Planillas Contabilidad\Sistema Planillas Contabilidad\obj\Debug\Sistema_Planillas_Contabilidad.MACHOTE_GENERAL_PLANILLA.resources
+C:\Users\Alcatraz\Desktop\Sistema Planillas Contabilidad\Sistema Planillas Contabilidad\obj\Debug\Sistema_Planillas_Contabilidad.MACHOTE_GENERAL_MENUS.resources
+C:\Users\Alcatraz\Desktop\Sistema Planillas Contabilidad\Sistema Planillas Contabilidad\obj\Debug\Sistema_Planillas_Contabilidad.Properties.Resources.resources
+C:\Users\Alcatraz\Desktop\Sistema Planillas Contabilidad\Sistema Planillas Contabilidad\obj\Debug\Sistema Planillas Contabilidad.csproj.GenerateResource.cache
+C:\Users\Alcatraz\Desktop\Sistema Planillas Contabilidad\Sistema Planillas Contabilidad\obj\Debug\Sistema Planillas Contabilidad.csproj.CoreCompileInputs.cache
+C:\Users\Alcatraz\Desktop\Sistema Planillas Contabilidad\Sistema Planillas Contabilidad\obj\Debug\Sistema Planillas Contabilidad.exe
+C:\Users\Alcatraz\Desktop\Sistema Planillas Contabilidad\Sistema Planillas Contabilidad\obj\Debug\Sistema Planillas Contabilidad.pdb
+C:\Users\Alcatraz\Desktop\Sistema Planillas Contabilidad\Sistema Planillas Contabilidad\obj\Debug\Sistema Planillas Contabilidad.csprojAssemblyReference.cache
