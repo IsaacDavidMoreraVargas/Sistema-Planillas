@@ -18,48 +18,140 @@ namespace Sistema_Planillas_Contabilidad
 
         private void GUI_MENU_INICIO_Load(object sender, EventArgs e)
         {
-            createFolderStar();
+            StartPaths();
+            evaluatePathAndCreateStage1();
+            evaluatePathAndCreateStage2();
+            setTags();
         }
 
-        private void createFolderStar()
+        SpecificAndCorePaths startThePaths = new SpecificAndCorePaths();
+        List<string> pathsOfCoreFolders = new List<string>();
+       
+        private void StartPaths()
         {
-            string[] generalList = { "Companies", "configuration"};
-            string[] foldersList = { "AvoidData", "DaysOfMoths", "Formulas", "Sits", "Templates"};
-            string pathActual = Directory.GetCurrentDirectory();
-            pathActual = pathActual.Replace("\\bin\\Debug", "");
-            string generalPathOnTime = "";
-            for (int item = 0; item < generalList.Length; item++)
+            string[] arrowCreateFirstTimeGeneralFolders = { "Companies", "configuration", "pictures" };
+            string path = Directory.GetCurrentDirectory();
+            path = path.Replace("\\bin\\Debug", "\\");
+            startThePaths.CorePathOfFolderSistemaPlanillas = path;
+            int sizeArray = arrowCreateFirstTimeGeneralFolders.Length;
+            for (int numberFolder = 0; numberFolder < sizeArray; numberFolder++)
             {
-                if (item == 0)
+                string sendPath = path + arrowCreateFirstTimeGeneralFolders[numberFolder]+"\\";
+                switch (numberFolder)
                 {
-                    string general = pathActual + "\\" + generalList[item];
-                    if (!Directory.Exists(general))
-                    {
-                        Directory.CreateDirectory(general);
-                    }
-                }
-                else
-                {
-                    generalPathOnTime = pathActual + "\\" + generalList[item];
-                    if (!Directory.Exists(generalPathOnTime))
-                    {
-                        Directory.CreateDirectory(generalPathOnTime);
-                    }
-                }
-            }
-            for (int item = 0; item < foldersList.Length; item++)
-            {
-                string general = generalPathOnTime + "\\" + foldersList[item];
-                if (!Directory.Exists(general))
-                {
-                    Directory.CreateDirectory(general);
+                    case 0:
+                        startThePaths.CorePathOfCompaniesFolderSistemaPlanillas = sendPath;
+                        break;
+                    case 1:
+                        startThePaths.CorePathOfConfigurationFolderSistemaPlanillas = sendPath;
+                        break;
+                    case 2:
+                        startThePaths.CorePathOfPicturesFolderSistemaPlanillas = sendPath;
+                        break;
                 }
             }
         }
 
-        private void buttonCreateCompanySystem_Click(object sender, EventArgs e)
+        private void evaluatePathAndCreateStage1()
         {
-           
+            pathsOfCoreFolders.Add(startThePaths.CorePathOfFolderSistemaPlanillas);
+            pathsOfCoreFolders.Add(startThePaths.CorePathOfCompaniesFolderSistemaPlanillas);
+            pathsOfCoreFolders.Add(startThePaths.CorePathOfConfigurationFolderSistemaPlanillas);
+            pathsOfCoreFolders.Add(startThePaths.CorePathOfPicturesFolderSistemaPlanillas);
+            foreach (string path in pathsOfCoreFolders)
+            {
+                if(!Directory.Exists(path))
+                {
+                    Directory.CreateDirectory(path);
+                }
+            }
+        }
+
+        private void evaluatePathAndCreateStage2()
+        {
+            string[] arrowCreateFirstTimeSpecificFolders = { "AvoidData", "CodesSits", "DaysOfMoths", "Formulas", "Sits", "Templates" };
+            //position 2 is configuration's Folder
+            string pathOfConfigurationFolderSistemaPlanillas = pathsOfCoreFolders[2];
+            int sizeArray = arrowCreateFirstTimeSpecificFolders.Length;
+            for (int numberFolder = 0; numberFolder < sizeArray; numberFolder++)
+            {
+                string sendPath = pathOfConfigurationFolderSistemaPlanillas + arrowCreateFirstTimeSpecificFolders[numberFolder] + "\\";
+                switch (numberFolder)
+                {
+                    case 0:
+                        startThePaths.SpecificPathOfConfigurationFolderAvoidData = sendPath;
+                        break;
+                    case 1:
+                        startThePaths.SpecificPathOfConfigurationFolderCodesSits = sendPath;
+                        break;
+                    case 2:
+                        startThePaths.SpecificPathOfConfigurationFolderDaysOfMoths = sendPath;
+                        break;
+                    case 3:
+                        startThePaths.SpecificPathOfConfigurationFolderFormulas = sendPath;
+                        break;
+                    case 4:
+                        startThePaths.SpecificPathOfConfigurationFolderSits = sendPath;
+                        break;
+                    case 5:
+                        startThePaths.SpecificPathOfConfigurationFolderTemplates = sendPath;
+                        break;
+                }
+                if (!Directory.Exists(sendPath))
+                {
+                    Directory.CreateDirectory(sendPath);
+                }
+            }
+        }
+
+        TagsAnd startSetTags = new TagsAnd();
+        private void setTags()
+        {
+            string[] arrowOfTags = { "<startHeads>", "</endHeads>", "<startNewLine>", "</endNewline>" };
+            int sizeArray = arrowOfTags.Length;
+            for (int numberTag = 0; numberTag < sizeArray; numberTag++)
+            {
+                switch (numberTag)
+                {
+                    case 0:
+                        startSetTags.isTagStartHead = arrowOfTags[numberTag];
+                        break;
+                    case 1:
+                        startSetTags.isTagEndHead = arrowOfTags[numberTag];
+                        break;
+                    case 2:
+                        startSetTags.isTagStartLine = arrowOfTags[numberTag];
+                        break;
+                    case 3:
+                        startSetTags.isTagEndLine = arrowOfTags[numberTag];
+                        break;
+                }
+            }
+        }
+
+        private void buttonMultipleOptionsTemplate_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            GUI_MENU_EDITAR_PLANTILLA callGuiEdit = new GUI_MENU_EDITAR_PLANTILLA();
+            callGuiEdit.ShowDialog();
+            this.Show();
+        }
+
+        private void buttonMultipleOptionsCompany_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            GUI_DUPLICAR_COPIAR_ELIMINAR_COMPANY callGuiDuplicateCopyEliminate = new GUI_DUPLICAR_COPIAR_ELIMINAR_COMPANY();
+            callGuiDuplicateCopyEliminate.MethodToReceivedAccesToObject(startThePaths);
+            callGuiDuplicateCopyEliminate.ShowDialog();
+            this.Close();
+        }
+
+        private void buttonWorkWithCompany_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            GUI_ELEGIR__TRABAJAR_EMPRESA callingWorkCompany = new GUI_ELEGIR__TRABAJAR_EMPRESA();
+            callingWorkCompany.ShowDialog();
+            this.Show();
         }
 
         private void buttonCloseProgram_Click(object sender, EventArgs e)
@@ -67,27 +159,6 @@ namespace Sistema_Planillas_Contabilidad
             this.Close();
         }
 
-        private void buttonEditTemplate_Click(object sender, EventArgs e)
-        {
-            this.Hide();
-            GUI_MENU_EDITAR_PLANTILLA callGuiEdit = new GUI_MENU_EDITAR_PLANTILLA();
-            callGuiEdit.ShowDialog();
-            this.Close();
-        }
-        private void buttonWorkWithCompany_Click(object sender, EventArgs e)
-        {
-            this.Hide();
-            GUI_ELEGIR__TRABAJAR_EMPRESA callingWorkCompany = new GUI_ELEGIR__TRABAJAR_EMPRESA();
-            callingWorkCompany.ShowDialog();
-            this.Close();
-        }
-
-        private void buttonDuplicateCopyEliminateCompany_Click(object sender, EventArgs e)
-        {
-            this.Hide();
-            GUI_DUPLICAR_COPIAR_ELIMINAR_COMPANY callGuiDuplicateCopyEliminate = new GUI_DUPLICAR_COPIAR_ELIMINAR_COMPANY();
-            callGuiDuplicateCopyEliminate.ShowDialog();
-            this.Close();
-        }
+        
     }
 }

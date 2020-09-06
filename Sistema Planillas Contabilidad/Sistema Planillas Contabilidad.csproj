@@ -51,6 +51,7 @@
   <ItemGroup>
     <Compile Include="calculateSystem.cs" />
     <Compile Include="generalDataAndAvoidData.cs" />
+    <Compile Include="SpecificAndCorePaths.cs" />
     <Compile Include="generalMethods.cs" />
     <Compile Include="GUI_CREAR_EMPRESA.cs">
       <SubType>Form</SubType>
@@ -150,6 +151,7 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TagsAnd.cs" />
     <EmbeddedResource Include="GUI_CREAR_EMPRESA.resx">
       <DependentUpon>GUI_CREAR_EMPRESA.cs</DependentUpon>
     </EmbeddedResource>
