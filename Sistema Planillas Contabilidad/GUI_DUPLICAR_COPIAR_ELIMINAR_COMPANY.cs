@@ -30,9 +30,8 @@ namespace Sistema_Planillas_Contabilidad
         string date = DateTime.UtcNow.ToString("MM-dd-yyyy");
 
         string CorePathOfFolderSistemaPlanillas = "";
-        string CorePathOfCompaniesFolderSistemaPlanillas = "";
-        string CorePathOfConfigurationFolderSistemaPlanillas = "";
-        string CorePathOfPicturesFolderSistemaPlanillas = "";
+        string CorePathOfFolderCompaniesSistemaPlanillas = "";
+        string CorePathOfCoreConfigurationFolderSistemaPlanillas = "";
 
         string SpecificPathOfFolderConfigurationAvoidData = "";
         string SpecificPathOfFolderConfigurationCodesSits = "";
@@ -40,17 +39,28 @@ namespace Sistema_Planillas_Contabilidad
         string SpecificPathOfFolderConfigurationFormulas = "";
         string SpecificPathOfFolderConfigurationSits = "";
         string SpecificPathOfFolderConfigurationTemplates = "";
+        string SpecificPathOfFolderConfigurationPictures = "";
+
+        string threeLine = "";
+        string deparmentValue = "";
+        string configuration = "";
+        string exclusiveData = "";
+        string sits = "";
 
         SpecificAndCorePaths startThePaths;
-        public void MethodToReceivedAccesToObject(SpecificAndCorePaths startThePathsReceived)
+        TagsAndDefaultValues startTheTagsAndDefaults;
+        FoldersInsideCompany startFoldersInsideCompany;
+        public void MethodToReceivedAccesToObject(SpecificAndCorePaths startThePathsReceived, TagsAndDefaultValues startTheTagsAndDefaultsReceived, FoldersInsideCompany startFoldersInsideCompanyReceived)
         {
             //receiving object reference
             startThePaths = startThePathsReceived;
+            startTheTagsAndDefaults = startTheTagsAndDefaultsReceived;
+            startFoldersInsideCompany = startFoldersInsideCompanyReceived;
             //core paths
             CorePathOfFolderSistemaPlanillas = startThePaths.CorePathOfFolderSistemaPlanillas;
-            CorePathOfCompaniesFolderSistemaPlanillas = startThePaths.CorePathOfCompaniesFolderSistemaPlanillas;
-            CorePathOfConfigurationFolderSistemaPlanillas = startThePaths.CorePathOfConfigurationFolderSistemaPlanillas;
-            CorePathOfPicturesFolderSistemaPlanillas = startThePaths.CorePathOfPicturesFolderSistemaPlanillas;
+            CorePathOfFolderCompaniesSistemaPlanillas = startThePaths.CorePathOfCompaniesFolderSistemaPlanillas;
+            CorePathOfCoreConfigurationFolderSistemaPlanillas = startThePaths.CorePathOfConfigurationFolderSistemaPlanillas;
+            //CorePathOfPicturesFolderSistemaPlanillas = startThePaths.CorePathOfPicturesFolderSistemaPlanillas;
             //specific paths
             SpecificPathOfFolderConfigurationAvoidData = startThePaths.SpecificPathOfConfigurationFolderAvoidData;
             SpecificPathOfFolderConfigurationCodesSits = startThePaths.SpecificPathOfConfigurationFolderCodesSits;
@@ -58,6 +68,14 @@ namespace Sistema_Planillas_Contabilidad
             SpecificPathOfFolderConfigurationFormulas = startThePaths.SpecificPathOfConfigurationFolderFormulas;
             SpecificPathOfFolderConfigurationSits = startThePaths.SpecificPathOfConfigurationFolderSits;
             SpecificPathOfFolderConfigurationTemplates = startThePaths.SpecificPathOfConfigurationFolderTemplates;
+            SpecificPathOfFolderConfigurationPictures = startThePaths.SpecificPathOfConfigurationFolderPictures;
+            //default values
+            threeLine = startTheTagsAndDefaults.tripleLine;
+            deparmentValue = startTheTagsAndDefaults.isDeparment;
+            //folders inside folders
+            configuration = startFoldersInsideCompanyReceived.isConfiguration;
+            exclusiveData = startFoldersInsideCompanyReceived.isExclusiveData;
+            sits = startFoldersInsideCompanyReceived.isSits;
         }
 
         private void GUI_DUPLICAR_COPIAR_ELIMINAR_COMPANY_Load(object sender, EventArgs e)
@@ -68,10 +86,10 @@ namespace Sistema_Planillas_Contabilidad
         private void ChargeDataStart()
         {
             listView1.Items.Clear();
-            string[] filename = Directory.GetDirectories(CorePathOfCompaniesFolderSistemaPlanillas);
+            string[] filename = Directory.GetDirectories(CorePathOfFolderCompaniesSistemaPlanillas);
             foreach (string companyInFolder in filename)
             {
-                string addItem = companyInFolder.Replace(CorePathOfCompaniesFolderSistemaPlanillas, "");
+                string addItem = companyInFolder.Replace(CorePathOfFolderCompaniesSistemaPlanillas, "");
                 addItem = addItem.Replace(".txt", "");
                 addItem = addItem.Replace("_", " ");
                 if (addItem == "" || addItem == " " || addItem == "_")
@@ -163,32 +181,32 @@ namespace Sistema_Planillas_Contabilidad
                     }
 
                     List<string> listFoldersCreate = new List<string>();
-                    listFoldersCreate.Add(CorePathOfCompaniesFolderSistemaPlanillas + nameCompany);
+                    listFoldersCreate.Add(CorePathOfFolderCompaniesSistemaPlanillas + nameCompany);
                     //Deparments
                     foreach (string path in listOnlyDeparments)
                     {
-                        string replaceString = path.Replace(pathOfCompany, CorePathOfCompaniesFolderSistemaPlanillas + nameCompany);
+                        string replaceString = path.Replace(pathOfCompany, CorePathOfFolderCompaniesSistemaPlanillas + nameCompany);
                         listFoldersCreate.Add(replaceString);
                     }
                     //Months of deparments
                     foreach (string path in listDeparmentWithMonths)
                     {
                         string replaceInString = path;
-                        replaceInString = replaceInString.Replace(pathOfCompany, CorePathOfCompaniesFolderSistemaPlanillas + nameCompany);
+                        replaceInString = replaceInString.Replace(pathOfCompany, CorePathOfFolderCompaniesSistemaPlanillas + nameCompany);
                         listFoldersCreate.Add(replaceInString);
                     }
                     //Weeks of deparments
                     foreach (string path in listDeparmentWithMonthsWithWeeks)
                     {
                         string replaceInString = path;
-                        replaceInString = replaceInString.Replace(pathOfCompany, CorePathOfCompaniesFolderSistemaPlanillas + nameCompany);
+                        replaceInString = replaceInString.Replace(pathOfCompany, CorePathOfFolderCompaniesSistemaPlanillas + nameCompany);
                         listFoldersCreate.Add(replaceInString);
                     }
                     //Extra folders
                     foreach (string path in listExtraFolders)
                     {
                         string replaceInString = path;
-                        replaceInString = replaceInString.Replace(pathOfCompany, CorePathOfCompaniesFolderSistemaPlanillas + nameCompany);
+                        replaceInString = replaceInString.Replace(pathOfCompany, CorePathOfFolderCompaniesSistemaPlanillas + nameCompany);
                         listFoldersCreate.Add(replaceInString);
                     }
                     //Create all directories
@@ -203,7 +221,7 @@ namespace Sistema_Planillas_Contabilidad
                     //files of weeks
                     for (int path = 0; path < listFilesOfWeeks.Count; path++)
                     {
-                        string writePath = listFilesOfWeeks[path].Replace(pathOfCompany, CorePathOfCompaniesFolderSistemaPlanillas + nameCompany + "\\");
+                        string writePath = listFilesOfWeeks[path].Replace(pathOfCompany, CorePathOfFolderCompaniesSistemaPlanillas + nameCompany + "\\");
                         string[] lines = File.ReadAllLines(listFilesOfWeeks[path]);
                         if (!File.Exists(writePath))
                         {
@@ -219,7 +237,7 @@ namespace Sistema_Planillas_Contabilidad
                     //files of extras
                     for (int path = 0; path < listFilesOfExtras.Count; path++)
                     {
-                        string writePath = listFilesOfExtras[path].Replace(pathOfCompany, CorePathOfCompaniesFolderSistemaPlanillas + nameCompany + "\\");
+                        string writePath = listFilesOfExtras[path].Replace(pathOfCompany, CorePathOfFolderCompaniesSistemaPlanillas + nameCompany + "\\");
                         string[] lines = File.ReadAllLines(listFilesOfExtras[path]);
                         if (!File.Exists(writePath))
                         {
@@ -249,7 +267,6 @@ namespace Sistema_Planillas_Contabilidad
             {
                 SelectedCompany = SelectedCompany.Replace("_"," ");
                 DialogResult eliminate = MessageBox.Show("¿ESTAS SEGURO DE ELIMINAR: "+ SelectedCompany + " ?\nESTA EMPRESA NO PODRA SER RECUPERADA", "OPCIÓN RAPIDA", MessageBoxButtons.YesNo);
-                MessageBox.Show(pathOfCompany);
                 switch (eliminate)
                 {
                     case DialogResult.Yes:
@@ -333,12 +350,12 @@ namespace Sistema_Planillas_Contabilidad
                     {
                         bool found = false;
                         string pathOfCompany = "";
-                        string createPath = CorePathOfCompaniesFolderSistemaPlanillas + nameFile;
-                        string []arrowOfCompanies = Directory.GetDirectories(CorePathOfCompaniesFolderSistemaPlanillas);
+                        string createPath = CorePathOfFolderCompaniesSistemaPlanillas + nameFile;
+                        string []arrowOfCompanies = Directory.GetDirectories(CorePathOfFolderCompaniesSistemaPlanillas);
                         foreach (string company in arrowOfCompanies)
                         {
                             string replaceInString = company;
-                            replaceInString = replaceInString.Replace(CorePathOfCompaniesFolderSistemaPlanillas,"");
+                            replaceInString = replaceInString.Replace(CorePathOfFolderCompaniesSistemaPlanillas, "");
                             if(replaceInString==nameFile)
                             {
                                 pathOfCompany = company;
@@ -346,25 +363,21 @@ namespace Sistema_Planillas_Contabilidad
                                 break;
                             }
                         }
-                        if(found==true)
+                        if(found==true && Directory.Exists(pathOfCompany))
                         {
-                            if (Directory.Exists(pathOfCompany))
+                            DialogResult answer = MessageBox.Show("ESTA EMPRESA YA EXISTE, PARA CARGARLO NECESITO BORRAR LA EXISTENTE, ¿PROCEDO?", "OPCIÓN RAPIDA", MessageBoxButtons.YesNo);
+                            switch (answer)
                             {
-                                DialogResult answer = MessageBox.Show("ESTA EMPRESA YA EXISTE, PARA CARGARLO NECESITO BORRAR LA EXISTENTE, ¿PROCEDO?", "OPCIÓN RAPIDA", MessageBoxButtons.YesNo);
-                                switch (answer)
-                                {
-                                    case DialogResult.Yes:
-                                        DirectoryInfo directory = new DirectoryInfo(pathOfCompany);
-                                        directory.Delete(true);
-                                        Directory.CreateDirectory(createPath);
-                                        ZipFile.ExtractToDirectory(extractPath, createPath);
-                                        MessageBox.Show("COPIA SEGURIDAD CARGADA CON EXITO");
-                                        break;
-                                    case DialogResult.No:
-                                        MessageBox.Show("ACCION ABORTADA");
-                                        break;
-                                }
-
+                                case DialogResult.Yes:
+                                    DirectoryInfo directory = new DirectoryInfo(pathOfCompany);
+                                    directory.Delete(true);
+                                    Directory.CreateDirectory(createPath);
+                                    ZipFile.ExtractToDirectory(extractPath, createPath);
+                                    MessageBox.Show("COPIA SEGURIDAD CARGADA CON EXITO");
+                                    break;
+                                case DialogResult.No:
+                                    MessageBox.Show("ACCION ABORTADA");
+                                    break;
                             }
                         }
                         else
@@ -391,7 +404,8 @@ namespace Sistema_Planillas_Contabilidad
         {
             this.Hide();
             GUI_CREAR_EMPRESA callingCreateCompany = new GUI_CREAR_EMPRESA();
-            callingCreateCompany.optionMenu(false);
+            callingCreateCompany.MethodToReceivedAccesToObject(startThePaths, startTheTagsAndDefaults, startFoldersInsideCompany);
+            callingCreateCompany.optionCreateOrEdit("CREATE");
             callingCreateCompany.receivedNameCompany(SelectedCompany);
             callingCreateCompany.ShowDialog();
             this.Close();
@@ -403,7 +417,8 @@ namespace Sistema_Planillas_Contabilidad
             {
                 this.Hide();
                 GUI_CREAR_EMPRESA callingCreateCompany = new GUI_CREAR_EMPRESA();
-                callingCreateCompany.optionMenu(true);
+                callingCreateCompany.MethodToReceivedAccesToObject(startThePaths, startTheTagsAndDefaults, startFoldersInsideCompany);
+                callingCreateCompany.optionCreateOrEdit("EDIT");
                 callingCreateCompany.receivedNameCompany(SelectedCompany);
                 callingCreateCompany.ShowDialog();
                 this.Close();
@@ -435,7 +450,7 @@ namespace Sistema_Planillas_Contabilidad
                     AllowAction = true;
                     SelectedCompany = listView1.Items[IndexViewList].Text;
                     SelectedCompany = SelectedCompany.Replace(" ", "_");
-                    pathOfCompany = CorePathOfCompaniesFolderSistemaPlanillas + SelectedCompany;
+                    pathOfCompany = CorePathOfFolderCompaniesSistemaPlanillas + SelectedCompany;
                 }
             }
 

@@ -22,6 +22,7 @@ namespace Sistema_Planillas_Contabilidad
             evaluatePathAndCreateStage1();
             evaluatePathAndCreateStage2();
             setTags();
+            setDefaultFoldersInsideCompany();
         }
 
         SpecificAndCorePaths startThePaths = new SpecificAndCorePaths();
@@ -29,10 +30,12 @@ namespace Sistema_Planillas_Contabilidad
        
         private void StartPaths()
         {
-            string[] arrowCreateFirstTimeGeneralFolders = { "Companies", "configuration", "pictures" };
+            string[] arrowCreateFirstTimeGeneralFolders = { "FOLDERCOMPANIES", "CORECONFIGURATIONCOMPANIES"};
             string path = Directory.GetCurrentDirectory();
+            //principal core path
             path = path.Replace("\\bin\\Debug", "\\");
             startThePaths.CorePathOfFolderSistemaPlanillas = path;
+            //other core path
             int sizeArray = arrowCreateFirstTimeGeneralFolders.Length;
             for (int numberFolder = 0; numberFolder < sizeArray; numberFolder++)
             {
@@ -45,9 +48,6 @@ namespace Sistema_Planillas_Contabilidad
                     case 1:
                         startThePaths.CorePathOfConfigurationFolderSistemaPlanillas = sendPath;
                         break;
-                    case 2:
-                        startThePaths.CorePathOfPicturesFolderSistemaPlanillas = sendPath;
-                        break;
                 }
             }
         }
@@ -57,7 +57,6 @@ namespace Sistema_Planillas_Contabilidad
             pathsOfCoreFolders.Add(startThePaths.CorePathOfFolderSistemaPlanillas);
             pathsOfCoreFolders.Add(startThePaths.CorePathOfCompaniesFolderSistemaPlanillas);
             pathsOfCoreFolders.Add(startThePaths.CorePathOfConfigurationFolderSistemaPlanillas);
-            pathsOfCoreFolders.Add(startThePaths.CorePathOfPicturesFolderSistemaPlanillas);
             foreach (string path in pathsOfCoreFolders)
             {
                 if(!Directory.Exists(path))
@@ -69,8 +68,8 @@ namespace Sistema_Planillas_Contabilidad
 
         private void evaluatePathAndCreateStage2()
         {
-            string[] arrowCreateFirstTimeSpecificFolders = { "AvoidData", "CodesSits", "DaysOfMoths", "Formulas", "Sits", "Templates" };
-            //position 2 is configuration's Folder
+            string[] arrowCreateFirstTimeSpecificFolders = { "AvoidData", "CodesSits", "DaysOfMoths", "Formulas", "Sits", "Templates", "Pictures" };
+            //position 2 is core configuration's Folder
             string pathOfConfigurationFolderSistemaPlanillas = pathsOfCoreFolders[2];
             int sizeArray = arrowCreateFirstTimeSpecificFolders.Length;
             for (int numberFolder = 0; numberFolder < sizeArray; numberFolder++)
@@ -96,6 +95,9 @@ namespace Sistema_Planillas_Contabilidad
                     case 5:
                         startThePaths.SpecificPathOfConfigurationFolderTemplates = sendPath;
                         break;
+                    case 6:
+                        startThePaths.SpecificPathOfConfigurationFolderPictures = sendPath;
+                        break;
                 }
                 if (!Directory.Exists(sendPath))
                 {
@@ -104,26 +106,60 @@ namespace Sistema_Planillas_Contabilidad
             }
         }
 
-        TagsAnd startSetTags = new TagsAnd();
+        TagsAndDefaultValues startSetTagsAndDefaults = new TagsAndDefaultValues();
         private void setTags()
         {
-            string[] arrowOfTags = { "<startHeads>", "</endHeads>", "<startNewLine>", "</endNewline>" };
+            string[] arrowOfTags = { "<startHeads>", "</endHeads>", "<startNewLine>", "</endNewline>","----", "DEPARTAMENTOS" };
             int sizeArray = arrowOfTags.Length;
             for (int numberTag = 0; numberTag < sizeArray; numberTag++)
             {
                 switch (numberTag)
                 {
                     case 0:
-                        startSetTags.isTagStartHead = arrowOfTags[numberTag];
+                        startSetTagsAndDefaults.isTagStartHead = arrowOfTags[numberTag];
                         break;
                     case 1:
-                        startSetTags.isTagEndHead = arrowOfTags[numberTag];
+                        startSetTagsAndDefaults.isTagEndHead = arrowOfTags[numberTag];
                         break;
                     case 2:
-                        startSetTags.isTagStartLine = arrowOfTags[numberTag];
+                        startSetTagsAndDefaults.isTagStartLine = arrowOfTags[numberTag];
                         break;
                     case 3:
-                        startSetTags.isTagEndLine = arrowOfTags[numberTag];
+                        startSetTagsAndDefaults.isTagEndLine = arrowOfTags[numberTag];
+                        break;
+                    case 4:
+                        startSetTagsAndDefaults.tripleLine = arrowOfTags[numberTag];
+                        break;
+                    case 5:
+                        startSetTagsAndDefaults.isDeparment= arrowOfTags[numberTag];
+                        break;
+                }
+            }
+        }
+
+        FoldersInsideCompany startSetFoldersCompanyDefaults = new FoldersInsideCompany();
+        private void setDefaultFoldersInsideCompany()
+        {
+            string[] arrowOfFolderInside = { "EXTRACONFIGURATIONS","configuration","exclusiveData","sits","template"};
+            int sizeArray = arrowOfFolderInside.Length;
+            for (int numberFolder = 0; numberFolder < sizeArray; numberFolder++)
+            {
+                switch (numberFolder)
+                {
+                    case 0:
+                        startSetFoldersCompanyDefaults.isCoreExtraConfigurations= arrowOfFolderInside[numberFolder];
+                        break;
+                    case 1:
+                        startSetFoldersCompanyDefaults.isConfiguration = arrowOfFolderInside[numberFolder];
+                        break;
+                    case 2:
+                        startSetFoldersCompanyDefaults.isExclusiveData = arrowOfFolderInside[numberFolder];
+                        break;
+                    case 3:
+                        startSetFoldersCompanyDefaults.isSits = arrowOfFolderInside[numberFolder];
+                        break;
+                    case 4:
+                        startSetFoldersCompanyDefaults.isTemplate = arrowOfFolderInside[numberFolder];
                         break;
                 }
             }
@@ -141,7 +177,7 @@ namespace Sistema_Planillas_Contabilidad
         {
             this.Hide();
             GUI_DUPLICAR_COPIAR_ELIMINAR_COMPANY callGuiDuplicateCopyEliminate = new GUI_DUPLICAR_COPIAR_ELIMINAR_COMPANY();
-            callGuiDuplicateCopyEliminate.MethodToReceivedAccesToObject(startThePaths);
+            callGuiDuplicateCopyEliminate.MethodToReceivedAccesToObject(startThePaths, startSetTagsAndDefaults, startSetFoldersCompanyDefaults);
             callGuiDuplicateCopyEliminate.ShowDialog();
             this.Close();
         }

@@ -12,7 +12,6 @@ namespace Sistema_Planillas_Contabilidad
         private string pathOfFolderSistemaPlanillas;
         private string pathOfCompaniesFolderSistemaPlanillas;
         private string pathOfConfigurationFolderSistemaPlanillas;
-        private string pathOfPicturesFolderSistemaPlanillas;
        
         public string CorePathOfFolderSistemaPlanillas
         {
@@ -49,19 +48,7 @@ namespace Sistema_Planillas_Contabilidad
                 pathOfConfigurationFolderSistemaPlanillas = value;
             }
         }
-
-        public string CorePathOfPicturesFolderSistemaPlanillas
-        {
-            get
-            {
-                return pathOfPicturesFolderSistemaPlanillas;
-            }
-            set
-            {
-                pathOfPicturesFolderSistemaPlanillas = value;
-            }
-        }
-
+       
         //Specific Folders
         private string pathOfConfigurationFolderAvoidData;
         private string pathOfConfigurationFolderCodesSits;
@@ -69,7 +56,8 @@ namespace Sistema_Planillas_Contabilidad
         private string pathOfConfigurationFolderFormulas;
         private string pathOfConfigurationFolderSits;
         private string pathOfConfigurationFolderTemplates;
-        
+        private string pathOfPicturesFolderTemplates;
+
         public string SpecificPathOfConfigurationFolderAvoidData
         {
             get
@@ -140,6 +128,18 @@ namespace Sistema_Planillas_Contabilidad
             set
             {
                 pathOfConfigurationFolderTemplates = value;
+            }
+        }
+
+        public string SpecificPathOfConfigurationFolderPictures
+        {
+            get
+            {
+                return pathOfPicturesFolderTemplates;
+            }
+            set
+            {
+                pathOfPicturesFolderTemplates = value;
             }
         }
     }

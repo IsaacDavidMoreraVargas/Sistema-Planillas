@@ -6,12 +6,14 @@ using System.Threading.Tasks;
 
 namespace Sistema_Planillas_Contabilidad
 {
-    class TagsAnd
+    public class TagsAndDefaultValues
     {
         private string tagStartHead = "";
         private string tagEndHead = "";
         private string tagStartLine = "";
         private string tagEndLine = "";
+        private string threeLine = "";
+        private string deparment = "";
 
         public string isTagStartHead
         {
@@ -60,5 +62,30 @@ namespace Sistema_Planillas_Contabilidad
                 tagEndLine = value;
             }
         }
+
+        public string tripleLine
+        {
+            get
+            {
+                return threeLine;
+            }
+            set
+            {
+                threeLine = value;
+            }
+        }
+
+        public string isDeparment
+        {
+            get
+            {
+                return deparment;
+            }
+            set
+            {
+                deparment = value;
+            }
+        }
+
     }
 }

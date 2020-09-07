@@ -50,6 +50,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="calculateSystem.cs" />
+    <Compile Include="FoldersInsideCompany.cs" />
     <Compile Include="generalDataAndAvoidData.cs" />
     <Compile Include="SpecificAndCorePaths.cs" />
     <Compile Include="generalMethods.cs" />
@@ -151,7 +152,7 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="TagsAnd.cs" />
+    <Compile Include="TagsAndDefaultValues.cs" />
     <EmbeddedResource Include="GUI_CREAR_EMPRESA.resx">
       <DependentUpon>GUI_CREAR_EMPRESA.cs</DependentUpon>
     </EmbeddedResource>

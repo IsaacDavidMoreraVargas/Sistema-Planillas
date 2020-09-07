@@ -79,5 +79,53 @@ namespace Sistema_Planillas_Contabilidad
             
             return storageLetters;
         }
+
+        public string eraseFirstWhiteSpace(string value)
+        {
+            if(value[0]==' ')
+            {
+                string storageString = "";
+                for (int letter = 1; letter < value.Length; letter++)
+                {
+
+                    storageString += value[letter];
+                }
+                return storageString;
+            }
+            else
+            {
+                return value;
+            }
+            
+        }
+
+        public string[] getFoldersOFWeeks(string number)
+        {
+            int maximun = Int32.Parse(number);
+            int endWeek = 7;
+            int limit = 0;
+            string maximunNumberFolder = "";
+
+            for (int start = 1; start < maximun; start++)
+            {
+                if (start == endWeek)
+                {
+                    if (limit < 3)
+                    {
+                        maximunNumberFolder += start.ToString() + ",";
+                        endWeek += 7;
+                        ++limit;
+                    }
+                }
+            }
+
+            string[] storageStart = maximunNumberFolder.Split(',');
+            string[] returnFolders = new string[4];
+            returnFolders[0] = (Int32.Parse(storageStart[0]) - 6) + "-" + storageStart[0]; //1-7
+            returnFolders[1] = (Int32.Parse(storageStart[1]) - 6) + "-" + storageStart[1]; //8-14
+            returnFolders[2] = (Int32.Parse(storageStart[2]) - 6) + "-" + storageStart[2]; //15-21
+            returnFolders[3] = (Int32.Parse(storageStart[2]) + 1) + "-" + number; //22-
+            return returnFolders;
+        }
     }
 }
