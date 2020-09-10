@@ -127,5 +127,30 @@ namespace Sistema_Planillas_Contabilidad
             returnFolders[3] = (Int32.Parse(storageStart[2]) + 1) + "-" + number; //22-
             return returnFolders;
         }
+
+        public string []orderingMonth(string []arrayOfMonth, string[] months)
+        {
+            List<int> positionNumber = new List<int>();
+            for (int firstDate = 0; firstDate < months.Length; firstDate++)
+            {
+                for (int secondDate = 0; secondDate < arrayOfMonth.Length; secondDate++)
+                {
+                    if (arrayOfMonth[secondDate] == months[firstDate])
+                    {
+                        positionNumber.Add(firstDate);
+                        break;
+                    }
+                }
+            }
+            string[] sendMonth = new string[positionNumber.Count];
+            int indexToMove = 0;
+            foreach (int number in positionNumber)
+            {
+                sendMonth[indexToMove] = months[number];
+                ++indexToMove;
+            }
+            return sendMonth;
+        }
+        
     }
 }

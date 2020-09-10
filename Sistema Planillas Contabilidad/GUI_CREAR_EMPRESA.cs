@@ -38,9 +38,12 @@ namespace Sistema_Planillas_Contabilidad
         string exclusiveData = "";
         string sits = "";
         string template = "";
+        string tagEndHEad = "";
         SpecificAndCorePaths startThePaths;
         TagsAndDefaultValues startTheTagsAndDefaults;
         FoldersInsideCompany startFoldersInsideCompany;
+        generalMethods callToGeneralMethods = new generalMethods();
+
         public void MethodToReceivedAccesToObject(SpecificAndCorePaths startThePathsReceived, TagsAndDefaultValues startTheTagsAndDefaultsReceived, FoldersInsideCompany startFoldersInsideCompanyReceived)
         {
             //receiving object reference
@@ -62,12 +65,14 @@ namespace Sistema_Planillas_Contabilidad
             //default values
             threeLine = startTheTagsAndDefaults.tripleLine;
             deparmentValue = startTheTagsAndDefaults.isDeparment;
+            tagEndHEad = startTheTagsAndDefaults.isTagEndHead;
             //folders inside folders
             coreExtraConfiguration = startFoldersInsideCompany.isCoreExtraConfigurations;
             configuration = startFoldersInsideCompany.isConfiguration;
             exclusiveData = startFoldersInsideCompany.isExclusiveData;
             sits = startFoldersInsideCompany.isSits;
             template = startFoldersInsideCompany.isTemplate;
+            
         }
 
         string menuOption;
@@ -84,7 +89,7 @@ namespace Sistema_Planillas_Contabilidad
             }
         }
 
-        string[] months = new string[] { "ENERO", "FEBRERO", "MARZO", "ABRIL", "MAYO", "JUNIO", "JULIO", "AGOSTO", "SEPTIEMBRE", "OCTUBRE", "NOVIEMBRE", "DICIEMBRE" };
+        string[] months = new string[] { "ENERO", "FEBRERO", "MARZO", "ABRIL", "MAYO", "JUNIO", "JULIO", "AGOSTO", "SEPTIEMBRE", "OCTUBRE", "NOVIEMBRE", "DICIEMBRE"};
         private void chargeDataCreateCase()
         {
             buttonGenerateCompany.Visible = false;
@@ -143,6 +148,7 @@ namespace Sistema_Planillas_Contabilidad
             listView1.View = View.Details;
             listView1.Columns[0].Width = listView1.Width;
             listView1.Columns[0].Text = "DEPARTAMENTOS";
+            
             //set months
             foreach (string item in months)
             {
@@ -157,8 +163,6 @@ namespace Sistema_Planillas_Contabilidad
             
             string pathCompany = CorePathOfFolderCompaniesSistemaPlanillas + "\\" + name;
             string []deparments = Directory.GetDirectories(pathCompany);
-
-            generalMethods callToGeneralMethods = new generalMethods();
             foreach (string item in deparments)
             {
                 string changeString = item.Replace(pathCompany, "");
@@ -171,34 +175,110 @@ namespace Sistema_Planillas_Contabilidad
                 }
 
             }
-            
-            string pathTemplates = SpecificPathOfFolderConfigurationTemplates;
-            string[] templates = Directory.GetFiles(pathTemplates);
-            foreach (string item in templates)
+            List<string> subListDepartment = new List<string>();
+            foreach (string item in deparments)
             {
-                string change = item.Replace(pathTemplates, "");
+                if (!item.Contains(coreExtraConfiguration))
+                {
+                    subListDepartment.Add(item);
+                }
+            }
+            string[] storageDeparments = new string[subListDepartment.Count];
+            int index = 0;
+            foreach(string dept in subListDepartment)
+            {
+                storageDeparments[index] = dept;
+                ++index;
+            }
+
+            deparments = storageDeparments;
+
+            foreach (string item in deparments)
+            {
+                string[] storageMonths = Directory.GetDirectories(item);
+                string add = "";
+                for (int dept=0; dept<storageMonths.Length; dept++)
+                {
+                    string changeString = storageMonths[dept];
+                    changeString = changeString.Replace(item,"");
+                    changeString = changeString.Replace("\\", "");
+                    storageMonths[dept] = changeString;
+                }
+                storageMonths = callToGeneralMethods.orderingMonth(storageMonths,months);
+                comboBoxFrom.Text = storageMonths[0];
+                int lastMonth = storageMonths.Length - 1;
+                comboBoxTo.Text = storageMonths[lastMonth];
+                break;
+            }
+            //reading all templates
+            string pathCoreTemplates = SpecificPathOfFolderConfigurationTemplates;
+            string[] templatesCore = Directory.GetFiles(pathCoreTemplates);
+            foreach (string item in templatesCore)
+            {
+                string change = item.Replace(pathCoreTemplates, "");
                 change = change.Replace("_", " ");
                 change = change.Replace("\\", " ");
                 change = change.Replace(".txt", "");
                 comboBoxChargeTemplate.Items.Add(change);
             }
-            
+            //reading template of company
+            string pathSpecificTemplates = CorePathOfFolderCompaniesSistemaPlanillas + name + "\\" + coreExtraConfiguration + "\\"+template;
+            string[] templatesSpecific = Directory.GetFiles(pathSpecificTemplates);
+            foreach (string item in templatesSpecific)
+            {
+                string change = item.Replace(pathSpecificTemplates, "");
+                change = change.Replace("_", " ");
+                change = change.Replace("\\", " ");
+                change = change.Replace(".txt", "");
+                comboBoxChargeTemplate.Text=change;
+            }
+            saveToEdit();
         }
 
-        private void buttonReturnProgram_Click(object sender, EventArgs e)
+        string remenberComboBoxTo = "";
+        string remenberComboBoxFrom = "";
+        string remenberComboBoxTemplate = "";
+        List<string> saveListToEdit = new List<string>();
+        private void saveToEdit()
         {
-            this.Hide();
-            GUI_DUPLICAR_COPIAR_ELIMINAR_COMPANY callingMenuStart = new GUI_DUPLICAR_COPIAR_ELIMINAR_COMPANY();
-            callingMenuStart.ShowDialog();
-            this.Close();
+            generalMethods callGeneralMethods = new generalMethods();
+            remenberComboBoxTemplate = comboBoxChargeTemplate.Text;
+            remenberComboBoxTemplate=callGeneralMethods.eraseFirstWhiteSpace(remenberComboBoxTemplate);
+            remenberComboBoxTemplate = remenberComboBoxTemplate.Replace(" ","_");
+            remenberComboBoxTo = comboBoxTo.Text;
+            remenberComboBoxFrom = comboBoxFrom.Text;
+            string company = textBoxNameCompany.Text;
+            company = company.Replace(" ","_");
+            foreach (ListViewItem item in listView1.Items)
+            {
+                string companyAndDepartmentAndMonth = CorePathOfFolderCompaniesSistemaPlanillas + company + "\\" + item.Text;
+                saveListToEdit.Add(companyAndDepartmentAndMonth);
+                bool allowAdd = false;
+                for (int month = 0; month < months.Length; month++)
+                {
+                    if (months[month] == comboBoxTo.Text)
+                    {
+                        companyAndDepartmentAndMonth = CorePathOfFolderCompaniesSistemaPlanillas + company + "\\" + item.Text+ "\\" + months[month];
+                        saveListToEdit.Add(companyAndDepartmentAndMonth);
+                        break;
+                    }
+                    else if (months[month] == comboBoxFrom.Text)
+                    {
+                        allowAdd = true;
+                    }
+                    if (allowAdd == true)
+                    {
+                        companyAndDepartmentAndMonth = CorePathOfFolderCompaniesSistemaPlanillas + company + "\\" + item.Text + "\\" + months[month];
+                        saveListToEdit.Add(companyAndDepartmentAndMonth);
+                    }
+                }
+               
+            }
         }
-
-        private void buttonCloseProgram_Click(object sender, EventArgs e)
-        {
-            this.Close();
-        }
-
+       
         List<string> storageDeparments = new List<string>();
+        List<string> eraseDeparments = new List<string>();
+        List<string> listNewDepartmentsEdit = new List<string>();
         private void buttonGenerateCompany_Click(object sender, EventArgs e)
         {
             if (textBoxNameCompany.Text == "" || textBoxNameCompany.Text == " ")
@@ -235,7 +315,7 @@ namespace Sistema_Planillas_Contabilidad
                     string pathDays = SpecificPathOfFolderConfigurationDaysOfMoths + "days.txt";
                     string[] storageNumberDays = File.ReadAllLines(pathDays);
                     //getting the path to create company
-                    string pathCompanyAndNameCompany = textBoxNameCompany.Text;
+                    string pathCompanyAndNameCompany = textBoxNameCompany.Text.ToUpper();
                     pathCompanyAndNameCompany = pathCompanyAndNameCompany.Replace(" ","_");
                     pathCompanyAndNameCompany = CorePathOfFolderCompaniesSistemaPlanillas + pathCompanyAndNameCompany;
                     listFoldersCreate.Add(pathCompanyAndNameCompany);
@@ -274,7 +354,6 @@ namespace Sistema_Planillas_Contabilidad
                         }
                     }
                     List<string []> storageDays = new List<string[]>();
-                    generalMethods callToGetFolders = new generalMethods();
                     for(int month=0; month<storageNumberDays.Length; month++)
                     {
                         foreach(string numbers in storageMonths)
@@ -282,7 +361,7 @@ namespace Sistema_Planillas_Contabilidad
                             if(storageNumberDays[month] == numbers)
                             {
                                 ++month;
-                                string[] dividedFolders = callToGetFolders.getFoldersOFWeeks(storageNumberDays[month]);
+                                string[] dividedFolders = callToGeneralMethods.getFoldersOFWeeks(storageNumberDays[month]);
                                 storageDays.Add(dividedFolders);
                             }
                         }
@@ -354,7 +433,365 @@ namespace Sistema_Planillas_Contabilidad
                 }
                 else if (menuOption == "EDIT")
                 {
-                   
+                    //get number days of months
+                    string pathDays = SpecificPathOfFolderConfigurationDaysOfMoths + "days.txt";
+                    string[] storageNumberDays = File.ReadAllLines(pathDays);
+                    //path to get template
+                    string templateName = comboBoxChargeTemplate.Text;
+                    templateName = callToGeneralMethods.eraseFirstWhiteSpace(templateName);
+                    templateName = templateName.Replace(" ", "_");
+                    string pathTemplate = SpecificPathOfFolderConfigurationTemplates + "\\" + templateName + ".txt";
+                    string[] storageDataOfTemplate = File.ReadAllLines(pathTemplate);
+                    //
+                    List<string> addFrom = new List<string>();
+                    List<string> eraseFrom = new List<string>();
+                    List<string> addTo = new List<string>();
+                    List<string> eraseTo = new List<string>();
+                    string montChangeFrom = callToGeneralMethods.eraseFirstWhiteSpace(comboBoxFrom.Text);
+                    if (remenberComboBoxFrom != montChangeFrom)
+                    {
+                        bool foundFirstRound = false;
+                        for (int monthPhase1 = 0; monthPhase1 < months.Length; monthPhase1++)
+                        {
+                            if (months[monthPhase1] == montChangeFrom)
+                            {
+                                for (int monthPhase2 = monthPhase1 ; monthPhase2 <months.Length; monthPhase2++)
+                                {
+                                    if(months[monthPhase2]==remenberComboBoxFrom)
+                                    {
+                                        foundFirstRound = true;
+                                        break;
+                                    }else
+                                    {
+                                        addFrom.Add(months[monthPhase2]);
+                                    }
+                                }
+                                break;
+                            }
+                        }
+                        if (foundFirstRound == false)
+                        {
+                            addFrom.Clear();
+                            bool foundSecondRound = false;
+                            for (int monthPhase1 = 0; monthPhase1 < months.Length; monthPhase1++)
+                            {
+                                if (months[monthPhase1] == remenberComboBoxFrom)
+                                {
+                                    for (int monthPhase2 = monthPhase1; monthPhase2 < months.Length; monthPhase2++)
+                                    {
+                                        if (months[monthPhase2] == montChangeFrom)
+                                        {
+                                            foundSecondRound = true;
+                                            //eraseFrom.Add(months[monthPhase2]);
+                                            break;
+                                        }
+                                        else
+                                        {
+                                            eraseFrom.Add(months[monthPhase2]);
+                                        }
+                                    }
+                                    break;
+                                }
+                            }
+                            if (foundSecondRound == false)
+                            {
+                                eraseFrom.Clear();
+                            }
+                        }
+                    }
+
+                    string montChangeTo = callToGeneralMethods.eraseFirstWhiteSpace(comboBoxTo.Text);
+                    if (remenberComboBoxTo != montChangeTo)
+                    {
+                        bool foundFirstRound = false;
+                        for (int monthPhase1 = 0; monthPhase1 < months.Length; monthPhase1++)
+                        {
+                            if (months[monthPhase1] == remenberComboBoxTo)
+                            {
+                                ++monthPhase1;
+                                for (int monthPhase2 = monthPhase1; monthPhase2 < months.Length; monthPhase2++)
+                                {
+                                    if (months[monthPhase2] == montChangeTo)
+                                    {
+                                        addTo.Add(months[monthPhase2]);
+                                        foundFirstRound = true;
+                                        break;
+                                    }
+                                    else
+                                    {
+                                        addTo.Add(months[monthPhase2]);
+                                    }
+                                }
+                                break;
+                            }
+                        }
+                        if (foundFirstRound == false)
+                        {
+                            addTo.Clear();
+                            bool foundSecondRound = false;
+                            for (int monthPhase1 = 0; monthPhase1 < months.Length; monthPhase1++)
+                            {
+                                if (months[monthPhase1] == montChangeFrom)
+                                {
+                                    ++monthPhase1;
+                                    ++monthPhase1;
+                                    //++monthPhase1;
+                                    for (int monthPhase2 = monthPhase1; monthPhase2 < months.Length; monthPhase2++)
+                                    {
+                                        if (months[monthPhase2] == remenberComboBoxTo)
+                                        {
+                                            eraseTo.Add(months[monthPhase2]);
+                                            foundSecondRound = true;
+                                            break;
+                                        }
+                                        else
+                                        {
+                                            eraseTo.Add(months[monthPhase2]);
+                                        }
+                                    }
+                                    break;
+                                }
+                            }
+                            if (foundSecondRound == false)
+                            {
+                                eraseTo.Clear();
+                            }
+                        }
+                    }
+                    List<string> subList = new List<string>();
+                    List<string> eraseList = new List<string>();
+                    foreach (string dept in saveListToEdit)
+                    {
+                        bool itsContainsDept = false;
+                        bool itsContainsFrom= false;
+                        bool itsContainsTo= false;
+                        foreach (string erase in eraseDeparments)
+                        {
+                            if(dept.Contains(erase))
+                            {
+                                itsContainsDept = true;
+                                break;
+                            }
+                        }
+                        foreach (string erase in eraseFrom)
+                        {
+                            if (dept.Contains(erase))
+                            {
+                                itsContainsFrom = true;
+                                break;
+                            }
+                        }
+                        foreach (string erase in eraseTo)
+                        {
+                            if (dept.Contains(erase))
+                            {
+                                itsContainsTo = true;
+                                break;
+                            }
+                        }
+                        if (itsContainsDept == false && itsContainsFrom ==false && itsContainsTo == false)
+                        {
+                            subList.Add(dept);
+                        }else
+                        {
+                            eraseList.Add(dept);
+                        }
+                    }
+                    saveListToEdit = subList;
+                    List<string> allowedMonth = new List<string>();                  
+                    for (int month=0; month<months.Length; month++)
+                    {
+                        if(months[month]== montChangeFrom)
+                        {
+                            for (int monthPhase2 = 0; monthPhase2 < months.Length; monthPhase2++)
+                            {
+                                if (months[monthPhase2] == montChangeTo)
+                                {
+                                    allowedMonth.Add(months[monthPhase2]);
+                                    break;
+                                }else
+                                {
+                                    allowedMonth.Add(months[monthPhase2]);
+                                }
+                            }
+                            break;
+                        }
+                    }
+                    List<string> OnlyCompanies = new List<string>();
+                    name = name.Replace(" ","_");
+                    string pathCompanyAndNameCompany = CorePathOfFolderCompaniesSistemaPlanillas + name;
+                    foreach (ListViewItem deparment in listView1.Items)
+                    {
+                        string change = callToGeneralMethods.eraseFirstWhiteSpace(deparment.Text);
+                        string pathCompanyAndNameCompanyAndMonthAndDays = pathCompanyAndNameCompany + "\\" + change;
+                        OnlyCompanies.Add(pathCompanyAndNameCompanyAndMonthAndDays);
+                    }
+                    List<string> listCreateNew = new List<string>();
+                    foreach (string deparment in OnlyCompanies)
+                    {
+                        listCreateNew.Add(deparment);
+                        foreach (string month in allowedMonth)
+                        {
+                            string pathCompanyAndNameCompanyAndMonthAndDays = deparment + "\\" + month;
+                            listCreateNew.Add(pathCompanyAndNameCompanyAndMonthAndDays);
+                        }
+                    }
+
+                    List<string> subListEdit = new List<string>();
+                    List<string> subListNew = new List<string>();
+                    foreach (string deparment in listCreateNew)
+                    {
+                        bool found = false;
+                        foreach (string compare in saveListToEdit)
+                        {
+                            if(deparment == compare)
+                            {
+                                found = true;
+                                break;
+                            }
+                        }
+                        if(found==true)
+                        {
+                            subListEdit.Add(deparment);
+                        }
+                        else
+                        {
+                            subListNew.Add(deparment);
+                        }
+                    }
+                    List<string> subListFilesEdit = new List<string>();
+                    foreach(string path in subListEdit)
+                    {
+                        string []storageFiles=Directory.GetFiles(path);
+                        foreach (string file in storageFiles)
+                        {
+                            subListFilesEdit.Add(file);
+                        }
+                    }
+                    List<string> subListFilesNew= new List<string>();
+                    string completeCompany = pathCompanyAndNameCompany;
+                    foreach (string path in subListNew)
+                    {
+                        string change = path.Replace(completeCompany, "");
+                        foreach (ListViewItem deparment in listView1.Items)
+                        {
+                            change = change.Replace(deparment.Text, "");
+                        }
+                        change = change.Replace("\\", "");
+                        for (int month = 0; month < storageNumberDays.Length; month++)
+                        {
+                            if (storageNumberDays[month] == change)
+                            {
+                                ++month;
+                                string[] folders = callToGeneralMethods.getFoldersOFWeeks(storageNumberDays[month]);
+                                foreach(string folder in folders)
+                                {
+                                    subListFilesNew.Add(path + "\\" + folder+".txt");
+                                }
+                                break;
+                            }
+                        }
+                    }
+                    /////////////////////////////////////////////////////////////////////////
+                    
+                    foreach(string path in eraseList)
+                    {
+                        if(Directory.Exists(path))
+                        {
+                            DirectoryInfo directory = new DirectoryInfo(path);
+                            directory.Delete(true);
+                        }
+                    }
+                    /////////////////////////////////////////////////////////////////////////
+                    foreach (string path in subListNew)
+                    {
+                        if(!Directory.Exists(path))
+                        {
+                            Directory.CreateDirectory(path);
+                        }
+                    }
+                    /////////////////////////////////////////////////////////////////////////
+                    foreach (string path in subListFilesNew)
+                    {
+                        if (!File.Exists(path))
+                        {
+                            FileStream fstreamCreateTemplate = new FileStream(path, FileMode.OpenOrCreate, FileAccess.Write);
+                            StreamWriter writerReadTemplate = new StreamWriter(fstreamCreateTemplate);
+                            foreach (string file in storageDataOfTemplate)
+                            {
+                                writerReadTemplate.WriteLine(file);
+                            }
+                            writerReadTemplate.Close();
+                        }
+                    }
+                    /////////////////////////////////////////////////////////////////////////
+                    string changeString = callToGeneralMethods.eraseFirstWhiteSpace(comboBoxChargeTemplate.Text);
+                    if (changeString != remenberComboBoxTemplate)
+                    {
+                        string sumDataPhase1 = "";
+                        foreach (string line in storageDataOfTemplate)
+                        {
+                            sumDataPhase1 += line + "\n";
+                        }
+                        foreach (string path in subListFilesEdit)
+                        {
+                            if (File.Exists(path))
+                            {
+                                string sumDataPhase2 = "";
+                                string []storageLines = File.ReadAllLines(path);
+                                for(int linePhase1=0; linePhase1 < storageLines.Length; linePhase1++)
+                                {
+                                    if(storageLines[linePhase1]==tagEndHEad)
+                                    {
+                                        ++linePhase1;
+                                        for (int linePhase2 = linePhase1; linePhase2 < storageLines.Length; linePhase2++)
+                                        {
+                                            sumDataPhase2 += storageLines[linePhase2] + "\n";
+                                        }
+                                        break;
+                                    }
+                                }
+                                string finalSumData = sumDataPhase1 + sumDataPhase2;
+                                string[] finalStorage = finalSumData.Split('\n');
+                                File.Delete(path);
+                                FileStream fstreamFinal = new FileStream(path, FileMode.OpenOrCreate, FileAccess.Write);
+                                StreamWriter writerFinal = new StreamWriter(fstreamFinal);
+                                foreach (string line in finalStorage)
+                                {
+                                    writerFinal.WriteLine(line);
+                                   
+                                }
+                                writerFinal.Close();
+                            }
+                        }
+                    }
+                    //adding Id To File
+                    string ID = textBoxLegalID.Text;
+                    string pathId = pathCompanyAndNameCompany + "\\" + coreExtraConfiguration + "\\" + exclusiveData + "\\" + "exclusive.txt";
+                    if(File.Exists(pathId))
+                    {
+                        File.Delete(pathId);
+                    }
+                    FileStream fstreamId = new FileStream(pathId, FileMode.OpenOrCreate, FileAccess.Write);
+                    StreamWriter writerId = new StreamWriter(fstreamId);
+                    writerId.WriteLine(ID);
+                    writerId.Close();
+                    //adding data To Template folder
+                    string pathGetTemplate = pathCompanyAndNameCompany + "\\" + coreExtraConfiguration + "\\" + template + "\\" + templateName + ".txt";
+                    if (File.Exists(pathGetTemplate))
+                    {
+                        File.Delete(pathGetTemplate);
+                    }
+                    FileStream fstreamTemplate = new FileStream(pathGetTemplate, FileMode.OpenOrCreate, FileAccess.Write);
+                    StreamWriter writerTemplate = new StreamWriter(fstreamTemplate);
+                    foreach (string line in storageDataOfTemplate)
+                    {
+                        writerTemplate.WriteLine(line);
+                    }
+                    writerTemplate.Close();
+                    
+
+                    MessageBox.Show("EMPRESA EDITADA EXITOSAMENTE");
                 }
             }
         }
@@ -391,8 +828,9 @@ namespace Sistema_Planillas_Contabilidad
             if (textBoxDepartment.Text != "" && textBoxDepartment.Text != " ")
             {
                 buttonGenerateCompany.Visible = true;
-                storageDeparments.Add(textBoxDepartment.Text);
-                listView1.Items.Add(textBoxDepartment.Text);
+                storageDeparments.Add(textBoxDepartment.Text.ToUpper());
+                listView1.Items.Add(textBoxDepartment.Text.ToUpper());
+                listNewDepartmentsEdit.Add(textBoxDepartment.Text.ToUpper());
                 listView1.Visible = true;
                 textBoxDepartment.Text = "";
                 buttoneEraseDepartment.Visible = true;
@@ -430,6 +868,7 @@ namespace Sistema_Planillas_Contabilidad
             else
             {
                 List<string> subList = new List<string>();
+                eraseDeparments.Add(listView1.Items[IndexViewList].Text);
                 foreach (string deparment in storageDeparments)
                 {
                     if (deparment != listView1.Items[IndexViewList].Text)
@@ -437,10 +876,20 @@ namespace Sistema_Planillas_Contabilidad
                         subList.Add(deparment);
                     }
                 }
-                listView1.Items.RemoveAt(IndexViewList);
                 listView1.Refresh();
                 storageDeparments.Clear();
                 storageDeparments = subList;
+                subList.Clear();
+                foreach (string deparment in listNewDepartmentsEdit)
+                {
+                    if(deparment!= listView1.Items[IndexViewList].Text)
+                    {
+                        subList.Add(deparment);
+                    }
+                }
+                listNewDepartmentsEdit.Clear();
+                listNewDepartmentsEdit = subList;
+                listView1.Items.RemoveAt(IndexViewList);
             }
            
         }
@@ -463,16 +912,32 @@ namespace Sistema_Planillas_Contabilidad
 
             for (int dateStart = 0; dateStart < months.Length; dateStart++)
             {
+                comboBoxTo.Items.Add(months[dateStart]);
+                /*
                 if (months[dateStart] == avoidDate)
                 {
                     for (int dateEnd = ++dateStart; dateEnd < months.Length; dateEnd++)
                     {
-                        comboBoxTo.Items.Add(months[dateEnd]);
+                         comboBoxTo.Items.Add(months[dateEnd]);
                     }
                     dateStart = months.Length;
                     break;
                 }
+                */
             }
+        }
+
+        private void buttonReturnProgram_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            GUI_DUPLICAR_COPIAR_ELIMINAR_COMPANY callingMenuStart = new GUI_DUPLICAR_COPIAR_ELIMINAR_COMPANY();
+            callingMenuStart.ShowDialog();
+            this.Close();
+        }
+
+        private void buttonCloseProgram_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
 
     }

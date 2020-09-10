@@ -41,11 +41,13 @@ namespace Sistema_Planillas_Contabilidad
         string SpecificPathOfFolderConfigurationTemplates = "";
         string SpecificPathOfFolderConfigurationPictures = "";
 
+        string coreExtraConfiguration = "";
         string threeLine = "";
         string deparmentValue = "";
         string configuration = "";
         string exclusiveData = "";
         string sits = "";
+        string template = "";
 
         SpecificAndCorePaths startThePaths;
         TagsAndDefaultValues startTheTagsAndDefaults;
@@ -73,9 +75,11 @@ namespace Sistema_Planillas_Contabilidad
             threeLine = startTheTagsAndDefaults.tripleLine;
             deparmentValue = startTheTagsAndDefaults.isDeparment;
             //folders inside folders
+            coreExtraConfiguration = startFoldersInsideCompany.isCoreExtraConfigurations;
             configuration = startFoldersInsideCompanyReceived.isConfiguration;
             exclusiveData = startFoldersInsideCompanyReceived.isExclusiveData;
             sits = startFoldersInsideCompanyReceived.isSits;
+            template = startFoldersInsideCompany.isTemplate;
         }
 
         private void GUI_DUPLICAR_COPIAR_ELIMINAR_COMPANY_Load(object sender, EventArgs e)
@@ -122,57 +126,47 @@ namespace Sistema_Planillas_Contabilidad
                 else
                 {
                     nameCompany = nameCompany.Replace(" ", "_");
-
-                    string[] arrayOfDeparments = Directory.GetDirectories(pathOfCompany);
+                    nameCompany = nameCompany.ToUpper();
+                    string[] arrayOfDeparmentsAndExTraConfigurations = Directory.GetDirectories(pathOfCompany);
                     List<string> listOnlyDeparments = new List<string>();
                     List<string> listDeparmentWithMonths = new List<string>();
-                    List<string> listExtraFolders = new List<string>();
+                    List<string> listExtraConfigurations = new List<string>();
+                    List<string> listExtraFolders = new List<string>();   
 
                     generalMethods callToMethod = new generalMethods();
-                    for (int path = 0; path < arrayOfDeparments.Length; path++)
+                    for (int path = 0; path < arrayOfDeparmentsAndExTraConfigurations.Length; path++)
                     {
-                        string replaceInString = arrayOfDeparments[path];
+                        string replaceInString = arrayOfDeparmentsAndExTraConfigurations[path];
                         replaceInString = replaceInString.Replace(pathOfCompany,"");
                         replaceInString = replaceInString.Replace("\\", "");
-                        bool anwser= callToMethod.isLowerCase(replaceInString);
-                        if (anwser==false)
+                        if (replaceInString!=coreExtraConfiguration)
                         {
-                            listOnlyDeparments.Add(arrayOfDeparments[path]);
-                            string[] arrayOfMonths = Directory.GetDirectories(arrayOfDeparments[path]);
+                            listOnlyDeparments.Add(arrayOfDeparmentsAndExTraConfigurations[path]);
+                            string[] arrayOfMonths = Directory.GetDirectories(arrayOfDeparmentsAndExTraConfigurations[path]);
                             for (int path2 = 0; path2 < arrayOfMonths.Length; path2++)
                             {
                                 listDeparmentWithMonths.Add(arrayOfMonths[path2]);
                             }
                         }else
                         {
-                            listExtraFolders.Add(arrayOfDeparments[path]);
+                            listExtraConfigurations.Add(arrayOfDeparmentsAndExTraConfigurations[path]);
                         }
                     }
-                    
-                    List<string> listDeparmentWithMonthsWithWeeks = new List<string>();
-                    foreach (string path in listDeparmentWithMonths)
-                    {
-                        string[] arrayOfWeeks = Directory.GetDirectories(path);
-                        for (int path2 = 0; path2 < arrayOfWeeks.Length; path2++)
-                        {
-                            listDeparmentWithMonthsWithWeeks.Add(arrayOfWeeks[path2]);
-                        }
-                    }
-                    
                     List<string> listFilesOfWeeks = new List<string>();
-                    foreach (string path in listDeparmentWithMonthsWithWeeks)
+                    foreach (string path in listDeparmentWithMonths)
                     {
                         string[] directory2 = Directory.GetFiles(path);
                         for (int path2 = 0; path2 < directory2.Length; path2++)
                         {
-                            
                             listFilesOfWeeks.Add(directory2[path2]);
                         }
                     }
-
+                    
+                    string[] arrayOfExtraFolders = Directory.GetDirectories(listExtraConfigurations[0]);
                     List<string> listFilesOfExtras = new List<string>();
-                    foreach (string path in listExtraFolders)
+                    foreach (string path in arrayOfExtraFolders)
                     {
+                        listExtraFolders.Add(path);
                         string[] directory2 = Directory.GetFiles(path);
                         for (int path2 = 0; path2 < directory2.Length; path2++)
                         {
@@ -182,27 +176,28 @@ namespace Sistema_Planillas_Contabilidad
 
                     List<string> listFoldersCreate = new List<string>();
                     listFoldersCreate.Add(CorePathOfFolderCompaniesSistemaPlanillas + nameCompany);
-                    //Deparments
+
+                    //adding name Deparments
                     foreach (string path in listOnlyDeparments)
                     {
                         string replaceString = path.Replace(pathOfCompany, CorePathOfFolderCompaniesSistemaPlanillas + nameCompany);
                         listFoldersCreate.Add(replaceString);
                     }
-                    //Months of deparments
+                    //adding Months of deparments
                     foreach (string path in listDeparmentWithMonths)
                     {
                         string replaceInString = path;
                         replaceInString = replaceInString.Replace(pathOfCompany, CorePathOfFolderCompaniesSistemaPlanillas + nameCompany);
                         listFoldersCreate.Add(replaceInString);
                     }
-                    //Weeks of deparments
-                    foreach (string path in listDeparmentWithMonthsWithWeeks)
+                    //adding Extra configuration folder
+                    foreach (string path in listExtraConfigurations)
                     {
                         string replaceInString = path;
                         replaceInString = replaceInString.Replace(pathOfCompany, CorePathOfFolderCompaniesSistemaPlanillas + nameCompany);
                         listFoldersCreate.Add(replaceInString);
                     }
-                    //Extra folders
+                    //adding Extra folders
                     foreach (string path in listExtraFolders)
                     {
                         string replaceInString = path;
@@ -231,13 +226,13 @@ namespace Sistema_Planillas_Contabilidad
                             {
                                 writer.WriteLine(line);
                             }
-                            writer.Close();
+                            writer.Close(); 
                         }
                     }
                     //files of extras
                     for (int path = 0; path < listFilesOfExtras.Count; path++)
                     {
-                        string writePath = listFilesOfExtras[path].Replace(pathOfCompany, CorePathOfFolderCompaniesSistemaPlanillas + nameCompany + "\\");
+                        string writePath = listFilesOfExtras[path].Replace(pathOfCompany, CorePathOfFolderCompaniesSistemaPlanillas + nameCompany);
                         string[] lines = File.ReadAllLines(listFilesOfExtras[path]);
                         if (!File.Exists(writePath))
                         {
@@ -250,6 +245,7 @@ namespace Sistema_Planillas_Contabilidad
                             writer.Close();
                         }
                     }
+                    
                     ChargeDataStart();
                     MessageBox.Show("DUPLICADO EXITOSAMENTE");
                 }
@@ -408,7 +404,7 @@ namespace Sistema_Planillas_Contabilidad
             callingCreateCompany.optionCreateOrEdit("CREATE");
             callingCreateCompany.receivedNameCompany(SelectedCompany);
             callingCreateCompany.ShowDialog();
-            this.Close();
+            this.Show();
         }
 
         private void buttonEditCompany_Click(object sender, EventArgs e)
@@ -421,7 +417,7 @@ namespace Sistema_Planillas_Contabilidad
                 callingCreateCompany.optionCreateOrEdit("EDIT");
                 callingCreateCompany.receivedNameCompany(SelectedCompany);
                 callingCreateCompany.ShowDialog();
-                this.Close();
+                this.Show();
             }
             else
             {
