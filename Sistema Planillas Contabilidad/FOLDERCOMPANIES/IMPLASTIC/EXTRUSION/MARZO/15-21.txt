@@ -1,3 +1,4 @@
+<startHeads>
 INDEX
 CEDULA
 NOMBRE
@@ -53,7 +54,8 @@ C.C.S.S
 PRESTAMOS
 VARIOS
 SALARIO NETO
------------
+</endHeads>
+<startNewLine>
 402250378
 Leslie Javier
 Bolaños
@@ -108,7 +110,8 @@ Arguedas
  
  
 58 072,18
-+++++++++++
+</endNewline>
+<startNewLine>
 155809339732
 Reynaldo
 Davila
@@ -163,7 +166,8 @@ Altamirano
  
  
 37 646,42
-+++++++++++
+</endNewline>
+<startNewLine>
 155823608208
 Harold
 Rivera
@@ -218,7 +222,8 @@ López
  
  
 69 225,18
-+++++++++++
+</endNewline>
+<startNewLine>
 502970195
 Leandro Jesus
 Rodriguez
@@ -273,4 +278,5 @@ Chaves
  
  
 33 446,42
-+++++++++++
+</endNewline>
+

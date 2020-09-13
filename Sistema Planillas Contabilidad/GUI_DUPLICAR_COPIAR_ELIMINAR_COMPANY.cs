@@ -462,7 +462,7 @@ namespace Sistema_Planillas_Contabilidad
 
         private void buttonCloseProgram_Click(object sender, EventArgs e)
         {
-            this.Close();
+            Application.Exit();
         }
     }
 }

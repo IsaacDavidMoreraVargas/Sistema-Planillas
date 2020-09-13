@@ -1,3 +1,4 @@
+<startHeads>
 INDEX
 CEDULA
 NOMBRE
@@ -53,7 +54,8 @@ C.C.S.S
 PRESTAMOS
 VARIOS
 SALARIO NETO
------------
+</endHeads>
+<startNewLine>
 108090595
 Roberto
 Gamboa
@@ -108,4 +110,4 @@ Fernandez
  
  
 64 249,62
-+++++++++++
+</endNewline>

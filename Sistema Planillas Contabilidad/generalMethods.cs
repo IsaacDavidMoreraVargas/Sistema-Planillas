@@ -24,19 +24,19 @@ namespace Sistema_Planillas_Contabilidad
         public string eraseStringUntilFlag(string value, string flag)
         {
             string storageLetters = "";
-            char flagStart=flag[0];
+            char flagStart = flag[0];
             int stopIndex = 0;
             int sizeString = 0;
             bool found = false;
             for (int i = 0; i < value.Length; i++)
             {
-                if (value[i]==flagStart && found==false)
+                if (value[i] == flagStart && found == false)
                 {
                     int advance = i;
                     stopIndex = i;
                     for (int x = 0; x < flag.Length; x++)
                     {
-                        if(flag[x]== value[advance])
+                        if (flag[x] == value[advance])
                         {
                             ++advance;
                             ++sizeString;
@@ -44,11 +44,12 @@ namespace Sistema_Planillas_Contabilidad
                         else
                         {
                             --sizeString;
-                            if (sizeString==flag.Length)
+                            if (sizeString == flag.Length)
                             {
                                 found = true;
                                 break;
-                            }else
+                            }
+                            else
                             {
                                 i = advance;
                                 stopIndex = 0;
@@ -76,13 +77,13 @@ namespace Sistema_Planillas_Contabilidad
             {
                 storageLetters = value;
             }
-            
+
             return storageLetters;
         }
 
         public string eraseFirstWhiteSpace(string value)
         {
-            if(value[0]==' ')
+            if (value[0] == ' ')
             {
                 string storageString = "";
                 for (int letter = 1; letter < value.Length; letter++)
@@ -96,7 +97,7 @@ namespace Sistema_Planillas_Contabilidad
             {
                 return value;
             }
-            
+
         }
 
         public string[] getFoldersOFWeeks(string number)
@@ -128,7 +129,7 @@ namespace Sistema_Planillas_Contabilidad
             return returnFolders;
         }
 
-        public string []orderingMonth(string []arrayOfMonth, string[] months)
+        public string[] orderingMonth(string[] arrayOfMonth, string[] months)
         {
             List<int> positionNumber = new List<int>();
             for (int firstDate = 0; firstDate < months.Length; firstDate++)
@@ -151,6 +152,19 @@ namespace Sistema_Planillas_Contabilidad
             }
             return sendMonth;
         }
-        
+
+        public bool findDataInArray(string[] arrayReceived, string valueToFind)
+        {
+            bool found = false;
+            foreach (string data in arrayReceived)
+            {
+                if(data == valueToFind)
+                {
+                    found = true;
+                    break;
+                }
+            }
+            return found;
+        }
     }
 }

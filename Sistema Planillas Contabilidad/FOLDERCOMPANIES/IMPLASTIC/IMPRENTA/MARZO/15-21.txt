@@ -1,3 +1,4 @@
+<startHeads>
 INDEX
 CEDULA
 NOMBRE
@@ -53,7 +54,8 @@ C.C.S.S
 PRESTAMOS
 VARIOS
 SALARIO NETO
------------
+</endHeads>
+<startNewLine>
 155817036425
 Michael A.
 Abarca
@@ -108,7 +110,8 @@ Aguilera
  
  
 20 846,47
-+++++++++++
+</endNewline>
+<startNewLine>
 503780591
 Erick Manuel
 Acosta
@@ -163,7 +166,8 @@ Alvarado
  
  
 58 096,42
-+++++++++++
+</endNewline>
+<startNewLine>
 602680681
 Henry
 Gonzalez
@@ -218,7 +222,8 @@ Duran
 10000
  
 30 446,42
-+++++++++++
+</endNewline>
+<startNewLine>
 108400685
 Javier Gerardo
 Granja 
@@ -273,7 +278,8 @@ Bonilla
  
  
 33 446,42
-+++++++++++
+</endNewline>
+<startNewLine>
 155822091115
 Eduardo Antonio 
 Picado
@@ -328,7 +334,8 @@ Picado
  
  
 58 096,42
-+++++++++++
+</endNewline>
+<startNewLine>
 108820135
 Walter
 Torres
@@ -383,4 +390,5 @@ Seas
  
  
 43 125,18
-+++++++++++
+</endNewline>
+

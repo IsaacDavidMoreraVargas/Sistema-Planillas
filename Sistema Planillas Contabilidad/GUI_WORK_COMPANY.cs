@@ -22,8 +22,8 @@ namespace Sistema_Planillas_Contabilidad
         string company = "";
         string deparment = "";
         string month = "";
-        string week = "";
-        string file = "";
+        //string week = "";
+        //string file = "";
         int rowNumber = 0;
         int locationCell = 0;
         int locationRow = 0;
@@ -35,64 +35,90 @@ namespace Sistema_Planillas_Contabilidad
             InitializeComponent();
         }
 
+        string CorePathOfFolderSistemaPlanillas = "";
+        string CorePathOfFolderCompaniesSistemaPlanillas = "";
+        string CorePathOfCoreConfigurationFolderSistemaPlanillas = "";
+
+        string SpecificPathOfFolderConfigurationAvoidData = "";
+        string SpecificPathOfFolderConfigurationCodesSits = "";
+        string SpecificPathOfFolderConfigurationDaysOfMoths = "";
+        string SpecificPathOfFolderConfigurationFormulas = "";
+        string SpecificPathOfFolderConfigurationSits = "";
+        string SpecificPathOfFolderConfigurationTemplates = "";
+        string SpecificPathOfFolderConfigurationPictures = "";
+
+        string threeLine = "";
+        string deparmentValue = "";
+
+        string coreExtraConfiguration = "";
+        string configuration = "";
+        string exclusiveData = "";
+        string sits = "";
+        string template = "";
+        string tagEndHEad = "";
+        SpecificAndCorePaths startThePaths;
+        TagsAndDefaultValues startTheTagsAndDefaults;
+        FoldersInsideCompany startFoldersInsideCompany;
+        generalMethods callToGeneralMethods = new generalMethods();
+
+        public void MethodToReceivedAccesToObject(SpecificAndCorePaths startThePathsReceived, TagsAndDefaultValues startTheTagsAndDefaultsReceived, FoldersInsideCompany startFoldersInsideCompanyReceived)
+        {
+            //receiving object reference
+            startThePaths = startThePathsReceived;
+            startTheTagsAndDefaults = startTheTagsAndDefaultsReceived;
+            startFoldersInsideCompany = startFoldersInsideCompanyReceived;
+            //core paths
+            CorePathOfFolderSistemaPlanillas = startThePaths.CorePathOfFolderSistemaPlanillas;
+            CorePathOfFolderCompaniesSistemaPlanillas = startThePaths.CorePathOfCompaniesFolderSistemaPlanillas;
+            CorePathOfCoreConfigurationFolderSistemaPlanillas = startThePaths.CorePathOfConfigurationFolderSistemaPlanillas;
+            //specific paths
+            SpecificPathOfFolderConfigurationAvoidData = startThePaths.SpecificPathOfConfigurationFolderAvoidData;
+            SpecificPathOfFolderConfigurationCodesSits = startThePaths.SpecificPathOfConfigurationFolderCodesSits;
+            SpecificPathOfFolderConfigurationDaysOfMoths = startThePaths.SpecificPathOfConfigurationFolderDaysOfMoths;
+            SpecificPathOfFolderConfigurationFormulas = startThePaths.SpecificPathOfConfigurationFolderFormulas;
+            SpecificPathOfFolderConfigurationSits = startThePaths.SpecificPathOfConfigurationFolderSits;
+            SpecificPathOfFolderConfigurationTemplates = startThePaths.SpecificPathOfConfigurationFolderTemplates;
+            SpecificPathOfFolderConfigurationPictures = startThePaths.SpecificPathOfConfigurationFolderPictures;
+            //default values
+            threeLine = startTheTagsAndDefaults.tripleLine;
+            deparmentValue = startTheTagsAndDefaults.isDeparment;
+            tagEndHEad = startTheTagsAndDefaults.isTagEndHead;
+            //folders inside folders
+            coreExtraConfiguration = startFoldersInsideCompany.isCoreExtraConfigurations;
+            configuration = startFoldersInsideCompany.isConfiguration;
+            exclusiveData = startFoldersInsideCompany.isExclusiveData;
+            sits = startFoldersInsideCompany.isSits;
+            template = startFoldersInsideCompany.isTemplate;
+
+        }
+
         private void GUI_WORK_COMPANY_Load(object sender, EventArgs e)
         {
-            updateAvoid();
-            LoadDataStart();
-            calculateFormula();
+            setHeadsOfDataGridView();
+            //startChargeData();
+            //calculateFormula();
         }
 
-        private void updateAvoid()
+        private void setHeadsOfDataGridView()
         {
-            string actual = Directory.GetCurrentDirectory();
-            actual = actual.Replace("\\bin\\Debug", "\\configuration");
-            string actualPath = actual + "\\AvoidData\\avoid.txt";
-            if (File.Exists(actualPath))
+            string pathOfAvoidData = SpecificPathOfFolderConfigurationAvoidData;
+            string []storageAvoidDataFiles = Directory.GetFiles(pathOfAvoidData);
+            generalMethods generalMethods = new generalMethods();
+            foreach (string path in storageAvoidDataFiles)
             {
-                string[] storage = File.ReadAllLines(actualPath);
-                StreamWriter write = File.AppendText(actualPath);
-                bool foundAvoid = false;
-                int maximunColumns = dataGridView1.Columns.Count;
-                for (int found = 0; found < storage.Length; found++)
+                string[] storageAvoidData = File.ReadAllLines(path);
+                foreach(DataGridViewColumn colum in dataGridView1.Columns)
                 {
-                    //MessageBox.Show(storage[found]);
-                    for (int column = 0; column < maximunColumns; column++)
+                    bool answer = generalMethods.findDataInArray(storageAvoidData, colum.HeaderText);
+                    if(answer==false)
                     {
-                        if (storage[found] == dataGridView1.Columns[column].HeaderText.ToString())
-                        {
-                            foundAvoid = true;
-                            break;
-                        }
-                    }
-
-                    if (foundAvoid == true)
-                    {
-                        foundAvoid = false;
-                    }
-                    else
-                    {
-                        //MessageBox.Show(storage[found]);
-                        write.WriteLine(storage[found]);
+                        dataGridView1.Columns.Add(colum.HeaderText, colum.HeaderText);
                     }
                 }
-                write.Close();
-                avoidData = File.ReadAllLines(actualPath);
-            }
-            else
-            {
-                using (StreamWriter write = File.CreateText(actualPath))
-                {
-                    for (int column = 0; column < dataGridView1.Columns.Count; column++)
-                    {
-                        write.WriteLine(dataGridView1.Columns[column].HeaderText.ToString());
-                    }
-                    write.Close();
-                }
-                avoidData = File.ReadAllLines(actualPath);
             }
         }
 
-        private void LoadDataStart()
+        private void startChargeData()
         {
             buttonBackTotal.Enabled= false;
             buttonNextTotal.Enabled = false;
@@ -1102,14 +1128,16 @@ namespace Sistema_Planillas_Contabilidad
         }
         
 
-        public void PathToSave(string companyReceive, string deptReceive, string monthReceive, string weekReceive, string fileReceive, string pathReceive)
+        public void PathToSave(string companyReceive, string deptReceive, string monthReceive, string pathReceive)
         {
             path = pathReceive;
             company = companyReceive;
             deparment = deptReceive;
             month = monthReceive;
+            /*
             week = weekReceive;
             file = fileReceive;
+            */
         }
 
         public void recieveListColumn(List<string> listReceived, string head)
@@ -1560,7 +1588,7 @@ namespace Sistema_Planillas_Contabilidad
             }
             GUI_CREATE_FORMULA callingCreateFormula = new GUI_CREATE_FORMULA();
             callingCreateFormula.receivedData(savingHeads);
-            callingCreateFormula.PathToSave(company, deparment, month, week, file, path);
+            //callingCreateFormula.PathToSave(company, deparment, month, week, file, path);
             callingCreateFormula.ShowDialog();
         }
 

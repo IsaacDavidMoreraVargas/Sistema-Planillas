@@ -1,3 +1,4 @@
+<startHeads>
 INDEX
 CEDULA
 NOMBRE
@@ -53,7 +54,8 @@ C.C.S.S
 PRESTAMOS
 VARIOS
 SALARIO NETO
------------
+</endHeads>
+<startNewLine>
 155824655719
 Maximina
 Urroz
@@ -108,4 +110,5 @@ Treminio
  
  
 23 311,06
-+++++++++++
+</endNewline>
+

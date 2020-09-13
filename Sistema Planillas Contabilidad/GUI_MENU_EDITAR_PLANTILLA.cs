@@ -11,38 +11,83 @@ namespace Sistema_Planillas_Contabilidad
 {
     public partial class GUI_MENU_EDITAR_PLANTILLA : Sistema_Planillas_Contabilidad.MACHOTE_GENERAL_MENUS
     {
-        string FinalPath = "";
         bool AllowEdit = false;
         public GUI_MENU_EDITAR_PLANTILLA()
         {
             InitializeComponent();
         }
 
-        private void GUI_MENU_EDITAR_PLANTILLA_Load(object sender, EventArgs e)
+        string pathOfCompany = "";
+        string SelectedCompany = "";
+
+        string CorePathOfFolderSistemaPlanillas = "";
+        string CorePathOfFolderCompaniesSistemaPlanillas = "";
+        string CorePathOfCoreConfigurationFolderSistemaPlanillas = "";
+
+        string SpecificPathOfFolderConfigurationAvoidData = "";
+        string SpecificPathOfFolderConfigurationCodesSits = "";
+        string SpecificPathOfFolderConfigurationDaysOfMoths = "";
+        string SpecificPathOfFolderConfigurationFormulas = "";
+        string SpecificPathOfFolderConfigurationSits = "";
+        string SpecificPathOfFolderConfigurationTemplates = "";
+        string SpecificPathOfFolderConfigurationPictures = "";
+
+        string coreExtraConfiguration = "";
+        string threeLine = "";
+        string deparmentValue = "";
+        string configuration = "";
+        string exclusiveData = "";
+        string sits = "";
+        string template = "";
+
+        SpecificAndCorePaths startThePaths;
+        TagsAndDefaultValues startTheTagsAndDefaults;
+        FoldersInsideCompany startFoldersInsideCompany;
+        public void MethodToReceivedAccesToObject(SpecificAndCorePaths startThePathsReceived, TagsAndDefaultValues startTheTagsAndDefaultsReceived, FoldersInsideCompany startFoldersInsideCompanyReceived)
         {
-            ChargeData();
+            //receiving object reference
+            startThePaths = startThePathsReceived;
+            startTheTagsAndDefaults = startTheTagsAndDefaultsReceived;
+            startFoldersInsideCompany = startFoldersInsideCompanyReceived;
+            //core paths
+            CorePathOfFolderSistemaPlanillas = startThePaths.CorePathOfFolderSistemaPlanillas;
+            CorePathOfFolderCompaniesSistemaPlanillas = startThePaths.CorePathOfCompaniesFolderSistemaPlanillas;
+            CorePathOfCoreConfigurationFolderSistemaPlanillas = startThePaths.CorePathOfConfigurationFolderSistemaPlanillas;
+            //CorePathOfPicturesFolderSistemaPlanillas = startThePaths.CorePathOfPicturesFolderSistemaPlanillas;
+            //specific paths
+            SpecificPathOfFolderConfigurationAvoidData = startThePaths.SpecificPathOfConfigurationFolderAvoidData;
+            SpecificPathOfFolderConfigurationCodesSits = startThePaths.SpecificPathOfConfigurationFolderCodesSits;
+            SpecificPathOfFolderConfigurationDaysOfMoths = startThePaths.SpecificPathOfConfigurationFolderDaysOfMoths;
+            SpecificPathOfFolderConfigurationFormulas = startThePaths.SpecificPathOfConfigurationFolderFormulas;
+            SpecificPathOfFolderConfigurationSits = startThePaths.SpecificPathOfConfigurationFolderSits;
+            SpecificPathOfFolderConfigurationTemplates = startThePaths.SpecificPathOfConfigurationFolderTemplates;
+            SpecificPathOfFolderConfigurationPictures = startThePaths.SpecificPathOfConfigurationFolderPictures;
+            //default values
+            threeLine = startTheTagsAndDefaults.tripleLine;
+            deparmentValue = startTheTagsAndDefaults.isDeparment;
+            //folders inside folders
+            coreExtraConfiguration = startFoldersInsideCompany.isCoreExtraConfigurations;
+            configuration = startFoldersInsideCompanyReceived.isConfiguration;
+            exclusiveData = startFoldersInsideCompanyReceived.isExclusiveData;
+            sits = startFoldersInsideCompanyReceived.isSits;
+            template = startFoldersInsideCompany.isTemplate;
         }
 
-        private void ChargeData()
+        private void GUI_MENU_EDITAR_PLANTILLA_Load(object sender, EventArgs e)
+        {
+            startChargeData();
+        }
+
+        private void startChargeData()
         {
             LISTEMPLATE.Items.Clear();
-            FinalPath = Directory.GetCurrentDirectory();
-            FinalPath = FinalPath.Replace("\\bin\\Debug", "\\configuration\\Templates");
-            string[]filename = Directory.GetFiles(FinalPath);
-            foreach(string x in filename)
+            string[]storageTemplates = Directory.GetFiles(SpecificPathOfFolderConfigurationTemplates);
+            foreach(string template in storageTemplates)
             {
-                string addItem = x.Replace(FinalPath+ "\\", "");
-                addItem = addItem.Replace(".txt","");
-                addItem = addItem.Replace("_", " ");
-                if (addItem == "" || addItem == " " || addItem == "_")
-                {
-                    //donothing
-                }
-                else
-                {
-                    LISTEMPLATE.Items.Add(addItem);
-                }
-
+                string changeString = template.Replace(SpecificPathOfFolderConfigurationTemplates, "");
+                changeString = changeString.Replace(".txt", "");
+                changeString = changeString.Replace("_", " ");
+                LISTEMPLATE.Items.Add(changeString);
             }
 
             LISTEMPLATE.View = View.Details;
@@ -51,14 +96,26 @@ namespace Sistema_Planillas_Contabilidad
             LISTEMPLATE.Columns[0].TextAlign = HorizontalAlignment.Center;
         }
 
+        private void buttonNew_Click(object sender, EventArgs e)
+        {
+                this.Hide();
+                GUI_EDITAR_PLANTILLA callEditTemplate = new GUI_EDITAR_PLANTILLA();
+                callEditTemplate.menuNewOrUpdate("NUEVO");
+                callEditTemplate.nameOFTemplate(selectedFile);
+                callEditTemplate.MethodToReceivedAccesToObject(startThePaths, startTheTagsAndDefaults, startFoldersInsideCompany);
+                callEditTemplate.ShowDialog();
+                this.Close();
+        }
+
         private void buttonGoEditTemplate_Click(object sender, EventArgs e)
         {
             if (AllowEdit == true)
             {
                 this.Hide();
                 GUI_EDITAR_PLANTILLA callEditTemplate = new GUI_EDITAR_PLANTILLA();
-                callEditTemplate.menuAction(true);
-                callEditTemplate.PathToSave(SelectFile);
+                callEditTemplate.menuNewOrUpdate("EDITAR");
+                callEditTemplate.nameOFTemplate(selectedFile);
+                callEditTemplate.MethodToReceivedAccesToObject(startThePaths, startTheTagsAndDefaults, startFoldersInsideCompany);
                 callEditTemplate.ShowDialog();
                 this.Close();
             }
@@ -68,68 +125,21 @@ namespace Sistema_Planillas_Contabilidad
             }
         }
 
-        private void buttonReturnProgram_Click(object sender, EventArgs e)
-        {
-            this.Hide();
-            GUI_MENU_INICIO callMenuTemplate = new GUI_MENU_INICIO();
-            callMenuTemplate.ShowDialog();
-            this.Close();
-        }
-
-        private void buttonCloseProgram_Click(object sender, EventArgs e)
-        {
-            this.Close();
-        }
-
-        string SelectFile = "";
-        int IndexViewList = 0;
-        private void LISTAPLANTILLAS_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-            if (LISTEMPLATE.FocusedItem == null)
-            {
-                return;
-            }else
-            {
-                IndexViewList = LISTEMPLATE.FocusedItem.Index;
-            }
-
-            if (LISTEMPLATE.Items[IndexViewList].Text == "" || LISTEMPLATE.Items[IndexViewList].Text == "PLANTILLAS")
-            {
-                MessageBox.Show("SELECCIONA UNA PLANTILLA VALIDA PARA ELIMINAR");
-            }
-            else
-            {
-                AllowEdit = true;
-                SelectFile = LISTEMPLATE.Items[IndexViewList].Text;
-            }
-        }
-
-        private void buttonNew_Click(object sender, EventArgs e)
-        {
-                this.Hide();
-                GUI_EDITAR_PLANTILLA callEditTemplate = new GUI_EDITAR_PLANTILLA();
-                callEditTemplate.menuAction(false);
-                callEditTemplate.PathToSave(SelectFile);
-                callEditTemplate.ShowDialog();
-                this.Close();
-        }
-
         private void buttonDuplicate_Click(object sender, EventArgs e)
         {
             if (AllowEdit == true)
             {
-                object duplicateFile = Microsoft.VisualBasic.Interaction.InputBox("DAME EL NOMBRE QUE LE PONDRAS A LA PLANTILLA DUPLICADA:");
-                string modificationName = duplicateFile.ToString();
-                modificationName = modificationName.Replace(" ", "_");
-                string readPath = SelectFile;
-                readPath = SelectFile.Replace(" ", "_");
-                readPath = FinalPath + "\\" + readPath + ".txt";
-                string[] lines = File.ReadAllLines(readPath);
-                string writePath = FinalPath + "\\" + modificationName + ".txt";
-                if (!File.Exists(writePath))
+                //get the new name
+                string duplicateFile = Microsoft.VisualBasic.Interaction.InputBox("DAME EL NOMBRE QUE LE PONDRAS A LA PLANTILLA DUPLICADA:");
+                duplicateFile = duplicateFile.ToUpper();
+                duplicateFile = duplicateFile.Replace(" ", "_");
+                //manipulate the selected name
+                string readTemplate = SpecificPathOfFolderConfigurationTemplates + selectedFile + ".txt";
+                string[] lines = File.ReadAllLines(readTemplate);
+                string pathToWriteTemplate = SpecificPathOfFolderConfigurationTemplates + duplicateFile + ".txt";
+                if (!File.Exists(pathToWriteTemplate))
                 {
-                    FileStream fs = new FileStream(writePath, FileMode.OpenOrCreate, FileAccess.Write);
+                    FileStream fs = new FileStream(pathToWriteTemplate, FileMode.OpenOrCreate, FileAccess.Write);
                     StreamWriter writer = new StreamWriter(fs);
                     foreach (string line in lines)
                     {
@@ -137,7 +147,7 @@ namespace Sistema_Planillas_Contabilidad
                     }
                     writer.Close();
                     MessageBox.Show("DUPLICADO EXITOSAMENTE");
-                    ChargeData();
+                    startChargeData();
                 }
                 else
                 {
@@ -158,13 +168,11 @@ namespace Sistema_Planillas_Contabilidad
                 case DialogResult.Yes:
                     try
                     {
-                        string readPath = SelectFile;
-                        readPath = FinalPath + "\\" + readPath + ".txt";
-                        File.Delete(readPath);
+                        string pathToEliminateTemplate = SpecificPathOfFolderConfigurationTemplates + selectedFile + ".txt";
+                        File.Delete(pathToEliminateTemplate);
                         MessageBox.Show("ELIMINANDO EXITOSAMENTE");
-                        ChargeData();
-                    }
-                    catch (Exception)
+                        startChargeData();
+                    }catch (Exception)
                     {
                         MessageBox.Show("HUBO UN PROBLEMA ELIMINANDO LA PLANTILLA");
                     }
@@ -172,6 +180,44 @@ namespace Sistema_Planillas_Contabilidad
                 case DialogResult.No:
                     break;
             }
+        }
+
+        string selectedFile = "";
+        private void LISTAPLANTILLAS_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            int indexViewList = 0;
+            if (LISTEMPLATE.FocusedItem == null)
+            {
+                MessageBox.Show("SELECCIONA UNA PLANTILLA VALIDA PARA ELIMINAR");
+                return;
+            }
+            else
+            {
+                indexViewList = LISTEMPLATE.FocusedItem.Index;
+                if (LISTEMPLATE.Items[indexViewList].Text == "" || LISTEMPLATE.Items[indexViewList].Text == "PLANTILLAS")
+                {
+                    MessageBox.Show("SELECCIONA UNA PLANTILLA VALIDA PARA ELIMINAR");
+                }
+                else
+                {
+                    AllowEdit = true;
+                    selectedFile = LISTEMPLATE.Items[indexViewList].Text;
+                    selectedFile = selectedFile.Replace(" ", "_");
+                }
+            }
+        }
+
+        private void buttonReturnProgram_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            GUI_MENU_INICIO callMenuTemplate = new GUI_MENU_INICIO();
+            callMenuTemplate.ShowDialog();
+            this.Close();
+        }
+
+        private void buttonCloseProgram_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

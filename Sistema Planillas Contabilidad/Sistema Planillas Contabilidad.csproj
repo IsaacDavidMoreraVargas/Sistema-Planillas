@@ -52,6 +52,7 @@
     <Compile Include="calculateSystem.cs" />
     <Compile Include="FoldersInsideCompany.cs" />
     <Compile Include="generalDataAndAvoidData.cs" />
+    <Compile Include="generalMultiArrayMethods.cs" />
     <Compile Include="SpecificAndCorePaths.cs" />
     <Compile Include="generalMethods.cs" />
     <Compile Include="GUI_CREAR_EMPRESA.cs">

@@ -1,3 +1,4 @@
+<startHeads>
 INDEX
 CEDULA
 NOMBRE
@@ -53,7 +54,8 @@ C.C.S.S
 PRESTAMOS
 VARIOS
 SALARIO NETO
------------
+</endHeads>
+<startNewLine>
 113120282
 Steven Javier
 Calderon
@@ -108,7 +110,8 @@ Zamora
  
  
 35 182,42
-+++++++++++
+</endNewline>
+<startNewLine>
 105860400
 Carlos Alberto
 Gutierrez
@@ -163,7 +166,8 @@ Fonseca
  
  
 62 139,22
-+++++++++++
+</endNewline>
+<startNewLine>
  203360757
 Carlos Gerardo
 Rodriguez
@@ -218,4 +222,4 @@ Jimenez
  
  
 24 779,21
-+++++++++++
+</endNewline>

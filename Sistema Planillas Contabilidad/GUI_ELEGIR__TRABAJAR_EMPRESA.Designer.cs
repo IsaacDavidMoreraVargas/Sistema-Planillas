@@ -33,8 +33,6 @@
             this.EMPRESAS = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.listViewMonth = new System.Windows.Forms.ListView();
             this.MESES = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.listViewWeek = new System.Windows.Forms.ListView();
-            this.SEMANAS = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.listViewDeparment = new System.Windows.Forms.ListView();
             this.DEPARTAMENTOS = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.buttonStart = new System.Windows.Forms.Button();
@@ -52,19 +50,18 @@
             // 
             this.tableLayoutPanel1.ColumnCount = 4;
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 167F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 166F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 171F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 167F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 8F));
             this.tableLayoutPanel1.Controls.Add(this.listViewCompany, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.listViewMonth, 2, 0);
-            this.tableLayoutPanel1.Controls.Add(this.listViewWeek, 3, 0);
             this.tableLayoutPanel1.Controls.Add(this.listViewDeparment, 1, 0);
             this.tableLayoutPanel1.Location = new System.Drawing.Point(10, 11);
-            this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(2);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 1;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(673, 454);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(508, 454);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
             // listViewCompany
@@ -74,7 +71,7 @@
             this.listViewCompany.GridLines = true;
             this.listViewCompany.HideSelection = false;
             this.listViewCompany.Location = new System.Drawing.Point(2, 2);
-            this.listViewCompany.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.listViewCompany.Margin = new System.Windows.Forms.Padding(2);
             this.listViewCompany.Name = "listViewCompany";
             this.listViewCompany.Size = new System.Drawing.Size(163, 450);
             this.listViewCompany.TabIndex = 0;
@@ -87,8 +84,8 @@
             this.MESES});
             this.listViewMonth.GridLines = true;
             this.listViewMonth.HideSelection = false;
-            this.listViewMonth.Location = new System.Drawing.Point(338, 2);
-            this.listViewMonth.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.listViewMonth.Location = new System.Drawing.Point(335, 2);
+            this.listViewMonth.Margin = new System.Windows.Forms.Padding(2);
             this.listViewMonth.Name = "listViewMonth";
             this.listViewMonth.Size = new System.Drawing.Size(162, 450);
             this.listViewMonth.TabIndex = 3;
@@ -96,29 +93,14 @@
             this.listViewMonth.Visible = false;
             this.listViewMonth.SelectedIndexChanged += new System.EventHandler(this.listViewMonth_SelectedIndexChanged);
             // 
-            // listViewWeek
-            // 
-            this.listViewWeek.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.SEMANAS});
-            this.listViewWeek.GridLines = true;
-            this.listViewWeek.HideSelection = false;
-            this.listViewWeek.Location = new System.Drawing.Point(504, 2);
-            this.listViewWeek.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.listViewWeek.Name = "listViewWeek";
-            this.listViewWeek.Size = new System.Drawing.Size(163, 450);
-            this.listViewWeek.TabIndex = 2;
-            this.listViewWeek.UseCompatibleStateImageBehavior = false;
-            this.listViewWeek.Visible = false;
-            this.listViewWeek.SelectedIndexChanged += new System.EventHandler(this.listViewWeek_SelectedIndexChanged);
-            // 
             // listViewDeparment
             // 
             this.listViewDeparment.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.DEPARTAMENTOS});
             this.listViewDeparment.GridLines = true;
             this.listViewDeparment.HideSelection = false;
-            this.listViewDeparment.Location = new System.Drawing.Point(171, 2);
-            this.listViewDeparment.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.listViewDeparment.Location = new System.Drawing.Point(169, 2);
+            this.listViewDeparment.Margin = new System.Windows.Forms.Padding(2);
             this.listViewDeparment.Name = "listViewDeparment";
             this.listViewDeparment.Size = new System.Drawing.Size(162, 450);
             this.listViewDeparment.TabIndex = 1;
@@ -129,7 +111,7 @@
             // buttonStart
             // 
             this.buttonStart.Location = new System.Drawing.Point(2, 225);
-            this.buttonStart.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.buttonStart.Margin = new System.Windows.Forms.Padding(2);
             this.buttonStart.Name = "buttonStart";
             this.buttonStart.Size = new System.Drawing.Size(81, 70);
             this.buttonStart.TabIndex = 1;
@@ -140,7 +122,7 @@
             // buttonReturnProgram
             // 
             this.buttonReturnProgram.Location = new System.Drawing.Point(2, 301);
-            this.buttonReturnProgram.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.buttonReturnProgram.Margin = new System.Windows.Forms.Padding(2);
             this.buttonReturnProgram.Name = "buttonReturnProgram";
             this.buttonReturnProgram.Size = new System.Drawing.Size(81, 70);
             this.buttonReturnProgram.TabIndex = 2;
@@ -151,7 +133,7 @@
             // buttonQuickView
             // 
             this.buttonQuickView.Location = new System.Drawing.Point(2, 149);
-            this.buttonQuickView.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.buttonQuickView.Margin = new System.Windows.Forms.Padding(2);
             this.buttonQuickView.Name = "buttonQuickView";
             this.buttonQuickView.Size = new System.Drawing.Size(81, 70);
             this.buttonQuickView.TabIndex = 3;
@@ -162,7 +144,7 @@
             // buttonCloseProgram
             // 
             this.buttonCloseProgram.Location = new System.Drawing.Point(2, 376);
-            this.buttonCloseProgram.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.buttonCloseProgram.Margin = new System.Windows.Forms.Padding(2);
             this.buttonCloseProgram.Name = "buttonCloseProgram";
             this.buttonCloseProgram.Size = new System.Drawing.Size(81, 70);
             this.buttonCloseProgram.TabIndex = 4;
@@ -180,8 +162,8 @@
             this.tableLayoutPanel2.Controls.Add(this.buttonQuickView, 0, 2);
             this.tableLayoutPanel2.Controls.Add(this.buttonGenerateSits, 0, 1);
             this.tableLayoutPanel2.Controls.Add(this.buttonGenerateTotal, 0, 0);
-            this.tableLayoutPanel2.Location = new System.Drawing.Point(682, 11);
-            this.tableLayoutPanel2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tableLayoutPanel2.Location = new System.Drawing.Point(522, 11);
+            this.tableLayoutPanel2.Margin = new System.Windows.Forms.Padding(2);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
             this.tableLayoutPanel2.RowCount = 6;
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 49.73822F));
@@ -196,7 +178,7 @@
             // buttonGenerateSits
             // 
             this.buttonGenerateSits.Location = new System.Drawing.Point(2, 75);
-            this.buttonGenerateSits.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.buttonGenerateSits.Margin = new System.Windows.Forms.Padding(2);
             this.buttonGenerateSits.Name = "buttonGenerateSits";
             this.buttonGenerateSits.Size = new System.Drawing.Size(81, 69);
             this.buttonGenerateSits.TabIndex = 5;
@@ -207,7 +189,7 @@
             // buttonGenerateTotal
             // 
             this.buttonGenerateTotal.Location = new System.Drawing.Point(2, 2);
-            this.buttonGenerateTotal.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.buttonGenerateTotal.Margin = new System.Windows.Forms.Padding(2);
             this.buttonGenerateTotal.Name = "buttonGenerateTotal";
             this.buttonGenerateTotal.Size = new System.Drawing.Size(81, 68);
             this.buttonGenerateTotal.TabIndex = 6;
@@ -218,7 +200,7 @@
             // GUI_ELEGIR__TRABAJAR_EMPRESA
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-            this.ClientSize = new System.Drawing.Size(778, 479);
+            this.ClientSize = new System.Drawing.Size(615, 479);
             this.Controls.Add(this.tableLayoutPanel2);
             this.Controls.Add(this.tableLayoutPanel1);
             this.MaximizeBox = false;
@@ -235,10 +217,8 @@
         #endregion
 
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
-        private System.Windows.Forms.ListView listViewWeek;
         private System.Windows.Forms.ListView listViewCompany;
         private System.Windows.Forms.ListView listViewDeparment;
-        private System.Windows.Forms.ColumnHeader SEMANAS;
         private System.Windows.Forms.ColumnHeader EMPRESAS;
         private System.Windows.Forms.ColumnHeader DEPARTAMENTOS;
         private System.Windows.Forms.ListView listViewMonth;

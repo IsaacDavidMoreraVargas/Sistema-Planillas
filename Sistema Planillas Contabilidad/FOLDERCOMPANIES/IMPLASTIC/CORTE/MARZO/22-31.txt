@@ -1,3 +1,4 @@
+<startHeads>
 INDEX
 CEDULA
 NOMBRE
@@ -53,7 +54,8 @@ C.C.S.S
 PRESTAMOS
 VARIOS
 SALARIO NETO
------------
+</endHeads>
+<startNewLine>
 602640417
 Alexander
 Amador
@@ -108,7 +110,8 @@ Lara
  
  
 36 346,42
-+++++++++++
+</endNewline>
+<startNewLine>
 114770635
 Joseph Alexander
 Aranda
@@ -163,7 +166,8 @@ Picado
  
  
 71 146,42
-+++++++++++
+</endNewline>
+<startNewLine>
 701500001
 Mario Alberto
 Arias
@@ -218,7 +222,8 @@ Guadamuz
  
  
 48 598,67
-+++++++++++
+</endNewline>
+<startNewLine>
 502260802
 Rigoberto
 Melendez
@@ -273,7 +278,8 @@ Cruz
  
  
 90 721,42
-+++++++++++
+</endNewline>
+<startNewLine>
 155821314933
 Mariela 
 Briceño
@@ -328,7 +334,8 @@ Gutierrez
  
  
 36 322,18
-+++++++++++
+</endNewline>
+<startNewLine>
 155803552809
 Jose Trinidad
 Estrada
@@ -383,7 +390,8 @@ Galeano
  
  
 22 571,42
-+++++++++++
+</endNewline>
+<startNewLine>
 114570147
 Luis Arnoldo
 Gamboa
@@ -438,7 +446,8 @@ Castillo
  
  
 48 671,42
-+++++++++++
+</endNewline>
+<startNewLine>
 155824974815
 Stedman
 Hoppington
@@ -493,7 +502,8 @@ Thomas
  
  
 00,00
-+++++++++++
+</endNewline>
+<startNewLine>
 155819338804
 Yeri
 Matute
@@ -548,7 +558,8 @@ Rivas
  
  
 36 225,18
-+++++++++++
+</endNewline>
+<startNewLine>
 105450646
 Uriel Gerardo 
 Quiros 
@@ -603,8 +614,9 @@ Garcia
  
  
 36 825,18
-+++++++++++
- 155803358019
+</endNewline>
+<startNewLine>
+155803358019
 Oliver Davi
 Rostran
 Lagos
@@ -658,7 +670,8 @@ Lagos
  
  
 57 190,17
-+++++++++++
+</endNewline>
+<startNewLine>
 108200440
 Johnathan
 Alvarado
@@ -692,7 +705,7 @@ Miranda
  
  
  
- 2000,0
+2000,0
 3000,0
 0
 0
@@ -713,7 +726,8 @@ Miranda
  
  
 100 725,18
-+++++++++++
+</endNewline>
+<startNewLine>
 155823760332
 Mauricio Javier
 Baquedano
@@ -768,7 +782,8 @@ Gonzalez
  
  
 34 741,42
-+++++++++++
+</endNewline>
+<startNewLine>
 700760181
 Gilberto
 Davis
@@ -823,7 +838,8 @@ Morgan
  
  
 74 723,21
-+++++++++++
+</endNewline>
+<startNewLine>
 204800782
 Ruber Antonio
 Gutierrez
@@ -878,7 +894,8 @@ Guadamuz
  
  
 58 748,67
-+++++++++++
+</endNewline>
+<startNewLine>
 155819325300
 Esmeralda Cristina
 Melendez
@@ -933,7 +950,8 @@ De Caceres
  
  
 48 550,18
-+++++++++++
+</endNewline>
+<startNewLine>
 105860414
 Leonardo
 Mora
@@ -988,7 +1006,8 @@ Barboza
  
  
 36 346,42
-+++++++++++
+</endNewline>
+<startNewLine>
 155832124000
 Jorge David 
 Moran
@@ -1043,7 +1062,8 @@ Moran
  
  
 48 671,42
-+++++++++++
+</endNewline>
+<startNewLine>
 117090542
 Franklin Antonio
 Pastran
@@ -1098,7 +1118,8 @@ Gutierrez
  
  
 36 346,42
-+++++++++++
+</endNewline>
+<startNewLine>
 110940340
 David Alfredo
 Solano
@@ -1153,7 +1174,8 @@ Granados
  
  
 72 105,18
-+++++++++++
+</endNewline>
+<startNewLine>
 204870350
 Eduardo
 Valverde
@@ -1208,4 +1230,5 @@ Chavarria
  
  
 58 821,42
-+++++++++++
+</endNewline>
+

@@ -169,8 +169,9 @@ namespace Sistema_Planillas_Contabilidad
         {
             this.Hide();
             GUI_MENU_EDITAR_PLANTILLA callGuiEdit = new GUI_MENU_EDITAR_PLANTILLA();
+            callGuiEdit.MethodToReceivedAccesToObject(startThePaths, startSetTagsAndDefaults, startSetFoldersCompanyDefaults);
             callGuiEdit.ShowDialog();
-            this.Show();
+            this.Close();
         }
 
         private void buttonMultipleOptionsCompany_Click(object sender, EventArgs e)
@@ -186,13 +187,14 @@ namespace Sistema_Planillas_Contabilidad
         {
             this.Hide();
             GUI_ELEGIR__TRABAJAR_EMPRESA callingWorkCompany = new GUI_ELEGIR__TRABAJAR_EMPRESA();
+            callingWorkCompany.MethodToReceivedAccesToObject(startThePaths, startSetTagsAndDefaults, startSetFoldersCompanyDefaults);
             callingWorkCompany.ShowDialog();
-            this.Show();
+            this.Close();
         }
 
         private void buttonCloseProgram_Click(object sender, EventArgs e)
         {
-            this.Close();
+            Application.Exit();
         }
 
         

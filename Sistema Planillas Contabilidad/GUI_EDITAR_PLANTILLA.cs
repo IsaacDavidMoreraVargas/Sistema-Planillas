@@ -12,175 +12,176 @@ namespace Sistema_Planillas_Contabilidad
     public partial class GUI_EDITAR_PLANTILLA : Sistema_Planillas_Contabilidad.MACHOTE_GENERAL_PLANILLA
     {
         string[] alphabet = { "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z" };
-        string[] numbers = { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27" };
-        int locationCell = 0;
+        int indexColumn = 0;
 
-        bool AllowedUpdateAction = false;
-        bool AllowedOnlyOnce = false;
-        bool optionMenu;
-        int cellsNumber = 0;
-        int rowNumber = 0;
-        string path = "";
-        string finalPath = Directory.GetCurrentDirectory();
+        string optionMenu = "";
+        string nameTemplate="";
 
         public GUI_EDITAR_PLANTILLA()
         {
             InitializeComponent();
         }
 
+        string pathOfCompany = "";
+        string SelectedCompany = "";
+
+        string CorePathOfFolderSistemaPlanillas = "";
+        string CorePathOfFolderCompaniesSistemaPlanillas = "";
+        string CorePathOfCoreConfigurationFolderSistemaPlanillas = "";
+
+        string SpecificPathOfFolderConfigurationAvoidData = "";
+        string SpecificPathOfFolderConfigurationCodesSits = "";
+        string SpecificPathOfFolderConfigurationDaysOfMoths = "";
+        string SpecificPathOfFolderConfigurationFormulas = "";
+        string SpecificPathOfFolderConfigurationSits = "";
+        string SpecificPathOfFolderConfigurationTemplates = "";
+        string SpecificPathOfFolderConfigurationPictures = "";
+
+        string coreExtraConfiguration = "";
+        string threeLine = "";
+        string deparmentValue = "";
+        string configuration = "";
+        string exclusiveData = "";
+        string sits = "";
+        string template = "";
+
+        string startHead ="";
+        string endHead ="";
+
+        SpecificAndCorePaths startThePaths;
+        TagsAndDefaultValues startTheTagsAndDefaults;
+        FoldersInsideCompany startFoldersInsideCompany;
+        public void MethodToReceivedAccesToObject(SpecificAndCorePaths startThePathsReceived, TagsAndDefaultValues startTheTagsAndDefaultsReceived, FoldersInsideCompany startFoldersInsideCompanyReceived)
+        {
+            //receiving object reference
+            startThePaths = startThePathsReceived;
+            startTheTagsAndDefaults = startTheTagsAndDefaultsReceived;
+            startFoldersInsideCompany = startFoldersInsideCompanyReceived;
+            //core paths
+            CorePathOfFolderSistemaPlanillas = startThePaths.CorePathOfFolderSistemaPlanillas;
+            CorePathOfFolderCompaniesSistemaPlanillas = startThePaths.CorePathOfCompaniesFolderSistemaPlanillas;
+            CorePathOfCoreConfigurationFolderSistemaPlanillas = startThePaths.CorePathOfConfigurationFolderSistemaPlanillas;
+            //CorePathOfPicturesFolderSistemaPlanillas = startThePaths.CorePathOfPicturesFolderSistemaPlanillas;
+            //specific paths
+            SpecificPathOfFolderConfigurationAvoidData = startThePaths.SpecificPathOfConfigurationFolderAvoidData;
+            SpecificPathOfFolderConfigurationCodesSits = startThePaths.SpecificPathOfConfigurationFolderCodesSits;
+            SpecificPathOfFolderConfigurationDaysOfMoths = startThePaths.SpecificPathOfConfigurationFolderDaysOfMoths;
+            SpecificPathOfFolderConfigurationFormulas = startThePaths.SpecificPathOfConfigurationFolderFormulas;
+            SpecificPathOfFolderConfigurationSits = startThePaths.SpecificPathOfConfigurationFolderSits;
+            SpecificPathOfFolderConfigurationTemplates = startThePaths.SpecificPathOfConfigurationFolderTemplates;
+            SpecificPathOfFolderConfigurationPictures = startThePaths.SpecificPathOfConfigurationFolderPictures;
+            //default values
+            threeLine = startTheTagsAndDefaults.tripleLine;
+            deparmentValue = startTheTagsAndDefaults.isDeparment;
+            //folders inside folders
+            coreExtraConfiguration = startFoldersInsideCompany.isCoreExtraConfigurations;
+            configuration = startFoldersInsideCompanyReceived.isConfiguration;
+            exclusiveData = startFoldersInsideCompanyReceived.isExclusiveData;
+            sits = startFoldersInsideCompanyReceived.isSits;
+            template = startFoldersInsideCompany.isTemplate;
+            //default tags
+            startHead = startTheTagsAndDefaultsReceived.isTagStartHead;
+            endHead = startTheTagsAndDefaultsReceived.isTagEndHead;
+        }
+
         private void GUI_EDITAR_PLANTILLA_Load(object sender, EventArgs e)
         {
-            if (optionMenu == true)
+            if (optionMenu == "EDITAR")
             {
-                LoadDataStart();
+                startChargeData();
             }
-            else
+            else if (optionMenu == "NUEVO")
             {
                 buttonUpdateTemplate.Text = "Guardar plantilla";
             }
           
         }
 
-        private void LoadDataStart()
+        private void startChargeData()
         {
-            dataGridView1.Columns.Add("", "");
-            path = path.Replace(" ", "_");
-           
-            finalPath = finalPath.Replace("\\bin\\Debug", "\\configuration\\Templates\\" + path + ".txt");
-            using (StreamReader file = new StreamReader(finalPath))
+            string []pathToReadTemplate = File.ReadAllLines(SpecificPathOfFolderConfigurationTemplates + nameTemplate + ".txt");
+            foreach(string line in pathToReadTemplate)
             {
-                string line;
-                while ((line = file.ReadLine()) != null)
+                string changeString = line;
+                changeString = changeString.ToUpper();
+                if (line == endHead)
                 {
-                    if (line == "-----------")
-                    {
-                        break;
-                    }
-                    else
-                    {
-                        dataGridView1.Columns.Add(alphabet[cellsNumber], alphabet[cellsNumber]);
-                        ++cellsNumber;
-                    }
+                    break;
                 }
-                file.Close();
-            }
-            dataGridView1.Rows.Add(rowNumber.ToString());
-            cellsNumber = 1;
-            using (StreamReader file = new StreamReader(finalPath))
-            {
-                string line;
-                while ((line = file.ReadLine()) != null)
+                else if (line != startHead)
                 {
-                    if (line == "-----------")
-                    {
-                        break;
-                    }
-                    else
-                    {
-                        dataGridView1.Rows[rowNumber].Cells[cellsNumber].Value = line;
-                        ++cellsNumber;
-                    }
-                    
+                    dataGridView1.Columns.Add(changeString, changeString);
                 }
-                file.Close();
             }
         }
 
+        
         private void buttonAddColumn_Click(object sender, EventArgs e)
         {
-            
-            object ColumToEnter = Microsoft.VisualBasic.Interaction.InputBox("DAME EL NOMBRE DE LA COLUMNA:");
-            dataGridView1.Columns.Add(alphabet[cellsNumber], alphabet[cellsNumber]);
-            dataGridView1.Rows[rowNumber].Cells[cellsNumber].Value = ColumToEnter;
-            AllowedUpdateAction = true;
-            ++cellsNumber;
+            string dataToEnter = Microsoft.VisualBasic.Interaction.InputBox("DAME EL NOMBRE DE LA COLUMNA:");
+            dataToEnter = dataToEnter.ToUpper();
+            if (optionMenu == "NUEVO")
+            {
+                dataGridView1.Columns.Add(dataToEnter,dataToEnter);
+                colorateTheCells();
+                ++indexColumn;
+            }else if (optionMenu == "EDITAR")
+            {
+                generalMultiArrayMethods callArrayMethods = new generalMultiArrayMethods();
+                string[,] multiArrayReceived = callArrayMethods.addColum(dataGridView1, dataToEnter, indexColumn, 1);
+                dataGridView1.Columns.Clear();
+                dataGridView1.Rows.Clear();
+                //int numberOfRows = multiArrayReceived.GetLength(0);
+                int numberOfColumns = multiArrayReceived.GetLength(1);
+                for (int column = 0; column < numberOfColumns; column++)
+                {
+                    dataGridView1.Columns.Add(multiArrayReceived[0, column], multiArrayReceived[0, column]);
+                }
+                colorateTheCells();
+                ++indexColumn;
+            }
             
         }
 
         private void buttonMoveBackColum_Click(object sender, EventArgs e)
         {
-            if (locationCell > 1)
+            if (indexColumn > 0)
             {
-                int rowNumberSave = 0;
-                foreach (DataGridViewRow row in dataGridView1.Rows)
+                generalMultiArrayMethods callArrayMethods = new generalMultiArrayMethods();
+                string[,] multiArrayReceived = callArrayMethods.MoveBackColum(dataGridView1, indexColumn);
+                dataGridView1.Columns.Clear();
+                dataGridView1.Rows.Clear();
+                //int numberOfRows = multiArrayReceived.GetLength(0);
+                int numberOfColumns = multiArrayReceived.GetLength(1);
+                for (int column = 0; column < numberOfColumns; column++)
                 {
-                    int maximunCells = row.Cells.Count;
-
-                    for (int cell = 0; cell < maximunCells; cell++)
-                    {
-                        if (locationCell == cell)
-                        {
-                            int indexToMove = locationCell;
-                            try
-                            {
-                                object dataActual = dataGridView1.Rows[rowNumberSave].Cells[cell].Value;
-                                object dataBefore = dataGridView1.Rows[rowNumberSave].Cells[--cell].Value;
-                                dataGridView1.Rows[rowNumberSave].Cells[indexToMove].Value = dataBefore;
-                                dataGridView1.Rows[rowNumberSave].Cells[indexToMove].Style.BackColor = Color.White;
-                                dataGridView1.Rows[rowNumberSave].Cells[--indexToMove].Value = dataActual;
-                                dataGridView1.Rows[rowNumberSave].Cells[indexToMove].Style.BackColor = Color.LightGreen;
-                                dataGridView1.Update();
-                                AllowedUpdateAction = true;
-                                --locationCell;
-                                goto endLoop;
-                            }
-                            catch (Exception)
-                            {
-                                MessageBox.Show("SUCEDIO UN PROBLEMA MOVIENDO LA COLUMNA");
-                                break;
-                            }
-
-                        }
-                    }
+                    dataGridView1.Columns.Add(multiArrayReceived[0,column], multiArrayReceived[0, column]);
                 }
-                endLoop:;
+                --indexColumn;
+                colorateTheCells();
             }
             else
             {
                 MessageBox.Show("IMPOSIBLE MOVER, ES EL INICIO");
             }
-            
         }
 
         private void buttonMoveNextColumn_Click(object sender, EventArgs e)
         {
-            int end = dataGridView1.Columns.Count;
-            --end;
-            if (locationCell < end)
+            if (indexColumn < dataGridView1.Columns.Count-1)
             {
-                int rowNumberSave = 0;
-                foreach (DataGridViewRow row in dataGridView1.Rows)
+                generalMultiArrayMethods callArrayMethods = new generalMultiArrayMethods();
+                string[,] multiArrayReceived = callArrayMethods.MoveNextColum(dataGridView1, indexColumn);
+                dataGridView1.Columns.Clear();
+                dataGridView1.Rows.Clear();
+                //int numberOfRows = multiArrayReceived.GetLength(0);
+                int numberOfColumns = multiArrayReceived.GetLength(1);
+                for (int column = 0; column < numberOfColumns; column++)
                 {
-                    int maximunCells = row.Cells.Count;
-
-                    for (int cell = 0; cell < maximunCells; cell++)
-                    {
-                        if (locationCell == cell)
-                        {
-                            int indexToMove = locationCell;
-                            try
-                            {
-                                object dataBefore = dataGridView1.Rows[rowNumberSave].Cells[cell].Value;
-                                object dataAfter = dataGridView1.Rows[rowNumberSave].Cells[++cell].Value;
-                                dataGridView1.Rows[rowNumberSave].Cells[indexToMove].Value = dataAfter;
-                                dataGridView1.Rows[rowNumberSave].Cells[indexToMove].Style.BackColor = Color.White;
-                                dataGridView1.Rows[rowNumberSave].Cells[++indexToMove].Value = dataBefore;
-                                dataGridView1.Rows[rowNumberSave].Cells[indexToMove].Style.BackColor = Color.LightGreen;
-                                dataGridView1.Update();
-                                AllowedUpdateAction = true;
-                                ++locationCell;
-                                goto endLoop;
-                            }
-                            catch (Exception)
-                            {
-                                MessageBox.Show("SUCEDIO UN PROBLEMA MOVIENDO LA COLUMNA");
-                                break;
-                            }
-
-                        }
-                    }
+                    dataGridView1.Columns.Add(multiArrayReceived[0, column], multiArrayReceived[0, column]);
                 }
-                endLoop:;
+                ++indexColumn;
+                colorateTheCells();
             }
             else 
             {
@@ -190,175 +191,102 @@ namespace Sistema_Planillas_Contabilidad
 
         private void buttonEraseColumn_Click(object sender, EventArgs e)
         {
-            
-            int rowNumberSave = 0;
-            foreach (DataGridViewRow row in dataGridView1.Rows)
+            generalMultiArrayMethods callArrayMethods = new generalMultiArrayMethods();
+            string[,] multiArrayReceived = callArrayMethods.eraseColum(dataGridView1, indexColumn,1);
+            dataGridView1.Columns.Clear();
+            dataGridView1.Rows.Clear();
+            //int numberOfRows = multiArrayReceived.GetLength(0);
+            int numberOfColumns = multiArrayReceived.GetLength(1);
+            for (int column = 0; column < numberOfColumns; column++)
             {
-                int maximunCells = row.Cells.Count;
-                int indexActual = 0;
-                int indexToMove = 0;
-                for (int cell = 0; cell < maximunCells; cell++)
-                {
-                    if (locationCell == cell)
-                    {
-                        try
-                        {
-                            for (indexActual = ++cell; indexActual < maximunCells; indexActual++)
-                            {
-                                indexToMove = indexActual;
-                                --indexToMove;
-                                object dataActual = dataGridView1.Rows[rowNumberSave].Cells[indexActual].Value;
-                                dataGridView1.Rows[rowNumberSave].Cells[indexToMove].Value = dataActual;
-                            }
-
-                            int maximunColumns = dataGridView1.Columns.Count;
-                            dataGridView1.Columns.RemoveAt(--maximunColumns);
-                            dataGridView1.Update();
-                            --cellsNumber;
-                            AllowedUpdateAction = true;
-                            goto endLoop;
-                        }
-                        catch (Exception)
-                        { 
-                            MessageBox.Show("SUCEDIO UN PROBLEMA ELIMINANDO COLUMNAS");
-                            break;
-                        }
-                    }
-                }
+                dataGridView1.Columns.Add(multiArrayReceived[0, column], multiArrayReceived[0, column]);
             }
-            endLoop:;
+            colorateTheCells();
         }
         
         private void buttonUpdateTemplate_Click(object sender, EventArgs e)
         {
-            if (optionMenu == false)
+            if(optionMenu=="NUEVO")
             {
-                if (AllowedUpdateAction == true)
-                {
-                    string nameToSave = Microsoft.VisualBasic.Interaction.InputBox("-SE ESPECIFICO PARA UNA MEJOR COMPRENSION FUTURA \n-NO USES SIMBOLOS ESPECIALES \nDAME EL NOMBRE DE LA PLANTILLA:");
-                    if(nameToSave==null)
-                    {
-                        MessageBox.Show("DEBES ELEGIR UN NOMBRE VALIDO");
-                    }else
-                    {
-                        string path = nameToSave.ToString();
-                        path = path.Replace(" ", "_");
-                        finalPath = finalPath.Replace("\\bin\\Debug", "\\configuration\\Templates\\" + path + ".txt");
-                        //MessageBox.Show(finalPath);
-                        int rowNumberSave = 0;
-                        if (!File.Exists(finalPath))
-                        {
-                            FileStream fs = new FileStream(finalPath, FileMode.OpenOrCreate, FileAccess.Write);
-                            StreamWriter writer = new StreamWriter(fs);
-                            foreach (DataGridViewRow row in dataGridView1.Rows)
-                            {
-                                int maximunCells = row.Cells.Count;
-                                for (int cell = 0; cell < maximunCells; cell++)
-                                {
-                                    object data = dataGridView1.Rows[rowNumberSave].Cells[cell].Value;
-                                    writer.WriteLine(data.ToString());
-                                }
-                            }
-                            writer.WriteLine("-----------");
-                            writer.Close();
-                            MessageBox.Show("GUARDADO EXITOSAMENTE");
-                        } else
-                        {
-                            MessageBox.Show("YA EXISTE UNA PLANTILLA CON ESTE NOMBRE \n-ELIMINALA \n-TRATA OTRO NOMBRE");
-                        }
-                    }
-                   
-                }else
-                {
-                    MessageBox.Show("CREE ALGUNA COLUMNA PARA PODER GUARDAR");
-                }
+                string nameToSave = Microsoft.VisualBasic.Interaction.InputBox("-SE ESPECIFICO PARA UNA MEJOR COMPRENSION FUTURA \n-NO USES SIMBOLOS ESPECIALES \nDAME EL NOMBRE DE LA PLANTILLA:");
+                nameToSave = nameToSave.ToUpper();
+                nameToSave = nameToSave.Replace(" ", "_");
+                nameTemplate = nameToSave;
             }
-            else
+            else if (optionMenu == "EDITAR")
             {
-                if (AllowedUpdateAction == true)
-                {
-                    int rowNumberSave = 0;
-                    if (File.Exists(finalPath))
-                    {
-                        File.Delete(finalPath);
-                    }
-                    FileStream fs = new FileStream(finalPath, FileMode.OpenOrCreate, FileAccess.Write);
-                    StreamWriter writer = new StreamWriter(fs);
-                    int maximunRows = dataGridView1.Rows.Count;
-                    --maximunRows;
-                    int maximunCells = dataGridView1.Columns.Count;
-                    for (int rows = 0; rows < maximunRows; rows++)
-                    {
-                        for (int cell = 1; cell < maximunCells; cell++)
-                        {
-                            object data = dataGridView1.Rows[rowNumberSave].Cells[cell].Value;
-                            writer.WriteLine(data.ToString());
-                        }
-                    }
-                    writer.WriteLine("-----------");
-                    writer.Close();
-                    MessageBox.Show("ACTUALIZADO EXITOSAMENTE");
-                }
-                else
-                {
-                    MessageBox.Show("CAMBIE PRIMERO ALGO ANTES DE ACTUALIZARLO");
-                }
+
             }
-            
+
+            string pathToEraseAndAdd = SpecificPathOfFolderConfigurationTemplates + nameTemplate + ".txt";
+            if(File.Exists(pathToEraseAndAdd))
+            {
+                File.Delete(pathToEraseAndAdd);
+            }
+
+            FileStream fs = new FileStream(pathToEraseAndAdd, FileMode.OpenOrCreate, FileAccess.Write);
+            StreamWriter writer = new StreamWriter(fs);
+            writer.WriteLine(startHead);
+            foreach (DataGridViewColumn column in dataGridView1.Columns)
+            {
+                writer.WriteLine(column.HeaderText);
+            }
+            writer.WriteLine(endHead);
+            writer.Close();
+            MessageBox.Show("GUARDADO EXITOSAMENTE");
         }
 
-        private void buttonReturnScreen_Click(object sender, EventArgs e)
+        private void colorateTheCells()
         {
-            this.Hide();
-            GUI_MENU_EDITAR_PLANTILLA llamadoMenuPlantilla = new GUI_MENU_EDITAR_PLANTILLA();
-            llamadoMenuPlantilla.ShowDialog();
-            this.Close();
+            int sizeColumns = dataGridView1.Columns.Count;
+            for (int cell = 0; cell < sizeColumns; cell++)
+            {
+                if (cell == indexColumn)
+                {
+                    dataGridView1.Columns[cell].DefaultCellStyle.BackColor = Color.LightGreen;
+                }else
+                {
+                    dataGridView1.Columns[cell].DefaultCellStyle.BackColor = Color.White;
+                }
+            }
         }
 
         private void CellClickEvent(object sender, DataGridViewCellEventArgs e)
         {
-            
             try
             {
-                foreach (DataGridViewRow row in dataGridView1.Rows)
-                {
-                    int maximunCells = row.Cells.Count;
-
-                    for (int cell = 0; cell < maximunCells; cell++)
-                    {
-                        dataGridView1.Rows[row.Index].Cells[cell].Style.BackColor = Color.White;
-                    }
-                }
-
-            }
-            catch (Exception)
-            { }
-
-            try
-            {
-                AllowedUpdateAction = true;
-                locationCell = dataGridView1.Rows[e.RowIndex].Cells[e.ColumnIndex].ColumnIndex;
-            }
-            catch (Exception)
+                indexColumn = dataGridView1.Columns[e.ColumnIndex].Index;
+                colorateTheCells();
+            }catch (Exception)
             { 
               MessageBox.Show("HUBO ALGUN PROBLEMA SELECCIONANDO LA COLUMNA"); 
             }
             
         }
 
-        private void buttonCloseProgram_Click(object sender, EventArgs e)
+        public void nameOFTemplate(string nameTemplateReceived)
         {
+            nameTemplate = nameTemplateReceived;
+            nameTemplate = nameTemplate.Replace(" ", "_");
+        }
+
+        public void menuNewOrUpdate(string option)
+        {
+            optionMenu = option;
+        }
+
+        private void buttonReturnScreen_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            GUI_MENU_EDITAR_PLANTILLA llamadoMenuPlantilla = new GUI_MENU_EDITAR_PLANTILLA();
+            llamadoMenuPlantilla.MethodToReceivedAccesToObject(startThePaths, startTheTagsAndDefaults, startFoldersInsideCompany);
+            llamadoMenuPlantilla.ShowDialog();
             this.Close();
         }
 
-        public void PathToSave(string pathReceive)   // property
+        private void buttonCloseProgram_Click(object sender, EventArgs e)
         {
-            path = pathReceive;
-        }
-
-        public void menuAction(bool option)
-        {
-            optionMenu = option;
+            this.Close();
         }
     }
 }
