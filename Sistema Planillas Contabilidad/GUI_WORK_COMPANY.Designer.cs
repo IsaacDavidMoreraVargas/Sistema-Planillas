@@ -29,26 +29,6 @@
         private void InitializeComponent()
         {
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.buttonAddColumn = new System.Windows.Forms.Button();
-            this.buttonAddArrow = new System.Windows.Forms.Button();
-            this.buttonBackTotal = new System.Windows.Forms.Button();
-            this.buttonMoveBackColum = new System.Windows.Forms.Button();
-            this.buttonMoveUpArrow = new System.Windows.Forms.Button();
-            this.buttonMoveDownArrow = new System.Windows.Forms.Button();
-            this.buttonMoveNextColumn = new System.Windows.Forms.Button();
-            this.buttonNextTotal = new System.Windows.Forms.Button();
-            this.buttonImportDataColum = new System.Windows.Forms.Button();
-            this.buttonImportDataRow = new System.Windows.Forms.Button();
-            this.buttonEraseColumn = new System.Windows.Forms.Button();
-            this.buttonEraseArrow = new System.Windows.Forms.Button();
-            this.buttonUpdateTemplate = new System.Windows.Forms.Button();
-            this.buttonGenerateFormula = new System.Windows.Forms.Button();
-            this.buttonRecalculate = new System.Windows.Forms.Button();
-            this.buttonCloseProgram = new System.Windows.Forms.Button();
-            this.buttonCalculateTotals = new System.Windows.Forms.Button();
-            this.buttonGenerateSits = new System.Windows.Forms.Button();
-            this.buttonIntroduceData = new System.Windows.Forms.Button();
-            this.panel1 = new System.Windows.Forms.Panel();
             this.INDEX = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.CEDULA = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.NOMBRE = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -104,16 +84,50 @@
             this.LENDS = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.OTHERS = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.SALARNET = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.buttonAddColumn = new System.Windows.Forms.Button();
+            this.buttonAddArrow = new System.Windows.Forms.Button();
+            this.buttonBackTotal = new System.Windows.Forms.Button();
+            this.buttonMoveBackColum = new System.Windows.Forms.Button();
+            this.buttonMoveUpArrow = new System.Windows.Forms.Button();
+            this.buttonMoveDownArrow = new System.Windows.Forms.Button();
+            this.buttonMoveNextColumn = new System.Windows.Forms.Button();
+            this.buttonNextTotal = new System.Windows.Forms.Button();
+            this.buttonImportDataColum = new System.Windows.Forms.Button();
+            this.buttonImportDataRow = new System.Windows.Forms.Button();
+            this.buttonEraseColumn = new System.Windows.Forms.Button();
+            this.buttonEraseArrow = new System.Windows.Forms.Button();
+            this.buttonUpdateTemplate = new System.Windows.Forms.Button();
+            this.buttonGenerateFormula = new System.Windows.Forms.Button();
+            this.buttonRecalculate = new System.Windows.Forms.Button();
+            this.buttonCloseProgram = new System.Windows.Forms.Button();
+            this.buttonCalculateTotals = new System.Windows.Forms.Button();
+            this.buttonGenerateSits = new System.Windows.Forms.Button();
+            this.buttonIntroduceData = new System.Windows.Forms.Button();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.checkedListBox2 = new System.Windows.Forms.CheckedListBox();
+            this.checkedListBox1 = new System.Windows.Forms.CheckedListBox();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.panel3 = new System.Windows.Forms.Panel();
+            this.dataGridView4 = new System.Windows.Forms.DataGridView();
+            this.dataGridView3 = new System.Windows.Forms.DataGridView();
+            this.dataGridView2 = new System.Windows.Forms.DataGridView();
+            this.listView1 = new System.Windows.Forms.ListView();
+            this.comboBox2 = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.panel1.SuspendLayout();
+            this.tableLayoutPanel1.SuspendLayout();
+            this.panel3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView4)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
             this.SuspendLayout();
             // 
             // dataGridView1
             // 
             this.dataGridView1.AllowUserToOrderColumns = true;
-            this.dataGridView1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.dataGridView1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.ColumnHeader;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -172,259 +186,17 @@
             this.LENDS,
             this.OTHERS,
             this.SALARNET});
-            this.dataGridView1.Location = new System.Drawing.Point(1, 2);
-            this.dataGridView1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.dataGridView1.Location = new System.Drawing.Point(2, 2);
+            this.dataGridView1.Margin = new System.Windows.Forms.Padding(2);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.dataGridView1.RowHeadersVisible = false;
             this.dataGridView1.RowHeadersWidth = 51;
             this.dataGridView1.RowTemplate.Height = 24;
-            this.dataGridView1.Size = new System.Drawing.Size(882, 343);
+            this.dataGridView1.Size = new System.Drawing.Size(1041, 80);
             this.dataGridView1.TabIndex = 0;
             this.dataGridView1.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.CellClickEvent);
             this.dataGridView1.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.CellRecalculateFinish);
-            // 
-            // buttonAddColumn
-            // 
-            this.buttonAddColumn.Location = new System.Drawing.Point(2, 43);
-            this.buttonAddColumn.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.buttonAddColumn.Name = "buttonAddColumn";
-            this.buttonAddColumn.Size = new System.Drawing.Size(104, 38);
-            this.buttonAddColumn.TabIndex = 0;
-            this.buttonAddColumn.Text = "Agregar Columna";
-            this.buttonAddColumn.UseVisualStyleBackColor = true;
-            this.buttonAddColumn.Click += new System.EventHandler(this.buttonAddColumn_Click);
-            // 
-            // buttonAddArrow
-            // 
-            this.buttonAddArrow.Location = new System.Drawing.Point(2, 84);
-            this.buttonAddArrow.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.buttonAddArrow.Name = "buttonAddArrow";
-            this.buttonAddArrow.Size = new System.Drawing.Size(104, 38);
-            this.buttonAddArrow.TabIndex = 7;
-            this.buttonAddArrow.Text = "Agregar Fila";
-            this.buttonAddArrow.UseVisualStyleBackColor = true;
-            this.buttonAddArrow.Click += new System.EventHandler(this.buttonAddArrow_Click);
-            // 
-            // buttonBackTotal
-            // 
-            this.buttonBackTotal.Location = new System.Drawing.Point(455, 2);
-            this.buttonBackTotal.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.buttonBackTotal.Name = "buttonBackTotal";
-            this.buttonBackTotal.Size = new System.Drawing.Size(46, 38);
-            this.buttonBackTotal.TabIndex = 20;
-            this.buttonBackTotal.Text = "<-";
-            this.buttonBackTotal.UseVisualStyleBackColor = true;
-            this.buttonBackTotal.Click += new System.EventHandler(this.buttonBackTotal_Click_1);
-            // 
-            // buttonMoveBackColum
-            // 
-            this.buttonMoveBackColum.Location = new System.Drawing.Point(455, 43);
-            this.buttonMoveBackColum.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.buttonMoveBackColum.Name = "buttonMoveBackColum";
-            this.buttonMoveBackColum.Size = new System.Drawing.Size(46, 38);
-            this.buttonMoveBackColum.TabIndex = 1;
-            this.buttonMoveBackColum.Text = "<";
-            this.buttonMoveBackColum.UseVisualStyleBackColor = true;
-            this.buttonMoveBackColum.Click += new System.EventHandler(this.buttonMoveBackColum_Click);
-            // 
-            // buttonMoveUpArrow
-            // 
-            this.buttonMoveUpArrow.Location = new System.Drawing.Point(506, 2);
-            this.buttonMoveUpArrow.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.buttonMoveUpArrow.Name = "buttonMoveUpArrow";
-            this.buttonMoveUpArrow.Size = new System.Drawing.Size(46, 38);
-            this.buttonMoveUpArrow.TabIndex = 9;
-            this.buttonMoveUpArrow.Text = "ʌ";
-            this.buttonMoveUpArrow.UseVisualStyleBackColor = true;
-            this.buttonMoveUpArrow.Click += new System.EventHandler(this.buttonMoveUpArrow_Click);
-            // 
-            // buttonMoveDownArrow
-            // 
-            this.buttonMoveDownArrow.Location = new System.Drawing.Point(506, 84);
-            this.buttonMoveDownArrow.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.buttonMoveDownArrow.Name = "buttonMoveDownArrow";
-            this.buttonMoveDownArrow.Size = new System.Drawing.Size(46, 38);
-            this.buttonMoveDownArrow.TabIndex = 10;
-            this.buttonMoveDownArrow.Text = "v";
-            this.buttonMoveDownArrow.UseVisualStyleBackColor = true;
-            this.buttonMoveDownArrow.Click += new System.EventHandler(this.buttonMoveDownArrow_Click);
-            // 
-            // buttonMoveNextColumn
-            // 
-            this.buttonMoveNextColumn.Location = new System.Drawing.Point(557, 43);
-            this.buttonMoveNextColumn.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.buttonMoveNextColumn.Name = "buttonMoveNextColumn";
-            this.buttonMoveNextColumn.Size = new System.Drawing.Size(46, 38);
-            this.buttonMoveNextColumn.TabIndex = 2;
-            this.buttonMoveNextColumn.Text = ">";
-            this.buttonMoveNextColumn.UseVisualStyleBackColor = true;
-            this.buttonMoveNextColumn.Click += new System.EventHandler(this.buttonMoveNextColumn_Click);
-            // 
-            // buttonNextTotal
-            // 
-            this.buttonNextTotal.Location = new System.Drawing.Point(557, 2);
-            this.buttonNextTotal.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.buttonNextTotal.Name = "buttonNextTotal";
-            this.buttonNextTotal.Size = new System.Drawing.Size(46, 38);
-            this.buttonNextTotal.TabIndex = 17;
-            this.buttonNextTotal.Text = "->";
-            this.buttonNextTotal.UseVisualStyleBackColor = true;
-            this.buttonNextTotal.Click += new System.EventHandler(this.buttonNextTotal_Click);
-            // 
-            // buttonImportDataColum
-            // 
-            this.buttonImportDataColum.Location = new System.Drawing.Point(226, 2);
-            this.buttonImportDataColum.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.buttonImportDataColum.Name = "buttonImportDataColum";
-            this.buttonImportDataColum.Size = new System.Drawing.Size(110, 38);
-            this.buttonImportDataColum.TabIndex = 14;
-            this.buttonImportDataColum.Text = "Importar Columna";
-            this.buttonImportDataColum.UseVisualStyleBackColor = true;
-            this.buttonImportDataColum.Click += new System.EventHandler(this.buttonImportDataColumn_Click);
-            // 
-            // buttonImportDataRow
-            // 
-            this.buttonImportDataRow.Location = new System.Drawing.Point(226, 43);
-            this.buttonImportDataRow.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.buttonImportDataRow.Name = "buttonImportDataRow";
-            this.buttonImportDataRow.Size = new System.Drawing.Size(110, 38);
-            this.buttonImportDataRow.TabIndex = 15;
-            this.buttonImportDataRow.Text = "Importar Fila";
-            this.buttonImportDataRow.UseVisualStyleBackColor = true;
-            this.buttonImportDataRow.Click += new System.EventHandler(this.buttonImportDataArrow_Click);
-            // 
-            // buttonEraseColumn
-            // 
-            this.buttonEraseColumn.Location = new System.Drawing.Point(111, 2);
-            this.buttonEraseColumn.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.buttonEraseColumn.Name = "buttonEraseColumn";
-            this.buttonEraseColumn.Size = new System.Drawing.Size(110, 38);
-            this.buttonEraseColumn.TabIndex = 3;
-            this.buttonEraseColumn.Text = "Eliminar Columna";
-            this.buttonEraseColumn.UseVisualStyleBackColor = true;
-            this.buttonEraseColumn.Click += new System.EventHandler(this.buttonEraseColumn_Click);
-            // 
-            // buttonEraseArrow
-            // 
-            this.buttonEraseArrow.Location = new System.Drawing.Point(111, 43);
-            this.buttonEraseArrow.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.buttonEraseArrow.Name = "buttonEraseArrow";
-            this.buttonEraseArrow.Size = new System.Drawing.Size(110, 38);
-            this.buttonEraseArrow.TabIndex = 11;
-            this.buttonEraseArrow.Text = "Eliminar Fila";
-            this.buttonEraseArrow.UseVisualStyleBackColor = true;
-            this.buttonEraseArrow.Click += new System.EventHandler(this.buttonEraseArrow_Click);
-            // 
-            // buttonUpdateTemplate
-            // 
-            this.buttonUpdateTemplate.Location = new System.Drawing.Point(111, 84);
-            this.buttonUpdateTemplate.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.buttonUpdateTemplate.Name = "buttonUpdateTemplate";
-            this.buttonUpdateTemplate.Size = new System.Drawing.Size(110, 38);
-            this.buttonUpdateTemplate.TabIndex = 5;
-            this.buttonUpdateTemplate.Text = "Guardar Cambios";
-            this.buttonUpdateTemplate.UseVisualStyleBackColor = true;
-            this.buttonUpdateTemplate.Click += new System.EventHandler(this.buttonUpdateTemplate_Click);
-            // 
-            // buttonGenerateFormula
-            // 
-            this.buttonGenerateFormula.Location = new System.Drawing.Point(340, 84);
-            this.buttonGenerateFormula.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.buttonGenerateFormula.Name = "buttonGenerateFormula";
-            this.buttonGenerateFormula.Size = new System.Drawing.Size(110, 38);
-            this.buttonGenerateFormula.TabIndex = 18;
-            this.buttonGenerateFormula.Text = "Menu Formulas";
-            this.buttonGenerateFormula.UseVisualStyleBackColor = true;
-            this.buttonGenerateFormula.Click += new System.EventHandler(this.buttonGenerateFormula_Click);
-            // 
-            // buttonRecalculate
-            // 
-            this.buttonRecalculate.Location = new System.Drawing.Point(226, 84);
-            this.buttonRecalculate.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.buttonRecalculate.Name = "buttonRecalculate";
-            this.buttonRecalculate.Size = new System.Drawing.Size(110, 38);
-            this.buttonRecalculate.TabIndex = 21;
-            this.buttonRecalculate.Text = "Recalcular";
-            this.buttonRecalculate.UseVisualStyleBackColor = true;
-            this.buttonRecalculate.Click += new System.EventHandler(this.buttonRecalculate_Click);
-            // 
-            // buttonCloseProgram
-            // 
-            this.buttonCloseProgram.Location = new System.Drawing.Point(604, 84);
-            this.buttonCloseProgram.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.buttonCloseProgram.Name = "buttonCloseProgram";
-            this.buttonCloseProgram.Size = new System.Drawing.Size(110, 38);
-            this.buttonCloseProgram.TabIndex = 6;
-            this.buttonCloseProgram.Text = "Salir";
-            this.buttonCloseProgram.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
-            this.buttonCloseProgram.UseVisualStyleBackColor = true;
-            this.buttonCloseProgram.Click += new System.EventHandler(this.buttonCloseProgram_Click);
-            // 
-            // buttonCalculateTotals
-            // 
-            this.buttonCalculateTotals.Location = new System.Drawing.Point(340, 2);
-            this.buttonCalculateTotals.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.buttonCalculateTotals.Name = "buttonCalculateTotals";
-            this.buttonCalculateTotals.Size = new System.Drawing.Size(110, 38);
-            this.buttonCalculateTotals.TabIndex = 12;
-            this.buttonCalculateTotals.Text = "Generar Totales";
-            this.buttonCalculateTotals.UseVisualStyleBackColor = true;
-            this.buttonCalculateTotals.Click += new System.EventHandler(this.buttonCalculateTotals_Click);
-            // 
-            // buttonGenerateSits
-            // 
-            this.buttonGenerateSits.Location = new System.Drawing.Point(340, 43);
-            this.buttonGenerateSits.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.buttonGenerateSits.Name = "buttonGenerateSits";
-            this.buttonGenerateSits.Size = new System.Drawing.Size(110, 38);
-            this.buttonGenerateSits.TabIndex = 13;
-            this.buttonGenerateSits.Text = "Menu Asientos";
-            this.buttonGenerateSits.UseVisualStyleBackColor = true;
-            this.buttonGenerateSits.Click += new System.EventHandler(this.buttonGenerateSits_Click);
-            // 
-            // buttonIntroduceData
-            // 
-            this.buttonIntroduceData.Location = new System.Drawing.Point(2, 2);
-            this.buttonIntroduceData.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.buttonIntroduceData.Name = "buttonIntroduceData";
-            this.buttonIntroduceData.Size = new System.Drawing.Size(104, 38);
-            this.buttonIntroduceData.TabIndex = 8;
-            this.buttonIntroduceData.Text = "Introducir Datos";
-            this.buttonIntroduceData.UseVisualStyleBackColor = true;
-            this.buttonIntroduceData.Click += new System.EventHandler(this.buttonIntroduceData_Click);
-            // 
-            // panel1
-            // 
-            this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.panel1.AutoScroll = true;
-            this.panel1.AutoScrollMargin = new System.Drawing.Size(0, 100);
-            this.panel1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.panel1.Controls.Add(this.buttonCloseProgram);
-            this.panel1.Controls.Add(this.buttonGenerateFormula);
-            this.panel1.Controls.Add(this.buttonUpdateTemplate);
-            this.panel1.Controls.Add(this.buttonRecalculate);
-            this.panel1.Controls.Add(this.buttonMoveDownArrow);
-            this.panel1.Controls.Add(this.buttonAddArrow);
-            this.panel1.Controls.Add(this.buttonAddColumn);
-            this.panel1.Controls.Add(this.buttonMoveBackColum);
-            this.panel1.Controls.Add(this.buttonImportDataRow);
-            this.panel1.Controls.Add(this.buttonMoveNextColumn);
-            this.panel1.Controls.Add(this.buttonEraseArrow);
-            this.panel1.Controls.Add(this.buttonGenerateSits);
-            this.panel1.Controls.Add(this.buttonIntroduceData);
-            this.panel1.Controls.Add(this.buttonBackTotal);
-            this.panel1.Controls.Add(this.buttonMoveUpArrow);
-            this.panel1.Controls.Add(this.buttonNextTotal);
-            this.panel1.Controls.Add(this.buttonImportDataColum);
-            this.panel1.Controls.Add(this.buttonEraseColumn);
-            this.panel1.Controls.Add(this.buttonCalculateTotals);
-            this.panel1.Location = new System.Drawing.Point(1, 352);
-            this.panel1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(886, 127);
-            this.panel1.TabIndex = 3;
             // 
             // INDEX
             // 
@@ -456,7 +228,7 @@
             this.APELLIDO1.HeaderText = "APELLIDO 1";
             this.APELLIDO1.MinimumWidth = 6;
             this.APELLIDO1.Name = "APELLIDO1";
-            this.APELLIDO1.Width = 93;
+            this.APELLIDO1.Width = 86;
             // 
             // APELLIDO2
             // 
@@ -464,7 +236,7 @@
             this.APELLIDO2.HeaderText = "APELLIDO 2";
             this.APELLIDO2.MinimumWidth = 6;
             this.APELLIDO2.Name = "APELLIDO2";
-            this.APELLIDO2.Width = 93;
+            this.APELLIDO2.Width = 86;
             // 
             // FECHAINGRE
             // 
@@ -849,21 +621,408 @@
             this.SALARNET.Name = "SALARNET";
             this.SALARNET.Width = 102;
             // 
+            // buttonAddColumn
+            // 
+            this.buttonAddColumn.Location = new System.Drawing.Point(2, 43);
+            this.buttonAddColumn.Margin = new System.Windows.Forms.Padding(2);
+            this.buttonAddColumn.Name = "buttonAddColumn";
+            this.buttonAddColumn.Size = new System.Drawing.Size(104, 38);
+            this.buttonAddColumn.TabIndex = 0;
+            this.buttonAddColumn.Text = "Agregar Columna";
+            this.buttonAddColumn.UseVisualStyleBackColor = true;
+            this.buttonAddColumn.Click += new System.EventHandler(this.buttonAddColumn_Click);
+            // 
+            // buttonAddArrow
+            // 
+            this.buttonAddArrow.Location = new System.Drawing.Point(2, 84);
+            this.buttonAddArrow.Margin = new System.Windows.Forms.Padding(2);
+            this.buttonAddArrow.Name = "buttonAddArrow";
+            this.buttonAddArrow.Size = new System.Drawing.Size(104, 38);
+            this.buttonAddArrow.TabIndex = 7;
+            this.buttonAddArrow.Text = "Agregar Fila";
+            this.buttonAddArrow.UseVisualStyleBackColor = true;
+            this.buttonAddArrow.Click += new System.EventHandler(this.buttonAddArrow_Click);
+            // 
+            // buttonBackTotal
+            // 
+            this.buttonBackTotal.Location = new System.Drawing.Point(455, 2);
+            this.buttonBackTotal.Margin = new System.Windows.Forms.Padding(2);
+            this.buttonBackTotal.Name = "buttonBackTotal";
+            this.buttonBackTotal.Size = new System.Drawing.Size(46, 38);
+            this.buttonBackTotal.TabIndex = 20;
+            this.buttonBackTotal.Text = "<-";
+            this.buttonBackTotal.UseVisualStyleBackColor = true;
+            this.buttonBackTotal.Click += new System.EventHandler(this.buttonBackTotal_Click_1);
+            // 
+            // buttonMoveBackColum
+            // 
+            this.buttonMoveBackColum.Location = new System.Drawing.Point(455, 43);
+            this.buttonMoveBackColum.Margin = new System.Windows.Forms.Padding(2);
+            this.buttonMoveBackColum.Name = "buttonMoveBackColum";
+            this.buttonMoveBackColum.Size = new System.Drawing.Size(46, 38);
+            this.buttonMoveBackColum.TabIndex = 1;
+            this.buttonMoveBackColum.Text = "<";
+            this.buttonMoveBackColum.UseVisualStyleBackColor = true;
+            this.buttonMoveBackColum.Click += new System.EventHandler(this.buttonMoveBackColum_Click);
+            // 
+            // buttonMoveUpArrow
+            // 
+            this.buttonMoveUpArrow.Location = new System.Drawing.Point(506, 2);
+            this.buttonMoveUpArrow.Margin = new System.Windows.Forms.Padding(2);
+            this.buttonMoveUpArrow.Name = "buttonMoveUpArrow";
+            this.buttonMoveUpArrow.Size = new System.Drawing.Size(46, 38);
+            this.buttonMoveUpArrow.TabIndex = 9;
+            this.buttonMoveUpArrow.Text = "ʌ";
+            this.buttonMoveUpArrow.UseVisualStyleBackColor = true;
+            this.buttonMoveUpArrow.Click += new System.EventHandler(this.buttonMoveUpArrow_Click);
+            // 
+            // buttonMoveDownArrow
+            // 
+            this.buttonMoveDownArrow.Location = new System.Drawing.Point(507, 43);
+            this.buttonMoveDownArrow.Margin = new System.Windows.Forms.Padding(2);
+            this.buttonMoveDownArrow.Name = "buttonMoveDownArrow";
+            this.buttonMoveDownArrow.Size = new System.Drawing.Size(46, 38);
+            this.buttonMoveDownArrow.TabIndex = 10;
+            this.buttonMoveDownArrow.Text = "v";
+            this.buttonMoveDownArrow.UseVisualStyleBackColor = true;
+            this.buttonMoveDownArrow.Click += new System.EventHandler(this.buttonMoveDownArrow_Click);
+            // 
+            // buttonMoveNextColumn
+            // 
+            this.buttonMoveNextColumn.Location = new System.Drawing.Point(557, 43);
+            this.buttonMoveNextColumn.Margin = new System.Windows.Forms.Padding(2);
+            this.buttonMoveNextColumn.Name = "buttonMoveNextColumn";
+            this.buttonMoveNextColumn.Size = new System.Drawing.Size(46, 38);
+            this.buttonMoveNextColumn.TabIndex = 2;
+            this.buttonMoveNextColumn.Text = ">";
+            this.buttonMoveNextColumn.UseVisualStyleBackColor = true;
+            this.buttonMoveNextColumn.Click += new System.EventHandler(this.buttonMoveNextColumn_Click);
+            // 
+            // buttonNextTotal
+            // 
+            this.buttonNextTotal.Location = new System.Drawing.Point(557, 2);
+            this.buttonNextTotal.Margin = new System.Windows.Forms.Padding(2);
+            this.buttonNextTotal.Name = "buttonNextTotal";
+            this.buttonNextTotal.Size = new System.Drawing.Size(46, 38);
+            this.buttonNextTotal.TabIndex = 17;
+            this.buttonNextTotal.Text = "->";
+            this.buttonNextTotal.UseVisualStyleBackColor = true;
+            this.buttonNextTotal.Click += new System.EventHandler(this.buttonNextTotal_Click);
+            // 
+            // buttonImportDataColum
+            // 
+            this.buttonImportDataColum.Location = new System.Drawing.Point(226, 2);
+            this.buttonImportDataColum.Margin = new System.Windows.Forms.Padding(2);
+            this.buttonImportDataColum.Name = "buttonImportDataColum";
+            this.buttonImportDataColum.Size = new System.Drawing.Size(110, 38);
+            this.buttonImportDataColum.TabIndex = 14;
+            this.buttonImportDataColum.Text = "Importar Columna";
+            this.buttonImportDataColum.UseVisualStyleBackColor = true;
+            this.buttonImportDataColum.Click += new System.EventHandler(this.buttonImportDataColumn_Click);
+            // 
+            // buttonImportDataRow
+            // 
+            this.buttonImportDataRow.Location = new System.Drawing.Point(226, 43);
+            this.buttonImportDataRow.Margin = new System.Windows.Forms.Padding(2);
+            this.buttonImportDataRow.Name = "buttonImportDataRow";
+            this.buttonImportDataRow.Size = new System.Drawing.Size(110, 38);
+            this.buttonImportDataRow.TabIndex = 15;
+            this.buttonImportDataRow.Text = "Importar Fila";
+            this.buttonImportDataRow.UseVisualStyleBackColor = true;
+            this.buttonImportDataRow.Click += new System.EventHandler(this.buttonImportDataArrow_Click);
+            // 
+            // buttonEraseColumn
+            // 
+            this.buttonEraseColumn.Location = new System.Drawing.Point(111, 2);
+            this.buttonEraseColumn.Margin = new System.Windows.Forms.Padding(2);
+            this.buttonEraseColumn.Name = "buttonEraseColumn";
+            this.buttonEraseColumn.Size = new System.Drawing.Size(110, 38);
+            this.buttonEraseColumn.TabIndex = 3;
+            this.buttonEraseColumn.Text = "Eliminar Columna";
+            this.buttonEraseColumn.UseVisualStyleBackColor = true;
+            this.buttonEraseColumn.Click += new System.EventHandler(this.buttonEraseColumn_Click);
+            // 
+            // buttonEraseArrow
+            // 
+            this.buttonEraseArrow.Location = new System.Drawing.Point(111, 43);
+            this.buttonEraseArrow.Margin = new System.Windows.Forms.Padding(2);
+            this.buttonEraseArrow.Name = "buttonEraseArrow";
+            this.buttonEraseArrow.Size = new System.Drawing.Size(110, 38);
+            this.buttonEraseArrow.TabIndex = 11;
+            this.buttonEraseArrow.Text = "Eliminar Fila";
+            this.buttonEraseArrow.UseVisualStyleBackColor = true;
+            this.buttonEraseArrow.Click += new System.EventHandler(this.buttonEraseArrow_Click);
+            // 
+            // buttonUpdateTemplate
+            // 
+            this.buttonUpdateTemplate.Location = new System.Drawing.Point(111, 84);
+            this.buttonUpdateTemplate.Margin = new System.Windows.Forms.Padding(2);
+            this.buttonUpdateTemplate.Name = "buttonUpdateTemplate";
+            this.buttonUpdateTemplate.Size = new System.Drawing.Size(110, 38);
+            this.buttonUpdateTemplate.TabIndex = 5;
+            this.buttonUpdateTemplate.Text = "Guardar Cambios";
+            this.buttonUpdateTemplate.UseVisualStyleBackColor = true;
+            this.buttonUpdateTemplate.Click += new System.EventHandler(this.buttonUpdateTemplate_Click);
+            // 
+            // buttonGenerateFormula
+            // 
+            this.buttonGenerateFormula.Location = new System.Drawing.Point(340, 84);
+            this.buttonGenerateFormula.Margin = new System.Windows.Forms.Padding(2);
+            this.buttonGenerateFormula.Name = "buttonGenerateFormula";
+            this.buttonGenerateFormula.Size = new System.Drawing.Size(110, 38);
+            this.buttonGenerateFormula.TabIndex = 18;
+            this.buttonGenerateFormula.Text = "Menu Formulas";
+            this.buttonGenerateFormula.UseVisualStyleBackColor = true;
+            this.buttonGenerateFormula.Click += new System.EventHandler(this.buttonGenerateFormula_Click);
+            // 
+            // buttonRecalculate
+            // 
+            this.buttonRecalculate.Location = new System.Drawing.Point(226, 84);
+            this.buttonRecalculate.Margin = new System.Windows.Forms.Padding(2);
+            this.buttonRecalculate.Name = "buttonRecalculate";
+            this.buttonRecalculate.Size = new System.Drawing.Size(110, 38);
+            this.buttonRecalculate.TabIndex = 21;
+            this.buttonRecalculate.Text = "Recalcular";
+            this.buttonRecalculate.UseVisualStyleBackColor = true;
+            this.buttonRecalculate.Click += new System.EventHandler(this.buttonRecalculate_Click);
+            // 
+            // buttonCloseProgram
+            // 
+            this.buttonCloseProgram.Location = new System.Drawing.Point(455, 84);
+            this.buttonCloseProgram.Margin = new System.Windows.Forms.Padding(2);
+            this.buttonCloseProgram.Name = "buttonCloseProgram";
+            this.buttonCloseProgram.Size = new System.Drawing.Size(148, 38);
+            this.buttonCloseProgram.TabIndex = 6;
+            this.buttonCloseProgram.Text = "Salir";
+            this.buttonCloseProgram.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
+            this.buttonCloseProgram.UseVisualStyleBackColor = true;
+            this.buttonCloseProgram.Click += new System.EventHandler(this.buttonCloseProgram_Click);
+            // 
+            // buttonCalculateTotals
+            // 
+            this.buttonCalculateTotals.Location = new System.Drawing.Point(340, 2);
+            this.buttonCalculateTotals.Margin = new System.Windows.Forms.Padding(2);
+            this.buttonCalculateTotals.Name = "buttonCalculateTotals";
+            this.buttonCalculateTotals.Size = new System.Drawing.Size(110, 38);
+            this.buttonCalculateTotals.TabIndex = 12;
+            this.buttonCalculateTotals.Text = "Generar Totales";
+            this.buttonCalculateTotals.UseVisualStyleBackColor = true;
+            this.buttonCalculateTotals.Click += new System.EventHandler(this.buttonCalculateTotals_Click);
+            // 
+            // buttonGenerateSits
+            // 
+            this.buttonGenerateSits.Location = new System.Drawing.Point(340, 43);
+            this.buttonGenerateSits.Margin = new System.Windows.Forms.Padding(2);
+            this.buttonGenerateSits.Name = "buttonGenerateSits";
+            this.buttonGenerateSits.Size = new System.Drawing.Size(110, 38);
+            this.buttonGenerateSits.TabIndex = 13;
+            this.buttonGenerateSits.Text = "Menu Asientos";
+            this.buttonGenerateSits.UseVisualStyleBackColor = true;
+            this.buttonGenerateSits.Click += new System.EventHandler(this.buttonGenerateSits_Click);
+            // 
+            // buttonIntroduceData
+            // 
+            this.buttonIntroduceData.Location = new System.Drawing.Point(2, 2);
+            this.buttonIntroduceData.Margin = new System.Windows.Forms.Padding(2);
+            this.buttonIntroduceData.Name = "buttonIntroduceData";
+            this.buttonIntroduceData.Size = new System.Drawing.Size(104, 38);
+            this.buttonIntroduceData.TabIndex = 8;
+            this.buttonIntroduceData.Text = "Introducir Datos";
+            this.buttonIntroduceData.UseVisualStyleBackColor = true;
+            this.buttonIntroduceData.Click += new System.EventHandler(this.buttonIntroduceData_Click);
+            // 
+            // panel1
+            // 
+            this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel1.AutoScroll = true;
+            this.panel1.AutoScrollMargin = new System.Drawing.Size(0, 100);
+            this.panel1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.panel1.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.panel1.Controls.Add(this.comboBox2);
+            this.panel1.Controls.Add(this.comboBox1);
+            this.panel1.Controls.Add(this.checkedListBox2);
+            this.panel1.Controls.Add(this.checkedListBox1);
+            this.panel1.Controls.Add(this.buttonCloseProgram);
+            this.panel1.Controls.Add(this.buttonGenerateFormula);
+            this.panel1.Controls.Add(this.buttonUpdateTemplate);
+            this.panel1.Controls.Add(this.buttonRecalculate);
+            this.panel1.Controls.Add(this.buttonMoveDownArrow);
+            this.panel1.Controls.Add(this.buttonAddArrow);
+            this.panel1.Controls.Add(this.buttonAddColumn);
+            this.panel1.Controls.Add(this.buttonMoveBackColum);
+            this.panel1.Controls.Add(this.buttonImportDataRow);
+            this.panel1.Controls.Add(this.buttonMoveNextColumn);
+            this.panel1.Controls.Add(this.buttonEraseArrow);
+            this.panel1.Controls.Add(this.buttonGenerateSits);
+            this.panel1.Controls.Add(this.buttonIntroduceData);
+            this.panel1.Controls.Add(this.buttonBackTotal);
+            this.panel1.Controls.Add(this.buttonMoveUpArrow);
+            this.panel1.Controls.Add(this.buttonNextTotal);
+            this.panel1.Controls.Add(this.buttonImportDataColum);
+            this.panel1.Controls.Add(this.buttonEraseColumn);
+            this.panel1.Controls.Add(this.buttonCalculateTotals);
+            this.panel1.Location = new System.Drawing.Point(1, 405);
+            this.panel1.Margin = new System.Windows.Forms.Padding(2);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(1054, 127);
+            this.panel1.TabIndex = 3;
+            // 
+            // comboBox1
+            // 
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Location = new System.Drawing.Point(608, 98);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(126, 21);
+            this.comboBox1.TabIndex = 24;
+            this.comboBox1.TextChanged += new System.EventHandler(this.comboBox1_TextChanged);
+            // 
+            // checkedListBox2
+            // 
+            this.checkedListBox2.CheckOnClick = true;
+            this.checkedListBox2.FormattingEnabled = true;
+            this.checkedListBox2.Location = new System.Drawing.Point(741, 4);
+            this.checkedListBox2.Name = "checkedListBox2";
+            this.checkedListBox2.Size = new System.Drawing.Size(126, 79);
+            this.checkedListBox2.TabIndex = 23;
+            this.checkedListBox2.MouseUp += new System.Windows.Forms.MouseEventHandler(this.checkedListBox2_MouseUp);
+            // 
+            // checkedListBox1
+            // 
+            this.checkedListBox1.CheckOnClick = true;
+            this.checkedListBox1.FormattingEnabled = true;
+            this.checkedListBox1.Location = new System.Drawing.Point(608, 4);
+            this.checkedListBox1.Name = "checkedListBox1";
+            this.checkedListBox1.ScrollAlwaysVisible = true;
+            this.checkedListBox1.Size = new System.Drawing.Size(127, 79);
+            this.checkedListBox1.TabIndex = 22;
+            this.checkedListBox1.MouseUp += new System.Windows.Forms.MouseEventHandler(this.checkedListBox1_MouseUp);
+            // 
+            // panel2
+            // 
+            this.panel2.AutoSize = true;
+            this.panel2.Location = new System.Drawing.Point(3, 107);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(0, 0);
+            this.panel2.TabIndex = 4;
+            // 
+            // tableLayoutPanel1
+            // 
+            this.tableLayoutPanel1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.tableLayoutPanel1.AutoScroll = true;
+            this.tableLayoutPanel1.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.tableLayoutPanel1.ColumnCount = 1;
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel1.Controls.Add(this.panel3, 0, 0);
+            this.tableLayoutPanel1.Controls.Add(this.listView1, 0, 1);
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(3, 3);
+            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
+            this.tableLayoutPanel1.RowCount = 2;
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 91.72932F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 8.270677F));
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(1052, 399);
+            this.tableLayoutPanel1.TabIndex = 5;
+            // 
+            // panel3
+            // 
+            this.panel3.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel3.AutoScroll = true;
+            this.panel3.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.panel3.Controls.Add(this.dataGridView4);
+            this.panel3.Controls.Add(this.dataGridView3);
+            this.panel3.Controls.Add(this.dataGridView2);
+            this.panel3.Controls.Add(this.dataGridView1);
+            this.panel3.Location = new System.Drawing.Point(3, 3);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(1046, 360);
+            this.panel3.TabIndex = 1;
+            // 
+            // dataGridView4
+            // 
+            this.dataGridView4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.dataGridView4.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.ColumnHeader;
+            this.dataGridView4.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView4.Location = new System.Drawing.Point(2, 259);
+            this.dataGridView4.Name = "dataGridView4";
+            this.dataGridView4.RowHeadersVisible = false;
+            this.dataGridView4.RowHeadersWidth = 51;
+            this.dataGridView4.Size = new System.Drawing.Size(1041, 80);
+            this.dataGridView4.TabIndex = 3;
+            // 
+            // dataGridView3
+            // 
+            this.dataGridView3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.dataGridView3.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.ColumnHeader;
+            this.dataGridView3.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView3.Location = new System.Drawing.Point(2, 173);
+            this.dataGridView3.Name = "dataGridView3";
+            this.dataGridView3.RowHeadersVisible = false;
+            this.dataGridView3.RowHeadersWidth = 51;
+            this.dataGridView3.Size = new System.Drawing.Size(1041, 80);
+            this.dataGridView3.TabIndex = 2;
+            // 
+            // dataGridView2
+            // 
+            this.dataGridView2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.dataGridView2.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.ColumnHeader;
+            this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView2.Location = new System.Drawing.Point(2, 87);
+            this.dataGridView2.Name = "dataGridView2";
+            this.dataGridView2.RowHeadersVisible = false;
+            this.dataGridView2.RowHeadersWidth = 51;
+            this.dataGridView2.Size = new System.Drawing.Size(1041, 80);
+            this.dataGridView2.TabIndex = 1;
+            // 
+            // listView1
+            // 
+            this.listView1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.listView1.BackColor = System.Drawing.SystemColors.ControlDark;
+            this.listView1.HideSelection = false;
+            this.listView1.Location = new System.Drawing.Point(3, 369);
+            this.listView1.Name = "listView1";
+            this.listView1.Size = new System.Drawing.Size(1046, 27);
+            this.listView1.TabIndex = 2;
+            this.listView1.UseCompatibleStateImageBehavior = false;
+            // 
+            // comboBox2
+            // 
+            this.comboBox2.FormattingEnabled = true;
+            this.comboBox2.Location = new System.Drawing.Point(741, 98);
+            this.comboBox2.Name = "comboBox2";
+            this.comboBox2.Size = new System.Drawing.Size(126, 21);
+            this.comboBox2.TabIndex = 25;
+            this.comboBox2.TextChanged += new System.EventHandler(this.comboBox2_TextChanged);
+            // 
             // GUI_WORK_COMPANY
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
-            this.ClientSize = new System.Drawing.Size(894, 480);
+            this.BackColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.ClientSize = new System.Drawing.Size(1062, 533);
+            this.Controls.Add(this.tableLayoutPanel1);
+            this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
-            this.Controls.Add(this.dataGridView1);
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "GUI_WORK_COMPANY";
             this.Text = "SISTEMA EDICION PLANILLA";
             this.Load += new System.EventHandler(this.GUI_WORK_COMPANY_Load);
+            this.Resize += new System.EventHandler(this.GUI_WORK_COMPANY_Resize);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.panel1.ResumeLayout(false);
+            this.tableLayoutPanel1.ResumeLayout(false);
+            this.panel3.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView4)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -945,5 +1104,16 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn LENDS;
         private System.Windows.Forms.DataGridViewTextBoxColumn OTHERS;
         private System.Windows.Forms.DataGridViewTextBoxColumn SALARNET;
+        private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
+        private System.Windows.Forms.Panel panel3;
+        private System.Windows.Forms.DataGridView dataGridView4;
+        private System.Windows.Forms.DataGridView dataGridView3;
+        private System.Windows.Forms.DataGridView dataGridView2;
+        private System.Windows.Forms.ListView listView1;
+        private System.Windows.Forms.CheckedListBox checkedListBox1;
+        private System.Windows.Forms.CheckedListBox checkedListBox2;
+        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.ComboBox comboBox2;
     }
 }
