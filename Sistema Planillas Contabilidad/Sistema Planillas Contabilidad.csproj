@@ -52,6 +52,7 @@
     <Compile Include="calculateSystem.cs" />
     <Compile Include="FoldersInsideCompany.cs" />
     <Compile Include="generalDataAndAvoidData.cs" />
+    <Compile Include="generalMethodToWriteInFiles.cs" />
     <Compile Include="generalMultiArrayMethods.cs" />
     <Compile Include="SpecificAndCorePaths.cs" />
     <Compile Include="generalMethods.cs" />

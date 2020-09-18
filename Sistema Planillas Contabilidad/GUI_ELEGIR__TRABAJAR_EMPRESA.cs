@@ -195,6 +195,7 @@ namespace Sistema_Planillas_Contabilidad
                 }
                 else
                 {
+                    listViewMonth.Items.Clear();
                     booleanDeparment = true;
                     listViewMonth.Visible = true;
                     string department = listViewDeparment.Items[indexViewDeparment].Text;

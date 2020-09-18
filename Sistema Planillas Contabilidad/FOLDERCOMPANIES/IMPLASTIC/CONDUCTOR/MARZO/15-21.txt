@@ -56,6 +56,7 @@ VARIOS
 SALARIO NETO
 </endHeads>
 <startNewLine>
+0
 108090595
 Roberto
 Gamboa

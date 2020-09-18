@@ -109,7 +109,7 @@ namespace Sistema_Planillas_Contabilidad
         TagsAndDefaultValues startSetTagsAndDefaults = new TagsAndDefaultValues();
         private void setTags()
         {
-            string[] arrowOfTags = { "<startHeads>", "</endHeads>", "<startNewLine>", "</endNewline>","----", "DEPARTAMENTOS" };
+            string[] arrowOfTags = { "<startHeads>", "</endHeads>", "<startNewLine>", "</endNewline>","----", "DEPARTAMENTOS","<startDataGrid1>", "</endDataGrid1>", "<startDataGrid2>", "</endDataGrid2>", "<startDataGrid3>", "</endDataGrid3>", "<startDataGrid4>", "</endDataGrid4>" };
             int sizeArray = arrowOfTags.Length;
             for (int numberTag = 0; numberTag < sizeArray; numberTag++)
             {
@@ -132,6 +132,30 @@ namespace Sistema_Planillas_Contabilidad
                         break;
                     case 5:
                         startSetTagsAndDefaults.isDeparment= arrowOfTags[numberTag];
+                        break;
+                    case 6:
+                        startSetTagsAndDefaults.tagStartDataGrid1 = arrowOfTags[numberTag];
+                        break;
+                    case 7:
+                        startSetTagsAndDefaults.tagEndDataGrid1 = arrowOfTags[numberTag];
+                        break;
+                    case 8:
+                        startSetTagsAndDefaults.tagStartDataGrid2 = arrowOfTags[numberTag];
+                        break;
+                    case 9:
+                        startSetTagsAndDefaults.tagEndDataGrid2 = arrowOfTags[numberTag];
+                        break;
+                    case 10:
+                        startSetTagsAndDefaults.tagStartDataGrid3 = arrowOfTags[numberTag];
+                        break;
+                    case 11:
+                        startSetTagsAndDefaults.tagEndDataGrid3 = arrowOfTags[numberTag];
+                        break;
+                    case 12:
+                        startSetTagsAndDefaults.tagStartDataGrid4 = arrowOfTags[numberTag];
+                        break;
+                    case 13:
+                        startSetTagsAndDefaults.tagEndDataGrid4 = arrowOfTags[numberTag];
                         break;
                 }
             }

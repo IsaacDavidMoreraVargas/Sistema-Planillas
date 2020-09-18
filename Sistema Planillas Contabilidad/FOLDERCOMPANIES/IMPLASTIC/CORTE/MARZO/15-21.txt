@@ -56,6 +56,7 @@ VARIOS
 SALARIO NETO
 </endHeads>
 <startNewLine>
+0
 602640417
 Alexander
 Amador
@@ -112,6 +113,7 @@ Lara
 33 446,42
 </endNewline>
 <startNewLine>
+1
 114770635
 Joseph Alexander
 Aranda
@@ -168,6 +170,7 @@ Picado
 33 446,42
 </endNewline>
 <startNewLine>
+2
 701500001
 Mario Alberto
 Arias
@@ -224,6 +227,7 @@ Guadamuz
 33 373,67
 </endNewline>
 <startNewLine>
+3
 502260802
 Rigoberto
 Melendez
@@ -280,6 +284,7 @@ Cruz
 33 446,42
 </endNewline>
 <startNewLine>
+4
 155821314933
 Mariela 
 Briceño
@@ -336,6 +341,7 @@ Gutierrez
 58 072,18
 </endNewline>
 <startNewLine>
+5
 155803552809
 Jose Trinidad
 Estrada
@@ -392,6 +398,7 @@ Galeano
 45 771,42
 </endNewline>
 <startNewLine>
+6
 114570147
 Luis Arnoldo
 Gamboa
@@ -448,6 +455,7 @@ Castillo
 33 446,42
 </endNewline>
 <startNewLine>
+7
 155824974815
 Stedman
 Hoppington
@@ -504,6 +512,7 @@ Thomas
 00,00
 </endNewline>
 <startNewLine>
+8
 155819338804
 Yeri
 Matute
@@ -560,6 +569,7 @@ Rivas
 33 325,18
 </endNewline>
 <startNewLine>
+9
 105450646
 Uriel Gerardo 
 Quiros 
@@ -616,6 +626,7 @@ Garcia
 58 875,18
 </endNewline>
 <startNewLine>
+10
  155803358019
 Oliver Davi
 Rostran
@@ -672,6 +683,7 @@ Lagos
 58 096,42
 </endNewline>
 <startNewLine>
+11
 108200440
 Johnathan
 Alvarado
@@ -728,6 +740,7 @@ Miranda
 82 725,18
 </endNewline>
 <startNewLine>
+12
 155823760332
 Mauricio Javier
 Baquedano
@@ -784,6 +797,7 @@ Gonzalez
 29 596,42
 </endNewline>
 <startNewLine>
+13
 700760181
 Gilberto
 Davis
@@ -840,6 +854,7 @@ Morgan
 00,00
 </endNewline>
 <startNewLine>
+14
 204800782
 Ruber Antonio
 Gutierrez
@@ -896,6 +911,7 @@ Guadamuz
 58 023,67
 </endNewline>
 <startNewLine>
+15
 155819325300
 Esmeralda Cristina
 Melendez
@@ -952,6 +968,7 @@ De Caceres
 33 325,18
 </endNewline>
 <startNewLine>
+16
 105860414
 Leonardo
 Mora
@@ -1008,6 +1025,7 @@ Barboza
 58 096,42
 </endNewline>
 <startNewLine>
+17
 155832124000
 Jorge David 
 Moran
@@ -1064,6 +1082,7 @@ Moran
 33 446,42
 </endNewline>
 <startNewLine>
+18
 117090542
 Franklin Antonio
 Pastran
@@ -1120,6 +1139,7 @@ Gutierrez
 33 446,42
 </endNewline>
 <startNewLine>
+19
 110940340
 David Alfredo
 Solano
@@ -1176,6 +1196,7 @@ Granados
 33 885,18
 </endNewline>
 <startNewLine>
+20
 204870350
 Eduardo
 Valverde

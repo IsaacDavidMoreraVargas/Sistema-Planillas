@@ -8,10 +8,26 @@ namespace Sistema_Planillas_Contabilidad
 {
     class generalDataAndAvoidData
     {
-        string[] listAvoidItem = { "configuration", "exclusiveData", "Sits", "DEPARTAMENTOS"};
+        
 
         public bool compareAndFindAvoidItems(string itemToCompare)
         {
+            string[] listAvoidItem = { "configuration", "exclusiveData", "Sits", "DEPARTAMENTOS" };
+            bool itemFound = false;
+            foreach (string item in listAvoidItem)
+            {
+                if (item.Contains(itemToCompare))
+                {
+                    itemFound = true;
+                    break;
+                }
+            }
+            return itemFound;
+        }
+
+        public bool avoidColumns(string itemToCompare)
+        {
+            string[] listAvoidItem = { "INDEX", "CEDULA","NOMBRE","FECHA INGRESO","APELLIDO 1", "APELLIDO 2" };
             bool itemFound = false;
             foreach (string item in listAvoidItem)
             {

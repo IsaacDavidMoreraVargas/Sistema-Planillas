@@ -56,6 +56,7 @@ VARIOS
 SALARIO NETO
 </endHeads>
 <startNewLine>
+0
 113120282
 Steven Javier
 Calderon
@@ -112,6 +113,7 @@ Zamora
 43 120,42
 </endNewline>
 <startNewLine>
+1
 105860400
 Carlos Alberto
 Gutierrez
@@ -168,6 +170,7 @@ Fonseca
 39 035,86
 </endNewline>
 <startNewLine>
+2
  203360757
 Carlos Gerardo
 Rodriguez

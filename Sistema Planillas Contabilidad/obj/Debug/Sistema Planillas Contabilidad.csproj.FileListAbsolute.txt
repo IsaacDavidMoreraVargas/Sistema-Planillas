@@ -50,6 +50,7 @@ C:\Users\Alcatraz\source\repos\Sistema Planillas Contabilidad\Sistema Planillas 
 C:\Users\Alcatraz\Desktop\Sistema Planillas Contabilidad\Sistema Planillas Contabilidad\bin\Debug\Sistema Planillas Contabilidad.exe.config
 C:\Users\Alcatraz\Desktop\Sistema Planillas Contabilidad\Sistema Planillas Contabilidad\bin\Debug\Sistema Planillas Contabilidad.exe
 C:\Users\Alcatraz\Desktop\Sistema Planillas Contabilidad\Sistema Planillas Contabilidad\bin\Debug\Sistema Planillas Contabilidad.pdb
+C:\Users\Alcatraz\Desktop\Sistema Planillas Contabilidad\Sistema Planillas Contabilidad\obj\Debug\Sistema Planillas Contabilidad.csprojAssemblyReference.cache
 C:\Users\Alcatraz\Desktop\Sistema Planillas Contabilidad\Sistema Planillas Contabilidad\obj\Debug\Sistema_Planillas_Contabilidad.GUI_CREAR_EMPRESA.resources
 C:\Users\Alcatraz\Desktop\Sistema Planillas Contabilidad\Sistema Planillas Contabilidad\obj\Debug\Sistema_Planillas_Contabilidad.GUI_CREATE_FORMULA.resources
 C:\Users\Alcatraz\Desktop\Sistema Planillas Contabilidad\Sistema Planillas Contabilidad\obj\Debug\Sistema_Planillas_Contabilidad.GUI_DUPLICAR_COPIAR_ELIMINAR_COMPANY.resources
@@ -71,4 +72,3 @@ C:\Users\Alcatraz\Desktop\Sistema Planillas Contabilidad\Sistema Planillas Conta
 C:\Users\Alcatraz\Desktop\Sistema Planillas Contabilidad\Sistema Planillas Contabilidad\obj\Debug\Sistema Planillas Contabilidad.csproj.CoreCompileInputs.cache
 C:\Users\Alcatraz\Desktop\Sistema Planillas Contabilidad\Sistema Planillas Contabilidad\obj\Debug\Sistema Planillas Contabilidad.exe
 C:\Users\Alcatraz\Desktop\Sistema Planillas Contabilidad\Sistema Planillas Contabilidad\obj\Debug\Sistema Planillas Contabilidad.pdb
-C:\Users\Alcatraz\Desktop\Sistema Planillas Contabilidad\Sistema Planillas Contabilidad\obj\Debug\Sistema Planillas Contabilidad.csprojAssemblyReference.cache

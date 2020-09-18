@@ -56,6 +56,7 @@ VARIOS
 SALARIO NETO
 </endHeads>
 <startNewLine>
+0
 402250378
 Leslie Javier
 Bolaños
@@ -112,6 +113,7 @@ Arguedas
 53 722,18
 </endNewline>
 <startNewLine>
+1
 155809339732
 Reynaldo
 Davila
@@ -168,6 +170,7 @@ Altamirano
 100 846,42
 </endNewline>
 <startNewLine>
+2
 155823608208
 Harold
 Rivera
@@ -224,6 +227,7 @@ López
 64 125,18
 </endNewline>
 <startNewLine>
+3
 502970195
 Leandro Jesus
 Rodriguez
@@ -279,4 +283,3 @@ Chaves
  
 53 746,42
 </endNewline>
-

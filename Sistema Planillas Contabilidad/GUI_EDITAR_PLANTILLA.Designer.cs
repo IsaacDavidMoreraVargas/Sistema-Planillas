@@ -29,84 +29,46 @@
         private void InitializeComponent()
         {
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.buttonUpdateTemplate = new System.Windows.Forms.Button();
-            this.buttonReturnScreen = new System.Windows.Forms.Button();
-            this.buttonMoveBackColum = new System.Windows.Forms.Button();
             this.buttonAddColumn = new System.Windows.Forms.Button();
             this.buttonEraseColumn = new System.Windows.Forms.Button();
+            this.buttonMoveBackColum = new System.Windows.Forms.Button();
             this.buttonMoveNextColumn = new System.Windows.Forms.Button();
-            this.buttonCloseProgram = new System.Windows.Forms.Button();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.buttonUpdateTemplate = new System.Windows.Forms.Button();
+            this.buttonReturnScreen = new System.Windows.Forms.Button();
+            this.listView1 = new System.Windows.Forms.ListView();
+            this.CABEZALES = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.tableLayoutPanel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
             // tableLayoutPanel1
             // 
             this.tableLayoutPanel1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.tableLayoutPanel1.ColumnCount = 12;
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 87.7095F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 12.2905F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 90F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 91F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 22F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 172F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 24F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 169F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 24F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 186F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 201F));
-            this.tableLayoutPanel1.Controls.Add(this.buttonUpdateTemplate, 8, 0);
-            this.tableLayoutPanel1.Controls.Add(this.buttonReturnScreen, 10, 0);
-            this.tableLayoutPanel1.Controls.Add(this.buttonMoveBackColum, 2, 0);
+            this.tableLayoutPanel1.ColumnCount = 3;
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 62.5F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 37.5F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 127F));
             this.tableLayoutPanel1.Controls.Add(this.buttonAddColumn, 0, 0);
-            this.tableLayoutPanel1.Controls.Add(this.buttonEraseColumn, 6, 0);
-            this.tableLayoutPanel1.Controls.Add(this.buttonMoveNextColumn, 4, 0);
-            this.tableLayoutPanel1.Controls.Add(this.buttonCloseProgram, 11, 0);
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(12, 675);
+            this.tableLayoutPanel1.Controls.Add(this.buttonEraseColumn, 0, 1);
+            this.tableLayoutPanel1.Controls.Add(this.buttonMoveBackColum, 1, 0);
+            this.tableLayoutPanel1.Controls.Add(this.buttonMoveNextColumn, 1, 1);
+            this.tableLayoutPanel1.Controls.Add(this.buttonUpdateTemplate, 2, 0);
+            this.tableLayoutPanel1.Controls.Add(this.buttonReturnScreen, 2, 1);
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(1, 416);
+            this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(2);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-            this.tableLayoutPanel1.RowCount = 1;
+            this.tableLayoutPanel1.RowCount = 2;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 58F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(1175, 71);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(311, 115);
             this.tableLayoutPanel1.TabIndex = 1;
-            // 
-            // buttonUpdateTemplate
-            // 
-            this.buttonUpdateTemplate.Location = new System.Drawing.Point(597, 3);
-            this.buttonUpdateTemplate.Name = "buttonUpdateTemplate";
-            this.buttonUpdateTemplate.Size = new System.Drawing.Size(160, 65);
-            this.buttonUpdateTemplate.TabIndex = 5;
-            this.buttonUpdateTemplate.Text = "Actualizar Plantilla";
-            this.buttonUpdateTemplate.UseVisualStyleBackColor = true;
-            this.buttonUpdateTemplate.Click += new System.EventHandler(this.buttonUpdateTemplate_Click);
-            // 
-            // buttonReturnScreen
-            // 
-            this.buttonReturnScreen.Location = new System.Drawing.Point(790, 3);
-            this.buttonReturnScreen.Name = "buttonReturnScreen";
-            this.buttonReturnScreen.Size = new System.Drawing.Size(160, 65);
-            this.buttonReturnScreen.TabIndex = 4;
-            this.buttonReturnScreen.Text = "Regresar";
-            this.buttonReturnScreen.UseVisualStyleBackColor = true;
-            this.buttonReturnScreen.Click += new System.EventHandler(this.buttonReturnScreen_Click);
-            // 
-            // buttonMoveBackColum
-            // 
-            this.buttonMoveBackColum.Location = new System.Drawing.Point(178, 3);
-            this.buttonMoveBackColum.Name = "buttonMoveBackColum";
-            this.buttonMoveBackColum.Size = new System.Drawing.Size(83, 65);
-            this.buttonMoveBackColum.TabIndex = 1;
-            this.buttonMoveBackColum.Text = "<< Mover";
-            this.buttonMoveBackColum.UseVisualStyleBackColor = true;
-            this.buttonMoveBackColum.Click += new System.EventHandler(this.buttonMoveBackColum_Click);
             // 
             // buttonAddColumn
             // 
-            this.buttonAddColumn.Location = new System.Drawing.Point(3, 3);
+            this.buttonAddColumn.Location = new System.Drawing.Point(2, 2);
+            this.buttonAddColumn.Margin = new System.Windows.Forms.Padding(2);
             this.buttonAddColumn.Name = "buttonAddColumn";
-            this.buttonAddColumn.Size = new System.Drawing.Size(147, 65);
+            this.buttonAddColumn.Size = new System.Drawing.Size(110, 53);
             this.buttonAddColumn.TabIndex = 0;
             this.buttonAddColumn.Text = "Agregar Columna";
             this.buttonAddColumn.UseVisualStyleBackColor = true;
@@ -114,60 +76,84 @@
             // 
             // buttonEraseColumn
             // 
-            this.buttonEraseColumn.Location = new System.Drawing.Point(401, 3);
+            this.buttonEraseColumn.Location = new System.Drawing.Point(2, 59);
+            this.buttonEraseColumn.Margin = new System.Windows.Forms.Padding(2);
             this.buttonEraseColumn.Name = "buttonEraseColumn";
-            this.buttonEraseColumn.Size = new System.Drawing.Size(161, 65);
+            this.buttonEraseColumn.Size = new System.Drawing.Size(110, 53);
             this.buttonEraseColumn.TabIndex = 3;
             this.buttonEraseColumn.Text = "Eliminar Columna";
             this.buttonEraseColumn.UseVisualStyleBackColor = true;
             this.buttonEraseColumn.Click += new System.EventHandler(this.buttonEraseColumn_Click);
             // 
+            // buttonMoveBackColum
+            // 
+            this.buttonMoveBackColum.Location = new System.Drawing.Point(117, 2);
+            this.buttonMoveBackColum.Margin = new System.Windows.Forms.Padding(2);
+            this.buttonMoveBackColum.Name = "buttonMoveBackColum";
+            this.buttonMoveBackColum.Size = new System.Drawing.Size(62, 53);
+            this.buttonMoveBackColum.TabIndex = 1;
+            this.buttonMoveBackColum.Text = "^ Mover";
+            this.buttonMoveBackColum.UseVisualStyleBackColor = true;
+            this.buttonMoveBackColum.Click += new System.EventHandler(this.buttonMoveBackColum_Click);
+            // 
             // buttonMoveNextColumn
             // 
-            this.buttonMoveNextColumn.Location = new System.Drawing.Point(288, 3);
+            this.buttonMoveNextColumn.Location = new System.Drawing.Point(117, 59);
+            this.buttonMoveNextColumn.Margin = new System.Windows.Forms.Padding(2);
             this.buttonMoveNextColumn.Name = "buttonMoveNextColumn";
-            this.buttonMoveNextColumn.Size = new System.Drawing.Size(83, 65);
+            this.buttonMoveNextColumn.Size = new System.Drawing.Size(62, 53);
             this.buttonMoveNextColumn.TabIndex = 2;
-            this.buttonMoveNextColumn.Text = "Mover >>";
+            this.buttonMoveNextColumn.Text = " v Mover";
             this.buttonMoveNextColumn.UseVisualStyleBackColor = true;
             this.buttonMoveNextColumn.Click += new System.EventHandler(this.buttonMoveNextColumn_Click);
             // 
-            // buttonCloseProgram
+            // buttonUpdateTemplate
             // 
-            this.buttonCloseProgram.Location = new System.Drawing.Point(976, 3);
-            this.buttonCloseProgram.Name = "buttonCloseProgram";
-            this.buttonCloseProgram.Size = new System.Drawing.Size(160, 65);
-            this.buttonCloseProgram.TabIndex = 6;
-            this.buttonCloseProgram.Text = "Salir";
-            this.buttonCloseProgram.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
-            this.buttonCloseProgram.UseVisualStyleBackColor = true;
-            this.buttonCloseProgram.Click += new System.EventHandler(this.buttonCloseProgram_Click);
+            this.buttonUpdateTemplate.Location = new System.Drawing.Point(186, 2);
+            this.buttonUpdateTemplate.Margin = new System.Windows.Forms.Padding(2);
+            this.buttonUpdateTemplate.Name = "buttonUpdateTemplate";
+            this.buttonUpdateTemplate.Size = new System.Drawing.Size(120, 53);
+            this.buttonUpdateTemplate.TabIndex = 5;
+            this.buttonUpdateTemplate.Text = "Actualizar Plantilla";
+            this.buttonUpdateTemplate.UseVisualStyleBackColor = true;
+            this.buttonUpdateTemplate.Click += new System.EventHandler(this.buttonUpdateTemplate_Click);
             // 
-            // dataGridView1
+            // buttonReturnScreen
             // 
-            this.dataGridView1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(12, 12);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.RowHeadersWidth = 51;
-            this.dataGridView1.RowTemplate.Height = 24;
-            this.dataGridView1.Size = new System.Drawing.Size(1166, 657);
-            this.dataGridView1.TabIndex = 2;
-            this.dataGridView1.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.CellClickEvent);
+            this.buttonReturnScreen.Location = new System.Drawing.Point(186, 59);
+            this.buttonReturnScreen.Margin = new System.Windows.Forms.Padding(2);
+            this.buttonReturnScreen.Name = "buttonReturnScreen";
+            this.buttonReturnScreen.Size = new System.Drawing.Size(120, 53);
+            this.buttonReturnScreen.TabIndex = 4;
+            this.buttonReturnScreen.Text = "Regresar";
+            this.buttonReturnScreen.UseVisualStyleBackColor = true;
+            this.buttonReturnScreen.Click += new System.EventHandler(this.buttonReturnScreen_Click);
+            // 
+            // listView1
+            // 
+            this.listView1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
+            this.listView1.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.CABEZALES});
+            this.listView1.GridLines = true;
+            this.listView1.HideSelection = false;
+            this.listView1.Location = new System.Drawing.Point(1, 4);
+            this.listView1.Name = "listView1";
+            this.listView1.Size = new System.Drawing.Size(311, 407);
+            this.listView1.TabIndex = 3;
+            this.listView1.UseCompatibleStateImageBehavior = false;
+            this.listView1.SelectedIndexChanged += new System.EventHandler(this.listView1_SelectedIndexChanged);
             // 
             // GUI_EDITAR_PLANTILLA
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
-            this.ClientSize = new System.Drawing.Size(1190, 749);
-            this.Controls.Add(this.dataGridView1);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.ClientSize = new System.Drawing.Size(315, 533);
+            this.Controls.Add(this.listView1);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Name = "GUI_EDITAR_PLANTILLA";
             this.Text = "SISTEMA EDITAR PLANTILLA";
-            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.GUI_EDITAR_PLANTILLA_Load);
             this.tableLayoutPanel1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -181,7 +167,7 @@
         private System.Windows.Forms.Button buttonAddColumn;
         private System.Windows.Forms.Button buttonEraseColumn;
         private System.Windows.Forms.Button buttonMoveNextColumn;
-        private System.Windows.Forms.Button buttonCloseProgram;
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.ListView listView1;
+        private System.Windows.Forms.ColumnHeader CABEZALES;
     }
 }

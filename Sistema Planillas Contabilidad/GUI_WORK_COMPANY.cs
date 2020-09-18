@@ -59,6 +59,14 @@ namespace Sistema_Planillas_Contabilidad
         string tagEndHEad = "";
         string tagStartLine = "";
         string tagEndLine = "";
+        string tagStartDataGrid1 = "";
+        string tagEndDataGrid1 = "";
+        string tagStartDataGrid2 = "";
+        string tagEndDataGrid2 = "";
+        string tagStartDataGrid3 = "";
+        string tagEndDataGrid3 = "";
+        string tagStartDataGrid4 = "";
+        string tagEndDataGrid4 = "";
         SpecificAndCorePaths startThePaths;
         TagsAndDefaultValues startTheTagsAndDefaults;
         FoldersInsideCompany startFoldersInsideCompany;
@@ -89,6 +97,14 @@ namespace Sistema_Planillas_Contabilidad
             tagEndHEad = startTheTagsAndDefaults.isTagEndHead;
             tagStartLine = startTheTagsAndDefaults.isTagStartLine;
             tagEndLine = startTheTagsAndDefaults.isTagEndLine;
+            tagStartDataGrid1 = startTheTagsAndDefaults.tagStartDataGrid1;
+            tagEndDataGrid1 = startTheTagsAndDefaults.tagEndDataGrid1;
+            tagStartDataGrid2 = startTheTagsAndDefaults.tagStartDataGrid2;
+            tagEndDataGrid2 = startTheTagsAndDefaults.tagEndDataGrid2;
+            tagStartDataGrid3 = startTheTagsAndDefaults.tagStartDataGrid3;
+            tagEndDataGrid3 = startTheTagsAndDefaults.tagEndDataGrid3;
+            tagStartDataGrid4 = startTheTagsAndDefaults.tagStartDataGrid4;
+            tagEndDataGrid4 = startTheTagsAndDefaults.tagEndDataGrid4;
             //folders inside folders
             coreExtraConfiguration = startFoldersInsideCompany.isCoreExtraConfigurations;
             configuration = startFoldersInsideCompany.isConfiguration;
@@ -101,12 +117,16 @@ namespace Sistema_Planillas_Contabilidad
         private void GUI_WORK_COMPANY_Load(object sender, EventArgs e)
         {
             setHeadsOfDataGridView();
+            createColumnsListView();
+            sumTheCellsofAll();
             //startChargeData();
             //calculateFormula();
         }
 
         private void setHeadsOfDataGridView()
         {
+            buttonBackTotal.Enabled = false;
+            buttonNextTotal.Enabled = false;
             dataGridView1.Columns.Clear();
             //
             dataGridView1.Enabled = false;
@@ -144,8 +164,7 @@ namespace Sistema_Planillas_Contabilidad
                                 {
                                     ++line;
                                     dataGridView1.Rows.Add(indexOfLine.ToString());
-                                    dataGridView1.Rows[indexOfLine].Cells[0].Value = indexOfLine.ToString();
-                                    for (int column = 1; column < dataGridView1.Columns.Count; column++)
+                                    for (int column = 0; column < dataGridView1.Columns.Count; column++)
                                     {
                                         dataGridView1.Rows[indexOfLine].Cells[column].Value = storageLines[line];
                                         ++line;
@@ -179,8 +198,7 @@ namespace Sistema_Planillas_Contabilidad
                                 {
                                     ++line;
                                     dataGridView2.Rows.Add(indexOfLine.ToString());
-                                    dataGridView2.Rows[indexOfLine].Cells[0].Value = indexOfLine.ToString();
-                                    for (int column = 1; column < dataGridView2.Columns.Count; column++)
+                                    for (int column = 0; column < dataGridView2.Columns.Count; column++)
                                     {
                                         dataGridView2.Rows[indexOfLine].Cells[column].Value = storageLines[line];
                                         ++line;
@@ -214,8 +232,7 @@ namespace Sistema_Planillas_Contabilidad
                                 {
                                     ++line;
                                     dataGridView3.Rows.Add(indexOfLine.ToString());
-                                    dataGridView3.Rows[indexOfLine].Cells[0].Value = indexOfLine.ToString();
-                                    for (int column = 1; column < dataGridView3.Columns.Count; column++)
+                                    for (int column = 0; column < dataGridView3.Columns.Count; column++)
                                     {
                                         dataGridView3.Rows[indexOfLine].Cells[column].Value = storageLines[line];
                                         ++line;
@@ -250,8 +267,7 @@ namespace Sistema_Planillas_Contabilidad
                                 {
                                     ++line;
                                     dataGridView4.Rows.Add(indexOfLine.ToString());
-                                    dataGridView4.Rows[indexOfLine].Cells[0].Value = indexOfLine.ToString();
-                                    for (int column = 1; column < dataGridView4.Columns.Count; column++)
+                                    for (int column = 0; column < dataGridView4.Columns.Count; column++)
                                     {
                                         dataGridView4.Rows[indexOfLine].Cells[column].Value = storageLines[line];
                                         ++line;
@@ -270,39 +286,137 @@ namespace Sistema_Planillas_Contabilidad
                 }
             }
 
-            if(dataGridView1.Visible==true)
+            bool configurationExist = false;
+            foreach (string path in storagePaths)
             {
-                checkedListBox1.Items.Add("1-7", CheckState.Checked);
+                if (path.Contains("SUMA-TOTALES"))
+                {
+                    string[] storageLines = File.ReadAllLines(path);
+                    for (int head = 0; head < storageLines.Length; head++)
+                    {
+                        if (storageLines[head] == tagEndHEad)
+                        {
+                            ++head;
+                            int indexOfLine = 0;
+                            for (int line = head; line < storageLines.Length; line++)
+                            {
+                                if (storageLines[line] == tagStartLine)
+                                {
+                                    ++line;
+                                    for (int column = 0; column < dataGridView5.Columns.Count; column++)
+                                    {
+                                        dataGridView5.Rows[indexOfLine].Cells[column].Value = storageLines[line];
+                                        ++line;
+                                    }
+                                }
+
+                            }
+                            break;
+                        }
+                        else if (storageLines[head] != tagStartHEad)
+                        {
+                            dataGridView5.Columns.Add(storageLines[head], storageLines[head]);
+                        }
+                    }
+                }
+                else if (path.Contains("CONFIGURACIONES-CELDAS"))
+                {
+                    configurationExist = true;
+                    DataGridView dataGridToStudy = new DataGridView();
+                    string[] storageLines = File.ReadAllLines(path);
+                    for (int line = 0; line < storageLines.Length; line++)
+                    {
+                        if (storageLines[line] == tagStartDataGrid1)
+                        {
+                            dataGridToStudy = dataGridView1;
+                        }else if (storageLines[line] == tagStartDataGrid2)
+                        {
+                            dataGridToStudy = dataGridView2;
+                        }else if (storageLines[line] == tagStartDataGrid3)
+                        {
+                            dataGridToStudy = dataGridView3;
+                        }else if (storageLines[line] == tagStartDataGrid4)
+                        {
+                            dataGridToStudy = dataGridView4;
+                        }
+
+                        dataGridToStudy.EnableHeadersVisualStyles = false;
+                        foreach (DataGridViewColumn column in dataGridToStudy.Columns)
+                        {
+                            if(column.HeaderText== storageLines[line])
+                            {
+                                ++line;
+                                column.Visible = Convert.ToBoolean(storageLines[line]);
+                                ++line;
+                                if (Convert.ToBoolean(storageLines[line])==true)
+                                {
+                                    column.HeaderCell.Style.BackColor = Color.LightGray;
+                                }else if (Convert.ToBoolean(storageLines[line]) == false)
+                                {
+                                    column.HeaderCell.Style.BackColor = Color.LightSalmon;
+                                }
+                                break;
+                            }
+                        }
+                    }
+                }
+            }
+            if(configurationExist == false)
+            {
+                dataGridView1.EnableHeadersVisualStyles = false;
+                dataGridView2.EnableHeadersVisualStyles = false;
+                dataGridView3.EnableHeadersVisualStyles = false;
+                dataGridView4.EnableHeadersVisualStyles = false;
+                foreach (DataGridViewColumn column in dataGridView1.Columns)
+                {
+                    column.HeaderCell.Style.BackColor = Color.LightGray;
+                }
+                foreach (DataGridViewColumn column in dataGridView2.Columns)
+                {
+                    column.HeaderCell.Style.BackColor = Color.LightGray;
+                }
+                foreach (DataGridViewColumn column in dataGridView3.Columns)
+                {
+                    column.HeaderCell.Style.BackColor = Color.LightGray;
+                }
+                foreach (DataGridViewColumn column in dataGridView4.Columns)
+                {
+                    column.HeaderCell.Style.BackColor = Color.LightGray;
+                }
+            }
+            if (dataGridView1.Visible==true)
+            {
+                checkedListBox1.Items.Add("1-7", CheckState.Unchecked);
                 comboBox1.Items.Add("SEMANA 1");
             }
             if (dataGridView2.Visible == true)
             {
-                checkedListBox1.Items.Add("8-14", CheckState.Checked);
+                checkedListBox1.Items.Add("8-14", CheckState.Unchecked);
                 comboBox1.Items.Add("SEMANA 2");
             }
             if (dataGridView3.Visible == true)
             {
-                checkedListBox1.Items.Add("15-21", CheckState.Checked);
+                checkedListBox1.Items.Add("15-21", CheckState.Unchecked);
                 comboBox1.Items.Add("SEMANA 3");
             }
             if (dataGridView4.Visible == true)
             {
-                checkedListBox1.Items.Add("22-30", CheckState.Checked);
+                checkedListBox1.Items.Add("22-30", CheckState.Unchecked);
                 comboBox1.Items.Add("SEMANA 4");
             }
-            baseResizeDatasGridView();
+            baseResizeDatasGridViewPhase1();
         }
 
-        private void baseResizeDatasGridView()
+        private void baseResizeDatasGridViewPhase1()
         {
             resizeDataGrid1();
             resizeDataGrid2();
             resizeDataGrid3();
             resizeDataGrid4();
-            methodToHideUnhideDataGridView();
+            //methodToHideUnhideDataGridView();
         }
 
-        private void baseResizeDatasGridView2()
+        private void baseResizeDatasGridViewPhase2()
         {
             resizeDataGrid1();
             resizeDataGrid2();
@@ -318,6 +432,7 @@ namespace Sistema_Planillas_Contabilidad
             if (dataGridView1.Visible == true)
             {
                 dataGridView1.Location = new Point(0, heigthLocation);
+                dataGridView1.Width = tableLayoutPanel1.Width;
                 int sizeHeight = dataGridView1.ColumnHeadersHeight;
                 if (dataGridView1.Rows.Count > 1)
                 {
@@ -342,6 +457,7 @@ namespace Sistema_Planillas_Contabilidad
             if (dataGridView2.Visible == true)
             {
                 dataGridView2.Location = new Point(0, heigthLocation);
+                dataGridView2.Width = tableLayoutPanel1.Width;
                 int sizeHeight = dataGridView2.ColumnHeadersHeight;
                 if (dataGridView2.Rows.Count > 1)
                 {
@@ -366,6 +482,7 @@ namespace Sistema_Planillas_Contabilidad
             if (dataGridView3.Visible == true)
             {
                 dataGridView3.Location = new Point(0, heigthLocation);
+                dataGridView3.Width = tableLayoutPanel1.Width;
                 int sizeHeight = dataGridView3.ColumnHeadersHeight;
                 if (dataGridView3.Rows.Count > 1)
                 {
@@ -390,6 +507,7 @@ namespace Sistema_Planillas_Contabilidad
             if (dataGridView4.Visible == true)
             {
                 dataGridView4.Location = new Point(0, heigthLocation);
+                dataGridView4.Width = tableLayoutPanel1.Width;
                 int sizeHeight = dataGridView4.ColumnHeadersHeight;
                 if (dataGridView4.Rows.Count > 1)
                 {
@@ -412,9 +530,8 @@ namespace Sistema_Planillas_Contabilidad
         {
             for (int item = 0; item < checkedListBox1.Items.Count; item++)
             {
-                if (checkedListBox1.GetItemChecked(item))
+                if (checkedListBox1.GetItemChecked(item)==true)
                 {
-
                     if (item == 0)
                     {
                         dataGridView1.Visible = true;
@@ -435,8 +552,7 @@ namespace Sistema_Planillas_Contabilidad
                         dataGridView4.Visible = true;
                         dataGridView4.Enabled = true;
                     }
-                }
-                else
+                }else if (checkedListBox1.GetItemChecked(item) == false)
                 {
                     
                     if (item == 0)
@@ -461,93 +577,105 @@ namespace Sistema_Planillas_Contabilidad
                     }
                 }
             }
-            baseResizeDatasGridView2();
+            baseResizeDatasGridViewPhase2();
         }
 
-        private void startChargeData()
+        private void sumTheCellsofAll()
         {
-            buttonBackTotal.Enabled= false;
-            buttonNextTotal.Enabled = false;
-            string[] lines = File.ReadAllLines(path);
-            int columnNumber = 0;
-            int rowNumber = 0;
-            int numberHeads = 0;
-            
-            for (int line = 0; line < lines.Length; line++)
+            List<DataGridView> listOFDataGridView = new List<DataGridView>();
+            if(dataGridView1.Enabled==true)
             {
-                if (lines[line] == separator1)
-                {
-                    numberHeads = columnNumber;
-                }
-                else if (lines[line] == separator2)
-                {
-                    ++rowNumber;
-                }
-                ++columnNumber;
+                listOFDataGridView.Add(dataGridView1);
             }
-            
-            bool found = false;
-            for (int line = 0; line < numberHeads; line++)
+            if (dataGridView2.Enabled == true)
             {
-                if (lines[line] == separator1)
+                listOFDataGridView.Add(dataGridView2);
+            }
+            if (dataGridView3.Enabled == true)
+            {
+                listOFDataGridView.Add(dataGridView3);
+            }
+            if (dataGridView4.Enabled == true)
+            {
+                listOFDataGridView.Add(dataGridView4);
+            }
+            generalDataAndAvoidData callToAvoid = new generalDataAndAvoidData();
+            for(int dataGrid=0; dataGrid<listOFDataGridView.Count; dataGrid++)
+            {
+                DataGridView dataGridStudy=listOFDataGridView[dataGrid];
+                for (int column=0; column < dataGridStudy.Columns.Count; column++)
                 {
-                    break;
-                }
-                else 
-                {
-                    try
+                    double sum= 0;
+                    bool falseMenssaje = false;
+                    bool answer = callToAvoid.avoidColumns(dataGridStudy.Columns[column].HeaderText);
+                    if (answer == true)
                     {
-                        string tryFind = dataGridView1.Columns[line].HeaderText.ToString();
-                        for (int data = 0; data < avoidData.Length; data++)
+                        falseMenssaje = true;
+                    }
+                    else
+                    {
+                        for (int row = 0; row < dataGridStudy.Rows.Count; row++)
                         {
-                            string compare = avoidData[data];
-                            if (tryFind.Contains(compare))
+                            if (dataGridStudy.Rows[row].Cells[column].Value == null || dataGridStudy.Rows[row].Cells[column].Value.ToString() == " " || dataGridStudy.Rows[row].Cells[column].Value.ToString() == "")
                             {
-                                found = true;
-                                break;
+                                sum += 0;
+                            }
+                            else
+                            {
+                                try
+                                {
+                                    sum += Convert.ToDouble(dataGridStudy.Rows[row].Cells[column].Value.ToString());
+                                }
+                                catch (Exception) { falseMenssaje = true; }
                             }
                         }
-                        if (found == false)
+                        if (listOFDataGridView.Count >= 1)
                         {
-                            dataGridView1.Columns.Add(lines[line].ToString(), lines[line].ToString());
-                        }
-                        else
-                        {
-                            found = false;
+                            for (int dataGridPhase2 = 1; dataGridPhase2 < listOFDataGridView.Count; dataGridPhase2++)
+                            {
+                                DataGridView dataGridStudyPhase2 = listOFDataGridView[dataGridPhase2];
+                                for (int columnPhase2 = 0; columnPhase2 < dataGridStudyPhase2.Columns.Count; columnPhase2++)
+                                {
+                                    if (dataGridStudyPhase2.Columns[columnPhase2].HeaderText == dataGridStudy.Columns[column].HeaderText)
+                                    {
+                                        for (int rowPhase2 = 0; rowPhase2 < dataGridStudyPhase2.Rows.Count; rowPhase2++)
+                                        {
+                                            if (dataGridStudyPhase2.Rows[rowPhase2].Cells[columnPhase2].Value == null || dataGridStudyPhase2.Rows[rowPhase2].Cells[columnPhase2].Value.ToString() == " " || dataGridStudyPhase2.Rows[rowPhase2].Cells[columnPhase2].Value.ToString() == "")
+                                            {
+                                                sum += 0;
+                                            }
+                                            else
+                                            {
+                                                try
+                                                {
+                                                    sum += Convert.ToDouble(dataGridStudyPhase2.Rows[rowPhase2].Cells[columnPhase2].Value.ToString());
+                                                }
+                                                catch (Exception) { falseMenssaje = true; }
+                                            }
+                                        }
+                                        break;
+                                    }
+                                }
+                            }
                         }
                     }
-                    catch (Exception)
+                    for (int columnPhase3 = 0; columnPhase3 < dataGridView5.Columns.Count; columnPhase3++)
                     {
-                        dataGridView1.Columns.Add(lines[line].ToString(), lines[line].ToString());
+                        if (dataGridView5.Columns[columnPhase3].HeaderText == dataGridStudy.Columns[column].HeaderText)
+                        {
+                            if (falseMenssaje == true)
+                            {
+                                dataGridView5.Rows[0].Cells[columnPhase3].Value = "FALSE";
+                            }
+                            else
+                            {
+                                dataGridView5.Rows[0].Cells[columnPhase3].Value = sum.ToString();
+                            }
+                            break;
+                        }
                     }
                 }
-            }
-
-            for (int line = 0; line < rowNumber; line++)
-            {
-                dataGridView1.Rows.Add(line.ToString());
-            }
-            
-            int jumpRow = 0;
-            int row = 1;
-            ++numberHeads;
-            for (int line = numberHeads; line < lines.Length; line++)
-            {
-                if (lines[line] == separator2)
-                {
-                    ++jumpRow;
-                    ++line;
-                    row = 1;
-                }
-                try
-                {
-                    dataGridView1.Rows[jumpRow].Cells[row].Value = lines[line];
-                }
-                catch (Exception)
-                {
-                    dataGridView1.Rows[jumpRow].Cells[row].Value = " ";
-                }
-                ++row;
+                break;
             }
         }
 
@@ -562,6 +690,78 @@ namespace Sistema_Planillas_Contabilidad
                 }
             }
         }
+
+        private void createColumnsListView()
+        {
+            foreach (DataGridViewColumn column in dataGridView1.Columns)
+            {
+                bool found = false;
+                foreach (DataGridViewColumn compare in dataGridView5.Columns)
+                {
+                    if (compare.HeaderText == column.HeaderText)
+                    {
+                        found = true;
+                        break;
+                    }
+                }
+                if (found == false)
+                {
+                    dataGridView5.Columns.Add(column.HeaderText, column.HeaderText);
+                }
+            }
+
+            foreach (DataGridViewColumn column in dataGridView2.Columns)
+            {
+                bool found = false;
+                foreach (DataGridViewColumn compare in dataGridView5.Columns)
+                {
+                    if (compare.HeaderText == column.HeaderText)
+                    {
+                        found = true;
+                        break;
+                    }
+                }
+                if (found == false)
+                {
+                    dataGridView5.Columns.Add(column.HeaderText, column.HeaderText);
+                }
+            }
+
+            foreach (DataGridViewColumn column in dataGridView3.Columns)
+            {
+                bool found = false;
+                foreach (DataGridViewColumn compare in dataGridView5.Columns)
+                {
+                    if (compare.HeaderText == column.HeaderText)
+                    {
+                        found = true;
+                        break;
+                    }
+                }
+                if (found == false)
+                {
+                    dataGridView5.Columns.Add(column.HeaderText, column.HeaderText);
+                }
+            }
+
+            foreach (DataGridViewColumn column in dataGridView4.Columns)
+            {
+                bool found = false;
+                foreach (DataGridViewColumn compare in dataGridView5.Columns)
+                {
+                    if (compare.HeaderText == column.HeaderText)
+                    {
+                        found = true;
+                        break;
+                    }
+                }
+                if (found == false)
+                {
+                    dataGridView5.Columns.Add(column.HeaderText, column.HeaderText);
+                }
+            }
+        }
+
         private void buttonIntroduceData_Click(object sender, EventArgs e)
         {
             dataGridviewToWhite();
@@ -1151,59 +1351,250 @@ namespace Sistema_Planillas_Contabilidad
 
         private void buttonUpdateTemplate_Click(object sender, EventArgs e)
         {
-            if (AllowedUpdateAction == true)
+            string pathOfFiles = CorePathOfFolderCompaniesSistemaPlanillas + company + "\\" + deparment + "\\" + month;
+            string[] storageFiles = Directory.GetFiles(pathOfFiles);
+            List<string> names = new List<string>();
+            foreach (string path in storageFiles)
             {
-                try
+                string changeString = path;
+                changeString = changeString.Replace(pathOfFiles, "");
+                changeString = changeString.Replace(".txt", "");
+                changeString = changeString.Replace("\\", "");
+                names.Add(changeString);
+            }
+            foreach (string path in storageFiles)
+            {
+                if(File.Exists(path))
                 {
-                    if (File.Exists(path))
+                    File.Delete(path);
+                }
+            }
+            generalMethodToWriteInFiles callToWriteInFiles = new generalMethodToWriteInFiles();
+            foreach (string name in names)
+            {
+                if(name=="1-7")
+                {
+                    string pathToWrite = CorePathOfFolderCompaniesSistemaPlanillas + company + "\\" + deparment + "\\" + month + "\\" +name+".txt";
+                    string sumString = "";
+                    sumString += tagStartHEad + "?";
+                    foreach (DataGridViewColumn column in dataGridView1.Columns)
                     {
-                        File.Delete(path);
-                        FileStream fs = new FileStream(path, FileMode.OpenOrCreate, FileAccess.Write);
-                        StreamWriter writer = new StreamWriter(fs);
-
-                        int maximunRows = dataGridView1.Rows.Count;
-                        --maximunRows;
-                        int maximunCells = dataGridView1.Columns.Count;
-                        int end = dataGridView1.Columns.Count;
-                        for (int col = 0; col < end; col++)
-                        {
-                            writer.WriteLine(dataGridView1.Columns[col].HeaderText.ToString());
-                        }
-                        writer.WriteLine(separator1);
-                        for (int row = 0; row < maximunRows; row++)
-                        {
-                            for (int cell = 1; cell < maximunCells; cell++)
-                            {
-                                if (dataGridView1.Rows[row].Cells[cell].Value == null || dataGridView1.Rows[row].Cells[cell].Value.ToString() == "" || dataGridView1.Rows[row].Cells[cell].Value.ToString() == " ")
-                                {
-                                    dataGridView1.Rows[row].Cells[cell].Value = " ";
-                                    writer.WriteLine(" ");
-                                    //dataGridView1.Rows[row].Cells[cell].Value=" ";
-                                }
-                                else
-                                {
-                                    object data = dataGridView1.Rows[row].Cells[cell].Value;
-                                    writer.WriteLine(data.ToString());
-                                }
-                            }
-                            writer.WriteLine(separator2);
-                        }
-                        writer.Close();
-                        MessageBox.Show("ACTUALIZADO EXITOSAMENTE");
+                        sumString += column.HeaderText + "?";
                     }
-
+                    sumString += tagEndHEad + "?";
+                    for (int row=0; row<dataGridView1.Rows.Count-1;row++)
+                    {
+                        sumString += tagStartLine + "?";
+                        for (int column = 0; column < dataGridView1.Columns.Count; column++)
+                        {
+                            if(dataGridView1.Rows[row].Cells[column].Value==null)
+                            {
+                                sumString += " " + "?";
+                            }
+                            else
+                            {
+                                sumString += dataGridView1.Rows[row].Cells[column].Value + "?";
+                            }
+                            
+                        }
+                        sumString += tagEndLine + "?";
+                    }
+                    sumString = sumString.TrimEnd('?');
+                    callToWriteInFiles.writeInFiles(pathToWrite,sumString);
                 }
-                catch (Exception)
+                else if(name == "8-14")
                 {
-                    MessageBox.Show("HUBO UN PROBLEMA ACTUALIZANDO LA PLANTILLA");
+                    string pathToWrite = CorePathOfFolderCompaniesSistemaPlanillas + company + "\\" + deparment + "\\" + month + "\\" + name + ".txt";
+                    string sumString = "";
+                    sumString += tagStartHEad + "?";
+                    foreach (DataGridViewColumn column in dataGridView2.Columns)
+                    {
+                        sumString += column.HeaderText + "?";
+                    }
+                    sumString += tagEndHEad + "?";
+                    for (int row = 0; row < dataGridView2.Rows.Count-1; row++)
+                    {
+                        sumString += tagStartLine + "?";
+                        for (int column = 0; column < dataGridView2.Columns.Count; column++)
+                        {
+                            if (dataGridView2.Rows[row].Cells[column].Value == null)
+                            {
+                                sumString += " " + "?";
+                            }
+                            else
+                            {
+                                sumString += dataGridView2.Rows[row].Cells[column].Value + "?";
+                            }
+                        }
+                        sumString += tagEndLine + "?";
+                    }
+                    sumString = sumString.TrimEnd('?');
+                    callToWriteInFiles.writeInFiles(pathToWrite, sumString);
                 }
+                else if (name == "15-21")
+                {
+                    string pathToWrite = CorePathOfFolderCompaniesSistemaPlanillas + company + "\\" + deparment + "\\" + month + "\\" + name + ".txt";
+                    string sumString = "";
+                    sumString += tagStartHEad + "?";
+                    foreach (DataGridViewColumn column in dataGridView3.Columns)
+                    {
+                        sumString += column.HeaderText + "?";
+                    }
+                    sumString += tagEndHEad + "?";
+                    for (int row = 0; row < dataGridView3.Rows.Count-1; row++)
+                    {
+                        sumString += tagStartLine + "?";
+                        for (int column = 0; column < dataGridView3.Columns.Count; column++)
+                        {
+                            if (dataGridView3.Rows[row].Cells[column].Value == null)
+                            {
+                                sumString += " " + "?";
+                            }
+                            else
+                            {
+                                sumString += dataGridView3.Rows[row].Cells[column].Value + "?";
+                            }
+                        }
+                        sumString += tagEndLine + "?";
+                    }
+                    sumString = sumString.TrimEnd('?');
+                    callToWriteInFiles.writeInFiles(pathToWrite, sumString);
+                }
+                else if (name.Contains("22"))
+                {
+                    string pathToWrite = CorePathOfFolderCompaniesSistemaPlanillas + company + "\\" + deparment + "\\" + month + "\\" + name + ".txt";
+                    string sumString = "";
+                    sumString += tagStartHEad + "?";
+                    foreach (DataGridViewColumn column in dataGridView4.Columns)
+                    {
+                        sumString += column.HeaderText + "?";
+                    }
+                    sumString += tagEndHEad + "?";
+                    for (int row = 0; row < dataGridView4.Rows.Count-1; row++)
+                    {
+                        sumString += tagStartLine + "?";
+                        for (int column = 0; column < dataGridView4.Columns.Count; column++)
+                        {
+                            if (dataGridView4.Rows[row].Cells[column].Value == null)
+                            {
+                                sumString += " " + "?";
+                            }
+                            else
+                            {
+                                sumString += dataGridView4.Rows[row].Cells[column].Value + "?";
+                            }
+                        }
+                        sumString += tagEndLine + "?";
+                    }
+                    sumString = sumString.TrimEnd('?');
+                    callToWriteInFiles.writeInFiles(pathToWrite, sumString);
+                }
+            }
 
-                AllowedUpdateAction = false;
-            }
-            else
+            string namePhase2 = "SUMA-TOTALES";
+            if (namePhase2 == "SUMA-TOTALES")
             {
-                MessageBox.Show("CAMBIE PRIMERO ALGO ANTES DE ACTUALIZARLO");
+                string pathToWrite = CorePathOfFolderCompaniesSistemaPlanillas + company + "\\" + deparment + "\\" + month + "\\" + namePhase2 + ".txt";
+                string sumString = "";
+                sumString += tagStartHEad + "?";
+                foreach (DataGridViewColumn column in dataGridView5.Columns)
+                {
+                    sumString += column.HeaderText + "?";
+                }
+                sumString += tagEndHEad + "?";
+                for (int row = 0; row < dataGridView5.Rows.Count; row++)
+                {
+                    sumString += tagStartLine + "?";
+                    for (int column = 0; column < dataGridView5.Columns.Count; column++)
+                    {
+                        if (dataGridView5.Rows[row].Cells[column].Value == null)
+                        {
+                            sumString += " " + "?";
+                        }
+                        else
+                        {
+                            sumString += dataGridView5.Rows[row].Cells[column].Value + "?";
+                        }
+                    }
+                    sumString += tagEndLine + "?";
+                }
+                sumString = sumString.TrimEnd('?');
+                callToWriteInFiles.writeInFiles(pathToWrite, sumString);
             }
+            namePhase2 = "CONFIGURACIONES-CELDAS";
+            if (namePhase2 == "CONFIGURACIONES-CELDAS")
+            {
+                string pathToWrite = CorePathOfFolderCompaniesSistemaPlanillas + company + "\\" + deparment + "\\" + month + "\\" + namePhase2 + ".txt";
+                string sumString = "";
+                //
+                sumString += tagStartDataGrid1 + "?";
+                foreach (DataGridViewColumn column in dataGridView1.Columns)
+                {
+                    sumString += column.HeaderText + "?";
+                    sumString += column.Visible.ToString()+ "?";
+                    if (column.HeaderCell.Style.BackColor == Color.LightGray)
+                    {
+                        sumString += "True" + "?";
+                    }
+                    else if (column.HeaderCell.Style.BackColor == Color.LightSalmon)
+                    {
+                        sumString += "False" + "?";
+                    }
+                }
+                sumString += tagEndDataGrid1 + "?";
+                //
+                sumString += tagStartDataGrid2 + "?";
+                foreach (DataGridViewColumn column in dataGridView2.Columns)
+                {
+                    sumString += column.HeaderText + "?";
+                    sumString += column.Visible.ToString() + "?";
+                    if(column.HeaderCell.Style.BackColor==Color.LightGray)
+                    {
+                        sumString += "True" + "?";
+                    }
+                    else if (column.HeaderCell.Style.BackColor == Color.LightSalmon)
+                    {
+                        sumString += "False" + "?";
+                    }
+                }
+                sumString += tagEndDataGrid2 + "?";
+                //
+                sumString += tagStartDataGrid3 + "?";
+                foreach (DataGridViewColumn column in dataGridView3.Columns)
+                {
+                    sumString += column.HeaderText + "?";
+                    sumString += column.Visible.ToString() + "?";
+                    if (column.HeaderCell.Style.BackColor == Color.LightGray)
+                    {
+                        sumString += "True" + "?";
+                    }
+                    else if (column.HeaderCell.Style.BackColor == Color.LightSalmon)
+                    {
+                        sumString += "False" + "?";
+                    }
+                }
+                sumString += tagEndDataGrid3 + "?";
+                //
+                sumString += tagStartDataGrid4 + "?";
+                foreach (DataGridViewColumn column in dataGridView4.Columns)
+                {
+                    sumString += column.HeaderText + "?";
+                    sumString += column.Visible.ToString() + "?";
+                    if (column.HeaderCell.Style.BackColor == Color.LightGray)
+                    {
+                        sumString += "True" + "?";
+                    }
+                    else if (column.HeaderCell.Style.BackColor == Color.LightSalmon)
+                    {
+                        sumString += "False" + "?";
+                    }
+                }
+                sumString += tagEndDataGrid4 + "?";
+                //
+                sumString = sumString.TrimEnd('?');
+                callToWriteInFiles.writeInFiles(pathToWrite, sumString);
+            }
+            MessageBox.Show("ACTUALIZADO EXITOSAMENTE"); 
         }
 
         private void buttonEraseColumn_Click(object sender, EventArgs e)
@@ -1346,117 +1737,117 @@ namespace Sistema_Planillas_Contabilidad
 
         }
 
-        private void buttonCalculateTotals_Click(object sender, EventArgs e)
-        {
-            /*
-            using (GUI_ELEGIR_GENERAR_TOTALES form2 = new GUI_ELEGIR_GENERAR_TOTALES())
+            private void buttonCalculateTotals_Click(object sender, EventArgs e)
             {
-                int maximunRowsS = dataGridView1.RowCount;
-                //++maximunRowsS;
-                int maximunColumsS = dataGridView1.ColumnCount;
-                string[,] storageDataArray = new string[maximunColumsS,maximunRowsS];
-                for (int rows = 0; rows < maximunRowsS; rows++)
+                /*
+                using (GUI_ELEGIR_GENERAR_TOTALES form2 = new GUI_ELEGIR_GENERAR_TOTALES())
                 {
-                    if (rows == 0)
+                    int maximunRowsS = dataGridView1.RowCount;
+                    //++maximunRowsS;
+                    int maximunColumsS = dataGridView1.ColumnCount;
+                    string[,] storageDataArray = new string[maximunColumsS,maximunRowsS];
+                    for (int rows = 0; rows < maximunRowsS; rows++)
                     {
-                        for (int columns = 0; columns < maximunColumsS; columns++)
-                        {
-                            storageDataArray[columns, rows] = dataGridView1.Columns[columns].HeaderText.ToString();
-                        }
-                        int keepIndex = 0;
-                        ++keepIndex;
-                        for (int columns = 0; columns < maximunColumsS; columns++)
-                        {
-                            storageDataArray[columns, keepIndex] = dataGridView1.Rows[rows].Cells[columns].Value.ToString();
-                        }
-                    }
-                    else
-                    {
-                        int keepIndex = rows;
-                        ++keepIndex;
-                        if (keepIndex >= maximunRowsS)
-                        {
-
-                        }
-                        else
+                        if (rows == 0)
                         {
                             for (int columns = 0; columns < maximunColumsS; columns++)
                             {
-                                if (dataGridView1.Rows[rows].Cells[columns].Value == null)
-                                {
-                                    storageDataArray[columns, rows] = " ";
-                                }
-                                else
-                                {
-                                    storageDataArray[columns, keepIndex] = dataGridView1.Rows[rows].Cells[columns].Value.ToString();
-                                }
+                                storageDataArray[columns, rows] = dataGridView1.Columns[columns].HeaderText.ToString();
+                            }
+                            int keepIndex = 0;
+                            ++keepIndex;
+                            for (int columns = 0; columns < maximunColumsS; columns++)
+                            {
+                                storageDataArray[columns, keepIndex] = dataGridView1.Rows[rows].Cells[columns].Value.ToString();
+                            }
+                        }
+                        else
+                        {
+                            int keepIndex = rows;
+                            ++keepIndex;
+                            if (keepIndex >= maximunRowsS)
+                            {
 
+                            }
+                            else
+                            {
+                                for (int columns = 0; columns < maximunColumsS; columns++)
+                                {
+                                    if (dataGridView1.Rows[rows].Cells[columns].Value == null)
+                                    {
+                                        storageDataArray[columns, rows] = " ";
+                                    }
+                                    else
+                                    {
+                                        storageDataArray[columns, keepIndex] = dataGridView1.Rows[rows].Cells[columns].Value.ToString();
+                                    }
+
+                                }
                             }
                         }
                     }
-                }
-                string actual = Directory.GetCurrentDirectory();
-                actual = actual.Replace("\\bin\\Debug", "\\Companies");
-                company = company.Replace(" ","_");
-                string actualPath = actual + "\\" + company + "\\configuration\\totales.txt";
-                if (File.Exists(actualPath))
-                {
-                    List<string> listSendData1 = new List<string>();
-                    int maximunColums = dataGridView1.Columns.Count;
-                    for (int colum = 1; colum < maximunColums; colum++)
+                    string actual = Directory.GetCurrentDirectory();
+                    actual = actual.Replace("\\bin\\Debug", "\\Companies");
+                    company = company.Replace(" ","_");
+                    string actualPath = actual + "\\" + company + "\\configuration\\totales.txt";
+                    if (File.Exists(actualPath))
                     {
-                        listSendData1.Add(dataGridView1.Columns[colum].HeaderText.ToString());
-                    }
-                    string[] storageData = File.ReadAllLines(actualPath);
-                    List<string> listSendData2 = new List<string>();
-                    for (int data = 0; data < storageData.Length; data++)
-                    {
-                        listSendData2.Add(storageData[data]);
-                    }
-                    form2.PathToSave(company, deparment,month,week, file);
-                    form2.recevivedArray(storageDataArray);
-                    form2.receiveListYes(listSendData1, listSendData2,true);
-                    if (form2.ShowDialog() == System.Windows.Forms.DialogResult.Yes)
-                    {
-                        File.Delete(actualPath);
-                        List<string> listSave = form2.listR;
-                        FileStream fs = new FileStream(actualPath, FileMode.OpenOrCreate, FileAccess.Write);
-                        StreamWriter writer = new StreamWriter(fs);
-                        foreach (string line in listSave)
+                        List<string> listSendData1 = new List<string>();
+                        int maximunColums = dataGridView1.Columns.Count;
+                        for (int colum = 1; colum < maximunColums; colum++)
                         {
-                            writer.WriteLine(line);
+                            listSendData1.Add(dataGridView1.Columns[colum].HeaderText.ToString());
                         }
-                        writer.Close();
-                    }
-                }
-                else 
-                {
-                    //MessageBox.Show("2");
-                    int maximunColums = dataGridView1.Columns.Count;
-                    List<string> listSendData = new List<string>();
-                    for (int colum = 1; colum < maximunColums; colum++)
-                    {
-                        listSendData.Add(dataGridView1.Columns[colum].HeaderText.ToString());
-                    }
-                    form2.PathToSave(company, deparment, month, week, file);
-                    form2.recevivedArray(storageDataArray);
-                    form2.receiveListNot(listSendData,false);
-                    if (form2.ShowDialog() == System.Windows.Forms.DialogResult.Yes)
-                    {
-                        List<string>  listSave = form2.listR;
-                        FileStream fs = new FileStream(actualPath, FileMode.OpenOrCreate, FileAccess.Write);
-                        StreamWriter writer = new StreamWriter(fs);
-                        foreach (string line in listSave)
+                        string[] storageData = File.ReadAllLines(actualPath);
+                        List<string> listSendData2 = new List<string>();
+                        for (int data = 0; data < storageData.Length; data++)
                         {
-                            writer.WriteLine(line);
+                            listSendData2.Add(storageData[data]);
                         }
-                        writer.Close();
+                        form2.PathToSave(company, deparment,month,week, file);
+                        form2.recevivedArray(storageDataArray);
+                        form2.receiveListYes(listSendData1, listSendData2,true);
+                        if (form2.ShowDialog() == System.Windows.Forms.DialogResult.Yes)
+                        {
+                            File.Delete(actualPath);
+                            List<string> listSave = form2.listR;
+                            FileStream fs = new FileStream(actualPath, FileMode.OpenOrCreate, FileAccess.Write);
+                            StreamWriter writer = new StreamWriter(fs);
+                            foreach (string line in listSave)
+                            {
+                                writer.WriteLine(line);
+                            }
+                            writer.Close();
+                        }
                     }
+                    else 
+                    {
+                        //MessageBox.Show("2");
+                        int maximunColums = dataGridView1.Columns.Count;
+                        List<string> listSendData = new List<string>();
+                        for (int colum = 1; colum < maximunColums; colum++)
+                        {
+                            listSendData.Add(dataGridView1.Columns[colum].HeaderText.ToString());
+                        }
+                        form2.PathToSave(company, deparment, month, week, file);
+                        form2.recevivedArray(storageDataArray);
+                        form2.receiveListNot(listSendData,false);
+                        if (form2.ShowDialog() == System.Windows.Forms.DialogResult.Yes)
+                        {
+                            List<string>  listSave = form2.listR;
+                            FileStream fs = new FileStream(actualPath, FileMode.OpenOrCreate, FileAccess.Write);
+                            StreamWriter writer = new StreamWriter(fs);
+                            foreach (string line in listSave)
+                            {
+                                writer.WriteLine(line);
+                            }
+                            writer.Close();
+                        }
+                    }
+
                 }
-                
+                */
             }
-            */
-                }
 
                 private void buttonGenerateSits_Click(object sender, EventArgs e)
         {
@@ -2157,41 +2548,60 @@ namespace Sistema_Planillas_Contabilidad
 
         private void GUI_WORK_COMPANY_Resize(object sender, EventArgs e)
         {
-            baseResizeDatasGridView();
+            baseResizeDatasGridViewPhase1();
         }
 
+        string orderDatagrid = "";
         private void checkedListBox1_MouseUp(object sender, MouseEventArgs e)
         {
-            methodToHideUnhideDataGridView();
+            checkedListBox2.Items.Clear();
+            //methodToHideUnhideDataGridView();
+            foreach(Object item in checkedListBox1.CheckedItems)
+            {
+                int index = checkedListBox1.Items.IndexOf(item);
+                bool answer = checkedListBox1.GetItemChecked(index);
+                if (answer==true)
+                {
+                    DataGridView DataToStudy = new DataGridView();
+                    string week = checkedListBox1.Items[index].ToString();
+                    if(week.Contains("1-7"))
+                    {
+                        DataToStudy = dataGridView1;
+                    }else if(week.Contains("8-14"))
+                    {
+                        DataToStudy = dataGridView2;
+                    }
+                    else if (week.Contains("15-21"))
+                    {
+                        DataToStudy = dataGridView3;
+                    }
+                    else if (week.Contains("22"))
+                    {
+                        DataToStudy = dataGridView4;
+                    }
+                    bool visible= DataToStudy.Visible;
+                    bool calculate = DataToStudy.Enabled;
+                    checkedListBox2.Items.Add("VISIBLE", visible);
+                    checkedListBox2.Items.Add("CALCULAR", calculate);
+                    orderDatagrid = "bigFrame";
+                    break;
+                }
+            }
         }
 
         private void comboBox1_TextChanged(object sender, EventArgs e)
         {
             comboBox2.Items.Clear();
-            DataGridView DataToStudy= new DataGridView();
-            if(comboBox1.Text=="SEMANA 1")
-            {
-                DataToStudy = dataGridView1;
-            }
-            else if (comboBox1.Text == "SEMANA 2")
-            {
-                DataToStudy = dataGridView2;
-            }
-            else if (comboBox1.Text == "SEMANA 3")
-            {
-                DataToStudy = dataGridView3;
-            }
-            else if (comboBox1.Text == "SEMANA 4")
-            {
-                DataToStudy = dataGridView4;
-            }
-
-            foreach (DataGridViewColumn column in DataToStudy.Columns)
-            {
-                comboBox2.Items.Add(column.HeaderText);
-            }
+            comboBox2.Items.Add("--ELEGIR VISIBLES--");
+            comboBox2.Items.Add("--TODOS VISIBLES--");
+            comboBox2.Items.Add("--TODOS INVISIBLES--");
+            comboBox2.Items.Add("--ELEGIR CALCULAR--");
+            comboBox2.Items.Add("--TODOS CALCULAR--");
+            comboBox2.Items.Add("--TODOS NOCALCULAR--");
         }
 
+        //reandonly=true NO CALCULAR
+        //reandonly=false CALCULAR
         private void comboBox2_TextChanged(object sender, EventArgs e)
         {
             checkedListBox2.Items.Clear();
@@ -2212,76 +2622,212 @@ namespace Sistema_Planillas_Contabilidad
             {
                 DataToStudy = dataGridView4;
             }
-            foreach (DataGridViewColumn column in DataToStudy.Columns)
+
+            if (comboBox2.Text == "--TODOS VISIBLES--")
             {
-                if(column.HeaderText==comboBox2.Text)
+                foreach (DataGridViewColumn column in DataToStudy.Columns)
                 {
-                    if (column.ReadOnly == true)
+                    column.Visible = true;
+                }
+                checkedListBox2.Items.Add("TAREA COMPLETA", CheckState.Checked);
+                orderDatagrid = "TODOS";
+            }
+            else if (comboBox2.Text == "--TODOS INVISIBLES--")
+            {
+                foreach (DataGridViewColumn column in DataToStudy.Columns)
+                {
+                    column.Visible = false;
+                }
+                checkedListBox2.Items.Add("TAREA COMPLETA", CheckState.Checked);
+                orderDatagrid = "TODOS";
+            }
+            else if (comboBox2.Text == "--TODOS CALCULAR--")
+            {
+                DataToStudy.EnableHeadersVisualStyles = false;
+                foreach (DataGridViewColumn column in DataToStudy.Columns)
+                {
+                    column.HeaderCell.Style.BackColor = Color.LightGray;
+                }
+                checkedListBox2.Items.Add("TAREA COMPLETA", CheckState.Checked);
+                orderDatagrid = "TODOS";
+            }
+            else if (comboBox2.Text == "--TODOS NOCALCULAR--")
+            {
+                DataToStudy.EnableHeadersVisualStyles = false;
+                foreach (DataGridViewColumn column in DataToStudy.Columns)
+                {
+                    column.HeaderCell.Style.BackColor = Color.LightSalmon;
+                }
+                checkedListBox2.Items.Add("TAREA COMPLETA", CheckState.Checked);
+                orderDatagrid = "TODOS";
+            }
+            else if (comboBox2.Text == "--ELEGIR VISIBLES--")
+            {
+                foreach (DataGridViewColumn column in DataToStudy.Columns)
+                {
+                    if (column.Visible == false)
                     {
-                        checkedListBox2.Items.Add("CALCULAR", CheckState.Unchecked);
-                    }else if (column.ReadOnly == false)
-                    {
-                        checkedListBox2.Items.Add("CALCULAR", CheckState.Checked);
+                        checkedListBox2.Items.Add(column.HeaderText, CheckState.Unchecked);
                     }
-                    if (column.Visible == true)
+                    else if (column.Visible == true)
                     {
-                        checkedListBox2.Items.Add("VISIBLE", CheckState.Checked);
+                        checkedListBox2.Items.Add(column.HeaderText, CheckState.Checked);
                     }
-                    else if (column.Visible == false)
+                }
+            }
+            else if (comboBox2.Text == "--ELEGIR CALCULAR--")
+            {
+                foreach (DataGridViewColumn column in DataToStudy.Columns)
+                {
+                    if (column.HeaderCell.Style.BackColor==Color.LightSalmon)
                     {
-                        checkedListBox2.Items.Add("VISIBLE", CheckState.Unchecked);
+                        checkedListBox2.Items.Add(column.HeaderText, CheckState.Unchecked);
                     }
-                    break;
+                    else if (column.HeaderCell.Style.BackColor == Color.LightGray)
+                    {
+                        checkedListBox2.Items.Add(column.HeaderText, CheckState.Checked);
+                    }
                 }
             }
         }
 
         private void checkedListBox2_MouseUp(object sender, MouseEventArgs e)
         {
-            DataGridView DataToStudy = new DataGridView();
-            if (comboBox1.Text == "SEMANA 1")
+            if (orderDatagrid == "bigFrame")
             {
-                DataToStudy = dataGridView1;
-            }
-            else if (comboBox1.Text == "SEMANA 2")
-            {
-                DataToStudy = dataGridView2;
-            }
-            else if (comboBox1.Text == "SEMANA 3")
-            {
-                DataToStudy = dataGridView3;
-            }
-            else if (comboBox1.Text == "SEMANA 4")
-            {
-                DataToStudy = dataGridView4;
-            }
-            foreach (DataGridViewColumn column in DataToStudy.Columns)
-            {
-                if (column.HeaderText == comboBox2.Text)
+                DataGridView DataToStudy = new DataGridView();
+                foreach (Object item in checkedListBox1.CheckedItems)
                 {
-                    for(int element=0; element<checkedListBox2.Items.Count; element++)
+                    int index = checkedListBox1.Items.IndexOf(item);
+                    bool answer = checkedListBox1.GetItemChecked(index);
+                    if (answer == true)
                     {
-                        if (checkedListBox2.GetItemChecked(element) == true && element == 0)
+                        string week = checkedListBox1.Items[index].ToString();
+                        if (week.Contains("1-7"))
                         {
-                            column.ReadOnly = false;
+                            DataToStudy = dataGridView1;
                         }
-                        else if (checkedListBox2.GetItemChecked(element) == false && element == 0)
+                        else if (week.Contains("8-14"))
                         {
-                            column.ReadOnly = true;
+                            DataToStudy = dataGridView2;
                         }
-
-                        if (checkedListBox2.GetItemChecked(element)==true && element==1)
+                        else if (week.Contains("15-21"))
                         {
-                            column.Visible = true;
+                            DataToStudy = dataGridView3;
                         }
-                        else if (checkedListBox2.GetItemChecked(element) == false && element == 1)
+                        else if (week.Contains("22"))
                         {
-                            column.Visible = false;
+                            DataToStudy = dataGridView4;
+                        }
+                        break;
+                    }
+                }
+                foreach (Object item in checkedListBox2.Items)
+                {
+                    int index = checkedListBox2.Items.IndexOf(item);
+                    bool answer = checkedListBox2.GetItemChecked(index);
+                    if (answer == true)
+                    {
+                        if (item.ToString()=="VISIBLE")
+                        {
+                            DataToStudy.Visible = true;
+                        }
+                        if (item.ToString() == "CALCULAR")
+                        {
+                            DataToStudy.EnableHeadersVisualStyles = false;
+                            foreach(DataGridViewColumn colum in DataToStudy.Columns)
+                            {
+                                colum.HeaderCell.Style.BackColor= Color.LightGray;
+                            }
+                            DataToStudy.ColumnHeadersDefaultCellStyle.BackColor = Color.LightGray;
+                        }
+                        //break;
+                    }else
+                    {
+                        if (item.ToString() == "VISIBLE")
+                        {
+                            DataToStudy.Visible = false;
+                        }
+                        
+                        if (item.ToString() == "CALCULAR")
+                        {
+                            DataToStudy.EnableHeadersVisualStyles = false;
+                            foreach (DataGridViewColumn colum in DataToStudy.Columns)
+                            {
+                                colum.HeaderCell.Style.BackColor = Color.LightSalmon;
+                            }
+                            DataToStudy.ColumnHeadersDefaultCellStyle.BackColor = Color.LightSalmon;
                         }
                     }
-                    break;
+                }
+                checkedListBox2.Items.Clear();
+                baseResizeDatasGridViewPhase1();
+            }else if(orderDatagrid == "TODOS")
+            {
+                checkedListBox2.Items.Clear();
+            }
+            else
+            {
+                DataGridView DataToStudy = new DataGridView();
+                if (comboBox1.Text == "SEMANA 1")
+                {
+                    DataToStudy = dataGridView1;
+                }
+                else if (comboBox1.Text == "SEMANA 2")
+                {
+                    DataToStudy = dataGridView2;
+                }
+                else if (comboBox1.Text == "SEMANA 3")
+                {
+                    DataToStudy = dataGridView3;
+                }
+                else if (comboBox1.Text == "SEMANA 4")
+                {
+                    DataToStudy = dataGridView4;
+                }
+
+                if (comboBox2.Text == "--ELEGIR VISIBLES--")
+                {
+                    foreach (DataGridViewColumn column in DataToStudy.Columns)
+                    {
+                        foreach (Object item in checkedListBox2.Items)
+                        {
+                            if (item.ToString() == column.HeaderText)
+                            {
+                                int index = checkedListBox2.Items.IndexOf(item);
+                                bool answer = checkedListBox2.GetItemChecked(index);
+                                column.Visible = answer;
+                                break;
+                            }
+                        }
+                    }
+                }
+                else if (comboBox2.Text == "--ELEGIR CALCULAR--")
+                {
+                    foreach (DataGridViewColumn column in DataToStudy.Columns)
+                    {
+                        DataToStudy.EnableHeadersVisualStyles = false;
+                        foreach (Object item in checkedListBox2.Items)
+                        {
+                            if (item.ToString() == column.HeaderText)
+                            {
+                                int index = checkedListBox2.Items.IndexOf(item);
+                                bool answer = checkedListBox2.GetItemChecked(index);
+                                if (answer == false)
+                                {
+                                    column.HeaderCell.Style.BackColor = Color.LightSalmon;
+                                }
+                                else if (answer == true)
+                                {
+                                    column.HeaderCell.Style.BackColor = Color.LightGray;
+                                }
+                                break;
+                            }
+                        }
+                    }
                 }
             }
+            orderDatagrid = "";
         }
     }
 }

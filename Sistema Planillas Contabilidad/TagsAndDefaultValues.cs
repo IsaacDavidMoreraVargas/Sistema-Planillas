@@ -87,5 +87,109 @@ namespace Sistema_Planillas_Contabilidad
             }
         }
 
+        private string tagStarGrid1 = "";
+        private string tagEndGrid1 = "";
+        private string tagStarGrid2 = "";
+        private string tagEndGrid2 = "";
+        private string tagStarGrid3 = "";
+        private string tagEndGrid3 = "";
+        private string tagStarGrid4 = "";
+        private string tagEndGrid4 = "";
+        //
+        public string tagStartDataGrid1
+        {
+            get
+            {
+                return tagStarGrid1;
+            }
+            set
+            {
+                tagStarGrid1 = value;
+            }
+        }
+
+        public string tagEndDataGrid1
+        {
+            get
+            {
+                return tagEndGrid1;
+            }
+            set
+            {
+                tagEndGrid1 = value;
+            }
+        }
+        //
+        public string tagStartDataGrid2
+        {
+            get
+            {
+                return tagStarGrid2;
+            }
+            set
+            {
+                tagStarGrid2 = value;
+            }
+        }
+
+        public string tagEndDataGrid2
+        {
+            get
+            {
+                return tagEndGrid2;
+            }
+            set
+            {
+                tagEndGrid2 = value;
+            }
+        }
+        //
+        public string tagStartDataGrid3
+        {
+            get
+            {
+                return tagStarGrid3;
+            }
+            set
+            {
+                tagStarGrid3 = value;
+            }
+        }
+
+        public string tagEndDataGrid3
+        {
+            get
+            {
+                return tagEndGrid3;
+            }
+            set
+            {
+                tagEndGrid3 = value;
+            }
+        }
+        //
+        public string tagStartDataGrid4
+        {
+            get
+            {
+                return tagStarGrid4;
+            }
+            set
+            {
+                tagStarGrid4 = value;
+            }
+        }
+
+        public string tagEndDataGrid4
+        {
+            get
+            {
+                return tagEndGrid4;
+            }
+            set
+            {
+                tagEndGrid4 = value;
+            }
+        }
     }
 }

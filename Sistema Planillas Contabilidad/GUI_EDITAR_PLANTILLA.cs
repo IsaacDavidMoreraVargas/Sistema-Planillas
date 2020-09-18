@@ -86,6 +86,9 @@ namespace Sistema_Planillas_Contabilidad
 
         private void GUI_EDITAR_PLANTILLA_Load(object sender, EventArgs e)
         {
+            listView1.View = View.Details;
+            listView1.Columns[0].Width = listView1.Width;
+            listView1.Columns[0].Text = "CABEZALES";
             if (optionMenu == "EDITAR")
             {
                 startChargeData();
@@ -110,7 +113,7 @@ namespace Sistema_Planillas_Contabilidad
                 }
                 else if (line != startHead)
                 {
-                    dataGridView1.Columns.Add(changeString, changeString);
+                    listView1.Items.Add(changeString);
                 }
             }
         }
@@ -119,44 +122,47 @@ namespace Sistema_Planillas_Contabilidad
         private void buttonAddColumn_Click(object sender, EventArgs e)
         {
             string dataToEnter = Microsoft.VisualBasic.Interaction.InputBox("DAME EL NOMBRE DE LA COLUMNA:");
-            dataToEnter = dataToEnter.ToUpper();
-            if (optionMenu == "NUEVO")
+            if (dataToEnter != "" && dataToEnter != " ")
             {
-                dataGridView1.Columns.Add(dataToEnter,dataToEnter);
-                colorateTheCells();
-                ++indexColumn;
-            }else if (optionMenu == "EDITAR")
-            {
-                generalMultiArrayMethods callArrayMethods = new generalMultiArrayMethods();
-                string[,] multiArrayReceived = callArrayMethods.addColum(dataGridView1, dataToEnter, indexColumn, 1);
-                dataGridView1.Columns.Clear();
-                dataGridView1.Rows.Clear();
-                //int numberOfRows = multiArrayReceived.GetLength(0);
-                int numberOfColumns = multiArrayReceived.GetLength(1);
-                for (int column = 0; column < numberOfColumns; column++)
+                dataToEnter = dataToEnter.ToUpper();
+                if (optionMenu == "NUEVO")
                 {
-                    dataGridView1.Columns.Add(multiArrayReceived[0, column], multiArrayReceived[0, column]);
+                    listView1.Items.Add(dataToEnter);
+                }
+                else if (optionMenu == "EDITAR")
+                {
+                    List<string> subString = new List<string>();
+                    foreach (ListViewItem item in listView1.Items)
+                    {
+                        if (item.Index == indexColumn)
+                        {
+                            subString.Add(dataToEnter);
+                            subString.Add(item.Text);
+                        }else
+                        {
+                            subString.Add(item.Text);
+                        }
+                    }
+                    listView1.Items.Clear();
+                    foreach (string item in subString)
+                    {
+                        listView1.Items.Add(item);
+                    }
                 }
                 colorateTheCells();
-                ++indexColumn;
             }
-            
         }
 
         private void buttonMoveBackColum_Click(object sender, EventArgs e)
         {
             if (indexColumn > 0)
             {
-                generalMultiArrayMethods callArrayMethods = new generalMultiArrayMethods();
-                string[,] multiArrayReceived = callArrayMethods.MoveBackColum(dataGridView1, indexColumn);
-                dataGridView1.Columns.Clear();
-                dataGridView1.Rows.Clear();
-                //int numberOfRows = multiArrayReceived.GetLength(0);
-                int numberOfColumns = multiArrayReceived.GetLength(1);
-                for (int column = 0; column < numberOfColumns; column++)
-                {
-                    dataGridView1.Columns.Add(multiArrayReceived[0,column], multiArrayReceived[0, column]);
-                }
+                int actualIndex = indexColumn;
+                int afterIndex = indexColumn - 1;
+                string actualData = listView1.Items[actualIndex].Text;
+                string afterData = listView1.Items[afterIndex].Text;
+                listView1.Items[actualIndex].Text = afterData;
+                listView1.Items[afterIndex].Text = actualData;
                 --indexColumn;
                 colorateTheCells();
             }
@@ -168,18 +174,14 @@ namespace Sistema_Planillas_Contabilidad
 
         private void buttonMoveNextColumn_Click(object sender, EventArgs e)
         {
-            if (indexColumn < dataGridView1.Columns.Count-1)
+            if (indexColumn < listView1.Items.Count-1)
             {
-                generalMultiArrayMethods callArrayMethods = new generalMultiArrayMethods();
-                string[,] multiArrayReceived = callArrayMethods.MoveNextColum(dataGridView1, indexColumn);
-                dataGridView1.Columns.Clear();
-                dataGridView1.Rows.Clear();
-                //int numberOfRows = multiArrayReceived.GetLength(0);
-                int numberOfColumns = multiArrayReceived.GetLength(1);
-                for (int column = 0; column < numberOfColumns; column++)
-                {
-                    dataGridView1.Columns.Add(multiArrayReceived[0, column], multiArrayReceived[0, column]);
-                }
+                int actualIndex = indexColumn;
+                int afterIndex = indexColumn +1;
+                string actualData = listView1.Items[actualIndex].Text;
+                string afterData = listView1.Items[afterIndex].Text;
+                listView1.Items[actualIndex].Text = afterData;
+                listView1.Items[afterIndex].Text = actualData;
                 ++indexColumn;
                 colorateTheCells();
             }
@@ -191,16 +193,7 @@ namespace Sistema_Planillas_Contabilidad
 
         private void buttonEraseColumn_Click(object sender, EventArgs e)
         {
-            generalMultiArrayMethods callArrayMethods = new generalMultiArrayMethods();
-            string[,] multiArrayReceived = callArrayMethods.eraseColum(dataGridView1, indexColumn,1);
-            dataGridView1.Columns.Clear();
-            dataGridView1.Rows.Clear();
-            //int numberOfRows = multiArrayReceived.GetLength(0);
-            int numberOfColumns = multiArrayReceived.GetLength(1);
-            for (int column = 0; column < numberOfColumns; column++)
-            {
-                dataGridView1.Columns.Add(multiArrayReceived[0, column], multiArrayReceived[0, column]);
-            }
+            listView1.Items.RemoveAt(indexColumn);
             colorateTheCells();
         }
         
@@ -215,7 +208,7 @@ namespace Sistema_Planillas_Contabilidad
             }
             else if (optionMenu == "EDITAR")
             {
-
+                //change nothing
             }
 
             string pathToEraseAndAdd = SpecificPathOfFolderConfigurationTemplates + nameTemplate + ".txt";
@@ -227,9 +220,9 @@ namespace Sistema_Planillas_Contabilidad
             FileStream fs = new FileStream(pathToEraseAndAdd, FileMode.OpenOrCreate, FileAccess.Write);
             StreamWriter writer = new StreamWriter(fs);
             writer.WriteLine(startHead);
-            foreach (DataGridViewColumn column in dataGridView1.Columns)
+            foreach (ListViewItem item in listView1.Items)
             {
-                writer.WriteLine(column.HeaderText);
+                writer.WriteLine(item.Text);
             }
             writer.WriteLine(endHead);
             writer.Close();
@@ -238,30 +231,16 @@ namespace Sistema_Planillas_Contabilidad
 
         private void colorateTheCells()
         {
-            int sizeColumns = dataGridView1.Columns.Count;
-            for (int cell = 0; cell < sizeColumns; cell++)
+            for (int cell = 0; cell < listView1.Items.Count; cell++)
             {
                 if (cell == indexColumn)
                 {
-                    dataGridView1.Columns[cell].DefaultCellStyle.BackColor = Color.LightGreen;
+                    listView1.Items[cell].BackColor = Color.LightGreen;
                 }else
                 {
-                    dataGridView1.Columns[cell].DefaultCellStyle.BackColor = Color.White;
+                    listView1.Items[cell].BackColor = Color.White;
                 }
             }
-        }
-
-        private void CellClickEvent(object sender, DataGridViewCellEventArgs e)
-        {
-            try
-            {
-                indexColumn = dataGridView1.Columns[e.ColumnIndex].Index;
-                colorateTheCells();
-            }catch (Exception)
-            { 
-              MessageBox.Show("HUBO ALGUN PROBLEMA SELECCIONANDO LA COLUMNA"); 
-            }
-            
         }
 
         public void nameOFTemplate(string nameTemplateReceived)
@@ -287,6 +266,16 @@ namespace Sistema_Planillas_Contabilidad
         private void buttonCloseProgram_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void listView1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            indexColumn = listView1.FocusedItem.Index;
+            try
+            {
+                colorateTheCells();
+            }
+            catch (Exception) { }
         }
     }
 }

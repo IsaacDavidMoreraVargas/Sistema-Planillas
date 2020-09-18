@@ -56,6 +56,7 @@ VARIOS
 SALARIO NETO
 </endHeads>
 <startNewLine>
+0
 155824655719
 Maximina
 Urroz
@@ -111,4 +112,3 @@ Treminio
  
 23 311,06
 </endNewline>
-
