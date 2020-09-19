@@ -18,18 +18,30 @@ namespace Sistema_Planillas_Contabilidad
         string[] alphabet = { "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z" };
         //string[] avoidData = { "INDEX", "CEDULA", "NOMBRE", "APELLIDO", "ORD DIU", "EXT DIU", "ORD NOC", "EXT NOC", "PRE HOR", "TOT ORD", "TOT EXT", "TOTAL SALAR" };
         string[] avoidData;
-        string path = "";
+        //string path = "";
         string company = "";
         string deparment = "";
         string month = "";
         //string week = "";
         //string file = "";
         int rowNumber = 0;
-        int locationCell = 0;
-        int locationRow = 0;
-        bool AllowedUpdateAction = false;
-        string separator1 = "-----------";
+        int indexColumnOfDatagrid = 0;
+        int indexRowOfDatagrid = 0;
+
+        //string separator1 = "-----------";
         string separator2 = "+++++++++++";
+
+        bool clickOnDataGrid1 = false;
+        bool clickOnCellDataGrid1 = false;
+        bool clickOnDataGrid2 = false;
+        bool clickOnCellDataGrid2 = false;
+        bool clickOnDataGrid3 = false;
+        bool clickOnCellDataGrid3 = false;
+        bool clickOnDataGrid4 = false;
+        bool clickOnCellDataGrid4 = false;
+        bool clickOnDataGrid5 = false;
+        bool clickOnCellDataGrid5 = false;
+
         public GUI_WORK_COMPANY()
         {
             InitializeComponent();
@@ -70,7 +82,7 @@ namespace Sistema_Planillas_Contabilidad
         SpecificAndCorePaths startThePaths;
         TagsAndDefaultValues startTheTagsAndDefaults;
         FoldersInsideCompany startFoldersInsideCompany;
-        generalMethods callToGeneralMethods = new generalMethods();
+        //generalMethods callToGeneralMethods = new generalMethods();
 
         public void MethodToReceivedAccesToObject(SpecificAndCorePaths startThePathsReceived, TagsAndDefaultValues startTheTagsAndDefaultsReceived, FoldersInsideCompany startFoldersInsideCompanyReceived)
         {
@@ -128,6 +140,7 @@ namespace Sistema_Planillas_Contabilidad
             buttonBackTotal.Enabled = false;
             buttonNextTotal.Enabled = false;
             dataGridView1.Columns.Clear();
+            /*
             //
             dataGridView1.Enabled = false;
             dataGridView2.Enabled = false;
@@ -139,6 +152,7 @@ namespace Sistema_Planillas_Contabilidad
             dataGridView3.Visible = false;
             dataGridView4.Visible = false;
             //
+            */
             comboBox1.Text = threeLine;
             comboBox2.Text = threeLine;
             //
@@ -148,9 +162,9 @@ namespace Sistema_Planillas_Contabilidad
             {
                 if (path.Contains("1-7"))
                 {
-                    dataGridView1.Enabled=true;
-                    dataGridView1.Visible = true;
-                   
+                    //dataGridView1.Enabled=true;
+                    //dataGridView1.Visible = true;
+
                     string[] storageLines = File.ReadAllLines(path);
                     for (int head = 0; head < storageLines.Length; head++)
                     {
@@ -180,11 +194,11 @@ namespace Sistema_Planillas_Contabilidad
                             dataGridView1.Columns.Add(storageLines[head], storageLines[head]);
                         }
                     }
-                }else if (path.Contains("8-14"))
+                } else if (path.Contains("8-14"))
                 {
-                    dataGridView2.Enabled = true;
-                    dataGridView2.Visible = true;
-                   
+                    //dataGridView2.Enabled = true;
+                    //dataGridView2.Visible = true;
+
                     string[] storageLines = File.ReadAllLines(path);
                     for (int head = 0; head < storageLines.Length; head++)
                     {
@@ -216,9 +230,9 @@ namespace Sistema_Planillas_Contabilidad
                     }
                 } else if (path.Contains("15-21"))
                 {
-                    dataGridView3.Enabled = true;
-                    dataGridView3.Visible = true;
-                    
+                    //dataGridView3.Enabled = true;
+                    //dataGridView3.Visible = true;
+
                     string[] storageLines = File.ReadAllLines(path);
                     for (int head = 0; head < storageLines.Length; head++)
                     {
@@ -250,9 +264,9 @@ namespace Sistema_Planillas_Contabilidad
                     }
                 } else if (path.Contains("22-"))
                 {
-                    dataGridView4.Enabled = true;
-                    dataGridView4.Visible = true;
-                    
+                    //dataGridView4.Enabled = true;
+                    //dataGridView4.Visible = true;
+
                     string[] storageLines = File.ReadAllLines(path);
 
                     for (int head = 0; head < storageLines.Length; head++)
@@ -287,6 +301,7 @@ namespace Sistema_Planillas_Contabilidad
             }
 
             bool configurationExist = false;
+            bool totalExist = false;
             foreach (string path in storagePaths)
             {
                 if (path.Contains("SUMA-TOTALES"))
@@ -318,6 +333,7 @@ namespace Sistema_Planillas_Contabilidad
                             dataGridView5.Columns.Add(storageLines[head], storageLines[head]);
                         }
                     }
+                    totalExist = true;
                 }
                 else if (path.Contains("CONFIGURACIONES-CELDAS"))
                 {
@@ -329,29 +345,48 @@ namespace Sistema_Planillas_Contabilidad
                         if (storageLines[line] == tagStartDataGrid1)
                         {
                             dataGridToStudy = dataGridView1;
-                        }else if (storageLines[line] == tagStartDataGrid2)
+                            ++line;
+                            dataGridToStudy.Visible = Convert.ToBoolean(storageLines[line]);
+                            ++line;
+                            dataGridToStudy.Enabled = Convert.ToBoolean(storageLines[line]);
+                        }
+                        else if (storageLines[line] == tagStartDataGrid2)
                         {
                             dataGridToStudy = dataGridView2;
-                        }else if (storageLines[line] == tagStartDataGrid3)
+                            ++line;
+                            dataGridToStudy.Visible = Convert.ToBoolean(storageLines[line]);
+                            ++line;
+                            dataGridToStudy.Enabled = Convert.ToBoolean(storageLines[line]);
+                        }
+                        else if (storageLines[line] == tagStartDataGrid3)
                         {
                             dataGridToStudy = dataGridView3;
-                        }else if (storageLines[line] == tagStartDataGrid4)
+                            ++line;
+                            dataGridToStudy.Visible = Convert.ToBoolean(storageLines[line]);
+                            ++line;
+                            dataGridToStudy.Enabled = Convert.ToBoolean(storageLines[line]);
+                        }
+                        else if (storageLines[line] == tagStartDataGrid4)
                         {
                             dataGridToStudy = dataGridView4;
+                            ++line;
+                            dataGridToStudy.Visible = Convert.ToBoolean(storageLines[line]);
+                            ++line;
+                            dataGridToStudy.Enabled = Convert.ToBoolean(storageLines[line]);
                         }
 
                         dataGridToStudy.EnableHeadersVisualStyles = false;
                         foreach (DataGridViewColumn column in dataGridToStudy.Columns)
                         {
-                            if(column.HeaderText== storageLines[line])
+                            if (column.HeaderText == storageLines[line])
                             {
                                 ++line;
                                 column.Visible = Convert.ToBoolean(storageLines[line]);
                                 ++line;
-                                if (Convert.ToBoolean(storageLines[line])==true)
+                                if (Convert.ToBoolean(storageLines[line]) == true)
                                 {
                                     column.HeaderCell.Style.BackColor = Color.LightGray;
-                                }else if (Convert.ToBoolean(storageLines[line]) == false)
+                                } else if (Convert.ToBoolean(storageLines[line]) == false)
                                 {
                                     column.HeaderCell.Style.BackColor = Color.LightSalmon;
                                 }
@@ -361,7 +396,7 @@ namespace Sistema_Planillas_Contabilidad
                     }
                 }
             }
-            if(configurationExist == false)
+            if (configurationExist == false)
             {
                 dataGridView1.EnableHeadersVisualStyles = false;
                 dataGridView2.EnableHeadersVisualStyles = false;
@@ -384,6 +419,31 @@ namespace Sistema_Planillas_Contabilidad
                     column.HeaderCell.Style.BackColor = Color.LightGray;
                 }
             }
+
+            if (totalExist == false)
+            {
+                string pathTemplate = SpecificPathOfFolderConfigurationTemplates;
+                string[] storageTemplateFiles = Directory.GetFiles(pathTemplate);
+                {
+                    foreach (string path in storageTemplateFiles)
+                    {
+                        string[] storageLines = File.ReadAllLines(path);
+                        foreach (string line in storageLines)
+                        {
+                            if (line == tagEndHEad)
+                            {
+                                break;
+                            }
+                            else if (line != tagStartHEad)
+                            {
+                                dataGridView5.Columns.Add(line, line);
+                            }
+                        }
+                    }
+                }
+            }
+
+            /*
             if (dataGridView1.Visible==true)
             {
                 checkedListBox1.Items.Add("1-7", CheckState.Unchecked);
@@ -404,6 +464,16 @@ namespace Sistema_Planillas_Contabilidad
                 checkedListBox1.Items.Add("22-30", CheckState.Unchecked);
                 comboBox1.Items.Add("SEMANA 4");
             }
+            */
+            checkedListBox1.Items.Add("1-7", CheckState.Unchecked);
+            checkedListBox1.Items.Add("8-14", CheckState.Unchecked);
+            checkedListBox1.Items.Add("15-21", CheckState.Unchecked);
+            checkedListBox1.Items.Add("22-30", CheckState.Unchecked);
+            comboBox1.Items.Add("SEMANA 1");
+            comboBox1.Items.Add("SEMANA 2");
+            comboBox1.Items.Add("SEMANA 3");
+            comboBox1.Items.Add("SEMANA 4");
+
             baseResizeDatasGridViewPhase1();
         }
 
@@ -416,14 +486,7 @@ namespace Sistema_Planillas_Contabilidad
             //methodToHideUnhideDataGridView();
         }
 
-        private void baseResizeDatasGridViewPhase2()
-        {
-            resizeDataGrid1();
-            resizeDataGrid2();
-            resizeDataGrid3();
-            resizeDataGrid4();
-        }
-
+        
         int heigthLocation = 0;
         int maximunHeight = 292;
         private void resizeDataGrid1()
@@ -432,7 +495,7 @@ namespace Sistema_Planillas_Contabilidad
             if (dataGridView1.Visible == true)
             {
                 dataGridView1.Location = new Point(0, heigthLocation);
-                dataGridView1.Width = tableLayoutPanel1.Width;
+                dataGridView1.Width = tableLayoutPanel1.Width - 30;
                 int sizeHeight = dataGridView1.ColumnHeadersHeight;
                 if (dataGridView1.Rows.Count > 1)
                 {
@@ -448,7 +511,7 @@ namespace Sistema_Planillas_Contabilidad
                         dataGridView1.Height = sizeHeight;
                     }
                 }
-                heigthLocation += dataGridView1.Height+10;
+                heigthLocation += dataGridView1.Height + 10;
             }
         }
 
@@ -457,7 +520,7 @@ namespace Sistema_Planillas_Contabilidad
             if (dataGridView2.Visible == true)
             {
                 dataGridView2.Location = new Point(0, heigthLocation);
-                dataGridView2.Width = tableLayoutPanel1.Width;
+                dataGridView2.Width = tableLayoutPanel1.Width - 30;
                 int sizeHeight = dataGridView2.ColumnHeadersHeight;
                 if (dataGridView2.Rows.Count > 1)
                 {
@@ -473,7 +536,7 @@ namespace Sistema_Planillas_Contabilidad
                         dataGridView2.Height = sizeHeight;
                     }
                 }
-                heigthLocation += dataGridView2.Height+10;
+                heigthLocation += dataGridView2.Height + 10;
             }
         }
 
@@ -482,7 +545,7 @@ namespace Sistema_Planillas_Contabilidad
             if (dataGridView3.Visible == true)
             {
                 dataGridView3.Location = new Point(0, heigthLocation);
-                dataGridView3.Width = tableLayoutPanel1.Width;
+                dataGridView3.Width = tableLayoutPanel1.Width - 30;
                 int sizeHeight = dataGridView3.ColumnHeadersHeight;
                 if (dataGridView3.Rows.Count > 1)
                 {
@@ -498,7 +561,7 @@ namespace Sistema_Planillas_Contabilidad
                         dataGridView3.Height = sizeHeight;
                     }
                 }
-                heigthLocation += dataGridView3.Height+10;
+                heigthLocation += dataGridView3.Height + 10;
             }
         }
 
@@ -507,7 +570,7 @@ namespace Sistema_Planillas_Contabilidad
             if (dataGridView4.Visible == true)
             {
                 dataGridView4.Location = new Point(0, heigthLocation);
-                dataGridView4.Width = tableLayoutPanel1.Width;
+                dataGridView4.Width = tableLayoutPanel1.Width - 30;
                 int sizeHeight = dataGridView4.ColumnHeadersHeight;
                 if (dataGridView4.Rows.Count > 1)
                 {
@@ -526,64 +589,10 @@ namespace Sistema_Planillas_Contabilidad
             }
         }
 
-        private void methodToHideUnhideDataGridView()
-        {
-            for (int item = 0; item < checkedListBox1.Items.Count; item++)
-            {
-                if (checkedListBox1.GetItemChecked(item)==true)
-                {
-                    if (item == 0)
-                    {
-                        dataGridView1.Visible = true;
-                        dataGridView1.Enabled = true;
-                    }
-                    else if (item == 1)
-                    {
-                        dataGridView2.Visible = true;
-                        dataGridView2.Enabled = true;
-                    }
-                    else if (item == 2)
-                    {
-                        dataGridView3.Visible = true;
-                        dataGridView3.Enabled = true;
-                    }
-                    else if (item == 3)
-                    {
-                        dataGridView4.Visible = true;
-                        dataGridView4.Enabled = true;
-                    }
-                }else if (checkedListBox1.GetItemChecked(item) == false)
-                {
-                    
-                    if (item == 0)
-                    {
-                        dataGridView1.Visible = false;
-                        dataGridView1.Enabled = false;
-                    }
-                    else if (item == 1)
-                    {
-                        dataGridView2.Visible = false;
-                        dataGridView2.Enabled = false;
-                    }
-                    else if (item == 2)
-                    {
-                        dataGridView3.Visible = false;
-                        dataGridView3.Enabled = false;
-                    }
-                    else if (item == 3)
-                    {
-                        dataGridView4.Visible = false;
-                        dataGridView4.Enabled = false;
-                    }
-                }
-            }
-            baseResizeDatasGridViewPhase2();
-        }
-
         private void sumTheCellsofAll()
         {
             List<DataGridView> listOFDataGridView = new List<DataGridView>();
-            if(dataGridView1.Enabled==true)
+            if (dataGridView1.Enabled == true)
             {
                 listOFDataGridView.Add(dataGridView1);
             }
@@ -600,12 +609,12 @@ namespace Sistema_Planillas_Contabilidad
                 listOFDataGridView.Add(dataGridView4);
             }
             generalDataAndAvoidData callToAvoid = new generalDataAndAvoidData();
-            for(int dataGrid=0; dataGrid<listOFDataGridView.Count; dataGrid++)
+            for (int dataGrid = 0; dataGrid < listOFDataGridView.Count; dataGrid++)
             {
-                DataGridView dataGridStudy=listOFDataGridView[dataGrid];
-                for (int column=0; column < dataGridStudy.Columns.Count; column++)
+                DataGridView dataGridStudy = listOFDataGridView[dataGrid];
+                for (int column = 0; column < dataGridStudy.Columns.Count; column++)
                 {
-                    double sum= 0;
+                    double sum = 0;
                     bool falseMenssaje = false;
                     bool answer = callToAvoid.avoidColumns(dataGridStudy.Columns[column].HeaderText);
                     if (answer == true)
@@ -614,19 +623,26 @@ namespace Sistema_Planillas_Contabilidad
                     }
                     else
                     {
-                        for (int row = 0; row < dataGridStudy.Rows.Count; row++)
+                        if (dataGridStudy.Columns[column].HeaderCell.Style.BackColor == Color.LightCoral)
                         {
-                            if (dataGridStudy.Rows[row].Cells[column].Value == null || dataGridStudy.Rows[row].Cells[column].Value.ToString() == " " || dataGridStudy.Rows[row].Cells[column].Value.ToString() == "")
+                            sum += 0;
+                        }
+                        else if (dataGridStudy.Columns[column].HeaderCell.Style.BackColor == Color.LightGray)
+                        {
+                            for (int row = 0; row < dataGridStudy.Rows.Count; row++)
                             {
-                                sum += 0;
-                            }
-                            else
-                            {
-                                try
+                                if (dataGridStudy.Rows[row].Cells[column].Value == null || dataGridStudy.Rows[row].Cells[column].Value.ToString() == " " || dataGridStudy.Rows[row].Cells[column].Value.ToString() == "")
                                 {
-                                    sum += Convert.ToDouble(dataGridStudy.Rows[row].Cells[column].Value.ToString());
+                                    sum += 0;
                                 }
-                                catch (Exception) { falseMenssaje = true; }
+                                else
+                                {
+                                    try
+                                    {
+                                        sum += Convert.ToDouble(dataGridStudy.Rows[row].Cells[column].Value.ToString());
+                                    }
+                                    catch (Exception) { falseMenssaje = true; }
+                                }
                             }
                         }
                         if (listOFDataGridView.Count >= 1)
@@ -636,24 +652,31 @@ namespace Sistema_Planillas_Contabilidad
                                 DataGridView dataGridStudyPhase2 = listOFDataGridView[dataGridPhase2];
                                 for (int columnPhase2 = 0; columnPhase2 < dataGridStudyPhase2.Columns.Count; columnPhase2++)
                                 {
-                                    if (dataGridStudyPhase2.Columns[columnPhase2].HeaderText == dataGridStudy.Columns[column].HeaderText)
+                                    if (dataGridStudyPhase2.Columns[columnPhase2].HeaderCell.Style.BackColor == Color.LightCoral)
                                     {
-                                        for (int rowPhase2 = 0; rowPhase2 < dataGridStudyPhase2.Rows.Count; rowPhase2++)
+                                        sum += 0;
+                                    }
+                                    else if (dataGridStudyPhase2.Columns[columnPhase2].HeaderCell.Style.BackColor == Color.LightGray)
+                                    {
+                                        if (dataGridStudyPhase2.Columns[columnPhase2].HeaderText == dataGridStudy.Columns[column].HeaderText)
                                         {
-                                            if (dataGridStudyPhase2.Rows[rowPhase2].Cells[columnPhase2].Value == null || dataGridStudyPhase2.Rows[rowPhase2].Cells[columnPhase2].Value.ToString() == " " || dataGridStudyPhase2.Rows[rowPhase2].Cells[columnPhase2].Value.ToString() == "")
+                                            for (int rowPhase2 = 0; rowPhase2 < dataGridStudyPhase2.Rows.Count; rowPhase2++)
                                             {
-                                                sum += 0;
-                                            }
-                                            else
-                                            {
-                                                try
+                                                if (dataGridStudyPhase2.Rows[rowPhase2].Cells[columnPhase2].Value == null || dataGridStudyPhase2.Rows[rowPhase2].Cells[columnPhase2].Value.ToString() == " " || dataGridStudyPhase2.Rows[rowPhase2].Cells[columnPhase2].Value.ToString() == "")
                                                 {
-                                                    sum += Convert.ToDouble(dataGridStudyPhase2.Rows[rowPhase2].Cells[columnPhase2].Value.ToString());
+                                                    sum += 0;
                                                 }
-                                                catch (Exception) { falseMenssaje = true; }
+                                                else
+                                                {
+                                                    try
+                                                    {
+                                                        sum += Convert.ToDouble(dataGridStudyPhase2.Rows[rowPhase2].Cells[columnPhase2].Value.ToString());
+                                                    }
+                                                    catch (Exception) { falseMenssaje = true; }
+                                                }
                                             }
+                                            break;
                                         }
-                                        break;
                                     }
                                 }
                             }
@@ -678,6 +701,8 @@ namespace Sistema_Planillas_Contabilidad
                 break;
             }
         }
+
+        
 
         private void dataGridviewToWhite()
         {
@@ -764,537 +789,460 @@ namespace Sistema_Planillas_Contabilidad
 
         private void buttonIntroduceData_Click(object sender, EventArgs e)
         {
-            dataGridviewToWhite();
-            int maximunRows = dataGridView1.RowCount;
-            int maximunRows2 = dataGridView1.RowCount;
-            --maximunRows2;
-            --maximunRows2;
-            int maximunColums = dataGridView1.ColumnCount;
-            int maximunColums2 = dataGridView1.ColumnCount;
-            --maximunColums2;
-            --maximunColums2;
-            DialogResult answer = MessageBox.Show("¿IR AL FINAL?", "OPCIÓN RAPIDA", MessageBoxButtons.YesNo);
-            switch (answer)
+            DataGridView dataToChargeData = new DataGridView();
+            dataToChargeData = decideDataGridViewWithOutData5(dataToChargeData);
+            bool allowEnterData = true;
+            if (dataToChargeData.Visible == false)
             {
-                case DialogResult.Yes:
-                    AllowedUpdateAction = true;
-                    bool continueAdd = true;
-                    for (int rows = 0; rows < maximunRows; rows++)
+                MessageBox.Show("NO PUEDES INTRODUCIR DATOS PORQUE LA TABLA NO ES VISIBLE, HAZLA VISIBLE");
+                allowEnterData = false;
+            }
+            else if (dataToChargeData.Enabled == false)
+            {
+                MessageBox.Show("NO PUEDES INTRODUCIR DATOS PORQUE LA TABLA NO PERMITE CALCULOS, HAZLA CALCULAR");
+                allowEnterData = false;
+            }
+            
+            if (allowEnterData == true)
+            {
+                //dataGridviewToWhite();
+                if (dataToChargeData.Rows.Count == 1)
+                {
+                    DialogResult answer = MessageBox.Show("¿DESEA AÑADIR UNA COLUMNA PARA INTRODUCIR DATOS?", "OPCIÓN RAPIDA", MessageBoxButtons.YesNo);
+                    switch (answer)
                     {
-                        bool getOut = false;
-                        if (rows == maximunRows2)
-                        {
-                            for (int cell = 1; cell < maximunColums; cell++)
+                        case DialogResult.Yes:
+                            int index = dataToChargeData.Rows.Count - 1;
+                            dataToChargeData.Rows.Add(index.ToString());
+                            for (int colum = 1; colum < dataToChargeData.Columns.Count; colum++)
                             {
-                                if (cell == maximunColums2)
+                                string data = Microsoft.VisualBasic.Interaction.InputBox("DAME EL VALOR " + dataToChargeData.Columns[colum].HeaderText + " \n-S/F PARA SALIR:");
+                                data = data.ToUpper();
+                                if (data == "S/F")
                                 {
-                                    DialogResult createRow = MessageBox.Show("¿CREAR NUEVA FILA?", "OPCIÓN RAPIDA", MessageBoxButtons.YesNo);
-                                    switch (createRow)
-                                    {
-                                        case DialogResult.Yes:
-                                            int numberRow = dataGridView1.Rows.Count;
-                                            --numberRow;
-                                            --numberRow;
-                                            while (continueAdd == true)
-                                            {
-                                                ++numberRow;
-                                                dataGridView1.Rows.Add(numberRow.ToString());
-                                                maximunColums2 = dataGridView1.ColumnCount;
-                                                for (cell = 1; cell < maximunColums2; cell++)
-                                                {
-                                                    dataGridView1.Rows[numberRow].Cells[cell].Value = " ";
-                                                }
-                                                for (cell = 1; cell < maximunColums2; cell++)
-                                                {
-                                                    //string UpperHead = dataGridView1.Rows[0].Cells[cell].Value.ToString();
-                                                    string UpperHead = dataGridView1.Columns[cell].HeaderText.ToString();
-                                                    UpperHead = UpperHead.ToUpper();
-                                                    dataGridviewToWhite();
-                                                    dataGridView1.Rows[numberRow].Cells[cell].Style.BackColor = Color.LightGreen;
-                                                    object cellToEnter = Microsoft.VisualBasic.Interaction.InputBox("DAME EL VALOR " + UpperHead + ":");
-                                                    string upperData = cellToEnter.ToString();
-                                                    upperData = upperData.ToUpper();
-                                                    if (upperData.ToString() == "SALIR" || upperData.ToString() == "S")
-                                                    {
-                                                        continueAdd = false;
-                                                        getOut = true;
-                                                        break;
-                                                    }
-                                                    else if (upperData.ToString() == " ")
-                                                    {
-                                                        dataGridView1.Rows[numberRow].Cells[cell].Value = "0";
-                                                    }
-                                                    else if (upperData.ToString().Length == 0 || upperData.ToString() == "")
-                                                    {
-                                                        continueAdd = false;
-                                                        getOut = true;
-                                                        break;
-                                                    }
-                                                    else if (UpperHead == "CEDULA")
-                                                    {
-                                                        dataGridView1.Rows[numberRow].Cells[cell].Value = upperData;
-                                                    }
-                                                    else
-                                                    {
-                                                        calculateSystem callingConvert = new calculateSystem();
-                                                        //string returnCellToEnter = callingConvert.convertAndFormat(cellToEnter.ToString());
-                                                        //string returnCellToEnter = cellToEnter.ToString();
-                                                        string returnCellToEnter =cellToEnter.ToString();
-                                                        if (returnCellToEnter == "false")
-                                                        {
-                                                            dataGridView1.Rows[numberRow].Cells[cell].Value = upperData;
-
-                                                        }
-                                                        else
-                                                        {
-                                                            dataGridView1.Rows[numberRow].Cells[cell].Value = returnCellToEnter.ToString();
-                                                        }
-                                                    }
-                                                }
-                                                if (getOut == true)
-                                                {
-                                                    break;
-                                                }
-                                                else
-                                                {
-                                                    DialogResult KeepCreating = MessageBox.Show("¿CREAR NUEVA FILA?", "OPCIÓN RAPIDA", MessageBoxButtons.YesNo);
-                                                    switch (KeepCreating)
-                                                    {
-                                                        case DialogResult.Yes:
-                                                            continueAdd = true;
-                                                            break;
-                                                        case DialogResult.No:
-                                                            rows = maximunRows;
-                                                            continueAdd = false;
-                                                            break;
-                                                        case DialogResult.Cancel:
-                                                            rows = maximunRows;
-                                                            continueAdd = false;
-                                                            goto outLoop;
-                                                    }
-                                                }
-                                            }
-                                            break;
-                                        case DialogResult.No:
-                                            rows = maximunRows;
-                                            goto outLoop;
-                                            //break;
-                                        case DialogResult.Cancel:
-                                            rows = maximunRows;
-                                            goto outLoop;
-                                    }
                                     break;
-                                }
-                                //break;
-                            }
-                            break;
-                        }
-
-                    }
-                    break;
-                case DialogResult.No:
-                    AllowedUpdateAction = true;
-                    bool continueAdd2 = true;
-                    --maximunRows;
-                    for (int rows = 0; rows < maximunRows; rows++)
-                    {
-                        bool getOut = false;
-                        for (int cell = 1; cell < maximunColums; cell++)
-                        {
-                            if (dataGridView1.Rows[rows].Cells[cell].Value.ToString() == "" || dataGridView1.Rows[rows].Cells[cell].Value.ToString() == " ")
-                            {
-                                string UpperHead = dataGridView1.Columns[cell].HeaderText.ToString();
-                                UpperHead = UpperHead.ToUpper();
-                                dataGridviewToWhite();
-                                dataGridView1.Rows[rows].Cells[cell].Style.BackColor = Color.LightGreen;
-                                object cellToEnter = Microsoft.VisualBasic.Interaction.InputBox("DAME EL VALOR " + UpperHead + ":");
-                                string upperData = cellToEnter.ToString();
-                                upperData = upperData.ToUpper();
-                                if (upperData.ToString() == "SALIR" || upperData.ToString() == "S")
-                                {
-                                    continueAdd = false;
-                                    getOut = true;
-                                    break;
-                                }
-                                else if (upperData.ToString() == " ")
-                                {
-                                    dataGridView1.Rows[rows].Cells[cell].Value = "0";
-                                }
-                                else if (upperData.ToString().Length == 0 || upperData.ToString() == "")
-                                {
-                                    continueAdd = false;
-                                    getOut = true;
-                                    break;
-                                }
-                                else if (UpperHead == "CEDULA")
-                                {
-                                    dataGridView1.Rows[rows].Cells[cell].Value = upperData;
                                 }
                                 else
                                 {
-                                    calculateSystem callingConvert = new calculateSystem();
-                                    //string returnCellToEnter = callingConvert.convertAndFormat(cellToEnter.ToString());
-                                    string returnCellToEnter = cellToEnter.ToString();
-                                    if (returnCellToEnter == "false")
+                                    dataToChargeData.Rows[index].Cells[colum].Value = data;
+                                }
+                            }
+                            baseResizeDatasGridViewPhase1();
+                            break;
+                        case DialogResult.No:
+                            break;
+                    }
+                }
+                else
+                {
+
+                    DialogResult answer = MessageBox.Show("¿DESEA INTRODUCIR EN LA CELDA QUE ELIGIO?", "OPCIÓN RAPIDA", MessageBoxButtons.YesNo);
+                    switch (answer)
+                    {
+                        case DialogResult.Yes:
+                            bool outFromHere = false;
+                            for (int row = indexRowOfDatagrid; row < dataToChargeData.Rows.Count - 1; row++)
+                            {
+                                for (int colum = indexColumnOfDatagrid; colum < dataToChargeData.Columns.Count; colum++)
+                                {
+                                    string data = Microsoft.VisualBasic.Interaction.InputBox("DAME EL VALOR " + dataToChargeData.Columns[colum].HeaderText + " \n-S/F PARA SALIR DE LA FILA \n-S/T PARA SALIR TOTALMENTE:");
+                                    data = data.ToUpper();
+                                    if (data == "S/F")
                                     {
-                                        dataGridView1.Rows[rows].Cells[cell].Value = upperData;
+                                        break;
+                                    } else if (data == "S/T")
+                                    {
+                                        outFromHere = true;
+                                        break;
                                     }
                                     else
                                     {
-                                        dataGridView1.Rows[rows].Cells[cell].Value = returnCellToEnter.ToString();
+                                        dataToChargeData.Rows[row].Cells[colum].Value = data;
                                     }
                                 }
-                            }
-                        }
-
-                        if (getOut == true)
-                        {
-                            break;
-                        }
-                        else
-                        {
-                            if (rows == maximunRows2)
-                            {
-                                DialogResult createRow = MessageBox.Show("¿CREAR NUEVA FILA?", "OPCIÓN RAPIDA", MessageBoxButtons.YesNo);
-                                switch (createRow)
+                                if (outFromHere == true)
                                 {
-                                    case DialogResult.Yes:
-                                        int numberRow = dataGridView1.Rows.Count;
-                                        --numberRow;
-                                        --numberRow;
-                                        while (continueAdd2 == true)
+                                    break;
+                                }
+                            }
+                            break;
+                        case DialogResult.No:
+                            answer = MessageBox.Show("¿DESEA IR A LA ULTIMA CELDA EN BLANCO QUE ENCUENTRE?", "OPCIÓN RAPIDA", MessageBoxButtons.YesNo);
+                            switch (answer)
+                            {
+                                case DialogResult.Yes:
+                                    outFromHere = false;
+                                    for (int row = dataToChargeData.Rows.Count-2; row > 0; row--)
+                                    {
+                                        for (int colum = dataToChargeData.Columns.Count-1; colum > 0; colum--)
                                         {
-                                            ++numberRow;
-                                            dataGridView1.Rows.Add(numberRow.ToString());
-                                            maximunColums2 = dataGridView1.ColumnCount;
-                                            for (int cell = 1; cell < maximunColums2; cell++)
+                                            if (dataToChargeData.Rows[row].Cells[colum].Value == null || dataToChargeData.Rows[row].Cells[colum].Value.ToString() == "" || dataToChargeData.Rows[row].Cells[colum].Value.ToString() == " ")
                                             {
-                                                dataGridView1.Rows[numberRow].Cells[cell].Value = " ";
-                                            }
-                                            for (int cell = 1; cell < maximunColums2; cell++)
-                                            {
-                                                
-                                                string UpperHead = dataGridView1.Columns[cell].HeaderText.ToString();
-                                                UpperHead = UpperHead.ToUpper();
-                                                dataGridviewToWhite();
-                                                dataGridView1.Rows[numberRow].Cells[cell].Style.BackColor = Color.LightGreen;
-                                                object cellToEnter = Microsoft.VisualBasic.Interaction.InputBox("DAME EL VALOR " + UpperHead + ":");
-                                                string upperData = cellToEnter.ToString();
-                                                upperData = upperData.ToUpper();
-                                                if (upperData.ToString() == "SALIR" || upperData.ToString() == "S")
+                                                for (int columPhase2 = colum; columPhase2 < dataToChargeData.Columns.Count; columPhase2++)
                                                 {
-                                                    continueAdd2 = false;
-                                                    break;
-                                                }
-                                                else if (upperData.ToString() == " ")
-                                                {
-                                                    dataGridView1.Rows[numberRow].Cells[cell].Value = "0";
-                                                }
-                                                else if (upperData.ToString().Length == 0 || upperData.ToString() == "")
-                                                {
-                                                    continueAdd2 = false;
-                                                    getOut = true;
-                                                    break;
-                                                }
-                                                else if (UpperHead == "CEDULA")
-                                                {
-                                                    dataGridView1.Rows[numberRow].Cells[cell].Value = upperData;
-                                                }
-                                                else
-                                                {
-                                                    calculateSystem callingConvert = new calculateSystem();
-                                                    //string returnCellToEnter = callingConvert.convertAndFormat(cellToEnter.ToString());
-                                                    string returnCellToEnter = cellToEnter.ToString();
-                                                    if (returnCellToEnter == "false")
+                                                    if (dataToChargeData.Rows[row].Cells[columPhase2].Value == null || dataToChargeData.Rows[row].Cells[columPhase2].Value.ToString() == " " || dataToChargeData.Rows[row].Cells[columPhase2].Value.ToString() == "")
                                                     {
-                                                        dataGridView1.Rows[numberRow].Cells[cell].Value = upperData;
-
-                                                    }
-                                                    else
-                                                    {
-                                                        dataGridView1.Rows[numberRow].Cells[cell].Value = returnCellToEnter.ToString();
+                                                        string data = Microsoft.VisualBasic.Interaction.InputBox("DAME EL VALOR " + dataToChargeData.Columns[columPhase2].HeaderText + " \n-S/F PARA SALIR DE LA FILA \n-S/T PARA SALIR TOTALMENTE:");
+                                                        data = data.ToUpper();
+                                                        if (data == "S/F")
+                                                        {
+                                                            break;
+                                                        }
+                                                        else if (data == "S/T")
+                                                        {
+                                                            outFromHere = true;
+                                                            break;
+                                                        }
+                                                        else
+                                                        {
+                                                            dataToChargeData.Rows[row].Cells[columPhase2].Value = data;
+                                                        }
                                                     }
                                                 }
-
+                                                outFromHere = true;
+                                                break;
                                             }
-                                            DialogResult KeepCreating = MessageBox.Show("¿CREAR NUEVA FILA?", "OPCIÓN RAPIDA", MessageBoxButtons.YesNo);
-                                            switch (KeepCreating)
+                                            if (outFromHere == true)
                                             {
-                                                case DialogResult.Yes:
-                                                    continueAdd2 = true;
-                                                    break;
-                                                case DialogResult.No:
-                                                    rows = maximunRows;
-                                                    continueAdd2 = false;
-                                                    goto outLoop;
-                                                    break;
-                                                case DialogResult.Cancel:
-                                                    rows = maximunRows;
-                                                    continueAdd2 = false;
-                                                    goto outLoop;
+                                                break;
                                             }
                                         }
-                                        break;
-                                    case DialogResult.No:
-                                        rows = maximunRows;
-                                        continueAdd2 = false;
-                                        goto outLoop;
-                                    //break;
-                                    case DialogResult.Cancel:
-                                        rows = maximunRows;
-                                        continueAdd2 = false;
-                                        goto outLoop;
-                                }
-                                break;
-                            }
-                        }
-                    }
-                    break;
-            }
+                                        if (outFromHere == true)
+                                        {
+                                            break;
+                                        }
+                                    }
 
-            outLoop: ;
+                                    break;
+                                case DialogResult.No:
+                                    break;
+                            }
+                            break;
+                    }
+                }
+            }
         }
 
         private void buttonAddColumn_Click(object sender, EventArgs e)
         {
-            //setDataAndSend2();
-            dataGridviewToWhite();
-            AllowedUpdateAction = true;
-            object cellToEnter = Microsoft.VisualBasic.Interaction.InputBox("DAME NOMBRE DE LA COLUMNA:");
-            string introduce=cellToEnter.ToString();
-            introduce = introduce.ToUpper();
-            dataGridView1.Columns.Add(introduce, introduce);
-            int rowNumberSave = dataGridView1.Rows.Count;
-            --rowNumberSave;
-            int colNumberSave = dataGridView1.Columns.Count;
-            int end = dataGridView1.Columns.Count;
-            --end;
-            for (int rows = 0; rows < rowNumberSave; rows++)
+            DataGridView dataToChargeData = new DataGridView();
+            dataToChargeData = decideDataGridViewWithData5(dataToChargeData);
+            bool allowEnterData = true;
+            if (dataToChargeData.Visible == false)
             {
-                for (int cell = 1; cell < colNumberSave; cell++)
+                MessageBox.Show("NO PUEDES INTRODUCIR DATOS PORQUE LA TABLA NO ES VISIBLE, HAZLA VISIBLE");
+                allowEnterData = false;
+            }
+            else if ( dataToChargeData.Enabled == false)
+            {
+                MessageBox.Show("NO PUEDES INTRODUCIR DATOS PORQUE LA TABLA NO PERMITE CALCULOS, HAZLA CALCULAR");
+                allowEnterData = false;
+            }
+
+            if (allowEnterData == true)
+            {
+                string data = Microsoft.VisualBasic.Interaction.InputBox("DAME EL NOMBRE DE LA COLUMNA:");
+                data = data.ToUpper();
+                if (clickOnCellDataGrid1 == true || clickOnCellDataGrid2 == true || clickOnCellDataGrid3 == true || clickOnCellDataGrid4 == true || clickOnCellDataGrid5 == true)
                 {
-                    if (end == cell)
+                    int scrollPositionV = dataToChargeData.FirstDisplayedScrollingRowIndex;
+                    int scrollPositionH = dataToChargeData.FirstDisplayedScrollingColumnIndex;
+                    List<string> listSalmon = new List<string>();
+                    foreach (DataGridViewColumn column in dataToChargeData.Columns)
                     {
-                        dataGridView1.Rows[rows].Cells[cell].Value=" ";
+                        if (column.HeaderCell.Style.BackColor == Color.LightSalmon)
+                        {
+                            listSalmon.Add(column.HeaderText);
+                        }
                     }
+                    generalMultiArrayMethods calltoMethods = new generalMultiArrayMethods();
+                    string[,] arrayAnswer = calltoMethods.addColum(dataToChargeData, data, indexColumnOfDatagrid, 1);
+                    int rows = arrayAnswer.GetLength(0);
+                    int columns = arrayAnswer.GetLength(1);
+                    dataToChargeData.Columns.Clear();
+                    for (int column = 0; column < columns; column++)
+                    {
+                        dataToChargeData.Columns.Add(arrayAnswer[0, column], arrayAnswer[0, column]);
+                    }
+
+                    for (int row = 0; row < rows - 1; row++)
+                    {
+                        dataToChargeData.Rows.Add(row.ToString());
+                    }
+                    int indexData = 0;
+                    for (int row = 1; row < rows; row++)
+                    {
+                        for (int column = 0; column < columns; column++)
+                        {
+                            dataToChargeData.Rows[indexData].Cells[column].Value = arrayAnswer[row, column];
+                        }
+                        ++indexData;
+                    }
+
+                    dataToChargeData.FirstDisplayedScrollingRowIndex = scrollPositionV;
+                    dataToChargeData.FirstDisplayedScrollingColumnIndex = scrollPositionH;
+                    paintColum(dataToChargeData, indexColumnOfDatagrid);
+                    baseResizeDatasGridViewPhase1();
+                }
+                else
+                {
+                    dataToChargeData.Columns.Add(data, data);
                 }
             }
-            setDataAndSend();
         }
 
         private void buttonAddArrow_Click(object sender, EventArgs e)
         {
-            //setDataAndSend2();
-            AllowedUpdateAction = true;
-            dataGridviewToWhite();
-            int arrows = dataGridView1.Rows.Count;
-            int maximunCells = dataGridView1.Columns.Count;
-            string[,] storage = new string[arrows, maximunCells];
-            for (int columns = 0; columns < arrows; columns++)
+            DataGridView dataToChargeData = new DataGridView();
+            dataToChargeData = decideDataGridViewWithOutData5(dataToChargeData);
+            bool allowEnterData = true;
+            if (dataToChargeData.Visible == false)
             {
-                for (int cell = 1; cell < maximunCells; cell++)
-                {
-                    if (dataGridView1.Rows[columns].Cells[cell].Value == null)
-                    {
-                        storage[columns, cell] = "";
-                    }
-                    else
-                    {
-                        storage[columns, cell] = dataGridView1.Rows[columns].Cells[cell].Value.ToString();
-                    }
-                }
+                MessageBox.Show("NO PUEDES INTRODUCIR DATOS PORQUE LA TABLA NO ES VISIBLE, HAZLA VISIBLE");
+                allowEnterData = false;
             }
-            int numberRow = locationRow;
-            ++numberRow;
-            dataGridView1.Rows.Add(numberRow.ToString());
-
-            for (int arrow2 = 0; arrow2 < arrows; arrow2++)
+            else if (dataToChargeData.Enabled == false)
             {
-                if (arrow2 == locationRow)
+                MessageBox.Show("NO PUEDES INTRODUCIR DATOS PORQUE LA TABLA NO PERMITE CALCULOS, HAZLA CALCULAR");
+                allowEnterData = false;
+            }
+
+            if (allowEnterData == true)
+            {
+                if (clickOnCellDataGrid1 == true || clickOnCellDataGrid2 == true || clickOnCellDataGrid3 == true || clickOnCellDataGrid4 == true || clickOnCellDataGrid5 == true)
                 {
-                    int end = arrow2;
-                    int arrowBack = arrow2;
-                    for (arrow2 = arrowBack; arrow2 < arrows; arrow2++)
+                    int scrollPositionV = dataToChargeData.FirstDisplayedScrollingRowIndex;
+                    int scrollPositionH = dataToChargeData.FirstDisplayedScrollingColumnIndex;
+                    List<string> listSalmon = new List<string>();
+                    foreach (DataGridViewColumn column in dataToChargeData.Columns)
                     {
-                        for (int cell = 1; cell < maximunCells; cell++)
+                        if (column.HeaderCell.Style.BackColor == Color.LightSalmon)
                         {
-                            dataGridView1.Rows[arrow2].Cells[cell].Value = storage[arrowBack, cell];
+                            listSalmon.Add(column.HeaderText);
                         }
-                        arrowBack = arrow2;
-                        dataGridView1.Rows[arrow2].Cells[0].Value = end;
-                        ++end;
+                    }
+                    generalMultiArrayMethods calltoMethods = new generalMultiArrayMethods();
+                    string[,] arrayAnswer = calltoMethods.addRow(dataToChargeData, indexRowOfDatagrid);
+                    int rows = arrayAnswer.GetLength(0) - 1;
+                    int columns = arrayAnswer.GetLength(1);
+                    dataToChargeData.Columns.Clear();
+
+                    for (int column = 0; column < columns; column++)
+                    {
+                        bool found = false;
+                        foreach (string compare in listSalmon)
+                        {
+                            if (compare == arrayAnswer[0, column])
+                            {
+                                found = true;
+                                break;
+                            }
+                        }
+                        dataToChargeData.Columns.Add(arrayAnswer[0, column], arrayAnswer[0, column]);
+                        if (found == true)
+                        {
+                            dataToChargeData.Columns[column].HeaderCell.Style.BackColor = Color.LightSalmon;
+                        }
+                        else if (found == false)
+                        {
+                            dataToChargeData.Columns[column].HeaderCell.Style.BackColor = Color.LightGray;
+                        }
                     }
 
-                    ++locationRow;
-                }
-            }
-            dataGridviewToWhite();
-            for (int arrow2 = 0; arrow2 < arrows; arrow2++)
-            {
-                if (arrow2 == locationRow)
-                {
-                    for (int cell = 1; cell < maximunCells; cell++)
+                    for (int row = 0; row < rows; row++)
                     {
-                        dataGridView1.Rows[arrow2].Cells[cell].Value = " ";
-                        dataGridView1.Rows[arrow2].Cells[cell].Style.BackColor = Color.LightGreen;
+                        dataToChargeData.Rows.Add(row.ToString());
                     }
-                    break;
+                    int indexData = 1;
+                    for (int row = 0; row < rows; row++)
+                    {
+                        for (int column = 0; column < columns; column++)
+                        {
+                            dataToChargeData.Rows[row].Cells[column].Value = arrayAnswer[indexData, column];
+                        }
+                        ++indexData;
+                    }
+                    for (int row = 0; row < rows; row++)
+                    {
+                        dataToChargeData.Rows[row].Cells[0].Value = row.ToString();
+                    }
+                    dataToChargeData.FirstDisplayedScrollingRowIndex = scrollPositionV;
+                    dataToChargeData.FirstDisplayedScrollingColumnIndex = scrollPositionH;
+                    paintRow(dataToChargeData, indexRowOfDatagrid);
+                    baseResizeDatasGridViewPhase1();
                 }
+                else
+                {
+                    dataToChargeData.Rows.Add(dataToChargeData.Rows.Count.ToString());
+                }
+
+                
             }
-            setDataAndSend();
         }
 
-        private void buttonMoveUpArrow_Click(object sender, EventArgs e)
-        {
-            dataGridviewToWhite();
-            foreach (DataGridViewRow row in dataGridView1.Rows)
-            {
-                int maximunCells = row.Cells.Count;
-                if (locationRow == row.Index)
-                {
-                    int indexActual = locationRow;
-                    int indexToMove = locationRow;
-                    --indexToMove;
-                    try
-                    {
-                        for (int cell = 1; cell < maximunCells; cell++)
-                        {
-
-                            object dataActual = dataGridView1.Rows[indexActual].Cells[cell].Value;
-                            object dataBefore = dataGridView1.Rows[indexToMove].Cells[cell].Value;
-                            dataGridView1.Rows[indexActual].Cells[cell].Value = dataBefore;
-                            dataGridView1.Rows[indexToMove].Cells[cell].Style.BackColor = Color.LightGreen;
-                            dataGridView1.Rows[indexToMove].Cells[cell].Value = dataActual;
-                            dataGridView1.Rows[indexActual].Cells[cell].Style.BackColor = Color.White;
-                            AllowedUpdateAction = true;
-                        }
-                        --locationRow;
-                    }
-                    catch (Exception)
-                    {
-                        MessageBox.Show("IMPOSIBLE DE MOVER, ES EL INICIO");
-                        break;
-                    }
-
-                    break;
-                }
-            }
-        }
 
         private void buttonMoveBackColum_Click(object sender, EventArgs e)
         {
-            dataGridviewToWhite();
-            int last = locationCell;
-            --last;
-            if (last > 0)
+            if (indexColumnOfDatagrid > 1)
             {
-                //++locationCell;
-                int rowNumberSave = 0;
-                bool onlyOnce = true;
-                foreach (DataGridViewRow row in dataGridView1.Rows)
+                DataGridView dataToChargeData = new DataGridView();
+                bool allowEnterData = true;
+                dataToChargeData = decideDataGridViewWithOutData5(dataToChargeData);
+                if (dataToChargeData.Visible == false)
                 {
-                    int maximunCells = row.Cells.Count;
-
-                    for (int cell = 1; cell < maximunCells; cell++)
-                    {
-                        if (locationCell == cell)
-                        {
-                            if (onlyOnce == true)
-                            {
-                                int indexHead = locationCell;
-                                string headActual = dataGridView1.Columns[indexHead].HeaderText.ToString();
-                                string headBefore = dataGridView1.Columns[--indexHead].HeaderText.ToString();
-                                dataGridView1.Columns[indexHead].HeaderText = headActual;
-                                dataGridView1.Columns[++indexHead].HeaderText = headBefore;
-                                onlyOnce = false;
-                            }
-                            
-                            int indexToMove = locationCell;
-                            try
-                            {
-                                object dataActual = dataGridView1.Rows[rowNumberSave].Cells[cell].Value;
-                                object dataBefore = dataGridView1.Rows[rowNumberSave].Cells[--cell].Value;
-                                dataGridView1.Rows[rowNumberSave].Cells[indexToMove].Value = dataBefore;
-                                dataGridView1.Rows[rowNumberSave].Cells[indexToMove].Style.BackColor = Color.White;
-                                dataGridView1.Rows[rowNumberSave].Cells[--indexToMove].Value = dataActual;
-                                dataGridView1.Rows[rowNumberSave].Cells[indexToMove].Style.BackColor = Color.LightGreen;
-                                dataGridView1.Update();
-                                AllowedUpdateAction = true;
-
-                                break;
-                            }
-                            catch (Exception)
-                            {
-                                MessageBox.Show("SUCEDIO ALGUN PROBLEMA MOVIENDO LAS COLUMNAS");
-                                break;
-                            }
-                            //break;
-                        }
-                    }
-                    ++rowNumberSave;
+                    MessageBox.Show("NO PUEDES INTRODUCIR DATOS PORQUE LA TABLA NO ES VISIBLE, HAZLA VISIBLE");
+                    allowEnterData = false;
                 }
-                --locationCell;
+                else if (dataToChargeData.Enabled == false)
+                {
+                    MessageBox.Show("NO PUEDES INTRODUCIR DATOS PORQUE LA TABLA NO PERMITE CALCULOS, HAZLA CALCULAR");
+                    allowEnterData = false;
+                }
+
+                if (allowEnterData == true)
+                {
+                    if (clickOnCellDataGrid1 == true || clickOnCellDataGrid2 == true || clickOnCellDataGrid3 == true || clickOnCellDataGrid4 == true || clickOnCellDataGrid5 == true)
+                    {
+                        int scrollPositionV = dataToChargeData.FirstDisplayedScrollingRowIndex;
+                        int scrollPositionH = dataToChargeData.FirstDisplayedScrollingColumnIndex;
+                        List<string> listSalmon = new List<string>();
+                        foreach (DataGridViewColumn column in dataToChargeData.Columns)
+                        {
+                            if (column.HeaderCell.Style.BackColor == Color.LightSalmon)
+                            {
+                                listSalmon.Add(column.HeaderText);
+                            }
+                        }
+                        generalMultiArrayMethods calltoMethods = new generalMultiArrayMethods();
+                        string[,] arrayAnswer = calltoMethods.MoveBackColum(dataToChargeData, indexColumnOfDatagrid);
+                        int rows = arrayAnswer.GetLength(0) - 1;
+                        int columns = arrayAnswer.GetLength(1);
+                        dataToChargeData.Columns.Clear();
+
+                        for (int column = 0; column < columns; column++)
+                        {
+                            bool found = false;
+                            foreach (string compare in listSalmon)
+                            {
+                                if (compare == arrayAnswer[0, column])
+                                {
+                                    found = true;
+                                    break;
+                                }
+                            }
+                            dataToChargeData.Columns.Add(arrayAnswer[0, column], arrayAnswer[0, column]);
+                            if (found == true)
+                            {
+                                dataToChargeData.Columns[column].HeaderCell.Style.BackColor = Color.LightSalmon;
+                            }
+                            else if (found == false)
+                            {
+                                dataToChargeData.Columns[column].HeaderCell.Style.BackColor = Color.LightGray;
+                            }
+                        }
+                        for (int row = 0; row < rows - 1; row++)
+                        {
+                            dataToChargeData.Rows.Add(row.ToString());
+                        }
+                        int indexData = 0;
+                        for (int row = 1; row < rows; row++)
+                        {
+                            for (int column = 0; column < columns; column++)
+                            {
+                                dataToChargeData.Rows[indexData].Cells[column].Value = arrayAnswer[row, column];
+                            }
+                            ++indexData;
+                        }
+                        --indexColumnOfDatagrid;
+                        dataToChargeData.FirstDisplayedScrollingRowIndex = scrollPositionV;
+                        dataToChargeData.FirstDisplayedScrollingColumnIndex = scrollPositionH;
+                        paintColum(dataToChargeData, indexColumnOfDatagrid);
+                    }
+                }
             }
             else
             {
-                MessageBox.Show("IMPOSIBLE MOVER, ES EL INICIO");
-                //++locationCell;
+                MessageBox.Show("IMPOSIBLE MOVER, ESTAS AL INICIO");
             }
         }
 
         private void buttonMoveNextColumn_Click(object sender, EventArgs e)
         {
-            dataGridviewToWhite();
-            int last = dataGridView1.Columns.Count;
-            --last;
-
-            if (locationCell < last)
+            DataGridView dataToChargeData = new DataGridView();
+            bool allowEnterData = true;
+            dataToChargeData = decideDataGridViewWithOutData5(dataToChargeData);
+            if (dataToChargeData.Visible == false)
             {
-                int rowNumberSave = 0;
-                bool onlyOnce = true;
-                foreach (DataGridViewRow row in dataGridView1.Rows)
+                MessageBox.Show("NO PUEDES INTRODUCIR DATOS PORQUE LA TABLA NO ES VISIBLE, HAZLA VISIBLE");
+                allowEnterData = false;
+            }
+            else if (dataToChargeData.Enabled == false)
+            {
+                MessageBox.Show("NO PUEDES INTRODUCIR DATOS PORQUE LA TABLA NO PERMITE CALCULOS, HAZLA CALCULAR");
+                allowEnterData = false;
+            }
+            if (indexColumnOfDatagrid < dataToChargeData.Columns.Count-1)
+            {
+                if (allowEnterData == true)
                 {
-                    int maximunCells = row.Cells.Count;
-
-                    for (int cell = 1; cell < maximunCells; cell++)
+                    if (clickOnCellDataGrid1 == true || clickOnCellDataGrid2 == true || clickOnCellDataGrid3 == true || clickOnCellDataGrid4 == true || clickOnCellDataGrid5 == true)
                     {
-                        if (locationCell == cell)
+                        int scrollPositionV = dataToChargeData.FirstDisplayedScrollingRowIndex;
+                        int scrollPositionH = dataToChargeData.FirstDisplayedScrollingColumnIndex;
+                        List<string> listSalmon = new List<string>();
+                        foreach (DataGridViewColumn column in dataToChargeData.Columns)
                         {
-                            if (onlyOnce == true)
+                            if (column.HeaderCell.Style.BackColor == Color.LightSalmon)
                             {
-                                int indexHead = locationCell;
-                                string headBefore = dataGridView1.Columns[indexHead].HeaderText.ToString();
-                                string headAfter = dataGridView1.Columns[++indexHead].HeaderText.ToString();
-                                dataGridView1.Columns[--indexHead].HeaderText = headAfter;
-                                dataGridView1.Columns[++indexHead].HeaderText = headBefore;
-                                onlyOnce = false;
+                                listSalmon.Add(column.HeaderText);
                             }
-                            int indexToMove = locationCell;
-                            try
-                            {
-                                object dataBefore = dataGridView1.Rows[rowNumberSave].Cells[cell].Value;
-                                object dataAfter = dataGridView1.Rows[rowNumberSave].Cells[++cell].Value;
-                                dataGridView1.Rows[rowNumberSave].Cells[indexToMove].Value = dataAfter;
-                                dataGridView1.Rows[rowNumberSave].Cells[indexToMove].Style.BackColor = Color.White;
-                                dataGridView1.Rows[rowNumberSave].Cells[++indexToMove].Value = dataBefore;
-                                dataGridView1.Rows[rowNumberSave].Cells[indexToMove].Style.BackColor = Color.LightGreen;
-                                dataGridView1.Update();
-                                AllowedUpdateAction = true;
-                                break;
-                            }
-                            catch (Exception)
-                            {
-                                MessageBox.Show("");
-                                break;
-                            }
-                            //break;
                         }
+                        generalMultiArrayMethods calltoMethods = new generalMultiArrayMethods();
+                        string[,] arrayAnswer = calltoMethods.MoveNextColum(dataToChargeData, indexColumnOfDatagrid);
+                        int rows = arrayAnswer.GetLength(0) - 1;
+                        int columns = arrayAnswer.GetLength(1);
+                        dataToChargeData.Columns.Clear();
 
+                        for (int column = 0; column < columns; column++)
+                        {
+                            bool found = false;
+                            foreach (string compare in listSalmon)
+                            {
+                                if (compare == arrayAnswer[0, column])
+                                {
+                                    found = true;
+                                    break;
+                                }
+                            }
+                            dataToChargeData.Columns.Add(arrayAnswer[0, column], arrayAnswer[0, column]);
+                            if (found == true)
+                            {
+                                dataToChargeData.Columns[column].HeaderCell.Style.BackColor = Color.LightSalmon;
+                            }
+                            else if (found == false)
+                            {
+                                dataToChargeData.Columns[column].HeaderCell.Style.BackColor = Color.LightGray;
+                            }
+                        }
+                        for (int row = 0; row < rows - 1; row++)
+                        {
+                            dataToChargeData.Rows.Add(row.ToString());
+                        }
+                        int indexData = 0;
+                        for (int row = 1; row < rows; row++)
+                        {
+                            for (int column = 0; column < columns; column++)
+                            {
+                                dataToChargeData.Rows[indexData].Cells[column].Value = arrayAnswer[row, column];
+                            }
+                            ++indexData;
+                        }
+                        ++indexColumnOfDatagrid;
+                        dataToChargeData.FirstDisplayedScrollingRowIndex = scrollPositionV;
+                        dataToChargeData.FirstDisplayedScrollingColumnIndex = scrollPositionH;
+                        paintColum(dataToChargeData, indexColumnOfDatagrid);
                     }
-
-                    ++rowNumberSave;
                 }
-                ++locationCell;
             }
             else
             {
@@ -1302,54 +1250,192 @@ namespace Sistema_Planillas_Contabilidad
             }
         }
 
-        private void buttonMoveDownArrow_Click(object sender, EventArgs e)
+        private void buttonMoveUpArrow_Click(object sender, EventArgs e)
         {
-            dataGridviewToWhite();
-            int last = dataGridView1.RowCount;
-            --last;
-            --last;
-            if (locationRow < last)
+            if (indexRowOfDatagrid > 0)
             {
-                foreach (DataGridViewRow row in dataGridView1.Rows)
+                DataGridView dataToChargeData = new DataGridView();
+                bool allowEnterData = true;
+                dataToChargeData = decideDataGridViewWithOutData5(dataToChargeData);
+                if (dataToChargeData.Visible == false)
                 {
-                    int maximunCells = row.Cells.Count;
-                    if (locationRow == row.Index)
+                    MessageBox.Show("NO PUEDES INTRODUCIR DATOS PORQUE LA TABLA NO ES VISIBLE, HAZLA VISIBLE");
+                    allowEnterData = false;
+                }
+                else if (dataToChargeData.Enabled == false)
+                {
+                    MessageBox.Show("NO PUEDES INTRODUCIR DATOS PORQUE LA TABLA NO PERMITE CALCULOS, HAZLA CALCULAR");
+                    allowEnterData = false;
+                }
+
+                if (allowEnterData == true)
+                {
+                    if (clickOnCellDataGrid1 == true || clickOnCellDataGrid2 == true || clickOnCellDataGrid3 == true || clickOnCellDataGrid4 == true || clickOnCellDataGrid5 == true)
                     {
-                        int indexActual = locationRow;
-                        int indexToMove = locationRow;
-                        ++indexToMove;
-                        try
+                        int scrollPositionV = dataToChargeData.FirstDisplayedScrollingRowIndex;
+                        int scrollPositionH = dataToChargeData.FirstDisplayedScrollingColumnIndex;
+                        List<string> listSalmon = new List<string>();
+                        foreach (DataGridViewColumn column in dataToChargeData.Columns)
                         {
-                            for (int cell = 1; cell < maximunCells; cell++)
+                            if (column.HeaderCell.Style.BackColor == Color.LightSalmon)
                             {
-
-                                object dataActual = dataGridView1.Rows[indexActual].Cells[cell].Value;
-                                object dataBefore = dataGridView1.Rows[indexToMove].Cells[cell].Value;
-                                dataGridView1.Rows[indexActual].Cells[cell].Value = dataBefore;
-                                dataGridView1.Rows[indexActual].Cells[cell].Style.BackColor = Color.White;
-                                dataGridView1.Rows[indexToMove].Cells[cell].Value = dataActual;
-                                dataGridView1.Rows[indexToMove].Cells[cell].Style.BackColor = Color.LightGreen;
-                                AllowedUpdateAction = true;
+                                listSalmon.Add(column.HeaderText);
                             }
-                            ++locationRow;
                         }
-                        catch (Exception)
-                        {
-                            MessageBox.Show("SUCEDIO UN PROBLEMA MOVIENDO LAS FILAS");
-                            break;
-                        }
-                        break;
+                        generalMultiArrayMethods calltoMethods = new generalMultiArrayMethods();
+                        string[,] arrayAnswer = calltoMethods.MoveUpRow(dataToChargeData, indexRowOfDatagrid);
+                        int rows = arrayAnswer.GetLength(0) - 1;
+                        int columns = arrayAnswer.GetLength(1);
+                        dataToChargeData.Columns.Clear();
 
+                        for (int column = 0; column < columns; column++)
+                        {
+                            bool found = false;
+                            foreach (string compare in listSalmon)
+                            {
+                                if (compare == arrayAnswer[0, column])
+                                {
+                                    found = true;
+                                    break;
+                                }
+                            }
+                            dataToChargeData.Columns.Add(arrayAnswer[0, column], arrayAnswer[0, column]);
+                            if (found == true)
+                            {
+                                dataToChargeData.Columns[column].HeaderCell.Style.BackColor = Color.LightSalmon;
+                            }
+                            else if (found == false)
+                            {
+                                dataToChargeData.Columns[column].HeaderCell.Style.BackColor = Color.LightGray;
+                            }
+                        }
+                        for (int row = 0; row < rows - 1; row++)
+                        {
+                            dataToChargeData.Rows.Add(row.ToString());
+                        }
+                        int indexData = 0;
+                        for (int row = 1; row < rows; row++)
+                        {
+                            for (int column = 0; column < columns; column++)
+                            {
+                                dataToChargeData.Rows[indexData].Cells[column].Value = arrayAnswer[row, column];
+                            }
+                            ++indexData;
+                        }
+                        for (int row = 0; row < dataToChargeData.Rows.Count-1; row++)
+                        {
+                            dataToChargeData.Rows[row].Cells[0].Value = row.ToString();
+                        }
+                        --indexRowOfDatagrid;
+                        paintRow(dataToChargeData, indexRowOfDatagrid);
+                        dataToChargeData.FirstDisplayedScrollingRowIndex = scrollPositionV;
+                        dataToChargeData.FirstDisplayedScrollingColumnIndex = scrollPositionH;
                     }
                 }
             }
             else
             {
-                MessageBox.Show("IMPOSIBLE DE MOVER, ES EL FIN");
+                MessageBox.Show("IMPOSIBLE MOVER, ESTAS AL INICIO");
+            }
+        }
+
+        private void buttonMoveDownArrow_Click(object sender, EventArgs e)
+        {
+            
+            DataGridView dataToChargeData = new DataGridView();
+            bool allowEnterData = true;
+            dataToChargeData = decideDataGridViewWithOutData5(dataToChargeData);
+            if (dataToChargeData.Visible == false)
+            {
+                MessageBox.Show("NO PUEDES INTRODUCIR DATOS PORQUE LA TABLA NO ES VISIBLE, HAZLA VISIBLE");
+                allowEnterData = false;
+            }
+            else if (dataToChargeData.Enabled == false)
+            {
+                MessageBox.Show("NO PUEDES INTRODUCIR DATOS PORQUE LA TABLA NO PERMITE CALCULOS, HAZLA CALCULAR");
+                allowEnterData = false;
+            }
+
+            if (indexRowOfDatagrid < dataToChargeData.Rows.Count-2)
+            {
+                if (allowEnterData == true)
+                {
+                    if (clickOnCellDataGrid1 == true || clickOnCellDataGrid2 == true || clickOnCellDataGrid3 == true || clickOnCellDataGrid4 == true || clickOnCellDataGrid5 == true)
+                    {
+                        int scrollPositionV = dataToChargeData.FirstDisplayedScrollingRowIndex;
+                        int scrollPositionH = dataToChargeData.FirstDisplayedScrollingColumnIndex;
+                        List<string> listSalmon = new List<string>();
+                        foreach(DataGridViewColumn column in dataToChargeData.Columns)
+                        {
+                            if(column.HeaderCell.Style.BackColor==Color.LightSalmon)
+                            {
+                                listSalmon.Add(column.HeaderText);
+                            }
+                        }
+                        generalMultiArrayMethods calltoMethods = new generalMultiArrayMethods();
+                        string[,] arrayAnswer = calltoMethods.MoveDownRow(dataToChargeData, indexRowOfDatagrid);
+                        int rows = arrayAnswer.GetLength(0) - 1;
+                        int columns = arrayAnswer.GetLength(1);
+                        dataToChargeData.Columns.Clear();
+
+                        for (int column = 0; column < columns; column++)
+                        {
+                            bool found = false;
+                            foreach(string compare in listSalmon)
+                            {
+                                if(compare== arrayAnswer[0, column])
+                                {
+                                    found = true;
+                                    break;
+                                }
+                            }
+                            dataToChargeData.Columns.Add(arrayAnswer[0, column], arrayAnswer[0, column]);
+                            if (found == true)
+                            {
+                                dataToChargeData.Columns[column].HeaderCell.Style.BackColor = Color.LightSalmon;
+                            }
+                            else if(found == false)
+                            {
+                                dataToChargeData.Columns[column].HeaderCell.Style.BackColor = Color.LightGray;
+                            }
+                        }
+                        for (int row = 0; row < rows - 1; row++)
+                        {
+                            dataToChargeData.Rows.Add(row.ToString());
+                        }
+                        
+                        int indexData = 0;
+                        for (int row = 1; row < rows; row++)
+                        {
+                            for (int column = 0; column < columns; column++)
+                            {
+                                dataToChargeData.Rows[indexData].Cells[column].Value = arrayAnswer[row, column];
+                            }
+                            ++indexData;
+                        }
+                        for (int row = 0; row < dataToChargeData.Rows.Count - 1; row++)
+                        {
+                            dataToChargeData.Rows[row].Cells[0].Value = row.ToString();
+                        }
+                        ++indexRowOfDatagrid;
+                        paintRow(dataToChargeData, indexRowOfDatagrid);
+                        dataToChargeData.FirstDisplayedScrollingRowIndex = scrollPositionV;
+                        dataToChargeData.FirstDisplayedScrollingColumnIndex = scrollPositionH;
+                    }
+                }
+            }
+            else
+            {
+                MessageBox.Show("IMPOSIBLE MOVER, ES EL FIN");
             }
         }
 
         private void buttonUpdateTemplate_Click(object sender, EventArgs e)
+        {
+            methodToSave("ALERT");
+        }
+
+        private void methodToSave(string message)
         {
             string pathOfFiles = CorePathOfFolderCompaniesSistemaPlanillas + company + "\\" + deparment + "\\" + month;
             string[] storageFiles = Directory.GetFiles(pathOfFiles);
@@ -1364,7 +1450,7 @@ namespace Sistema_Planillas_Contabilidad
             }
             foreach (string path in storageFiles)
             {
-                if(File.Exists(path))
+                if (File.Exists(path))
                 {
                     File.Delete(path);
                 }
@@ -1372,9 +1458,9 @@ namespace Sistema_Planillas_Contabilidad
             generalMethodToWriteInFiles callToWriteInFiles = new generalMethodToWriteInFiles();
             foreach (string name in names)
             {
-                if(name=="1-7")
+                if (name == "1-7")
                 {
-                    string pathToWrite = CorePathOfFolderCompaniesSistemaPlanillas + company + "\\" + deparment + "\\" + month + "\\" +name+".txt";
+                    string pathToWrite = CorePathOfFolderCompaniesSistemaPlanillas + company + "\\" + deparment + "\\" + month + "\\" + name + ".txt";
                     string sumString = "";
                     sumString += tagStartHEad + "?";
                     foreach (DataGridViewColumn column in dataGridView1.Columns)
@@ -1382,12 +1468,12 @@ namespace Sistema_Planillas_Contabilidad
                         sumString += column.HeaderText + "?";
                     }
                     sumString += tagEndHEad + "?";
-                    for (int row=0; row<dataGridView1.Rows.Count-1;row++)
+                    for (int row = 0; row < dataGridView1.Rows.Count - 1; row++)
                     {
                         sumString += tagStartLine + "?";
                         for (int column = 0; column < dataGridView1.Columns.Count; column++)
                         {
-                            if(dataGridView1.Rows[row].Cells[column].Value==null)
+                            if (dataGridView1.Rows[row].Cells[column].Value == null)
                             {
                                 sumString += " " + "?";
                             }
@@ -1395,14 +1481,14 @@ namespace Sistema_Planillas_Contabilidad
                             {
                                 sumString += dataGridView1.Rows[row].Cells[column].Value + "?";
                             }
-                            
+
                         }
                         sumString += tagEndLine + "?";
                     }
                     sumString = sumString.TrimEnd('?');
-                    callToWriteInFiles.writeInFiles(pathToWrite,sumString);
+                    callToWriteInFiles.writeInFiles(pathToWrite, sumString);
                 }
-                else if(name == "8-14")
+                else if (name == "8-14")
                 {
                     string pathToWrite = CorePathOfFolderCompaniesSistemaPlanillas + company + "\\" + deparment + "\\" + month + "\\" + name + ".txt";
                     string sumString = "";
@@ -1412,7 +1498,7 @@ namespace Sistema_Planillas_Contabilidad
                         sumString += column.HeaderText + "?";
                     }
                     sumString += tagEndHEad + "?";
-                    for (int row = 0; row < dataGridView2.Rows.Count-1; row++)
+                    for (int row = 0; row < dataGridView2.Rows.Count - 1; row++)
                     {
                         sumString += tagStartLine + "?";
                         for (int column = 0; column < dataGridView2.Columns.Count; column++)
@@ -1441,7 +1527,7 @@ namespace Sistema_Planillas_Contabilidad
                         sumString += column.HeaderText + "?";
                     }
                     sumString += tagEndHEad + "?";
-                    for (int row = 0; row < dataGridView3.Rows.Count-1; row++)
+                    for (int row = 0; row < dataGridView3.Rows.Count - 1; row++)
                     {
                         sumString += tagStartLine + "?";
                         for (int column = 0; column < dataGridView3.Columns.Count; column++)
@@ -1470,7 +1556,7 @@ namespace Sistema_Planillas_Contabilidad
                         sumString += column.HeaderText + "?";
                     }
                     sumString += tagEndHEad + "?";
-                    for (int row = 0; row < dataGridView4.Rows.Count-1; row++)
+                    for (int row = 0; row < dataGridView4.Rows.Count - 1; row++)
                     {
                         sumString += tagStartLine + "?";
                         for (int column = 0; column < dataGridView4.Columns.Count; column++)
@@ -1528,10 +1614,12 @@ namespace Sistema_Planillas_Contabilidad
                 string sumString = "";
                 //
                 sumString += tagStartDataGrid1 + "?";
+                sumString += dataGridView1.Visible.ToString() + "?";
+                sumString += dataGridView1.Enabled.ToString() + "?";
                 foreach (DataGridViewColumn column in dataGridView1.Columns)
                 {
                     sumString += column.HeaderText + "?";
-                    sumString += column.Visible.ToString()+ "?";
+                    sumString += column.Visible.ToString() + "?";
                     if (column.HeaderCell.Style.BackColor == Color.LightGray)
                     {
                         sumString += "True" + "?";
@@ -1544,11 +1632,13 @@ namespace Sistema_Planillas_Contabilidad
                 sumString += tagEndDataGrid1 + "?";
                 //
                 sumString += tagStartDataGrid2 + "?";
+                sumString += dataGridView2.Visible.ToString() + "?";
+                sumString += dataGridView2.Enabled.ToString() + "?";
                 foreach (DataGridViewColumn column in dataGridView2.Columns)
                 {
                     sumString += column.HeaderText + "?";
                     sumString += column.Visible.ToString() + "?";
-                    if(column.HeaderCell.Style.BackColor==Color.LightGray)
+                    if (column.HeaderCell.Style.BackColor == Color.LightGray)
                     {
                         sumString += "True" + "?";
                     }
@@ -1560,6 +1650,8 @@ namespace Sistema_Planillas_Contabilidad
                 sumString += tagEndDataGrid2 + "?";
                 //
                 sumString += tagStartDataGrid3 + "?";
+                sumString += dataGridView3.Visible.ToString() + "?";
+                sumString += dataGridView3.Enabled.ToString() + "?";
                 foreach (DataGridViewColumn column in dataGridView3.Columns)
                 {
                     sumString += column.HeaderText + "?";
@@ -1576,6 +1668,8 @@ namespace Sistema_Planillas_Contabilidad
                 sumString += tagEndDataGrid3 + "?";
                 //
                 sumString += tagStartDataGrid4 + "?";
+                sumString += dataGridView4.Visible.ToString() + "?";
+                sumString += dataGridView4.Enabled.ToString() + "?";
                 foreach (DataGridViewColumn column in dataGridView4.Columns)
                 {
                     sumString += column.HeaderText + "?";
@@ -1594,262 +1688,135 @@ namespace Sistema_Planillas_Contabilidad
                 sumString = sumString.TrimEnd('?');
                 callToWriteInFiles.writeInFiles(pathToWrite, sumString);
             }
-            MessageBox.Show("ACTUALIZADO EXITOSAMENTE"); 
+            if (message == "ALERT")
+            {
+                MessageBox.Show("ACTUALIZADO EXITOSAMENTE");
+            }
         }
-
         private void buttonEraseColumn_Click(object sender, EventArgs e)
         {
             //setDataAndSend2();
             dataGridviewToWhite();
-            int rowNumberSave = 0;
-            foreach (DataGridViewRow row in dataGridView1.Rows)
-            {
-                int maximunCells = row.Cells.Count;
-
-                for (int cell = 1; cell < maximunCells; cell++)
-                {
-                    if (locationCell == cell)
-                    {
-                        ++cell;
-                        for (int cell2 = cell; cell2 < maximunCells; cell2++)
-                        {
-                            int indexToMove2 = cell2;
-                            try
-                            {
-
-                                object dataActual = dataGridView1.Rows[rowNumberSave].Cells[cell2].Value;
-                                dataGridView1.Rows[rowNumberSave].Cells[--indexToMove2].Value = dataActual;
-                            }
-                            catch (Exception)
-                            {
-                                MessageBox.Show("");
-                            }
-                        }
-                        cell = maximunCells;
-                    }
-
-                }
-                ++rowNumberSave;
-            }
-            --locationCell;
-            AllowedUpdateAction = true;
-            foreach (DataGridViewRow row in dataGridView1.Rows)
-            {
-                int maximunCells = row.Cells.Count;
-                for (int cell = 1; cell < maximunCells; cell++)
-                {
-                    if (locationCell == cell)
-                    {
-                        row.Cells[cell].Style.BackColor = Color.LightGreen;
-                    }
-                }
-            }
-
-            int eraseColum = dataGridView1.Columns.Count;
-            --eraseColum;
-            dataGridView1.Columns.RemoveAt(eraseColum);
-
-            setDataAndSend();
         }
 
         private void buttonEraseArrow_Click(object sender, EventArgs e)
         {
-            dataGridviewToWhite();
-            int arrows = dataGridView1.Rows.Count;
-            if (dataGridView1.Rows.Count > 0 && locationRow > 0)
-            {
-                //setDataAndSend2();
-                int maximunCells = dataGridView1.Columns.Count;
-                string[,] storage = new string[arrows, maximunCells];
-                for (int columns = 0; columns < arrows; columns++)
-                {
-                    for (int cell = 1; cell < maximunCells; cell++)
-                    {
-                        if (dataGridView1.Rows[columns].Cells[cell].Value == null)
-                        {
-                            storage[columns, cell] = "";
-                        }
-                        else
-                        {
-                            storage[columns, cell] = dataGridView1.Rows[columns].Cells[cell].Value.ToString();
-                        }
-
-                    }
-                }
-
-                try
-                {
-                    for (int arrow2 = 0; arrow2 < arrows; arrow2++)
-                    {
-                        if (arrow2 == locationRow)
-                        {
-                            int arrowBack = locationRow;
-                            ++arrowBack;
-                            --arrows;
-                            for (arrow2 = locationRow; arrow2 < arrows; arrow2++)
-                            {
-                                for (int cell = 1; cell < maximunCells; cell++)
-                                {
-                                    dataGridView1.Rows[arrowBack].Cells[cell].Value = storage[arrowBack, cell];
-                                }
-                                int head = arrow2;
-                                --head;
-                                dataGridView1.Rows[arrow2].Cells[0].Value = head.ToString();
-                            }
-                            break;
-                        }
-                        else
-                        {
-                            for (int cell = 1; cell < maximunCells; cell++)
-                            {
-                                dataGridView1.Rows[arrow2].Cells[cell].Value = storage[arrow2, cell];
-                            }
-                        }
-                    }
-
-                    dataGridView1.Rows.RemoveAt(locationRow);
-                    --locationRow;
-                    AllowedUpdateAction = true;
-                }
-                catch (Exception)
-                {
-                    MessageBox.Show("IMPOSIBLE BORRAR");
-                }
-
-                for (int arrow2 = 0; arrow2 < arrows; arrow2++)
-                {
-                    if (arrow2 == locationRow)
-                    {
-                        for (int cell = 1; cell < maximunCells; cell++)
-                        {
-                            dataGridView1.Rows[arrow2].Cells[cell].Style.BackColor = Color.LightGreen;
-                        }
-                        break;
-                    }
-                }
-
-                setDataAndSend();
-            }
-            else
-            {
-                MessageBox.Show("IMPOSIBLE BORRAR, ES EL LA PRIMER FILA");
-            }
 
         }
 
-            private void buttonCalculateTotals_Click(object sender, EventArgs e)
+        private void buttonCalculateTotals_Click(object sender, EventArgs e)
+        {
+            /*
+            using (GUI_ELEGIR_GENERAR_TOTALES form2 = new GUI_ELEGIR_GENERAR_TOTALES())
             {
-                /*
-                using (GUI_ELEGIR_GENERAR_TOTALES form2 = new GUI_ELEGIR_GENERAR_TOTALES())
+                int maximunRowsS = dataGridView1.RowCount;
+                //++maximunRowsS;
+                int maximunColumsS = dataGridView1.ColumnCount;
+                string[,] storageDataArray = new string[maximunColumsS,maximunRowsS];
+                for (int rows = 0; rows < maximunRowsS; rows++)
                 {
-                    int maximunRowsS = dataGridView1.RowCount;
-                    //++maximunRowsS;
-                    int maximunColumsS = dataGridView1.ColumnCount;
-                    string[,] storageDataArray = new string[maximunColumsS,maximunRowsS];
-                    for (int rows = 0; rows < maximunRowsS; rows++)
+                    if (rows == 0)
                     {
-                        if (rows == 0)
+                        for (int columns = 0; columns < maximunColumsS; columns++)
                         {
-                            for (int columns = 0; columns < maximunColumsS; columns++)
-                            {
-                                storageDataArray[columns, rows] = dataGridView1.Columns[columns].HeaderText.ToString();
-                            }
-                            int keepIndex = 0;
-                            ++keepIndex;
-                            for (int columns = 0; columns < maximunColumsS; columns++)
-                            {
-                                storageDataArray[columns, keepIndex] = dataGridView1.Rows[rows].Cells[columns].Value.ToString();
-                            }
+                            storageDataArray[columns, rows] = dataGridView1.Columns[columns].HeaderText.ToString();
+                        }
+                        int keepIndex = 0;
+                        ++keepIndex;
+                        for (int columns = 0; columns < maximunColumsS; columns++)
+                        {
+                            storageDataArray[columns, keepIndex] = dataGridView1.Rows[rows].Cells[columns].Value.ToString();
+                        }
+                    }
+                    else
+                    {
+                        int keepIndex = rows;
+                        ++keepIndex;
+                        if (keepIndex >= maximunRowsS)
+                        {
+
                         }
                         else
                         {
-                            int keepIndex = rows;
-                            ++keepIndex;
-                            if (keepIndex >= maximunRowsS)
+                            for (int columns = 0; columns < maximunColumsS; columns++)
                             {
-
-                            }
-                            else
-                            {
-                                for (int columns = 0; columns < maximunColumsS; columns++)
+                                if (dataGridView1.Rows[rows].Cells[columns].Value == null)
                                 {
-                                    if (dataGridView1.Rows[rows].Cells[columns].Value == null)
-                                    {
-                                        storageDataArray[columns, rows] = " ";
-                                    }
-                                    else
-                                    {
-                                        storageDataArray[columns, keepIndex] = dataGridView1.Rows[rows].Cells[columns].Value.ToString();
-                                    }
-
+                                    storageDataArray[columns, rows] = " ";
                                 }
-                            }
-                        }
-                    }
-                    string actual = Directory.GetCurrentDirectory();
-                    actual = actual.Replace("\\bin\\Debug", "\\Companies");
-                    company = company.Replace(" ","_");
-                    string actualPath = actual + "\\" + company + "\\configuration\\totales.txt";
-                    if (File.Exists(actualPath))
-                    {
-                        List<string> listSendData1 = new List<string>();
-                        int maximunColums = dataGridView1.Columns.Count;
-                        for (int colum = 1; colum < maximunColums; colum++)
-                        {
-                            listSendData1.Add(dataGridView1.Columns[colum].HeaderText.ToString());
-                        }
-                        string[] storageData = File.ReadAllLines(actualPath);
-                        List<string> listSendData2 = new List<string>();
-                        for (int data = 0; data < storageData.Length; data++)
-                        {
-                            listSendData2.Add(storageData[data]);
-                        }
-                        form2.PathToSave(company, deparment,month,week, file);
-                        form2.recevivedArray(storageDataArray);
-                        form2.receiveListYes(listSendData1, listSendData2,true);
-                        if (form2.ShowDialog() == System.Windows.Forms.DialogResult.Yes)
-                        {
-                            File.Delete(actualPath);
-                            List<string> listSave = form2.listR;
-                            FileStream fs = new FileStream(actualPath, FileMode.OpenOrCreate, FileAccess.Write);
-                            StreamWriter writer = new StreamWriter(fs);
-                            foreach (string line in listSave)
-                            {
-                                writer.WriteLine(line);
-                            }
-                            writer.Close();
-                        }
-                    }
-                    else 
-                    {
-                        //MessageBox.Show("2");
-                        int maximunColums = dataGridView1.Columns.Count;
-                        List<string> listSendData = new List<string>();
-                        for (int colum = 1; colum < maximunColums; colum++)
-                        {
-                            listSendData.Add(dataGridView1.Columns[colum].HeaderText.ToString());
-                        }
-                        form2.PathToSave(company, deparment, month, week, file);
-                        form2.recevivedArray(storageDataArray);
-                        form2.receiveListNot(listSendData,false);
-                        if (form2.ShowDialog() == System.Windows.Forms.DialogResult.Yes)
-                        {
-                            List<string>  listSave = form2.listR;
-                            FileStream fs = new FileStream(actualPath, FileMode.OpenOrCreate, FileAccess.Write);
-                            StreamWriter writer = new StreamWriter(fs);
-                            foreach (string line in listSave)
-                            {
-                                writer.WriteLine(line);
-                            }
-                            writer.Close();
-                        }
-                    }
+                                else
+                                {
+                                    storageDataArray[columns, keepIndex] = dataGridView1.Rows[rows].Cells[columns].Value.ToString();
+                                }
 
+                            }
+                        }
+                    }
                 }
-                */
-            }
+                string actual = Directory.GetCurrentDirectory();
+                actual = actual.Replace("\\bin\\Debug", "\\Companies");
+                company = company.Replace(" ","_");
+                string actualPath = actual + "\\" + company + "\\configuration\\totales.txt";
+                if (File.Exists(actualPath))
+                {
+                    List<string> listSendData1 = new List<string>();
+                    int maximunColums = dataGridView1.Columns.Count;
+                    for (int colum = 1; colum < maximunColums; colum++)
+                    {
+                        listSendData1.Add(dataGridView1.Columns[colum].HeaderText.ToString());
+                    }
+                    string[] storageData = File.ReadAllLines(actualPath);
+                    List<string> listSendData2 = new List<string>();
+                    for (int data = 0; data < storageData.Length; data++)
+                    {
+                        listSendData2.Add(storageData[data]);
+                    }
+                    form2.PathToSave(company, deparment,month,week, file);
+                    form2.recevivedArray(storageDataArray);
+                    form2.receiveListYes(listSendData1, listSendData2,true);
+                    if (form2.ShowDialog() == System.Windows.Forms.DialogResult.Yes)
+                    {
+                        File.Delete(actualPath);
+                        List<string> listSave = form2.listR;
+                        FileStream fs = new FileStream(actualPath, FileMode.OpenOrCreate, FileAccess.Write);
+                        StreamWriter writer = new StreamWriter(fs);
+                        foreach (string line in listSave)
+                        {
+                            writer.WriteLine(line);
+                        }
+                        writer.Close();
+                    }
+                }
+                else 
+                {
+                    //MessageBox.Show("2");
+                    int maximunColums = dataGridView1.Columns.Count;
+                    List<string> listSendData = new List<string>();
+                    for (int colum = 1; colum < maximunColums; colum++)
+                    {
+                        listSendData.Add(dataGridView1.Columns[colum].HeaderText.ToString());
+                    }
+                    form2.PathToSave(company, deparment, month, week, file);
+                    form2.recevivedArray(storageDataArray);
+                    form2.receiveListNot(listSendData,false);
+                    if (form2.ShowDialog() == System.Windows.Forms.DialogResult.Yes)
+                    {
+                        List<string>  listSave = form2.listR;
+                        FileStream fs = new FileStream(actualPath, FileMode.OpenOrCreate, FileAccess.Write);
+                        StreamWriter writer = new StreamWriter(fs);
+                        foreach (string line in listSave)
+                        {
+                            writer.WriteLine(line);
+                        }
+                        writer.Close();
+                    }
+                }
 
-                private void buttonGenerateSits_Click(object sender, EventArgs e)
+            }
+            */
+        }
+
+        private void buttonGenerateSits_Click(object sender, EventArgs e)
         {
             using (GUI_SELECCIONAR_ASIENTOS form2 = new GUI_SELECCIONAR_ASIENTOS())
             {
@@ -1863,11 +1830,11 @@ namespace Sistema_Planillas_Contabilidad
                 */
             }
         }
-        
+
 
         public void PathToSave(string companyReceive, string deptReceive, string monthReceive, string pathReceive)
         {
-            path = pathReceive;
+            //path = pathReceive;
             company = companyReceive;
             deparment = deptReceive;
             month = monthReceive;
@@ -1884,7 +1851,7 @@ namespace Sistema_Planillas_Contabilidad
             string headReceived = head;
             int maximunColums = dataGridView1.Columns.Count;
             int indexFound = 0;
-            
+
             bool found = false;
             for (int addCol = 0; addCol < maximunColums; addCol++)
             {
@@ -1897,7 +1864,7 @@ namespace Sistema_Planillas_Contabilidad
                     break;
                 }
             }
-       
+
             if (found == false)
             {
                 ++maximunColums;
@@ -1924,11 +1891,11 @@ namespace Sistema_Planillas_Contabilidad
                     {
                         if (dataGridView1.Rows[rows].Cells[cell].Value == null)
                         {
-                           dataGridView1.Rows[rows].Cells[cell].Value = " ";
+                            dataGridView1.Rows[rows].Cells[cell].Value = " ";
                         }
                     }
                 }
-                
+
                 int pointAdd = cells;
                 --pointAdd;
                 ++cells;//raisign the amount of cells to coinciding with the colum number
@@ -1938,17 +1905,17 @@ namespace Sistema_Planillas_Contabilidad
                     {
                         if (cell == maximunColums)
                         {
-                           dataGridView1.Rows[0].Cells[pointAdd].Value = headReceived;
-                           dataGridView1.Rows[rows].Cells[pointAdd].Value = listReceive[indexAdd];
-                           ++indexAdd;
-                           break;
+                            dataGridView1.Rows[0].Cells[pointAdd].Value = headReceived;
+                            dataGridView1.Rows[rows].Cells[pointAdd].Value = listReceive[indexAdd];
+                            ++indexAdd;
+                            break;
                         }
 
                     }
 
                 }
             }
-            else 
+            else
             {
                 int minimunRows = dataGridView1.Rows.Count;
                 int maximunRows = listReceive.Count;
@@ -1974,9 +1941,9 @@ namespace Sistema_Planillas_Contabilidad
                     }
                 }
                 int indexAdd = 0;
-                for (int rows=0; rows< maximunRows; rows++)
+                for (int rows = 0; rows < maximunRows; rows++)
                 {
-                    for (int cell=1; cell< cells; cell++)
+                    for (int cell = 1; cell < cells; cell++)
                     {
                         if (cell == indexFound)
                         {
@@ -1984,12 +1951,12 @@ namespace Sistema_Planillas_Contabilidad
                             ++indexAdd;
                             break;
                         }
-                        
+
                     }
 
                 }
             }
-            
+
         }
 
         public void recieveListRow(List<string> listReceived, string head)
@@ -2022,8 +1989,8 @@ namespace Sistema_Planillas_Contabilidad
                     {
                         for (int cell = 1; cell < sizeList; cell++)
                         {
-                          dataGridView1.Rows[rows].Cells[cell].Value = listReceive[index];
-                          ++index;
+                            dataGridView1.Rows[rows].Cells[cell].Value = listReceive[index];
+                            ++index;
                         }
                         int start = listReceive.Count;
                         ++start;
@@ -2085,24 +2052,11 @@ namespace Sistema_Planillas_Contabilidad
 
         private void buttonCloseProgram_Click(object sender, EventArgs e)
         {
+            //methodToSave("!ALERT");
             this.Close();
         }
 
-        private void CellClickEvent(object sender, DataGridViewCellEventArgs e)
-        {
-            dataGridviewToWhite();
-            try
-            {
-                AllowedUpdateAction = true;
-                locationCell = dataGridView1.Rows[e.RowIndex].Cells[e.ColumnIndex].ColumnIndex;
-                locationRow = dataGridView1.Rows[e.RowIndex].Cells[e.ColumnIndex].RowIndex;
-                dataGridView1.Rows[e.RowIndex].Cells[e.ColumnIndex].Style.BackColor = Color.LightGreen;
-            }
-            catch (Exception)
-            { 
-                MessageBox.Show("HUBO ALGUN PROBLEMA SELECCIONANDO LA COLUMNA"); 
-            }
-        }
+
 
         private void buttonImportDataColumn_Click(object sender, EventArgs e)
         {
@@ -2110,12 +2064,12 @@ namespace Sistema_Planillas_Contabilidad
             //setDataAndSend2();
             using (GUI_ELEGIR_COPIAR_COLUMNA form2 = new GUI_ELEGIR_COPIAR_COLUMNA())
             {
-                form2.PathToSave(path);
+                //form2.PathToSave(path);
                 string sendData = "";
                 int maximunColum = dataGridView1.Columns.Count;
-                for (int colum= 0; colum<maximunColum; colum++)
+                for (int colum = 0; colum < maximunColum; colum++)
                 {
-                    sendData += dataGridView1.Columns[colum].HeaderText.ToString()+ "\n";
+                    sendData += dataGridView1.Columns[colum].HeaderText.ToString() + "\n";
                 }
                 form2.dataToSave(sendData);
                 if (form2.ShowDialog() == System.Windows.Forms.DialogResult.Yes)
@@ -2127,7 +2081,7 @@ namespace Sistema_Planillas_Contabilidad
                 }
             }
 
-            
+
         }
 
         private void buttonImportDataArrow_Click(object sender, EventArgs e)
@@ -2135,7 +2089,7 @@ namespace Sistema_Planillas_Contabilidad
             //setDataAndSend2();
             using (GUI_ELEGIR_COPIAR_FILA form2 = new GUI_ELEGIR_COPIAR_FILA())
             {
-                form2.PathToSave(path);
+                //form2.PathToSave(path);
                 string sendData = "";
                 int maximunRow = dataGridView1.RowCount;
                 --maximunRow;
@@ -2162,7 +2116,7 @@ namespace Sistema_Planillas_Contabilidad
             if (indexSaveDataGrinOnTime <= 0)
             {
                 MessageBox.Show("ES EL INICIO");
-                indexSaveDataGrinOnTime=0;
+                indexSaveDataGrinOnTime = 0;
                 buttonBackTotal.Enabled = false;
             }
             else
@@ -2181,7 +2135,7 @@ namespace Sistema_Planillas_Contabilidad
             if (indexSaveDataGrinOnTime >= end)
             {
                 MessageBox.Show("ES EL FIN");
-                indexSaveDataGrinOnTime= end;
+                indexSaveDataGrinOnTime = end;
                 buttonNextTotal.Enabled = false;
             }
             else
@@ -2192,7 +2146,7 @@ namespace Sistema_Planillas_Contabilidad
                 getDataAndSend(indexSaveDataGrinOnTime);
             }
         }
-        
+
         private void setDataAndSend()
         {
             buttonBackTotal.Enabled = true;
@@ -2210,7 +2164,7 @@ namespace Sistema_Planillas_Contabilidad
                         getData[rows, cell] = dataGridView1.Columns[cell].HeaderText.ToString();
                     }
                 }
-                else 
+                else
                 {
                     for (int cell = 1; cell < maximunColum; cell++)
                     {
@@ -2224,7 +2178,7 @@ namespace Sistema_Planillas_Contabilidad
                         }
                     }
                 }
-                
+
             }
             bool foundArray = false;
 
@@ -2242,9 +2196,9 @@ namespace Sistema_Planillas_Contabilidad
                 ++indexSaveDataGrinOnTime;
                 saveDataGrinOnTime.Add(getData);
             }
-            
+
         }
-        
+
         private void getDataAndSend(int indexSaveDataGrinOnTime)
         {
             string[,] getData = saveDataGrinOnTime[indexSaveDataGrinOnTime];
@@ -2333,7 +2287,7 @@ namespace Sistema_Planillas_Contabilidad
         {
             string actual = Directory.GetCurrentDirectory();
             actual = actual.Replace("\\bin\\Debug", "\\configuration");
-            string actualPath =actual +"\\Formulas\\formula.txt";
+            string actualPath = actual + "\\Formulas\\formula.txt";
             finalCalculate(actualPath);
 
             actual = Directory.GetCurrentDirectory();
@@ -2419,7 +2373,7 @@ namespace Sistema_Planillas_Contabilidad
                                             }
                                             storageReplace[storage] = change;
                                         }
-                                        
+
                                     }
                                 }
                             }
@@ -2432,7 +2386,7 @@ namespace Sistema_Planillas_Contabilidad
                                 //string sendData = callingCalculate.convertAndFormatLong(change.ToString());
                                 string sendData = change.ToString();
                                 sendData = Regex.Replace(sendData, @"\p{C}+", string.Empty);
-                                string returnsendData=callingCalculate.correctString(sendData);
+                                string returnsendData = callingCalculate.correctString(sendData);
                                 if (returnsendData != "false")
                                 {
                                     sendData = returnsendData;
@@ -2495,6 +2449,8 @@ namespace Sistema_Planillas_Contabilidad
 
         private void buttonRecalculate_Click(object sender, EventArgs e)
         {
+            sumTheCellsofAll();
+            /*
             try
             {
                 calculateFormula();
@@ -2502,22 +2458,23 @@ namespace Sistema_Planillas_Contabilidad
             {
                 MessageBox.Show("SUCEDIO ALGUN PROBLEMA RECALCULANDO LAS FORMULAS");
             }
+            */
         }
 
         private void CellRecalculateFinish(object sender, DataGridViewCellEventArgs e)
         {
             try
             {
-               int x = dataGridView1.Rows[e.RowIndex].Cells[e.ColumnIndex].RowIndex;
-               int y = dataGridView1.Rows[e.RowIndex].Cells[e.ColumnIndex].ColumnIndex;
-               string convert ="";
-               if(dataGridView1.Rows[x].Cells[y].Value==null)
-               {
-                 convert =" ";
-               }else
-               {
-                 convert = dataGridView1.Rows[x].Cells[y].Value.ToString();
-               }
+                int x = dataGridView1.Rows[e.RowIndex].Cells[e.ColumnIndex].RowIndex;
+                int y = dataGridView1.Rows[e.RowIndex].Cells[e.ColumnIndex].ColumnIndex;
+                string convert = "";
+                if (dataGridView1.Rows[x].Cells[y].Value == null)
+                {
+                    convert = " ";
+                } else
+                {
+                    convert = dataGridView1.Rows[x].Cells[y].Value.ToString();
+                }
                 if (convert.Contains("/") || convert.Contains("+") || convert.Contains("-") || convert.Contains("*"))
                 {
                     string storage = "";
@@ -2527,9 +2484,9 @@ namespace Sistema_Planillas_Contabilidad
                         {
                             storage += "\n" + item + "\n";
                         }
-                        else 
+                        else
                         {
-                            storage +=item;
+                            storage += item;
                         }
                     }
                     string[] storageData = storage.Split('\n');
@@ -2542,8 +2499,8 @@ namespace Sistema_Planillas_Contabilidad
                     dataGridView1.Rows[x].Cells[y].Value = sendData;
                 }
             }
-            catch(Exception)
-            {  }
+            catch (Exception)
+            { }
         }
 
         private void GUI_WORK_COMPANY_Resize(object sender, EventArgs e)
@@ -2556,18 +2513,18 @@ namespace Sistema_Planillas_Contabilidad
         {
             checkedListBox2.Items.Clear();
             //methodToHideUnhideDataGridView();
-            foreach(Object item in checkedListBox1.CheckedItems)
+            foreach (Object item in checkedListBox1.CheckedItems)
             {
                 int index = checkedListBox1.Items.IndexOf(item);
                 bool answer = checkedListBox1.GetItemChecked(index);
-                if (answer==true)
+                if (answer == true)
                 {
                     DataGridView DataToStudy = new DataGridView();
                     string week = checkedListBox1.Items[index].ToString();
-                    if(week.Contains("1-7"))
+                    if (week.Contains("1-7"))
                     {
                         DataToStudy = dataGridView1;
-                    }else if(week.Contains("8-14"))
+                    } else if (week.Contains("8-14"))
                     {
                         DataToStudy = dataGridView2;
                     }
@@ -2579,7 +2536,7 @@ namespace Sistema_Planillas_Contabilidad
                     {
                         DataToStudy = dataGridView4;
                     }
-                    bool visible= DataToStudy.Visible;
+                    bool visible = DataToStudy.Visible;
                     bool calculate = DataToStudy.Enabled;
                     checkedListBox2.Items.Add("VISIBLE", visible);
                     checkedListBox2.Items.Add("CALCULAR", calculate);
@@ -2591,7 +2548,12 @@ namespace Sistema_Planillas_Contabilidad
 
         private void comboBox1_TextChanged(object sender, EventArgs e)
         {
+            for (int index = 0; index < checkedListBox1.Items.Count; index++)
+            {
+                checkedListBox1.SetItemChecked(index, false);
+            }
             comboBox2.Items.Clear();
+            checkedListBox2.Items.Clear();
             comboBox2.Items.Add("--ELEGIR VISIBLES--");
             comboBox2.Items.Add("--TODOS VISIBLES--");
             comboBox2.Items.Add("--TODOS INVISIBLES--");
@@ -2679,7 +2641,7 @@ namespace Sistema_Planillas_Contabilidad
             {
                 foreach (DataGridViewColumn column in DataToStudy.Columns)
                 {
-                    if (column.HeaderCell.Style.BackColor==Color.LightSalmon)
+                    if (column.HeaderCell.Style.BackColor == Color.LightSalmon)
                     {
                         checkedListBox2.Items.Add(column.HeaderText, CheckState.Unchecked);
                     }
@@ -2728,27 +2690,28 @@ namespace Sistema_Planillas_Contabilidad
                     bool answer = checkedListBox2.GetItemChecked(index);
                     if (answer == true)
                     {
-                        if (item.ToString()=="VISIBLE")
+                        if (item.ToString() == "VISIBLE")
                         {
                             DataToStudy.Visible = true;
                         }
                         if (item.ToString() == "CALCULAR")
                         {
                             DataToStudy.EnableHeadersVisualStyles = false;
-                            foreach(DataGridViewColumn colum in DataToStudy.Columns)
+                            foreach (DataGridViewColumn colum in DataToStudy.Columns)
                             {
-                                colum.HeaderCell.Style.BackColor= Color.LightGray;
+                                colum.HeaderCell.Style.BackColor = Color.LightGray;
                             }
                             DataToStudy.ColumnHeadersDefaultCellStyle.BackColor = Color.LightGray;
+                            DataToStudy.Enabled = true;
                         }
                         //break;
-                    }else
+                    } else
                     {
                         if (item.ToString() == "VISIBLE")
                         {
                             DataToStudy.Visible = false;
                         }
-                        
+
                         if (item.ToString() == "CALCULAR")
                         {
                             DataToStudy.EnableHeadersVisualStyles = false;
@@ -2756,15 +2719,22 @@ namespace Sistema_Planillas_Contabilidad
                             {
                                 colum.HeaderCell.Style.BackColor = Color.LightSalmon;
                             }
+                            DataToStudy.Enabled = false;
                             DataToStudy.ColumnHeadersDefaultCellStyle.BackColor = Color.LightSalmon;
                         }
                     }
                 }
                 checkedListBox2.Items.Clear();
+                for (int index = 0; index < checkedListBox1.Items.Count; index++)
+                {
+                    checkedListBox1.SetItemChecked(index, false);
+                }
+                checkedListBox1.Text = threeLine;
                 baseResizeDatasGridViewPhase1();
-            }else if(orderDatagrid == "TODOS")
+            } else if (orderDatagrid == "TODOS")
             {
                 checkedListBox2.Items.Clear();
+                checkedListBox1.Text = threeLine;
             }
             else
             {
@@ -2828,6 +2798,267 @@ namespace Sistema_Planillas_Contabilidad
                 }
             }
             orderDatagrid = "";
+        }
+
+        private void dataGridView1_Click(object sender, EventArgs e)
+        {
+            clickOnDataGrid1 = true;
+            clickOnDataGrid2 = false;
+            clickOnDataGrid3 = false;
+            clickOnDataGrid4 = false;
+            clickOnDataGrid5 = false;
+        }
+
+        private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            clickOnCellDataGrid1 = true;
+            clickOnCellDataGrid2 = false;
+            clickOnCellDataGrid3 = false;
+            clickOnCellDataGrid4 = false;
+            clickOnCellDataGrid5 = false;
+            try
+            {
+                indexColumnOfDatagrid = dataGridView1.Rows[e.RowIndex].Cells[e.ColumnIndex].ColumnIndex;
+                indexRowOfDatagrid = dataGridView1.Rows[e.RowIndex].Cells[e.ColumnIndex].RowIndex;
+            } catch (Exception)
+            {
+                //MessageBox.Show("HUBO ALGUN PROBLEMA SELECCIONANDO");
+            }
+        }
+
+        private void dataGridView2_Click(object sender, EventArgs e)
+        {
+            clickOnDataGrid1 = false;
+            clickOnDataGrid2 = true;
+            clickOnDataGrid3 = false;
+            clickOnDataGrid4 = false;
+            clickOnDataGrid5 = false;
+        }
+
+        private void dataGridView2_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            clickOnCellDataGrid1 = false;
+            clickOnCellDataGrid2 = true;
+            clickOnCellDataGrid3 = false;
+            clickOnCellDataGrid4 = false;
+            clickOnCellDataGrid5 = false;
+            try
+            {
+                indexColumnOfDatagrid = dataGridView2.Rows[e.RowIndex].Cells[e.ColumnIndex].ColumnIndex;
+                indexRowOfDatagrid = dataGridView2.Rows[e.RowIndex].Cells[e.ColumnIndex].RowIndex;
+            }
+            catch (Exception)
+            {
+                //MessageBox.Show("HUBO ALGUN PROBLEMA SELECCIONANDO");
+            }
+        }
+
+        private void dataGridView3_Click(object sender, EventArgs e)
+        {
+            clickOnDataGrid1 = false;
+            clickOnDataGrid2 = false;
+            clickOnDataGrid3 = true;
+            clickOnDataGrid4 = false;
+            clickOnDataGrid5 = false;
+
+        }
+
+        private void dataGridView3_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            clickOnCellDataGrid1 = false;
+            clickOnCellDataGrid2 = false;
+            clickOnCellDataGrid3 = true;
+            clickOnCellDataGrid4 = false;
+            clickOnCellDataGrid5 = false;
+            try
+            {
+                indexColumnOfDatagrid = dataGridView3.Rows[e.RowIndex].Cells[e.ColumnIndex].ColumnIndex;
+                indexRowOfDatagrid = dataGridView3.Rows[e.RowIndex].Cells[e.ColumnIndex].RowIndex;
+            }
+            catch (Exception)
+            {
+                //MessageBox.Show("HUBO ALGUN PROBLEMA SELECCIONANDO");
+            }
+        }
+
+        private void dataGridView4_Click(object sender, EventArgs e)
+        {
+            clickOnDataGrid1 = false;
+            clickOnDataGrid2 = false;
+            clickOnDataGrid3 = false;
+            clickOnDataGrid4 = true;
+            clickOnDataGrid5 = false;
+        }
+
+        private void dataGridView4_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            clickOnCellDataGrid1 = false;
+            clickOnCellDataGrid2 = false;
+            clickOnCellDataGrid3 = false;
+            clickOnCellDataGrid4 = true;
+            clickOnCellDataGrid5 = false;
+            try
+            {
+                indexColumnOfDatagrid = dataGridView4.Rows[e.RowIndex].Cells[e.ColumnIndex].ColumnIndex;
+                indexRowOfDatagrid = dataGridView4.Rows[e.RowIndex].Cells[e.ColumnIndex].RowIndex;
+            }
+            catch (Exception)
+            {
+                //MessageBox.Show("HUBO ALGUN PROBLEMA SELECCIONANDO");
+            }
+        }
+
+        private void dataGridView5_Click(object sender, EventArgs e)
+        {
+            clickOnDataGrid1 = false;
+            clickOnDataGrid2 = false;
+            clickOnDataGrid3 = false;
+            clickOnDataGrid4 = false;
+            clickOnDataGrid5 = true;
+        }
+
+        private void dataGridView5_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            clickOnCellDataGrid1 = false;
+            clickOnCellDataGrid2 = false;
+            clickOnCellDataGrid3 = false;
+            clickOnCellDataGrid4 = false;
+            clickOnCellDataGrid5 = true;
+            try
+            {
+                indexColumnOfDatagrid = dataGridView5.Rows[e.RowIndex].Cells[e.ColumnIndex].ColumnIndex;
+                indexRowOfDatagrid = dataGridView5.Rows[e.RowIndex].Cells[e.ColumnIndex].RowIndex;
+            }
+            catch (Exception)
+            {
+                //MessageBox.Show("HUBO ALGUN PROBLEMA SELECCIONANDO");
+            }
+        }
+
+        private void paintColum(DataGridView dataToChange, int flag)
+        {
+            for(int row=0; row<dataToChange.Rows.Count; row++)
+            {
+                dataToChange.Rows[row].Cells[flag].Style.BackColor = Color.LightGreen;
+            }
+        }
+
+        private void paintRow(DataGridView dataToChange, int flag)
+        {
+            for (int column = 0; column < dataToChange.Columns.Count; column++)
+            {
+                dataToChange.Rows[flag].Cells[column].Style.BackColor = Color.LightGreen;
+            }
+        }
+
+        private DataGridView decideDataGridViewWithData5(DataGridView dataToChargeData)
+        {
+            if (clickOnDataGrid1 == true && dataGridView1.Visible == true && dataGridView1.Enabled == true)
+            {
+                dataToChargeData = dataGridView1;
+            }
+            else if (clickOnDataGrid1 == true && dataGridView1.Visible == false)
+            {
+                MessageBox.Show("NO PUEDES INTRODUCIR DATOS PORQUE LA TABLA NO ES VISIBLE, HAZLA VISIBLE");
+            }
+            else if (clickOnDataGrid1 == true && dataGridView1.Enabled == false)
+            {
+                MessageBox.Show("NO PUEDES INTRODUCIR DATOS PORQUE LA TABLA NO PERMITE CALCULOS, HAZLA CALCULAR");
+            }
+            else if (clickOnDataGrid2 == true && dataGridView2.Visible == true && dataGridView2.Enabled == true)
+            {
+                dataToChargeData = dataGridView2;
+            }
+            else if (clickOnDataGrid2 == true && dataGridView2.Visible == false)
+            {
+                MessageBox.Show("NO PUEDES INTRODUCIR DATOS PORQUE LA TABLA NO ES VISIBLE, HAZLA VISIBLE");
+            }
+            else if (clickOnDataGrid2 == true && dataGridView2.Enabled == false)
+            {
+                MessageBox.Show("NO PUEDES INTRODUCIR DATOS PORQUE LA TABLA NO PERMITE CALCULOS, HAZLA CALCULAR");
+            }
+            else if (clickOnDataGrid3 == true && dataGridView3.Visible == true && dataGridView3.Enabled == true)
+            {
+                dataToChargeData = dataGridView3;
+            }
+            else if (clickOnDataGrid3 == true && dataGridView3.Visible == false)
+            {
+                MessageBox.Show("NO PUEDES INTRODUCIR DATOS PORQUE LA TABLA NO ES VISIBLE, HAZLA VISIBLE");
+            }
+            else if (clickOnDataGrid3 == true && dataGridView3.Enabled == false)
+            {
+                MessageBox.Show("NO PUEDES INTRODUCIR DATOS PORQUE LA TABLA NO PERMITE CALCULOS, HAZLA CALCULAR");
+            }
+            else if (clickOnDataGrid4 == true && dataGridView4.Visible == true && dataGridView4.Enabled == true)
+            {
+                dataToChargeData = dataGridView4;
+            }
+            else if (clickOnDataGrid4 == true && dataGridView4.Visible == false)
+            {
+                MessageBox.Show("NO PUEDES INTRODUCIR DATOS PORQUE LA TABLA NO ES VISIBLE, HAZLA VISIBLE");
+            }
+            else if (clickOnDataGrid4 == true && dataGridView4.Enabled == false)
+            {
+                MessageBox.Show("NO PUEDES INTRODUCIR DATOS PORQUE LA TABLA NO PERMITE CALCULOS, HAZLA CALCULAR");
+            }
+            else if (clickOnDataGrid5 == true)
+            {
+                dataToChargeData = dataGridView5;
+            }
+            return dataToChargeData;
+        }
+        private DataGridView decideDataGridViewWithOutData5(DataGridView dataToChargeData)
+        {
+            if (clickOnDataGrid1 == true && dataGridView1.Visible == true && dataGridView1.Enabled == true)
+            {
+                dataToChargeData = dataGridView1;
+            }
+            else if (clickOnDataGrid1 == true && dataGridView1.Visible == false)
+            {
+                MessageBox.Show("NO PUEDES INTRODUCIR DATOS PORQUE LA TABLA NO ES VISIBLE, HAZLA VISIBLE");
+            }
+            else if (clickOnDataGrid1 == true && dataGridView1.Enabled == false)
+            {
+                MessageBox.Show("NO PUEDES INTRODUCIR DATOS PORQUE LA TABLA NO PERMITE CALCULOS, HAZLA CALCULAR");
+            }
+            else if (clickOnDataGrid2 == true && dataGridView2.Visible == true && dataGridView2.Enabled == true)
+            {
+                dataToChargeData = dataGridView2;
+            }
+            else if (clickOnDataGrid2 == true && dataGridView2.Visible == false)
+            {
+                MessageBox.Show("NO PUEDES INTRODUCIR DATOS PORQUE LA TABLA NO ES VISIBLE, HAZLA VISIBLE");
+            }
+            else if (clickOnDataGrid2 == true && dataGridView2.Enabled == false)
+            {
+                MessageBox.Show("NO PUEDES INTRODUCIR DATOS PORQUE LA TABLA NO PERMITE CALCULOS, HAZLA CALCULAR");
+            }
+            else if (clickOnDataGrid3 == true && dataGridView3.Visible == true && dataGridView3.Enabled == true)
+            {
+                dataToChargeData = dataGridView3;
+            }
+            else if (clickOnDataGrid3 == true && dataGridView3.Visible == false)
+            {
+                MessageBox.Show("NO PUEDES INTRODUCIR DATOS PORQUE LA TABLA NO ES VISIBLE, HAZLA VISIBLE");
+            }
+            else if (clickOnDataGrid3 == true && dataGridView3.Enabled == false)
+            {
+                MessageBox.Show("NO PUEDES INTRODUCIR DATOS PORQUE LA TABLA NO PERMITE CALCULOS, HAZLA CALCULAR");
+            }
+            else if (clickOnDataGrid4 == true && dataGridView4.Visible == true && dataGridView4.Enabled == true)
+            {
+                dataToChargeData = dataGridView4;
+            }
+            else if (clickOnDataGrid4 == true && dataGridView4.Visible == false)
+            {
+                MessageBox.Show("NO PUEDES INTRODUCIR DATOS PORQUE LA TABLA NO ES VISIBLE, HAZLA VISIBLE");
+            }
+            else if (clickOnDataGrid4 == true && dataGridView4.Enabled == false)
+            {
+                MessageBox.Show("NO PUEDES INTRODUCIR DATOS PORQUE LA TABLA NO PERMITE CALCULOS, HAZLA CALCULAR");
+            }
+
+            return dataToChargeData;
         }
     }
 }

@@ -77,9 +77,9 @@ namespace Sistema_Planillas_Contabilidad
         {
             int rowCounter = 0;
             int columnCounter = 0;
-            for (int linePhase1=0; linePhase1<receivedArray.Length; linePhase1++)
+            for (int linePhase1 = 0; linePhase1 < receivedArray.Length; linePhase1++)
             {
-                if(receivedArray[linePhase1] == tagEndHEad)
+                if (receivedArray[linePhase1] == tagEndHEad)
                 {
                     ++linePhase1;
                     for (int linePhase2 = linePhase1; linePhase2 < receivedArray.Length; linePhase2++)
@@ -90,16 +90,18 @@ namespace Sistema_Planillas_Contabilidad
                         }
                     }
                     break;
-                }else if(receivedArray[linePhase1] != tagStartHead)
+                }
+                else if (receivedArray[linePhase1] != tagStartHead)
                 {
                     ++columnCounter;
                 }
             }
             int[] returnArray = new int[1];
-            returnArray[0]=rowCounter;
+            returnArray[0] = rowCounter;
             returnArray[1] = columnCounter;
             return returnArray;
         }
+
         public string[,] MoveNextColum(DataGridView receivedDataGridView, int flag)
         {
             string[,] multiArrayReceived = calculateSizeAndFillArray(receivedDataGridView);
@@ -147,6 +149,41 @@ namespace Sistema_Planillas_Contabilidad
             return multiArrayReceived;
         }
 
+        public string[,] MoveUpRow(DataGridView receivedDataGridView, int flag)
+        {
+            string[,] multiArrayReceived = calculateSizeAndFillArray(receivedDataGridView);
+            int afterFlag = flag + 1;
+            ///int numberOfRows = multiArrayReceived.GetLength(0);
+            int numberOfColumns = multiArrayReceived.GetLength(1);
+            for (int column = 0; column < numberOfColumns; column++)
+            {
+                string actual = multiArrayReceived[flag, column];
+                string after = multiArrayReceived[afterFlag, column];
+                multiArrayReceived[flag, column] = after;
+                multiArrayReceived[afterFlag, column] = actual;
+            }
+            return multiArrayReceived;
+        }
+
+        public string[,] MoveDownRow(DataGridView receivedDataGridView, int flag)
+        {
+            string[,] multiArrayReceived = calculateSizeAndFillArray(receivedDataGridView);
+            int beforeFlag = flag+3;
+            --beforeFlag;
+            int next=flag+1;
+            int numberOfColumns = multiArrayReceived.GetLength(1);
+            for (int column = 0; column < numberOfColumns; column++)
+            {
+                string actual = multiArrayReceived[beforeFlag, column];
+                string before = multiArrayReceived[next, column];
+                multiArrayReceived[beforeFlag, column] = before;
+                multiArrayReceived[next, column] = actual;
+            }
+            return multiArrayReceived;
+        }
+
+        
+
         public string[,] eraseColum(DataGridView receivedDataGridView, int flag, int amountSpacesErase)
         {
             int beforeFlag = flag + 1;
@@ -178,12 +215,11 @@ namespace Sistema_Planillas_Contabilidad
             }
             return multiArrayReceived;
         }
-         
+
         public string[,] addColum(DataGridView receivedDataGridView, string nameHead, int flag, int amountSpacesAdd)
         {
-            int beforeFlag = flag + 1;
             string[,] multiArrayReceived = calculateSizeAndFillArray(receivedDataGridView);
-            int numberOfRows = multiArrayReceived.GetLength(0);
+            int numberOfRows = multiArrayReceived.GetLength(0) - 1;
             int numberOfColumns = multiArrayReceived.GetLength(1);
             //new array
             int addNumberOfColumns = numberOfColumns + amountSpacesAdd;
@@ -193,7 +229,7 @@ namespace Sistema_Planillas_Contabilidad
             {
                 if (columnPhase1 == flag)
                 {
-                    int indexToMove = flag+1;
+                    int indexToMove = flag + 1;
                     for (int columnPhase2 = columnPhase1; columnPhase2 < numberOfColumns; columnPhase2++)
                     {
                         for (int row = 0; row < numberOfRows; row++)
@@ -211,7 +247,7 @@ namespace Sistema_Planillas_Contabilidad
                         }
                         else
                         {
-                            replaceArray[row, flag] = "jejeje";
+                            replaceArray[row, flag] = " ";
                         }
                     }
                     break;
@@ -221,6 +257,45 @@ namespace Sistema_Planillas_Contabilidad
                     for (int row = 0; row < numberOfRows; row++)
                     {
                         replaceArray[row, columnPhase1] = multiArrayReceived[row, columnPhase1];
+                    }
+                }
+            }
+            return replaceArray;
+        }
+
+        public string[,] addRow(DataGridView receivedDataGridView, int flag)
+        {
+            string[,] multiArrayReceived = calculateSizeAndFillArray(receivedDataGridView);
+            int numberOfRows = multiArrayReceived.GetLength(0);
+            int numberOfColumns = multiArrayReceived.GetLength(1);
+            int flagStop = flag + 1;
+            //new array
+            string[,] replaceArray = new string[numberOfRows, numberOfColumns];
+            for (int rowPhase1 = 0; rowPhase1 < numberOfRows; rowPhase1++)
+            {
+                if(rowPhase1 == flagStop)
+                {
+                    int indexToMove = flag + 1;
+                    for (int rowPhase2 = flag; rowPhase2 < receivedDataGridView.Rows.Count; rowPhase2++)
+                    {
+                        for (int column = 0; column < numberOfColumns; column++)
+                        {
+                            replaceArray[indexToMove, column] = multiArrayReceived[rowPhase2, column];
+                        }
+                        ++indexToMove;
+                    }
+                    for (int column = 0; column < numberOfColumns; column++)
+                    {
+                        replaceArray[rowPhase1, column] = " ";
+                    }
+                    
+                    break;
+                }
+                else
+                {
+                    for (int column = 0; column < numberOfColumns; column++)
+                    {
+                        replaceArray[rowPhase1, column] = multiArrayReceived[rowPhase1, column];
                     }
                 }
             }

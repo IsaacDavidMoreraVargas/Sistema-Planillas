@@ -612,10 +612,10 @@ True
 True
 PRE HOR DIU
 True
-False
+True
 PRE HOR NOC
 True
-False
+True
 TOT HOR ORD DIU
 True
 True
@@ -651,7 +651,7 @@ True
 True
 INCAPACIDAD
 True
-False
+True
 TOTAL SALAR BRU
 True
 True
@@ -663,10 +663,10 @@ True
 True
 C.C.S.S
 True
-False
+True
 PRESTAMOS
 True
-False
+True
 VARIOS
 True
 True
