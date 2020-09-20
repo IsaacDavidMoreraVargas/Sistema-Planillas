@@ -191,5 +191,32 @@ namespace Sistema_Planillas_Contabilidad
                 tagEndGrid4 = value;
             }
         }
+        //
+        private string startFormula = "";
+        private string endFormula = "";
+        //
+        public string tagStartFormula
+        {
+            get
+            {
+                return startFormula;
+            }
+            set
+            {
+                startFormula = value;
+            }
+        }
+
+        public string tagEndFormula
+        {
+            get
+            {
+                return endFormula;
+            }
+            set
+            {
+                endFormula = value;
+            }
+        }
     }
 }

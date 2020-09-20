@@ -8,7 +8,7 @@ namespace Sistema_Planillas_Contabilidad
 {
     public class FoldersInsideCompany
     {
-        private string valueConfiguration = "";
+        private string valueFormula = "";
         private string ValueExclusiveData = "";
         private string ValueSits = "";
         private string ValueTemplate = "";
@@ -26,15 +26,15 @@ namespace Sistema_Planillas_Contabilidad
             }
         }
 
-        public string isConfiguration
+        public string isFormula
         {
             get
             {
-                return valueConfiguration;
+                return valueFormula;
             }
             set
             {
-                valueConfiguration = value;
+                valueFormula = value;
             }
         }
 

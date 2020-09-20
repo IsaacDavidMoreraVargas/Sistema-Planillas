@@ -44,7 +44,7 @@ namespace Sistema_Planillas_Contabilidad
         string deparmentValue = "";
 
         string coreExtraConfiguration = "";
-        string configuration = "";
+        string formula = "";
         string exclusiveData = "";
         string sits = "";
         string template = "";
@@ -78,7 +78,7 @@ namespace Sistema_Planillas_Contabilidad
             tagEndHEad = startTheTagsAndDefaults.isTagEndHead;
             //folders inside folders
             coreExtraConfiguration = startFoldersInsideCompany.isCoreExtraConfigurations;
-            configuration = startFoldersInsideCompany.isConfiguration;
+            formula = startFoldersInsideCompany.isFormula;
             exclusiveData = startFoldersInsideCompany.isExclusiveData;
             sits = startFoldersInsideCompany.isSits;
             template = startFoldersInsideCompany.isTemplate;
@@ -260,7 +260,7 @@ namespace Sistema_Planillas_Contabilidad
                 booleanMonth = false;
                 GUI_WORK_COMPANY callingStartWorkCompany = new GUI_WORK_COMPANY();
                 callingStartWorkCompany.MethodToReceivedAccesToObject(startThePaths, startTheTagsAndDefaults, startFoldersInsideCompany);
-                callingStartWorkCompany.PathToSave(companyOntime,deparmentOntime, monthOnTime,sendPath);
+                callingStartWorkCompany.PathToCompany(companyOntime,deparmentOntime, monthOnTime,sendPath);
                 callingStartWorkCompany.ShowDialog();
             }
             else 

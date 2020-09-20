@@ -109,7 +109,7 @@ namespace Sistema_Planillas_Contabilidad
         TagsAndDefaultValues startSetTagsAndDefaults = new TagsAndDefaultValues();
         private void setTags()
         {
-            string[] arrowOfTags = { "<startHeads>", "</endHeads>", "<startNewLine>", "</endNewline>","----", "DEPARTAMENTOS","<startDataGrid1>", "</endDataGrid1>", "<startDataGrid2>", "</endDataGrid2>", "<startDataGrid3>", "</endDataGrid3>", "<startDataGrid4>", "</endDataGrid4>" };
+            string[] arrowOfTags = { "<startHeads>", "</endHeads>", "<startNewLine>", "</endNewline>","----", "DEPARTAMENTOS","<startDataGrid1>", "</endDataGrid1>", "<startDataGrid2>", "</endDataGrid2>", "<startDataGrid3>", "</endDataGrid3>", "<startDataGrid4>", "</endDataGrid4>", "<startFormula>", "</endFormula>" };
             int sizeArray = arrowOfTags.Length;
             for (int numberTag = 0; numberTag < sizeArray; numberTag++)
             {
@@ -157,6 +157,12 @@ namespace Sistema_Planillas_Contabilidad
                     case 13:
                         startSetTagsAndDefaults.tagEndDataGrid4 = arrowOfTags[numberTag];
                         break;
+                    case 14:
+                        startSetTagsAndDefaults.tagStartFormula = arrowOfTags[numberTag];
+                        break;
+                    case 15:
+                        startSetTagsAndDefaults.tagEndFormula = arrowOfTags[numberTag];
+                        break;
                 }
             }
         }
@@ -164,7 +170,7 @@ namespace Sistema_Planillas_Contabilidad
         FoldersInsideCompany startSetFoldersCompanyDefaults = new FoldersInsideCompany();
         private void setDefaultFoldersInsideCompany()
         {
-            string[] arrowOfFolderInside = { "EXTRACONFIGURATIONS","configuration","exclusiveData","sits","template"};
+            string[] arrowOfFolderInside = { "EXTRACONFIGURATIONS", "extraConfigurationsCoreFormulas", "exclusiveData", "extraConfigurationsSitsFormulas", "template"};
             int sizeArray = arrowOfFolderInside.Length;
             for (int numberFolder = 0; numberFolder < sizeArray; numberFolder++)
             {
@@ -174,7 +180,7 @@ namespace Sistema_Planillas_Contabilidad
                         startSetFoldersCompanyDefaults.isCoreExtraConfigurations= arrowOfFolderInside[numberFolder];
                         break;
                     case 1:
-                        startSetFoldersCompanyDefaults.isConfiguration = arrowOfFolderInside[numberFolder];
+                        startSetFoldersCompanyDefaults.isFormula = arrowOfFolderInside[numberFolder];
                         break;
                     case 2:
                         startSetFoldersCompanyDefaults.isExclusiveData = arrowOfFolderInside[numberFolder];

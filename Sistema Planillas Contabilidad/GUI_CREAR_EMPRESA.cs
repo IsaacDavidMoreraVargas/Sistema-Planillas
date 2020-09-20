@@ -34,7 +34,7 @@ namespace Sistema_Planillas_Contabilidad
         string deparmentValue = "";
 
         string coreExtraConfiguration = "";
-        string configuration = "";
+        string formula = "";
         string exclusiveData = "";
         string sits = "";
         string template = "";
@@ -68,7 +68,7 @@ namespace Sistema_Planillas_Contabilidad
             tagEndHEad = startTheTagsAndDefaults.isTagEndHead;
             //folders inside folders
             coreExtraConfiguration = startFoldersInsideCompany.isCoreExtraConfigurations;
-            configuration = startFoldersInsideCompany.isConfiguration;
+            formula = startFoldersInsideCompany.isFormula;
             exclusiveData = startFoldersInsideCompany.isExclusiveData;
             sits = startFoldersInsideCompany.isSits;
             template = startFoldersInsideCompany.isTemplate;
@@ -323,7 +323,7 @@ namespace Sistema_Planillas_Contabilidad
                     string CompanyAndCoreConfiguration = pathCompanyAndNameCompany + "\\" + coreExtraConfiguration;
                     listFoldersCreate.Add(CompanyAndCoreConfiguration);
                     //add folder core-configuration
-                    string CompanyAndConfiguration = pathCompanyAndNameCompany + "\\" + coreExtraConfiguration + "\\" +configuration;
+                    string CompanyAndConfiguration = pathCompanyAndNameCompany + "\\" + coreExtraConfiguration + "\\" + formula;
                     listFoldersCreate.Add(CompanyAndConfiguration);
                     //add folder core-exclusive data
                     string CompanyAndExclusiveData = pathCompanyAndNameCompany + "\\" + coreExtraConfiguration + "\\" + exclusiveData;
@@ -931,6 +931,7 @@ namespace Sistema_Planillas_Contabilidad
         {
             this.Hide();
             GUI_DUPLICAR_COPIAR_ELIMINAR_COMPANY callingMenuStart = new GUI_DUPLICAR_COPIAR_ELIMINAR_COMPANY();
+            callingMenuStart.MethodToReceivedAccesToObject(startThePaths, startTheTagsAndDefaults, startFoldersInsideCompany);
             callingMenuStart.ShowDialog();
             this.Close();
         }

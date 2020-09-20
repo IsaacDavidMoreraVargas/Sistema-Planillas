@@ -40,7 +40,7 @@ namespace Sistema_Planillas_Contabilidad
         string coreExtraConfiguration = "";
         string threeLine = "";
         string deparmentValue = "";
-        string configuration = "";
+        string formula = "";
         string exclusiveData = "";
         string sits = "";
         string template = "";
@@ -75,7 +75,7 @@ namespace Sistema_Planillas_Contabilidad
             deparmentValue = startTheTagsAndDefaults.isDeparment;
             //folders inside folders
             coreExtraConfiguration = startFoldersInsideCompany.isCoreExtraConfigurations;
-            configuration = startFoldersInsideCompanyReceived.isConfiguration;
+            formula = startFoldersInsideCompanyReceived.isFormula;
             exclusiveData = startFoldersInsideCompanyReceived.isExclusiveData;
             sits = startFoldersInsideCompanyReceived.isSits;
             template = startFoldersInsideCompany.isTemplate;
@@ -116,6 +116,15 @@ namespace Sistema_Planillas_Contabilidad
                     listView1.Items.Add(changeString);
                 }
             }
+            int index = 0;
+            foreach (ListViewItem item in listView1.Items)
+            {
+                if ((index % 2) == 0)
+                {
+                    item.BackColor = Color.LightBlue;
+                }
+                ++index;
+            }
         }
 
         
@@ -138,7 +147,8 @@ namespace Sistema_Planillas_Contabilidad
                         {
                             subString.Add(dataToEnter);
                             subString.Add(item.Text);
-                        }else
+                        }
+                        else
                         {
                             subString.Add(item.Text);
                         }
@@ -148,8 +158,18 @@ namespace Sistema_Planillas_Contabilidad
                     {
                         listView1.Items.Add(item);
                     }
+
+                    int index = 0;
+                    foreach (ListViewItem item in listView1.Items)
+                    {
+                        if ((index % 2) == 0)
+                        {
+                            listView1.Items[index].BackColor = Color.LightBlue;
+                        }
+                        ++index;
+                    }
                 }
-                colorateTheCells();
+                colorateTheCellsWithWhite();
             }
         }
 
@@ -193,8 +213,16 @@ namespace Sistema_Planillas_Contabilidad
 
         private void buttonEraseColumn_Click(object sender, EventArgs e)
         {
-            listView1.Items.RemoveAt(indexColumn);
-            colorateTheCells();
+            DialogResult eliminate = MessageBox.Show("¿ESTAS SEGURO DE ELIMINAR LA COLUMNA "+listView1.Items[indexColumn].Text+" ?", "OPCIÓN RAPIDA", MessageBoxButtons.YesNo);
+            switch (eliminate)
+            {
+                case DialogResult.Yes:
+                    listView1.Items.RemoveAt(indexColumn);
+                break;
+                case DialogResult.No:
+                break;
+            }
+            colorateTheCellsWithWhite();
         }
         
         private void buttonUpdateTemplate_Click(object sender, EventArgs e)
@@ -243,6 +271,20 @@ namespace Sistema_Planillas_Contabilidad
             }
         }
 
+        private void colorateTheCellsWithWhite()
+        {
+            for (int cell = 0; cell < listView1.Items.Count; cell++)
+            {
+                if (cell == indexColumn)
+                {
+                    listView1.Items[cell].BackColor = Color.LightGreen;
+                }else
+                {
+                    listView1.Items[cell].BackColor = listView1.Items[cell].BackColor;
+                }
+            }
+        }
+
         public void nameOFTemplate(string nameTemplateReceived)
         {
             nameTemplate = nameTemplateReceived;
@@ -271,9 +313,10 @@ namespace Sistema_Planillas_Contabilidad
         private void listView1_SelectedIndexChanged(object sender, EventArgs e)
         {
             indexColumn = listView1.FocusedItem.Index;
+
             try
             {
-                colorateTheCells();
+                colorateTheCellsWithWhite();
             }
             catch (Exception) { }
         }

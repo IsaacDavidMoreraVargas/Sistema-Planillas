@@ -44,7 +44,7 @@ namespace Sistema_Planillas_Contabilidad
         string coreExtraConfiguration = "";
         string threeLine = "";
         string deparmentValue = "";
-        string configuration = "";
+        string formula = "";
         string exclusiveData = "";
         string sits = "";
         string template = "";
@@ -76,7 +76,7 @@ namespace Sistema_Planillas_Contabilidad
             deparmentValue = startTheTagsAndDefaults.isDeparment;
             //folders inside folders
             coreExtraConfiguration = startFoldersInsideCompany.isCoreExtraConfigurations;
-            configuration = startFoldersInsideCompanyReceived.isConfiguration;
+            formula = startFoldersInsideCompanyReceived.isFormula;
             exclusiveData = startFoldersInsideCompanyReceived.isExclusiveData;
             sits = startFoldersInsideCompanyReceived.isSits;
             template = startFoldersInsideCompany.isTemplate;

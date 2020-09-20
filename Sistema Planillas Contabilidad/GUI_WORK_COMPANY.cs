@@ -63,7 +63,7 @@ namespace Sistema_Planillas_Contabilidad
         string deparmentValue = "";
 
         string coreExtraConfiguration = "";
-        string configuration = "";
+        string formula = "";
         string exclusiveData = "";
         string sits = "";
         string template = "";
@@ -119,7 +119,7 @@ namespace Sistema_Planillas_Contabilidad
             tagEndDataGrid4 = startTheTagsAndDefaults.tagEndDataGrid4;
             //folders inside folders
             coreExtraConfiguration = startFoldersInsideCompany.isCoreExtraConfigurations;
-            configuration = startFoldersInsideCompany.isConfiguration;
+            formula = startFoldersInsideCompany.isFormula;
             exclusiveData = startFoldersInsideCompany.isExclusiveData;
             sits = startFoldersInsideCompany.isSits;
             template = startFoldersInsideCompany.isTemplate;
@@ -704,18 +704,7 @@ namespace Sistema_Planillas_Contabilidad
 
         
 
-        private void dataGridviewToWhite()
-        {
-            foreach (DataGridViewRow row in dataGridView1.Rows)
-            {
-                int maximunCells = dataGridView1.Columns.Count;
-                for (int cell = 0; cell < maximunCells; cell++)
-                {
-                    row.Cells[cell].Style.BackColor = Color.White;
-                }
-            }
-        }
-
+        
         private void createColumnsListView()
         {
             foreach (DataGridViewColumn column in dataGridView1.Columns)
@@ -1693,15 +1682,57 @@ namespace Sistema_Planillas_Contabilidad
                 MessageBox.Show("ACTUALIZADO EXITOSAMENTE");
             }
         }
+
         private void buttonEraseColumn_Click(object sender, EventArgs e)
         {
-            //setDataAndSend2();
-            dataGridviewToWhite();
+            DataGridView dataToChargeData = new DataGridView();
+            dataToChargeData = decideDataGridViewWithData5(dataToChargeData);
+            bool allowEnterData = true;
+            if (dataToChargeData.Visible == false)
+            {
+                MessageBox.Show("NO PUEDES INTRODUCIR DATOS PORQUE LA TABLA NO ES VISIBLE, HAZLA VISIBLE");
+                allowEnterData = false;
+            }
+            else if (dataToChargeData.Enabled == false)
+            {
+                MessageBox.Show("NO PUEDES INTRODUCIR DATOS PORQUE LA TABLA NO PERMITE CALCULOS, HAZLA CALCULAR");
+                allowEnterData = false;
+            }
+
+            if (allowEnterData == true)
+            {
+                dataGridviewToWhite(dataToChargeData);
+                dataToChargeData.Columns.RemoveAt(indexColumnOfDatagrid);
+                paintColum(dataToChargeData, indexColumnOfDatagrid);
+            }
         }
 
         private void buttonEraseArrow_Click(object sender, EventArgs e)
         {
+            DataGridView dataToChargeData = new DataGridView();
+            dataToChargeData = decideDataGridViewWithData5(dataToChargeData);
+            bool allowEnterData = true;
+            if (dataToChargeData.Visible == false)
+            {
+                MessageBox.Show("NO PUEDES INTRODUCIR DATOS PORQUE LA TABLA NO ES VISIBLE, HAZLA VISIBLE");
+                allowEnterData = false;
+            }
+            else if (dataToChargeData.Enabled == false)
+            {
+                MessageBox.Show("NO PUEDES INTRODUCIR DATOS PORQUE LA TABLA NO PERMITE CALCULOS, HAZLA CALCULAR");
+                allowEnterData = false;
+            }
 
+            if (allowEnterData == true)
+            {
+                dataGridviewToWhite(dataToChargeData);
+                dataToChargeData.Rows.RemoveAt(indexRowOfDatagrid);
+                for(int row=0; row<dataToChargeData.Rows.Count-1; row++)
+                {
+                    dataToChargeData.Rows[row].Cells[0].Value = row.ToString();
+                }
+                paintRow(dataToChargeData, indexRowOfDatagrid);
+            }
         }
 
         private void buttonCalculateTotals_Click(object sender, EventArgs e)
@@ -1832,7 +1863,7 @@ namespace Sistema_Planillas_Contabilidad
         }
 
 
-        public void PathToSave(string companyReceive, string deptReceive, string monthReceive, string pathReceive)
+        public void PathToCompany(string companyReceive, string deptReceive, string monthReceive, string pathReceive)
         {
             //path = pathReceive;
             company = companyReceive;
@@ -2271,16 +2302,19 @@ namespace Sistema_Planillas_Contabilidad
 
         private void buttonGenerateFormula_Click(object sender, EventArgs e)
         {
-            List<string> savingHeads = new List<string>();
-            int maximunColums = dataGridView1.Columns.Count;
-            for (int colums = 5; colums < maximunColums; colums++)
+            this.Hide();
+            List<string> listOfHeads = new List<string>();
+            foreach(DataGridViewColumn column in dataGridView5.Columns)
             {
-                savingHeads.Add(dataGridView1.Columns[colums].HeaderText);
+                listOfHeads.Add(column.HeaderText);
             }
             GUI_CREATE_FORMULA callingCreateFormula = new GUI_CREATE_FORMULA();
-            callingCreateFormula.receivedData(savingHeads);
-            //callingCreateFormula.PathToSave(company, deparment, month, week, file, path);
+            callingCreateFormula.MethodToReceivedAccesToObject(startThePaths, startTheTagsAndDefaults, startFoldersInsideCompany);
+            callingCreateFormula.lisftOfHeads(listOfHeads);
+            callingCreateFormula.PathToCompany(company, deparment, month);
+            callingCreateFormula.menuGlobalOrLocal("LOCAL");
             callingCreateFormula.ShowDialog();
+            this.Show();
         }
 
         private void calculateFormula()
@@ -2819,11 +2853,15 @@ namespace Sistema_Planillas_Contabilidad
             try
             {
                 indexColumnOfDatagrid = dataGridView1.Rows[e.RowIndex].Cells[e.ColumnIndex].ColumnIndex;
-                indexRowOfDatagrid = dataGridView1.Rows[e.RowIndex].Cells[e.ColumnIndex].RowIndex;
-            } catch (Exception)
-            {
-                //MessageBox.Show("HUBO ALGUN PROBLEMA SELECCIONANDO");
             }
+            catch (Exception)
+            { MessageBox.Show("COLUMNA NO SE HA SELECCIONANDO "); }
+            try
+            {
+                indexRowOfDatagrid = dataGridView1.Rows[e.RowIndex].Cells[e.ColumnIndex].RowIndex;
+            }
+            catch (Exception)
+            { MessageBox.Show("FILA NO SE HA SELECCIONANDO "); }
         }
 
         private void dataGridView2_Click(object sender, EventArgs e)
@@ -2845,12 +2883,15 @@ namespace Sistema_Planillas_Contabilidad
             try
             {
                 indexColumnOfDatagrid = dataGridView2.Rows[e.RowIndex].Cells[e.ColumnIndex].ColumnIndex;
+            }
+            catch (Exception)
+            { MessageBox.Show("COLUMNA NO SE HA SELECCIONANDO "); }
+            try
+            {
                 indexRowOfDatagrid = dataGridView2.Rows[e.RowIndex].Cells[e.ColumnIndex].RowIndex;
             }
             catch (Exception)
-            {
-                //MessageBox.Show("HUBO ALGUN PROBLEMA SELECCIONANDO");
-            }
+            { MessageBox.Show("FILA NO SE HA SELECCIONANDO "); }
         }
 
         private void dataGridView3_Click(object sender, EventArgs e)
@@ -2873,12 +2914,15 @@ namespace Sistema_Planillas_Contabilidad
             try
             {
                 indexColumnOfDatagrid = dataGridView3.Rows[e.RowIndex].Cells[e.ColumnIndex].ColumnIndex;
+            }
+            catch (Exception)
+            { MessageBox.Show("COLUMNA NO SE HA SELECCIONANDO "); }
+            try
+            {
                 indexRowOfDatagrid = dataGridView3.Rows[e.RowIndex].Cells[e.ColumnIndex].RowIndex;
             }
             catch (Exception)
-            {
-                //MessageBox.Show("HUBO ALGUN PROBLEMA SELECCIONANDO");
-            }
+            { MessageBox.Show("FILA NO SE HA SELECCIONANDO "); }
         }
 
         private void dataGridView4_Click(object sender, EventArgs e)
@@ -2900,12 +2944,15 @@ namespace Sistema_Planillas_Contabilidad
             try
             {
                 indexColumnOfDatagrid = dataGridView4.Rows[e.RowIndex].Cells[e.ColumnIndex].ColumnIndex;
+            }
+            catch (Exception)
+            { MessageBox.Show("COLUMNA NO SE HA SELECCIONANDO "); }
+            try
+            {
                 indexRowOfDatagrid = dataGridView4.Rows[e.RowIndex].Cells[e.ColumnIndex].RowIndex;
             }
             catch (Exception)
-            {
-                //MessageBox.Show("HUBO ALGUN PROBLEMA SELECCIONANDO");
-            }
+            { MessageBox.Show("FILA NO SE HA SELECCIONANDO "); }
         }
 
         private void dataGridView5_Click(object sender, EventArgs e)
@@ -2927,12 +2974,15 @@ namespace Sistema_Planillas_Contabilidad
             try
             {
                 indexColumnOfDatagrid = dataGridView5.Rows[e.RowIndex].Cells[e.ColumnIndex].ColumnIndex;
+            }
+            catch (Exception)
+            { MessageBox.Show("COLUMNA NO SE HA SELECCIONANDO "); }
+            try
+            {
                 indexRowOfDatagrid = dataGridView5.Rows[e.RowIndex].Cells[e.ColumnIndex].RowIndex;
             }
             catch (Exception)
-            {
-                //MessageBox.Show("HUBO ALGUN PROBLEMA SELECCIONANDO");
-            }
+            { MessageBox.Show("FILA NO SE HA SELECCIONANDO "); }
         }
 
         private void paintColum(DataGridView dataToChange, int flag)
@@ -3059,6 +3109,18 @@ namespace Sistema_Planillas_Contabilidad
             }
 
             return dataToChargeData;
+        }
+
+        private void dataGridviewToWhite(DataGridView dataToChargeData)
+        {
+
+            for (int row = 0; row < dataToChargeData.Rows.Count - 1; row++)
+            {
+                for (int column = 0; column < dataToChargeData.Columns.Count; column++)
+                {
+                    dataToChargeData.Rows[row].Cells[column].Style.BackColor = Color.White;
+                }
+            }
         }
     }
 }
