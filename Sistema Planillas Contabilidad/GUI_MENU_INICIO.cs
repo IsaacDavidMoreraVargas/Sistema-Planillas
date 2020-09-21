@@ -109,7 +109,7 @@ namespace Sistema_Planillas_Contabilidad
         TagsAndDefaultValues startSetTagsAndDefaults = new TagsAndDefaultValues();
         private void setTags()
         {
-            string[] arrowOfTags = { "<startHeads>", "</endHeads>", "<startNewLine>", "</endNewline>","----", "DEPARTAMENTOS","<startDataGrid1>", "</endDataGrid1>", "<startDataGrid2>", "</endDataGrid2>", "<startDataGrid3>", "</endDataGrid3>", "<startDataGrid4>", "</endDataGrid4>", "<startFormula>", "</endFormula>" };
+            string[] arrowOfTags = { "<startHeads>", "</endHeads>", "<startNewLine>", "</endNewline>","----", "DEPARTAMENTOS","<startDataGrid1>", "</endDataGrid1>", "<startDataGrid2>", "</endDataGrid2>", "<startDataGrid3>", "</endDataGrid3>", "<startDataGrid4>", "</endDataGrid4>", "<startFormula>", "</endFormula>","<startChargeFormula>", "</endChargeFormula>", "<startFormulasDebit>", "</endFormulasDebit>", "<startFormulasCredit>", "</endFormulasCredit>"};
             int sizeArray = arrowOfTags.Length;
             for (int numberTag = 0; numberTag < sizeArray; numberTag++)
             {
@@ -162,6 +162,24 @@ namespace Sistema_Planillas_Contabilidad
                         break;
                     case 15:
                         startSetTagsAndDefaults.tagEndFormula = arrowOfTags[numberTag];
+                        break;
+                    case 16:
+                        startSetTagsAndDefaults.tagStartChargeFormula = arrowOfTags[numberTag];
+                        break;
+                    case 17:
+                        startSetTagsAndDefaults.tagEndChargeFormula = arrowOfTags[numberTag];
+                        break;
+                    case 18:
+                        startSetTagsAndDefaults.tagStartDebitFormula= arrowOfTags[numberTag];
+                        break;
+                    case 19:
+                        startSetTagsAndDefaults.tagEndDebitFormula = arrowOfTags[numberTag];
+                        break;
+                    case 20:
+                        startSetTagsAndDefaults.tagStartCreditFormula = arrowOfTags[numberTag];
+                        break;
+                    case 21:
+                        startSetTagsAndDefaults.tagEndCreditFormula = arrowOfTags[numberTag];
                         break;
                 }
             }
@@ -227,6 +245,68 @@ namespace Sistema_Planillas_Contabilidad
             Application.Exit();
         }
 
-        
+        private void buttonEditGlobalFormulas_Click(object sender, EventArgs e)
+        {
+            string storagePathAvoid = startThePaths.SpecificPathOfConfigurationFolderAvoidData + "avoid.txt";
+            List<string> listOfHeads = new List<string>();
+            if (File.Exists(storagePathAvoid))
+            {
+                string[] storageHeads = File.ReadAllLines(storagePathAvoid);
+                foreach (string head in storageHeads)
+                {
+                    listOfHeads.Add(head);
+                }
+            }
+            GUI_CREATE_FORMULA callingCreateFormula = new GUI_CREATE_FORMULA();
+            callingCreateFormula.MethodToReceivedAccesToObject(startThePaths, startSetTagsAndDefaults, startSetFoldersCompanyDefaults);
+            callingCreateFormula.lisftOfHeads(listOfHeads);
+            callingCreateFormula.menuGlobalOrLocal("GLOBAL");
+            callingCreateFormula.ShowDialog();
+        }
+
+        private void buttonEditGlobalSits_Click(object sender, EventArgs e)
+        {
+            List<string> sendNothing = new List<string>();
+            List<string> listOfHeads = new List<string>();
+            string storagePathAvoid = startThePaths.SpecificPathOfConfigurationFolderAvoidData + "avoid.txt";
+            if (File.Exists(storagePathAvoid))
+            {
+                string[] storageHeads = File.ReadAllLines(storagePathAvoid);
+                foreach (string head in storageHeads)
+                {
+                    sendNothing.Add(head);
+                }
+            }
+            GUI_SELECCIONAR_ASIENTOS callingCreateFormula = new GUI_SELECCIONAR_ASIENTOS();
+            callingCreateFormula.MethodToReceivedAccesToObject(startThePaths, startSetTagsAndDefaults, startSetFoldersCompanyDefaults);
+            callingCreateFormula.lisfOFHeads(listOfHeads);
+            //callingCreateFormula.PathToCompany(company, deparment, month);
+            callingCreateFormula.menuGlobalOrLocal("GLOBAL");
+            callingCreateFormula.ShowDialog();
+        }
+
+        private void buttonEditCodes_Click(object sender, EventArgs e)
+        {
+            GUI_CREAR_EDITAR_CODIGOS_DIASMES callingEditCode= new GUI_CREAR_EDITAR_CODIGOS_DIASMES();
+            callingEditCode.MethodToReceivedAccesToObject(startThePaths, startSetTagsAndDefaults, startSetFoldersCompanyDefaults);
+            callingEditCode.menuCodeOrDay("CODE");
+            callingEditCode.ShowDialog();
+        }
+
+        private void buttonDaysMonth_Click(object sender, EventArgs e)
+        {
+            GUI_CREAR_EDITAR_CODIGOS_DIASMES callingEditCode = new GUI_CREAR_EDITAR_CODIGOS_DIASMES();
+            callingEditCode.MethodToReceivedAccesToObject(startThePaths, startSetTagsAndDefaults, startSetFoldersCompanyDefaults);
+            callingEditCode.menuCodeOrDay("DAYS");
+            callingEditCode.ShowDialog();
+        }
+
+        private void buttonEditHeads_Click(object sender, EventArgs e)
+        {
+            GUI_CREAR_EDITAR_CODIGOS_DIASMES callingEditCode = new GUI_CREAR_EDITAR_CODIGOS_DIASMES();
+            callingEditCode.MethodToReceivedAccesToObject(startThePaths, startSetTagsAndDefaults, startSetFoldersCompanyDefaults);
+            callingEditCode.menuCodeOrDay("HEADS");
+            callingEditCode.ShowDialog();
+        }
     }
 }

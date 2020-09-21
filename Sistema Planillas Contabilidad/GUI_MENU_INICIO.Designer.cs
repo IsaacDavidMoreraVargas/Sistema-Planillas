@@ -29,10 +29,15 @@
         private void InitializeComponent()
         {
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.buttonDaysMonth = new System.Windows.Forms.Button();
+            this.buttonEditGlobalSits = new System.Windows.Forms.Button();
+            this.buttonEditCodes = new System.Windows.Forms.Button();
             this.buttonCloseProgram = new System.Windows.Forms.Button();
             this.buttonWorkWithCompany = new System.Windows.Forms.Button();
             this.buttonEditTemplate = new System.Windows.Forms.Button();
             this.buttonDuplicateCopyEliminateCompany = new System.Windows.Forms.Button();
+            this.buttonEditGlobalFormulas = new System.Windows.Forms.Button();
+            this.buttonEditHeads = new System.Windows.Forms.Button();
             this.tableLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -41,11 +46,16 @@
             this.tableLayoutPanel1.ColumnCount = 2;
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel1.Controls.Add(this.buttonDaysMonth, 0, 3);
+            this.tableLayoutPanel1.Controls.Add(this.buttonEditGlobalSits, 1, 2);
+            this.tableLayoutPanel1.Controls.Add(this.buttonEditCodes, 0, 2);
             this.tableLayoutPanel1.Controls.Add(this.buttonCloseProgram, 1, 4);
             this.tableLayoutPanel1.Controls.Add(this.buttonWorkWithCompany, 1, 1);
             this.tableLayoutPanel1.Controls.Add(this.buttonEditTemplate, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.buttonDuplicateCopyEliminateCompany, 1, 0);
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(9, 23);
+            this.tableLayoutPanel1.Controls.Add(this.buttonEditGlobalFormulas, 1, 3);
+            this.tableLayoutPanel1.Controls.Add(this.buttonEditHeads, 0, 1);
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(8, 11);
             this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(2);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 6;
@@ -57,6 +67,38 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 6F));
             this.tableLayoutPanel1.Size = new System.Drawing.Size(368, 429);
             this.tableLayoutPanel1.TabIndex = 2;
+            // 
+            // buttonDaysMonth
+            // 
+            this.buttonDaysMonth.Location = new System.Drawing.Point(3, 256);
+            this.buttonDaysMonth.Name = "buttonDaysMonth";
+            this.buttonDaysMonth.Size = new System.Drawing.Size(178, 77);
+            this.buttonDaysMonth.TabIndex = 9;
+            this.buttonDaysMonth.Text = "EDITAR DIAS DEL MES";
+            this.buttonDaysMonth.UseVisualStyleBackColor = true;
+            this.buttonDaysMonth.Click += new System.EventHandler(this.buttonDaysMonth_Click);
+            // 
+            // buttonEditGlobalSits
+            // 
+            this.buttonEditGlobalSits.Location = new System.Drawing.Point(186, 172);
+            this.buttonEditGlobalSits.Margin = new System.Windows.Forms.Padding(2);
+            this.buttonEditGlobalSits.Name = "buttonEditGlobalSits";
+            this.buttonEditGlobalSits.Size = new System.Drawing.Size(178, 78);
+            this.buttonEditGlobalSits.TabIndex = 8;
+            this.buttonEditGlobalSits.Text = "EDITAR ASIENTOS GLOBALES";
+            this.buttonEditGlobalSits.UseVisualStyleBackColor = true;
+            this.buttonEditGlobalSits.Click += new System.EventHandler(this.buttonEditGlobalSits_Click);
+            // 
+            // buttonEditCodes
+            // 
+            this.buttonEditCodes.Location = new System.Drawing.Point(2, 172);
+            this.buttonEditCodes.Margin = new System.Windows.Forms.Padding(2);
+            this.buttonEditCodes.Name = "buttonEditCodes";
+            this.buttonEditCodes.Size = new System.Drawing.Size(178, 78);
+            this.buttonEditCodes.TabIndex = 7;
+            this.buttonEditCodes.Text = "EDITAR CODIGOS ASIENTOS";
+            this.buttonEditCodes.UseVisualStyleBackColor = true;
+            this.buttonEditCodes.Click += new System.EventHandler(this.buttonEditCodes_Click);
             // 
             // buttonCloseProgram
             // 
@@ -102,13 +144,34 @@
             this.buttonDuplicateCopyEliminateCompany.UseVisualStyleBackColor = true;
             this.buttonDuplicateCopyEliminateCompany.Click += new System.EventHandler(this.buttonMultipleOptionsCompany_Click);
             // 
+            // buttonEditGlobalFormulas
+            // 
+            this.buttonEditGlobalFormulas.Location = new System.Drawing.Point(186, 255);
+            this.buttonEditGlobalFormulas.Margin = new System.Windows.Forms.Padding(2);
+            this.buttonEditGlobalFormulas.Name = "buttonEditGlobalFormulas";
+            this.buttonEditGlobalFormulas.Size = new System.Drawing.Size(178, 79);
+            this.buttonEditGlobalFormulas.TabIndex = 10;
+            this.buttonEditGlobalFormulas.Text = "EDITAR FORMULAS GLOBALES";
+            this.buttonEditGlobalFormulas.UseVisualStyleBackColor = true;
+            this.buttonEditGlobalFormulas.Click += new System.EventHandler(this.buttonEditGlobalFormulas_Click);
+            // 
+            // buttonEditHeads
+            // 
+            this.buttonEditHeads.Location = new System.Drawing.Point(3, 89);
+            this.buttonEditHeads.Name = "buttonEditHeads";
+            this.buttonEditHeads.Size = new System.Drawing.Size(178, 78);
+            this.buttonEditHeads.TabIndex = 11;
+            this.buttonEditHeads.Text = "EDITAR CABEZALES";
+            this.buttonEditHeads.UseVisualStyleBackColor = true;
+            this.buttonEditHeads.Click += new System.EventHandler(this.buttonEditHeads_Click);
+            // 
             // GUI_MENU_INICIO
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-            this.ClientSize = new System.Drawing.Size(574, 479);
+            this.ClientSize = new System.Drawing.Size(387, 448);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Name = "GUI_MENU_INICIO";
-            this.Text = "MENU GENERAL";
+            this.Text = "SISTEMA MENU GENERAL";
             this.Load += new System.EventHandler(this.GUI_MENU_INICIO_Load);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.ResumeLayout(false);
@@ -118,9 +181,14 @@
         #endregion
 
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
-        private System.Windows.Forms.Button buttonCloseProgram;
         private System.Windows.Forms.Button buttonWorkWithCompany;
         private System.Windows.Forms.Button buttonEditTemplate;
         private System.Windows.Forms.Button buttonDuplicateCopyEliminateCompany;
+        private System.Windows.Forms.Button buttonCloseProgram;
+        private System.Windows.Forms.Button buttonEditCodes;
+        private System.Windows.Forms.Button buttonEditGlobalSits;
+        private System.Windows.Forms.Button buttonDaysMonth;
+        private System.Windows.Forms.Button buttonEditGlobalFormulas;
+        private System.Windows.Forms.Button buttonEditHeads;
     }
 }

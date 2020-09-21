@@ -194,6 +194,12 @@ namespace Sistema_Planillas_Contabilidad
         //
         private string startFormula = "";
         private string endFormula = "";
+        private string startChargeFormula = "";
+        private string endChargeFormula = "";
+        private string startDebitFormula = "";
+        private string endDebitFormula = "";
+        private string startCreditFormula = "";
+        private string endCreditFormula = "";
         //
         public string tagStartFormula
         {
@@ -216,6 +222,78 @@ namespace Sistema_Planillas_Contabilidad
             set
             {
                 endFormula = value;
+            }
+        }
+
+        public string tagStartChargeFormula
+        {
+            get
+            {
+                return startChargeFormula;
+            }
+            set
+            {
+                startChargeFormula = value;
+            }
+        }
+
+        public string tagEndChargeFormula
+        {
+            get
+            {
+                return endChargeFormula;
+            }
+            set
+            {
+                endChargeFormula = value;
+            }
+        }
+
+        public string tagStartDebitFormula
+        {
+            get
+            {
+                return startDebitFormula;
+            }
+            set
+            {
+                startDebitFormula = value;
+            }
+        }
+
+        public string tagEndDebitFormula
+        {
+            get
+            {
+                return endDebitFormula;
+            }
+            set
+            {
+                endDebitFormula = value;
+            }
+        }
+
+        public string tagStartCreditFormula
+        {
+            get
+            {
+                return startCreditFormula;
+            }
+            set
+            {
+                startCreditFormula = value;
+            }
+        }
+
+        public string tagEndCreditFormula
+        {
+            get
+            {
+                return endCreditFormula;
+            }
+            set
+            {
+                endCreditFormula = value;
             }
         }
     }

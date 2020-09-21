@@ -116,20 +116,31 @@ namespace Sistema_Planillas_Contabilidad
 
         private void loadDefaultData()
         {
-            textBox1.Text = "";
             comboBoxCharge.Items.Clear();
             comboBoxSave.Items.Clear();
-            comboBoxCharge.Items.Add(opcion1);
-            comboBoxCharge.Items.Add(opcion2);
-            comboBoxSave.Items.Add(opcion1);
-            comboBoxSave.Items.Add(opcion2);
+            textBox1.Text = "";
+            comboBoxCharge.Text = threeLine;
+            comboBoxSave.Text = threeLine;
 
-            if(orderGlobalOrLocal=="LOCAL")
+            if (orderGlobalOrLocal == opcion1)
+            {
+                comboBoxCharge.Items.Add(opcion1);
+                comboBoxCharge.Items.Add(opcion2);
+                comboBoxSave.Items.Add(opcion1);
+                comboBoxSave.Items.Add(opcion2);
+            }
+            else if (orderGlobalOrLocal == opcion2)
+            {
+                comboBoxCharge.Items.Add(opcion2);
+                comboBoxSave.Items.Add(opcion2);
+            }
+
+            if (orderGlobalOrLocal == opcion1)
             {
                 listView1.View = View.Details;
                 listView1.Columns.Add("FORMULAS");
                 listView1.Columns[0].Width = listView1.Width;
-                string pathReadFormula = CorePathOfFolderCompaniesSistemaPlanillas + company + "\\"+deparment+ "\\" + month+ "\\" + "CORE-FORMULAS.txt";
+                string pathReadFormula = CorePathOfFolderCompaniesSistemaPlanillas + company + "\\" + deparment + "\\" + month + "\\" + "CORE-FORMULAS.txt";
                 if (File.Exists(pathReadFormula))
                 {
                     string[] storageFormulas = File.ReadAllLines(pathReadFormula);
@@ -140,15 +151,26 @@ namespace Sistema_Planillas_Contabilidad
                             listView1.Items.Add(formula);
                         }
                     }
-                    int index = 0;
-                    foreach(ListViewItem item in listView1.Items)
+                    paint(listView1);
+                }
+            }
+            else if (orderGlobalOrLocal == opcion2)
+            {
+                listView1.View = View.Details;
+                listView1.Columns.Add("FORMULAS");
+                listView1.Columns[0].Width = listView1.Width;
+                string pathReadFormula = SpecificPathOfFolderConfigurationFormulas + "GLOBAL-FORMULAS.txt"; ;
+                if (File.Exists(pathReadFormula))
+                {
+                    string[] storageFormulas = File.ReadAllLines(pathReadFormula);
+                    foreach (string formula in storageFormulas)
                     {
-                        if ((index % 2) == 0)
+                        if (formula != tagStartFormula && formula != tagEndFormula)
                         {
-                            item.BackColor = Color.LightBlue;
+                            listView1.Items.Add(formula);
                         }
-                        ++index;
                     }
+                    paint(listView1);
                 }
             }
         }
@@ -171,14 +193,8 @@ namespace Sistema_Planillas_Contabilidad
         private void buttonNew_Click(object sender, EventArgs e)
         {
             textBox1.Text = "";
-            comboBoxCharge.Items.Clear();
-            comboBoxSave.Items.Clear();
             comboBoxCharge.Text=threeLine;
-            comboBoxCharge.Items.Add(opcion1);
-            comboBoxCharge.Items.Add(opcion2);
             comboBoxSave.Text = threeLine;
-            comboBoxSave.Items.Add(opcion1);
-            comboBoxSave.Items.Add(opcion2);
         }
 
         private void combox1Add(object sender, EventArgs e)
@@ -198,12 +214,10 @@ namespace Sistema_Planillas_Contabilidad
                 if (comboBoxSave.Text == opcion1)
                 {
                     path = CorePathOfFolderCompaniesSistemaPlanillas + company + "\\" + deparment + "\\" + month + "\\" + "CORE-FORMULAS.txt";
-                    //MessageBox.Show(path);
                 }
                 else if (comboBoxSave.Text == opcion2)
                 {
                     path = CorePathOfFolderCompaniesSistemaPlanillas + company + "\\" + coreExtraConfiguration + "\\" + formula + "\\" + "GLOBAL-FORMULAS.txt";
-                    //MessageBox.Show(path);
                 }
                 if (File.Exists(path))
                 {
@@ -295,12 +309,10 @@ namespace Sistema_Planillas_Contabilidad
                 if (comboBoxCharge.Text == opcion1)
                 {
                     path = CorePathOfFolderCompaniesSistemaPlanillas + company + "\\" + deparment + "\\" + month + "\\" + "CORE-FORMULAS.txt";
-                    //MessageBox.Show(path);
                 }
                 else if(comboBoxCharge.Text == opcion2)
                 {
                     path = CorePathOfFolderCompaniesSistemaPlanillas + company + "\\" +coreExtraConfiguration + "\\" + formula + "\\" + "GLOBAL-FORMULAS.txt";
-                    //MessageBox.Show(path);
                 }
 
                 if(File.Exists(path))
@@ -317,15 +329,7 @@ namespace Sistema_Planillas_Contabilidad
                             listView1.Items.Add(formula);
                         }
                     }
-                    int index = 0;
-                    foreach (ListViewItem item in listView1.Items)
-                    {
-                        if ((index % 2) == 0)
-                        {
-                            item.BackColor = Color.LightBlue;
-                        }
-                        ++index;
-                    }
+                    paint(listView1);
                 }
                 else
                 {
@@ -348,15 +352,7 @@ namespace Sistema_Planillas_Contabilidad
                             listView1.Items.Add(formula);
                         }
                     }
-                    int index = 0;
-                    foreach (ListViewItem item in listView1.Items)
-                    {
-                        if ((index % 2) == 0)
-                        {
-                            item.BackColor = Color.LightBlue;
-                        }
-                        ++index;
-                    }
+                    paint(listView1);
                 }
                 else
                 {
@@ -374,7 +370,8 @@ namespace Sistema_Planillas_Contabilidad
             {
                 case DialogResult.Yes:
                     listView1.Items.RemoveAt(indexColumn);
-                break;
+                    MessageBox.Show("FORMULA ELIMINADA EXITOSAMENTE");
+                    break;
                 case DialogResult.No:
                 break;
             }
@@ -408,21 +405,30 @@ namespace Sistema_Planillas_Contabilidad
             orderGlobalOrLocal = orderReceiVed;
         }
 
-        private void buttonCloseProgram_Click_1(object sender, EventArgs e)
-        {
-            this.Close();
-        }
-        /*
-        private void buttonCloseProgram_Click(object sender, EventArgs e)
-        {
-            this.Close();
-        }
-        */
         private void buttonEdit_Click(object sender, EventArgs e)
         {
             textBox1.Text = "";
             textBox1.Text = listView1.Items[indexColumn].Text;
             orderAddOrEdit = "EDITAR";
         }
+
+        private void paint(ListView listToPaint)
+        {
+            int index = 0;
+            foreach (ListViewItem item in listToPaint.Items)
+            {
+                if ((index % 2) == 0)
+                {
+                    item.BackColor = Color.LightBlue;
+                }
+                ++index;
+            }
+        }
+
+        private void buttonCloseProgram_Click_1(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
     }
 }

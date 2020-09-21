@@ -981,7 +981,7 @@ namespace Sistema_Planillas_Contabilidad
 
                         secondListArrays.Add(a);
                     }
-                    
+                    /*
                     GUI_SELECCIONAR_ASIENTOS CallToASits = new GUI_SELECCIONAR_ASIENTOS();
                     CallToASits.receivedArray(secondListArrays);
                     CallToASits.receivedData(heads, deparments);
@@ -997,7 +997,7 @@ namespace Sistema_Planillas_Contabilidad
                     }
                     CallToASits.PathToSave(company, deparment, month, week, file, path);
                     CallToASits.ShowDialog();
-                    
+                    */
                 }
             }
         }

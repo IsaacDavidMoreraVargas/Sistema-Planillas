@@ -1,16 +1,16 @@
 ﻿namespace Sistema_Planillas_Contabilidad
 {
-    partial class GUI_EDITAR_PLANTILLA
+    partial class GUI_CREAR_EDITAR_CODIGOS_DIASMES
     {
         /// <summary>
-        /// Variable del diseñador necesaria.
+        /// Required designer variable.
         /// </summary>
         private System.ComponentModel.IContainer components = null;
 
         /// <summary>
-        /// Limpiar los recursos que se estén usando.
+        /// Clean up any resources being used.
         /// </summary>
-        /// <param name="disposing">true si los recursos administrados se deben desechar; false en caso contrario.</param>
+        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
         protected override void Dispose(bool disposing)
         {
             if (disposing && (components != null))
@@ -20,11 +20,11 @@
             base.Dispose(disposing);
         }
 
-        #region Código generado por el Diseñador de Windows Forms
+        #region Windows Form Designer generated code
 
         /// <summary>
-        /// Método necesario para admitir el Diseñador. No se puede modificar
-        /// el contenido de este método con el editor de código.
+        /// Required method for Designer support - do not modify
+        /// the contents of this method with the code editor.
         /// </summary>
         private void InitializeComponent()
         {
@@ -36,7 +36,9 @@
             this.buttonUpdateTemplate = new System.Windows.Forms.Button();
             this.buttonReturnScreen = new System.Windows.Forms.Button();
             this.listView1 = new System.Windows.Forms.ListView();
-            this.CABEZALES = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.SPACE1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.SPACE2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.textBox1 = new System.Windows.Forms.TextBox();
             this.tableLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -53,7 +55,7 @@
             this.tableLayoutPanel1.Controls.Add(this.buttonMoveNextColumn, 1, 1);
             this.tableLayoutPanel1.Controls.Add(this.buttonUpdateTemplate, 2, 0);
             this.tableLayoutPanel1.Controls.Add(this.buttonReturnScreen, 2, 1);
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(1, 416);
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(2, 419);
             this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(2);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 2;
@@ -61,7 +63,7 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 58F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel1.Size = new System.Drawing.Size(311, 115);
-            this.tableLayoutPanel1.TabIndex = 1;
+            this.tableLayoutPanel1.TabIndex = 2;
             // 
             // buttonAddColumn
             // 
@@ -114,7 +116,7 @@
             this.buttonUpdateTemplate.Name = "buttonUpdateTemplate";
             this.buttonUpdateTemplate.Size = new System.Drawing.Size(120, 53);
             this.buttonUpdateTemplate.TabIndex = 5;
-            this.buttonUpdateTemplate.Text = "Guardar Cambios";
+            this.buttonUpdateTemplate.Text = "Guardar Plantilla";
             this.buttonUpdateTemplate.UseVisualStyleBackColor = true;
             this.buttonUpdateTemplate.Click += new System.EventHandler(this.buttonUpdateTemplate_Click);
             // 
@@ -135,40 +137,58 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.listView1.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.CABEZALES});
+            this.SPACE1,
+            this.SPACE2});
             this.listView1.GridLines = true;
             this.listView1.HideSelection = false;
-            this.listView1.Location = new System.Drawing.Point(1, 4);
+            this.listView1.Location = new System.Drawing.Point(2, 7);
             this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(311, 407);
-            this.listView1.TabIndex = 3;
+            this.listView1.Size = new System.Drawing.Size(311, 365);
+            this.listView1.TabIndex = 4;
             this.listView1.UseCompatibleStateImageBehavior = false;
             this.listView1.SelectedIndexChanged += new System.EventHandler(this.listView1_SelectedIndexChanged);
             // 
-            // GUI_EDITAR_PLANTILLA
+            // textBox1
+            // 
+            this.textBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.textBox1.Location = new System.Drawing.Point(2, 378);
+            this.textBox1.Multiline = true;
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(306, 34);
+            this.textBox1.TabIndex = 5;
+            // 
+            // GUI_CREAR_EDITAR_CODIGOS_DIASMES
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(315, 533);
+            this.Controls.Add(this.textBox1);
             this.Controls.Add(this.listView1);
             this.Controls.Add(this.tableLayoutPanel1);
-            this.Name = "GUI_EDITAR_PLANTILLA";
-            this.Text = "SISTEMA EDITAR PLANTILLA";
-            this.Load += new System.EventHandler(this.GUI_EDITAR_PLANTILLA_Load);
+            this.Name = "GUI_CREAR_EDITAR_CODIGOS_DIASMES";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Text = "MENU EDITAR CODIGOS O DIAS MES";
+            this.Load += new System.EventHandler(this.GUI_CREAR_EDITAR_CODIGOS_DIASMES_Load);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
         #endregion
 
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
-        private System.Windows.Forms.Button buttonUpdateTemplate;
-        private System.Windows.Forms.Button buttonReturnScreen;
-        private System.Windows.Forms.Button buttonMoveBackColum;
         private System.Windows.Forms.Button buttonAddColumn;
         private System.Windows.Forms.Button buttonEraseColumn;
+        private System.Windows.Forms.Button buttonMoveBackColum;
         private System.Windows.Forms.Button buttonMoveNextColumn;
+        private System.Windows.Forms.Button buttonUpdateTemplate;
+        private System.Windows.Forms.Button buttonReturnScreen;
         private System.Windows.Forms.ListView listView1;
-        private System.Windows.Forms.ColumnHeader CABEZALES;
+        private System.Windows.Forms.ColumnHeader SPACE1;
+        private System.Windows.Forms.ColumnHeader SPACE2;
+        private System.Windows.Forms.TextBox textBox1;
     }
 }

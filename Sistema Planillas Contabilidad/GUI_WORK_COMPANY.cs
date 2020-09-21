@@ -318,6 +318,7 @@ namespace Sistema_Planillas_Contabilidad
                                 if (storageLines[line] == tagStartLine)
                                 {
                                     ++line;
+                                    dataGridView5.Rows.Add(indexOfLine.ToString());
                                     for (int column = 0; column < dataGridView5.Columns.Count; column++)
                                     {
                                         dataGridView5.Rows[indexOfLine].Cells[column].Value = storageLines[line];
@@ -1849,30 +1850,25 @@ namespace Sistema_Planillas_Contabilidad
 
         private void buttonGenerateSits_Click(object sender, EventArgs e)
         {
-            using (GUI_SELECCIONAR_ASIENTOS form2 = new GUI_SELECCIONAR_ASIENTOS())
+            List<string> listOfHeads = new List<string>();
+            foreach (DataGridViewColumn column in dataGridView5.Columns)
             {
-                /*
-                
-                
-                if (form2.ShowDialog() == System.Windows.Forms.DialogResult.Yes)
-                {
-                    
-                }
-                */
+                listOfHeads.Add(column.HeaderText);
             }
+            GUI_SELECCIONAR_ASIENTOS callingCreateFormula = new GUI_SELECCIONAR_ASIENTOS();
+            callingCreateFormula.MethodToReceivedAccesToObject(startThePaths, startTheTagsAndDefaults, startFoldersInsideCompany);
+            callingCreateFormula.lisfOFHeads(listOfHeads);
+            callingCreateFormula.PathToCompany(company, deparment, month);
+            callingCreateFormula.menuGlobalOrLocal("LOCAL");
+            callingCreateFormula.ShowDialog();
         }
 
 
         public void PathToCompany(string companyReceive, string deptReceive, string monthReceive, string pathReceive)
         {
-            //path = pathReceive;
             company = companyReceive;
             deparment = deptReceive;
             month = monthReceive;
-            /*
-            week = weekReceive;
-            file = fileReceive;
-            */
         }
 
         public void recieveListColumn(List<string> listReceived, string head)
@@ -2302,7 +2298,7 @@ namespace Sistema_Planillas_Contabilidad
 
         private void buttonGenerateFormula_Click(object sender, EventArgs e)
         {
-            this.Hide();
+            //this.Hide();
             List<string> listOfHeads = new List<string>();
             foreach(DataGridViewColumn column in dataGridView5.Columns)
             {
@@ -2314,7 +2310,7 @@ namespace Sistema_Planillas_Contabilidad
             callingCreateFormula.PathToCompany(company, deparment, month);
             callingCreateFormula.menuGlobalOrLocal("LOCAL");
             callingCreateFormula.ShowDialog();
-            this.Show();
+            //this.Show();
         }
 
         private void calculateFormula()
