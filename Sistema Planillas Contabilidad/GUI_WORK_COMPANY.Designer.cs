@@ -100,7 +100,6 @@
             this.buttonGenerateFormula = new System.Windows.Forms.Button();
             this.buttonRecalculate = new System.Windows.Forms.Button();
             this.buttonCloseProgram = new System.Windows.Forms.Button();
-            this.buttonCalculateTotals = new System.Windows.Forms.Button();
             this.buttonGenerateSits = new System.Windows.Forms.Button();
             this.buttonIntroduceData = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
@@ -681,7 +680,7 @@
             // 
             // buttonMoveDownArrow
             // 
-            this.buttonMoveDownArrow.Location = new System.Drawing.Point(507, 43);
+            this.buttonMoveDownArrow.Location = new System.Drawing.Point(506, 81);
             this.buttonMoveDownArrow.Margin = new System.Windows.Forms.Padding(2);
             this.buttonMoveDownArrow.Name = "buttonMoveDownArrow";
             this.buttonMoveDownArrow.Size = new System.Drawing.Size(46, 38);
@@ -769,7 +768,7 @@
             // 
             // buttonGenerateFormula
             // 
-            this.buttonGenerateFormula.Location = new System.Drawing.Point(340, 84);
+            this.buttonGenerateFormula.Location = new System.Drawing.Point(340, 43);
             this.buttonGenerateFormula.Margin = new System.Windows.Forms.Padding(2);
             this.buttonGenerateFormula.Name = "buttonGenerateFormula";
             this.buttonGenerateFormula.Size = new System.Drawing.Size(110, 38);
@@ -791,30 +790,19 @@
             // 
             // buttonCloseProgram
             // 
-            this.buttonCloseProgram.Location = new System.Drawing.Point(455, 84);
+            this.buttonCloseProgram.Location = new System.Drawing.Point(340, 84);
             this.buttonCloseProgram.Margin = new System.Windows.Forms.Padding(2);
             this.buttonCloseProgram.Name = "buttonCloseProgram";
-            this.buttonCloseProgram.Size = new System.Drawing.Size(148, 38);
+            this.buttonCloseProgram.Size = new System.Drawing.Size(110, 38);
             this.buttonCloseProgram.TabIndex = 6;
             this.buttonCloseProgram.Text = "Salir";
             this.buttonCloseProgram.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
             this.buttonCloseProgram.UseVisualStyleBackColor = true;
             this.buttonCloseProgram.Click += new System.EventHandler(this.buttonCloseProgram_Click);
             // 
-            // buttonCalculateTotals
-            // 
-            this.buttonCalculateTotals.Location = new System.Drawing.Point(340, 2);
-            this.buttonCalculateTotals.Margin = new System.Windows.Forms.Padding(2);
-            this.buttonCalculateTotals.Name = "buttonCalculateTotals";
-            this.buttonCalculateTotals.Size = new System.Drawing.Size(110, 38);
-            this.buttonCalculateTotals.TabIndex = 12;
-            this.buttonCalculateTotals.Text = "Generar Totales";
-            this.buttonCalculateTotals.UseVisualStyleBackColor = true;
-            this.buttonCalculateTotals.Click += new System.EventHandler(this.buttonCalculateTotals_Click);
-            // 
             // buttonGenerateSits
             // 
-            this.buttonGenerateSits.Location = new System.Drawing.Point(340, 43);
+            this.buttonGenerateSits.Location = new System.Drawing.Point(341, 4);
             this.buttonGenerateSits.Margin = new System.Windows.Forms.Padding(2);
             this.buttonGenerateSits.Name = "buttonGenerateSits";
             this.buttonGenerateSits.Size = new System.Drawing.Size(110, 38);
@@ -864,7 +852,6 @@
             this.panel1.Controls.Add(this.buttonNextTotal);
             this.panel1.Controls.Add(this.buttonImportDataColum);
             this.panel1.Controls.Add(this.buttonEraseColumn);
-            this.panel1.Controls.Add(this.buttonCalculateTotals);
             this.panel1.Location = new System.Drawing.Point(1, 405);
             this.panel1.Margin = new System.Windows.Forms.Padding(2);
             this.panel1.Name = "panel1";
@@ -924,6 +911,7 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.tableLayoutPanel1.AutoScroll = true;
+            this.tableLayoutPanel1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.tableLayoutPanel1.BackColor = System.Drawing.SystemColors.ControlDarkDark;
             this.tableLayoutPanel1.CellBorderStyle = System.Windows.Forms.TableLayoutPanelCellBorderStyle.InsetDouble;
             this.tableLayoutPanel1.ColumnCount = 1;
@@ -933,8 +921,8 @@
             this.tableLayoutPanel1.Location = new System.Drawing.Point(3, 3);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 2;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 83.45865F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 16.54135F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 86.86869F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 13.13131F));
             this.tableLayoutPanel1.Size = new System.Drawing.Size(1052, 399);
             this.tableLayoutPanel1.TabIndex = 5;
             // 
@@ -953,7 +941,7 @@
             this.panel3.Location = new System.Drawing.Point(6, 6);
             this.panel3.MinimumSize = new System.Drawing.Size(10, 10);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(1040, 319);
+            this.panel3.Size = new System.Drawing.Size(1040, 332);
             this.panel3.TabIndex = 1;
             // 
             // dataGridView4
@@ -1006,11 +994,11 @@
             this.dataGridView5.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.ColumnHeader;
             this.dataGridView5.BackgroundColor = System.Drawing.SystemColors.ControlDarkDark;
             this.dataGridView5.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView5.Location = new System.Drawing.Point(6, 334);
+            this.dataGridView5.Location = new System.Drawing.Point(6, 347);
             this.dataGridView5.Name = "dataGridView5";
             this.dataGridView5.ReadOnly = true;
             this.dataGridView5.RowHeadersVisible = false;
-            this.dataGridView5.Size = new System.Drawing.Size(1040, 59);
+            this.dataGridView5.Size = new System.Drawing.Size(1040, 46);
             this.dataGridView5.TabIndex = 2;
             this.dataGridView5.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView5_CellClick);
             this.dataGridView5.Click += new System.EventHandler(this.dataGridView5_Click);
@@ -1063,7 +1051,6 @@
         private System.Windows.Forms.Button buttonGenerateFormula;
         private System.Windows.Forms.Button buttonRecalculate;
         private System.Windows.Forms.Button buttonCloseProgram;
-        private System.Windows.Forms.Button buttonCalculateTotals;
         private System.Windows.Forms.Button buttonGenerateSits;
         private System.Windows.Forms.Button buttonIntroduceData;
         private System.Windows.Forms.Panel panel1;

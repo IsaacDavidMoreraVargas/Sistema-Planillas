@@ -134,12 +134,6 @@
     <Compile Include="GUI_VISTA_ASIENTOS.Designer.cs">
       <DependentUpon>GUI_VISTA_ASIENTOS.cs</DependentUpon>
     </Compile>
-    <Compile Include="GUI_VISTA_RAPIDA.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="GUI_VISTA_RAPIDA.Designer.cs">
-      <DependentUpon>GUI_VISTA_RAPIDA.cs</DependentUpon>
-    </Compile>
     <Compile Include="GUI_WORK_COMPANY.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -199,9 +193,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="GUI_VISTA_ASIENTOS.resx">
       <DependentUpon>GUI_VISTA_ASIENTOS.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="GUI_VISTA_RAPIDA.resx">
-      <DependentUpon>GUI_VISTA_RAPIDA.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="GUI_WORK_COMPANY.resx">
       <DependentUpon>GUI_WORK_COMPANY.cs</DependentUpon>

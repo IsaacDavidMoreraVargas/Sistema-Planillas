@@ -37,11 +37,10 @@
             this.DEPARTAMENTOS = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.buttonStart = new System.Windows.Forms.Button();
             this.buttonReturnProgram = new System.Windows.Forms.Button();
-            this.buttonQuickView = new System.Windows.Forms.Button();
             this.buttonCloseProgram = new System.Windows.Forms.Button();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.buttonGenerateSits = new System.Windows.Forms.Button();
-            this.buttonGenerateTotal = new System.Windows.Forms.Button();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.SuspendLayout();
@@ -130,17 +129,6 @@
             this.buttonReturnProgram.UseVisualStyleBackColor = true;
             this.buttonReturnProgram.Click += new System.EventHandler(this.buttonReturnProgram_Click);
             // 
-            // buttonQuickView
-            // 
-            this.buttonQuickView.Location = new System.Drawing.Point(2, 149);
-            this.buttonQuickView.Margin = new System.Windows.Forms.Padding(2);
-            this.buttonQuickView.Name = "buttonQuickView";
-            this.buttonQuickView.Size = new System.Drawing.Size(81, 70);
-            this.buttonQuickView.TabIndex = 3;
-            this.buttonQuickView.Text = "VISTA RAPIDA";
-            this.buttonQuickView.UseVisualStyleBackColor = true;
-            this.buttonQuickView.Click += new System.EventHandler(this.buttonQuickView_Click);
-            // 
             // buttonCloseProgram
             // 
             this.buttonCloseProgram.Location = new System.Drawing.Point(2, 376);
@@ -159,9 +147,8 @@
             this.tableLayoutPanel2.Controls.Add(this.buttonCloseProgram, 0, 5);
             this.tableLayoutPanel2.Controls.Add(this.buttonReturnProgram, 0, 4);
             this.tableLayoutPanel2.Controls.Add(this.buttonStart, 0, 3);
-            this.tableLayoutPanel2.Controls.Add(this.buttonQuickView, 0, 2);
-            this.tableLayoutPanel2.Controls.Add(this.buttonGenerateSits, 0, 1);
-            this.tableLayoutPanel2.Controls.Add(this.buttonGenerateTotal, 0, 0);
+            this.tableLayoutPanel2.Controls.Add(this.buttonGenerateSits, 0, 2);
+            this.tableLayoutPanel2.Controls.Add(this.comboBox1, 0, 1);
             this.tableLayoutPanel2.Location = new System.Drawing.Point(522, 11);
             this.tableLayoutPanel2.Margin = new System.Windows.Forms.Padding(2);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
@@ -177,7 +164,7 @@
             // 
             // buttonGenerateSits
             // 
-            this.buttonGenerateSits.Location = new System.Drawing.Point(2, 75);
+            this.buttonGenerateSits.Location = new System.Drawing.Point(2, 149);
             this.buttonGenerateSits.Margin = new System.Windows.Forms.Padding(2);
             this.buttonGenerateSits.Name = "buttonGenerateSits";
             this.buttonGenerateSits.Size = new System.Drawing.Size(81, 69);
@@ -186,16 +173,15 @@
             this.buttonGenerateSits.UseVisualStyleBackColor = true;
             this.buttonGenerateSits.Click += new System.EventHandler(this.buttonGenerateSits_Click);
             // 
-            // buttonGenerateTotal
+            // comboBox1
             // 
-            this.buttonGenerateTotal.Location = new System.Drawing.Point(2, 2);
-            this.buttonGenerateTotal.Margin = new System.Windows.Forms.Padding(2);
-            this.buttonGenerateTotal.Name = "buttonGenerateTotal";
-            this.buttonGenerateTotal.Size = new System.Drawing.Size(81, 68);
-            this.buttonGenerateTotal.TabIndex = 6;
-            this.buttonGenerateTotal.Text = "GENERAR TOTALES";
-            this.buttonGenerateTotal.UseVisualStyleBackColor = true;
-            this.buttonGenerateTotal.Click += new System.EventHandler(this.buttonGenerateTotal_Click);
+            this.comboBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Location = new System.Drawing.Point(3, 123);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(81, 21);
+            this.comboBox1.TabIndex = 6;
+            this.comboBox1.TextChanged += new System.EventHandler(this.comboBox1_TextChanged);
             // 
             // GUI_ELEGIR__TRABAJAR_EMPRESA
             // 
@@ -225,10 +211,9 @@
         private System.Windows.Forms.ColumnHeader MESES;
         private System.Windows.Forms.Button buttonStart;
         private System.Windows.Forms.Button buttonReturnProgram;
-        private System.Windows.Forms.Button buttonQuickView;
         private System.Windows.Forms.Button buttonCloseProgram;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
         private System.Windows.Forms.Button buttonGenerateSits;
-        private System.Windows.Forms.Button buttonGenerateTotal;
+        private System.Windows.Forms.ComboBox comboBox1;
     }
 }

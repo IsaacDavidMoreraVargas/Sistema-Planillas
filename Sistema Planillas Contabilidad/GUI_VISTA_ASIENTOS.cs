@@ -18,256 +18,194 @@ namespace Sistema_Planillas_Contabilidad
         {
             InitializeComponent();
         }
-        List<string> receivedList = new List<string>();
+
+        string CorePathOfFolderSistemaPlanillas = "";
+        string CorePathOfFolderCompaniesSistemaPlanillas = "";
+        string CorePathOfCoreConfigurationFolderSistemaPlanillas = "";
+
+        string SpecificPathOfFolderConfigurationAvoidData = "";
+        string SpecificPathOfFolderConfigurationCodesSits = "";
+        string SpecificPathOfFolderConfigurationDaysOfMoths = "";
+        string SpecificPathOfFolderConfigurationFormulas = "";
+        string SpecificPathOfFolderConfigurationSits = "";
+        string SpecificPathOfFolderConfigurationTemplates = "";
+        string SpecificPathOfFolderConfigurationPictures = "";
+
+        string threeLine = "";
+        string deparmentValue = "";
+
+        string coreExtraConfiguration = "";
+        string formula = "";
+        string exclusiveData = "";
+        string sits = "";
+        string template = "";
+        string tagEndHEad = "";
+        SpecificAndCorePaths startThePaths;
+        TagsAndDefaultValues startTheTagsAndDefaults;
+        FoldersInsideCompany startFoldersInsideCompany;
+        //generalMethods callToGeneralMethods = new generalMethods();
+
+        public void MethodToReceivedAccesToObject(SpecificAndCorePaths startThePathsReceived, TagsAndDefaultValues startTheTagsAndDefaultsReceived, FoldersInsideCompany startFoldersInsideCompanyReceived)
+        {
+            //receiving object reference
+            startThePaths = startThePathsReceived;
+            startTheTagsAndDefaults = startTheTagsAndDefaultsReceived;
+            startFoldersInsideCompany = startFoldersInsideCompanyReceived;
+            //core paths
+            CorePathOfFolderSistemaPlanillas = startThePaths.CorePathOfFolderSistemaPlanillas;
+            CorePathOfFolderCompaniesSistemaPlanillas = startThePaths.CorePathOfCompaniesFolderSistemaPlanillas;
+            CorePathOfCoreConfigurationFolderSistemaPlanillas = startThePaths.CorePathOfConfigurationFolderSistemaPlanillas;
+            //specific paths
+            SpecificPathOfFolderConfigurationAvoidData = startThePaths.SpecificPathOfConfigurationFolderAvoidData;
+            SpecificPathOfFolderConfigurationCodesSits = startThePaths.SpecificPathOfConfigurationFolderCodesSits;
+            SpecificPathOfFolderConfigurationDaysOfMoths = startThePaths.SpecificPathOfConfigurationFolderDaysOfMoths;
+            SpecificPathOfFolderConfigurationFormulas = startThePaths.SpecificPathOfConfigurationFolderFormulas;
+            SpecificPathOfFolderConfigurationSits = startThePaths.SpecificPathOfConfigurationFolderSits;
+            SpecificPathOfFolderConfigurationTemplates = startThePaths.SpecificPathOfConfigurationFolderTemplates;
+            SpecificPathOfFolderConfigurationPictures = startThePaths.SpecificPathOfConfigurationFolderPictures;
+            //default values
+            threeLine = startTheTagsAndDefaults.tripleLine;
+            deparmentValue = startTheTagsAndDefaults.isDeparment;
+            tagEndHEad = startTheTagsAndDefaults.isTagEndHead;
+            //folders inside folders
+            coreExtraConfiguration = startFoldersInsideCompany.isCoreExtraConfigurations;
+            formula = startFoldersInsideCompany.isFormula;
+            exclusiveData = startFoldersInsideCompany.isExclusiveData;
+            sits = startFoldersInsideCompany.isSits;
+            template = startFoldersInsideCompany.isTemplate;
+        }
+
         private void GUI_VISTA_ASIENTOS_Load(object sender, EventArgs e)
         {
-            LoadData();
+            loadDefaultData();
         }
         
-        string actual = Directory.GetCurrentDirectory();
-        string separator2 = "+++++++++++";
-        string codeHead = "CODIGO";
-        string description = "DESCRIPCION";
         string debit = "DEBIT";
         string credit = "CREDIT";
+        string orderLocalOrGlobal = "";
 
-        private void LoadData()
+        private void loadDefaultData()
         {
-            //dataGridView1.Columns[0].Visible = false;
-            string actualPath = actual.Replace("\\bin\\Debug", "\\Companies");
-            actualPath += "\\" + company + "\\exclusiveData" + "\\exclusive.txt";
-            if (File.Exists(actualPath))
+            string[] storageHeadsAndFormulas;
+            string[] storageID;
+            string[] storageCodes;
+            string pathOfHeadsAndFormulas = "";
+            if (orderLocalOrGlobal == "LOCAL")
             {
-                string[] id = File.ReadAllLines(actualPath);
-                string idCompany = "";
-                foreach (string item in id)
-                {
-                    idCompany += item;
-                }
-                labelID.Text +=": " + idCompany;
+                pathOfHeadsAndFormulas = CorePathOfFolderCompaniesSistemaPlanillas + company + "\\" + coreExtraConfiguration + "\\" + sits + "\\" + "CORE-FORMULAS-SITS.txt";
+
             }
-            company = company.Replace("_", " ");
-            labelCompany.Text = company;
-            week = week.Replace("-", " AL ");
-            labelWeek.Text = "PLANILLA SEMANAL: " + week;
-
-            string pathCodeSits = Directory.GetCurrentDirectory();
-            pathCodeSits = pathCodeSits.Replace("\\bin\\Debug", "\\configuration");
-            pathCodeSits += "\\" + "codesSits" + "\\codes.Txt";
-            dataGridView1.Rows.Add(dataGridView1.Rows.Count);
-            foreach (string item in receivedList)
+            else if (orderLocalOrGlobal == "GLOBAL")
             {
-                if (item == separator2)
-                {
-                    dataGridView1.Rows.Add("");
-                }
+                pathOfHeadsAndFormulas = SpecificPathOfFolderConfigurationSits + "GLOBAL-FORMULAS-SITS.txt";
             }
+            //MessageBox.Show(pathOfHeadsAndFormulas);
 
-            List<string> listCodes = new List<string>();
-            if (File.Exists(pathCodeSits))
+            if (File.Exists(pathOfHeadsAndFormulas))
             {
-                string[] storageCodes = File.ReadAllLines(pathCodeSits);
-                
-                for (int list = 0; list < receivedList.Count; list++)
+                storageHeadsAndFormulas = File.ReadAllLines(pathOfHeadsAndFormulas);
+            }
+            //MessageBox.Show(pathOfHeadsAndFormulas);
+            string pathOfID = CorePathOfFolderCompaniesSistemaPlanillas + company + "\\" + coreExtraConfiguration + "\\" + exclusiveData + "\\" + "exclusive.txt";
+            if (File.Exists(pathOfID))
+            {
+                storageID = File.ReadAllLines(pathOfID);
+            }
+            //MessageBox.Show(pathOfID);
+            string pathOfCodesSits = SpecificPathOfFolderConfigurationCodesSits + "codes.txt";
+            if (File.Exists(pathOfCodesSits))
+            {
+                storageCodes = File.ReadAllLines(pathOfCodesSits);
+            }
+            //MessageBox.Show(pathOfCodesSits);
+            generalMultiArrayMethods callToGetArrays = new generalMultiArrayMethods();
+            callToGetArrays.MethodToReceivedAccesToObject(startTheTagsAndDefaults);
+            List<string[,]> listArrays = callToGetArrays.methodToGetListOfArray(receivedListOfFiles);
+            string[,] results = new string[listArrays[0].GetLength(0), listArrays[0].GetLength(1)];
+            for (int item = 0; item < listArrays.Count; item++)
+            {
+                string[,] storageStudy = listArrays[item];
+                for (int column = 0; column < storageStudy.GetLength(1); column++)
                 {
-                    string compare1 = receivedList[list];
-                    compare1 = compare1.Replace(" ", "");
-                    compare1 = compare1.Replace("\n", "");
-                    for (int code = 0; code < storageCodes.Length; code++)
+                    results[0, column] = storageStudy[0, column];
+                    double sum = 0;
+                    try
                     {
-                        string compare2 = storageCodes[code];
-                        compare2 = compare2.Replace(" ", "");
-                        compare2 = compare2.Replace("\n", "");
-                        if (compare2 == compare1)
+                        for (int row = 1; row < storageStudy.GetLength(0); row++)
                         {
-                            listCodes.Add(codeHead);
-                            listCodes.Add(storageCodes[++code]);
-                            --code;
-                            listCodes.Add(storageCodes[code]);
-                            ++list;
-                            break;
-                        }
-                    }
-                    listCodes.Add(receivedList[list]);
-                }
-                
-                int indexList = 0;
-                int indexColum = 0;
-                int indexRows = 0;
-
-                for (int list = indexList; list < listCodes.Count; list++)
-                {
-                    if (listCodes[list] == separator2)
-                    {
-                        ++indexRows;
-                        ++list;
-                        indexColum = 0;
-                    }
-                    else
-                    {
-                        if (listCodes[list] == codeHead)
-                        {
-                            ++list;
-                        }
-                        else if (listCodes[list] == debit)
-                        {
-                            ++list;
-                        }
-                        else if (listCodes[list] == credit)
-                        {
-                            //++indexColum;
-                            ++indexColum;
-                            ++list;
-                        }
-
-                        int indexPoint = 0;
-                        bool change = false;
-                        string changeString= listCodes[list];
-                        foreach (char numb in changeString)
-                        {
-                            if (numb == ',')
+                            if(storageStudy[row, column].Contains("-"))
                             {
-                                //++indexPoint;
-                                change = true;
-                                break;
+                                sum -= Convert.ToDouble(storageStudy[row, column]);
                             }
                             else
                             {
-                                ++indexPoint;
+                                sum += Convert.ToDouble(storageStudy[row, column]);
                             }
                         }
-                        if (change == true)
+                        if (listArrays.Count > 1)
                         {
-                            //indexPoint += 2;
-                            string result = "";
-                            for (int numb = 0; numb < indexPoint; numb++)
+                            for (int itemPhase2 = 1; itemPhase2 < listArrays.Count; itemPhase2++)
                             {
-                                result += changeString[numb];
-                            }
-
-                            changeString = result;
-                        }
-                        dataGridView1.Rows[indexRows].Cells[indexColum].Value = changeString;
-                        ++indexColum;
-                    }
-                }
-
-                int maximunColums = dataGridView1.Columns.Count;
-                int maximunRows = dataGridView1.Rows.Count;
-                maximunRows-=2;
-                int maximunRows2 = dataGridView1.Rows.Count;
-                maximunRows2-=2;
-                List<int> indexDebtCredit = new List<int>();
-                for (int column = 0; column < maximunColums; column++)
-                {
-                    if (dataGridView1.Columns[column].HeaderText == "DEBITO" || dataGridView1.Columns[column].HeaderText == "CREDITO")
-                    {
-                        indexDebtCredit.Add(column);
-                    }
-                }
-                
-                foreach (int index in indexDebtCredit)
-                {
-                    decimal sumNumbers = 0; //sum Numbers in array
-                    for (int column = 0; column < maximunColums; column++)
-                    {
-                        if (column == index)
-                        {
-                            for (int row = 0; row < maximunRows; row++)
-                            {
-                                if (dataGridView1.Rows[row].Cells[0].Value.ToString() == "DEPARTAMENTO")
+                                string[,] storageStudyPhase2 = listArrays[itemPhase2];
+                                for (int columnPhase2 = 0; columnPhase2 < storageStudyPhase2.GetLength(1); columnPhase2++)
                                 {
-                                    for (int colorCell = 0; colorCell < maximunColums; colorCell++)
+                                    if(storageStudy[0, column]==storageStudyPhase2[0, columnPhase2])
                                     {
-                                        dataGridView1.Rows[row].Cells[colorCell].Style.BackColor = Color.LightBlue;
-                                    }
-                                }
-                                else
-                                {
-                                    if (dataGridView1.Rows[row].Cells[column].Value == null || dataGridView1.Rows[row].Cells[column].Value.ToString() == "" || dataGridView1.Rows[row].Cells[column].Value.ToString() == " ")
-                                    {
-                                        sumNumbers += 0;
-                                    }
-                                    else
-                                    {
-                                       // MessageBox.Show(dataGridView1.Rows[row].Cells[column].Value.ToString());
-                                        string number = dataGridView1.Rows[row].Cells[column].Value.ToString();
-                                        sumNumbers += decimal.Parse(number);
+                                        for (int rowPhase2 = 1; rowPhase2 < storageStudyPhase2.GetLength(0); rowPhase2++)
+                                        {
+                                            if (storageStudyPhase2[rowPhase2, columnPhase2].Contains("-"))
+                                            {
+                                                sum -= Convert.ToDouble(storageStudyPhase2[rowPhase2, columnPhase2]);
+                                            }
+                                            else
+                                            {
+                                                sum += Convert.ToDouble(storageStudyPhase2[rowPhase2, columnPhase2]);
+                                            }
+                                        }
+                                        break;
                                     }
                                 }
                             }
                         }
+                        results[1, column] = sum.ToString();
                     }
-                    
-                    calculateSystem callingFormat = new calculateSystem();
-                    dataGridView1.Rows[maximunRows2].Cells[index].Value = callingFormat.convertAndFormat(sumNumbers.ToString());
-                    //dataGridView1.Rows[maximunRows2].Cells[index].Value = sumNumbers.ToString();
-                    //dataGridView1.Rows[maximunRows2].Cells[index].Value = sumNumbers.ToString();
-                
-                }
-                
-                
-                bool equalData = false;
-                foreach (int index in indexDebtCredit)
-                {
-                    for (int column = 0; column < maximunColums; column++)
+                    catch(Exception)
                     {
-                        if (column == index)
-                        {
-                            string value1 = dataGridView1.Rows[maximunRows2].Cells[column].Value.ToString();
-                            ++column;
-                            string value2 = dataGridView1.Rows[maximunRows2].Cells[column].Value.ToString();
-                            if (value2 == value1)
-                            {
-                                equalData = true;
-                                break;
-                            }
-                            else
-                            {
-                                break;
-                            }
-                        }   
-                    }
-                    if (equalData == true)
-                    {
-                        for (int column = 0; column < maximunColums; column++)
-                        {
-                            dataGridView1.Rows[maximunRows2].Cells[column].Style.BackColor = Color.LightGreen;
-                        }
-                        break;
-                    }
-                    else
-                    {
-                        for (int column = 0; column < maximunColums; column++)
-                        {
-                            dataGridView1.Rows[maximunRows2].Cells[column].Style.BackColor = Color.LightSalmon;
-                        }
-                        break;
+                        results[0, column] = "FALSE";
                     }
                 }
-                
+                break;
             }
+
+            string sumd = "";
+            for (int row = 0; row < results.GetLength(0); row++)
+            {
+                for (int column = 0; column < results.GetLength(1); column++)
+                {
+                    sumd += results[row, column]+"<>";
+                }
+                sumd += "\n";
+            }
+            MessageBox.Show(sumd);
         }
 
-        public void receiveArray(List<string> receivedArray)
+        List<string> receivedListOfFiles = new List<string>();
+        public void receiveArrayOfFiles(List<string> receivedList)
         {
-            receivedList = receivedArray;
+            receivedListOfFiles = receivedList;
         }
 
-        string path = "";
         string company = "";
         string deparment = "";
-        string month = "";
-        string week = "";
-        string file = "";
-        public void PathToSave(string companyReceive, string deptReceive, string monthReceive, string weekReceive, string fileReceive, string pathReceive)
+        public void PathToCompany(string companyReceive, string deptReceive)
         {
-            path = pathReceive;
             company = companyReceive;
             deparment = deptReceive;
-            month = monthReceive;
-            week = weekReceive;
-            file = fileReceive;
+        }
+
+        public void orderGlobalOrLocal(string receivedOrder)
+        {
+            orderLocalOrGlobal = receivedOrder;
         }
 
         private void buttonCloseProgram_Click(object sender, EventArgs e)

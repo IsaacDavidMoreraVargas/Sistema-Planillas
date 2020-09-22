@@ -92,7 +92,10 @@ namespace Sistema_Planillas_Contabilidad
 
         private void startChargeData()
         {
-            buttonQuickView.Visible = false;
+            comboBox1.Text = threeLine;
+            comboBox1.Items.Add("LOCAL");
+            comboBox1.Items.Add("GLOBAL");
+            buttonGenerateSits.Visible = false;
             buttonStart.Visible = false;
             listViewCompany.View = View.Details;
             listViewCompany.Columns[0].Width = listViewCompany.Width;
@@ -228,7 +231,7 @@ namespace Sistema_Planillas_Contabilidad
         {
             if (listViewMonth.FocusedItem == null)
             {
-                return;
+                MessageBox.Show("ERROR AL ELEGIR");
             }
             else
             {
@@ -244,7 +247,6 @@ namespace Sistema_Planillas_Contabilidad
                     string month = listViewMonth.Items[indexViewMont].Text;
                     month = month.Replace(" ", "_");
                     monthOnTime = month;
-                    buttonQuickView.Visible = true;
                     buttonStart.Visible = true;
                 }
             }
@@ -265,7 +267,6 @@ namespace Sistema_Planillas_Contabilidad
             }
             else 
             {
-                buttonQuickView.Visible = false;
                 buttonStart.Visible = false;
                 string MessageFalse = "NO HA SELECCIONADO TODOS LOS DATOS NECESARIOS\nFALTA:";
                 if (booleanCompany == false) 
@@ -288,44 +289,64 @@ namespace Sistema_Planillas_Contabilidad
             
         }
 
-        private void buttonQuickView_Click(object sender, EventArgs e)
-        {
-            string sendPath = CorePathOfFolderCompaniesSistemaPlanillas + companyOntime + "\\" + deparmentOntime + "\\" + monthOnTime;
-            GUI_VISTA_RAPIDA callingQuickView = new GUI_VISTA_RAPIDA();
-            callingQuickView.PathToSave(sendPath);
-            callingQuickView.ShowDialog();
-        }
-
-        private void buttonGenerateTotal_Click(object sender, EventArgs e)
-        {
-            if (booleanCompany == false)
-            {
-                MessageBox.Show("NO POSIBLE, SELECCIONA UNA EMPRESA");
-            }
-            else
-            {
-                GUI_ELEGIR_GENERAR_TOTALES CallGenerateTotals = new GUI_ELEGIR_GENERAR_TOTALES();
-                string typeTotal = "Totals";
-                CallGenerateTotals.receivedWork(typeTotal);
-                //CallGenerateTotals.PathToSave(companyOntime, deparmentOntime, monthOnTime, weekOntime, fileOnTime);
-                CallGenerateTotals.ShowDialog();
-            }
-        }
-
         private void buttonGenerateSits_Click(object sender, EventArgs e)
         {
             if (booleanCompany == false)
             {
-                MessageBox.Show("NO POSIBLE, SELECCIONA UNA EMPRESA");
+                MessageBox.Show("NO ES POSIBLE, SELECCIONA UNA EMPRESA");
+            }else if(comboBox1.Text==threeLine)
+            {
+                MessageBox.Show("NO ES POSIBLE, SELECCIONA UNA UBICACION ARRIBA PRIMERO");
             }
             else
             {
-                //GUI_SELECCIONAR_ASIENTOS CallGenerateSits = new GUI_SELECCIONAR_ASIENTOS();
-                GUI_ELEGIR_GENERAR_TOTALES CallGenerateSits = new GUI_ELEGIR_GENERAR_TOTALES();
-                string typeSits = "Sits";
-                CallGenerateSits.receivedWork(typeSits);
-                //CallGenerateSits.PathToSave(companyOntime, deparmentOntime, monthOnTime, weekOntime, fileOnTime);
-                CallGenerateSits.ShowDialog();
+                GUI_ELEGIR_GENERAR_TOTALES callGenerateSits = new GUI_ELEGIR_GENERAR_TOTALES();
+                callGenerateSits.MethodToReceivedAccesToObject(startThePaths, startTheTagsAndDefaults, startFoldersInsideCompany);
+                callGenerateSits.PathToCompany(companyOntime);
+                callGenerateSits.ShowDialog();
+                List<string> listDepartments = callGenerateSits.getListOfDepartments();
+                callGenerateSits.Close();
+                List<string> listFiles = new List<string>();
+                string pathCompare = CorePathOfFolderCompaniesSistemaPlanillas + companyOntime;
+                string[] storageComparePhase1 = Directory.GetDirectories(pathCompare);
+                foreach(string path in storageComparePhase1)
+                {
+                    string[] storageComparePhase2 = Directory.GetDirectories(path);
+                    foreach (string pathPhase2 in storageComparePhase2)
+                    {
+                        foreach (string compare in listDepartments)
+                        {
+                            if (pathPhase2.Contains(compare))
+                            {
+                                string[] storageFiles = Directory.GetFiles(pathPhase2);
+                                foreach(string file in storageFiles)
+                                {
+                                    if(file.Contains("SUMA-TOTALES.txt"))
+                                    {
+                                        listFiles.Add(file);
+                                        //MessageBox.Show(file);
+                                        break;
+                                    }
+                                }
+                                break;
+                            }
+                        }
+                    }
+                }
+                GUI_VISTA_ASIENTOS callToViewSits = new GUI_VISTA_ASIENTOS();
+                callToViewSits.MethodToReceivedAccesToObject(startThePaths, startTheTagsAndDefaults, startFoldersInsideCompany);
+                callToViewSits.PathToCompany(companyOntime,deparmentOntime);
+                callToViewSits.orderGlobalOrLocal(comboBox1.Text);
+                callToViewSits.receiveArrayOfFiles(listFiles);
+                callToViewSits.ShowDialog();
+                /*
+                string sum = "";
+                foreach(string dept in listFiles)
+                {
+                    sum += dept+"\n";
+                }
+                MessageBox.Show(sum);
+                */
             }
         }
 
@@ -340,6 +361,14 @@ namespace Sistema_Planillas_Contabilidad
         private void buttonCloseProgram_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void comboBox1_TextChanged(object sender, EventArgs e)
+        {
+            if (comboBox1.Text != threeLine && booleanCompany == true)
+            {
+                buttonGenerateSits.Visible = true;
+            }
         }
     }
 }

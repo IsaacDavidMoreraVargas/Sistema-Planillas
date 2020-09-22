@@ -40,6 +40,21 @@ namespace Sistema_Planillas_Contabilidad
             return itemFound;
         }
 
+        public bool pivoteColumns(string itemToCompare)
+        {
+            string[] listAvoidItem = { "CEDULA", "NOMBRE", "FECHA INGRESO", "APELLIDO 1", "APELLIDO 2" };
+            bool itemFound = false;
+            foreach (string item in listAvoidItem)
+            {
+                if (item.Contains(itemToCompare))
+                {
+                    itemFound = true;
+                    break;
+                }
+            }
+            return itemFound;
+        }
+
         public string eraseWhiteSpacesInString(string stringToClean)
         {
             int maximunSizeString = stringToClean.Length;

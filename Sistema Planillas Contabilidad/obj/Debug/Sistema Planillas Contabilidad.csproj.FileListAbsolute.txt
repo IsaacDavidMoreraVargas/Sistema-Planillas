@@ -63,7 +63,6 @@ C:\Users\Alcatraz\Desktop\Sistema Planillas Contabilidad\Sistema Planillas Conta
 C:\Users\Alcatraz\Desktop\Sistema Planillas Contabilidad\Sistema Planillas Contabilidad\obj\Debug\Sistema_Planillas_Contabilidad.GUI_MENU_INICIO.resources
 C:\Users\Alcatraz\Desktop\Sistema Planillas Contabilidad\Sistema Planillas Contabilidad\obj\Debug\Sistema_Planillas_Contabilidad.GUI_SELECCIONAR_ASIENTOS.resources
 C:\Users\Alcatraz\Desktop\Sistema Planillas Contabilidad\Sistema Planillas Contabilidad\obj\Debug\Sistema_Planillas_Contabilidad.GUI_VISTA_ASIENTOS.resources
-C:\Users\Alcatraz\Desktop\Sistema Planillas Contabilidad\Sistema Planillas Contabilidad\obj\Debug\Sistema_Planillas_Contabilidad.GUI_VISTA_RAPIDA.resources
 C:\Users\Alcatraz\Desktop\Sistema Planillas Contabilidad\Sistema Planillas Contabilidad\obj\Debug\Sistema_Planillas_Contabilidad.GUI_WORK_COMPANY.resources
 C:\Users\Alcatraz\Desktop\Sistema Planillas Contabilidad\Sistema Planillas Contabilidad\obj\Debug\Sistema_Planillas_Contabilidad.MACHOTE_GENERAL_PLANILLA.resources
 C:\Users\Alcatraz\Desktop\Sistema Planillas Contabilidad\Sistema Planillas Contabilidad\obj\Debug\Sistema_Planillas_Contabilidad.MACHOTE_GENERAL_MENUS.resources

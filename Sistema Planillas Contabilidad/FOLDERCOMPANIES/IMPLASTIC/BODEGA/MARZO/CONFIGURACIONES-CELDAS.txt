@@ -1,362 +1,362 @@
 <startDataGrid1>
 True
-True
+False
 INDEX
 True
-True
+False
 CEDULA
 True
-True
+False
 NOMBRE
 True
-True
+False
 APELLIDO 1
 True
-True
+False
 APELLIDO 2
 True
-True
+False
 FECHA INGRESO
 True
-True
+False
 ORD DIU LUN
 True
-True
+False
 EXT DIU LUN
 True
-True
+False
 ORD NOC LUN
 True
-True
+False
 EXT NOC LUN
 True
-True
+False
 ORD DIU MAR
 True
-True
+False
 EXT DIU MAR
 True
-True
+False
 ORD NOC MAR
 True
-True
+False
 EXT NOC MAR
 True
-True
+False
 ORD DIU MIE
 True
-True
+False
 EXT DIU MIE
 True
-True
+False
 ORD NOC MIE
 True
-True
+False
 EXT NOC MIE
 True
-True
+False
 ORD DIU JUE
 True
-True
+False
 EXT DIU JUE
 True
-True
+False
 ORD NOC JUE
 True
-True
+False
 EXT NOC JUE
 True
-True
+False
 ORD DIU VIE
 True
-True
+False
 EXT DIU VIE
 True
-True
+False
 ORD NOC VIE
 True
-True
+False
 EXT NOC VIE
 True
-True
+False
 ORD DIU SAB
 True
-True
+False
 EXT DIU SAB
 True
-True
+False
 ORD NOC SAB
 True
-True
+False
 EXT NOC SAB
 True
-True
+False
 ORD DIU DOM
 True
-True
+False
 EXT DIU DOM
 True
-True
+False
 ORD NOC DOM
 True
-True
+False
 EXT NOC DOM
 True
-True
+False
 PRE HOR DIU
 True
-True
+False
 PRE HOR NOC
 True
-True
+False
 TOT HOR ORD DIU
 True
-True
+False
 TOT HOR EXT DIU
 True
-True
+False
 TOT HOR ORD NOC
 True
-True
+False
 TOT HOR EXT NOC
 True
-True
+False
 COST ORD DIU
 True
-True
+False
 COST EXT DIU
 True
-True
+False
 COST ORD NOC
 True
-True
+False
 COST EXT NOC
 True
-True
+False
 TOTAL SALAR
 True
-True
+False
 VACACIONES
 True
-True
+False
 REAJUSTES
 True
-True
+False
 INCAPACIDAD
 True
-True
+False
 TOTAL SALAR BRU
 True
-True
+False
 OTRAS DEDUCCIONES
 True
-True
+False
 FUNERARIA
 True
-True
+False
 C.C.S.S
 True
-True
+False
 PRESTAMOS
 True
-True
+False
 VARIOS
 True
-True
+False
 SALARIO NETO
 True
-True
+False
 </endDataGrid1>
 <startDataGrid2>
 True
-True
+False
 INDEX
 True
-True
+False
 CEDULA
 True
-True
+False
 NOMBRE
 True
-True
+False
 APELLIDO 1
 True
-True
+False
 APELLIDO 2
 True
-True
+False
 FECHA INGRESO
 True
-True
+False
 ORD DIU LUN
 True
-True
+False
 EXT DIU LUN
 True
-True
+False
 ORD NOC LUN
 True
-True
+False
 EXT NOC LUN
 True
-True
+False
 ORD DIU MAR
 True
-True
+False
 EXT DIU MAR
 True
-True
+False
 ORD NOC MAR
 True
-True
+False
 EXT NOC MAR
 True
-True
+False
 ORD DIU MIE
 True
-True
+False
 EXT DIU MIE
 True
-True
+False
 ORD NOC MIE
 True
-True
+False
 EXT NOC MIE
 True
-True
+False
 ORD DIU JUE
 True
-True
+False
 EXT DIU JUE
 True
-True
+False
 ORD NOC JUE
 True
-True
+False
 EXT NOC JUE
 True
-True
+False
 ORD DIU VIE
 True
-True
+False
 EXT DIU VIE
 True
-True
+False
 ORD NOC VIE
 True
-True
+False
 EXT NOC VIE
 True
-True
+False
 ORD DIU SAB
 True
-True
+False
 EXT DIU SAB
 True
-True
+False
 ORD NOC SAB
 True
-True
+False
 EXT NOC SAB
 True
-True
+False
 ORD DIU DOM
 True
-True
+False
 EXT DIU DOM
 True
-True
+False
 ORD NOC DOM
 True
-True
+False
 EXT NOC DOM
 True
-True
+False
 PRE HOR DIU
 True
-True
+False
 PRE HOR NOC
 True
-True
+False
 TOT HOR ORD DIU
 True
-True
+False
 TOT HOR EXT DIU
 True
-True
+False
 TOT HOR ORD NOC
 True
-True
+False
 TOT HOR EXT NOC
 True
-True
+False
 COST ORD DIU
 True
-True
+False
 COST EXT DIU
 True
-True
+False
 COST ORD NOC
 True
-True
+False
 COST EXT NOC
 True
-True
+False
 TOTAL SALAR
 True
-True
+False
 VACACIONES
 True
-True
+False
 REAJUSTES
 True
-True
+False
 INCAPACIDAD
 True
-True
+False
 TOTAL SALAR BRU
 True
-True
+False
 OTRAS DEDUCCIONES
 True
-True
+False
 FUNERARIA
 True
-True
+False
 C.C.S.S
 True
-True
+False
 PRESTAMOS
 True
-True
+False
 VARIOS
 True
-True
+False
 SALARIO NETO
 True
-True
+False
 </endDataGrid2>
 <startDataGrid3>
 True
 True
 INDEX
 True
-True
+False
 CEDULA
 True
-True
+False
 NOMBRE
 True
-True
+False
 APELLIDO 1
 True
-True
+False
 APELLIDO 2
 True
-True
+False
 FECHA INGRESO
 True
-True
+False
 ORD DIU LUN
 True
 True
@@ -510,22 +510,22 @@ True
 True
 INDEX
 True
-True
+False
 CEDULA
 True
-True
+False
 NOMBRE
 True
-True
+False
 APELLIDO 1
 True
-True
+False
 APELLIDO 2
 True
-True
+False
 FECHA INGRESO
 True
-True
+False
 ORD DIU LUN
 True
 True

@@ -148,6 +148,8 @@ namespace Sistema_Planillas_Contabilidad
             }
             else if (orderGlobalOrLocal == opcion2)
             {
+                buttonGenerate.Visible = false;
+                buttonGenerate.Enabled = false;
                 comboBox2.Items.Add(opcion2);
             }
                 comboBox4.Items.Add(debit);
@@ -450,7 +452,19 @@ namespace Sistema_Planillas_Contabilidad
 
         private void buttonGenerateSits_Click(object sender, EventArgs e)
         {
-
+            GUI_ELEGIR_GENERAR_TOTALES callToSelecDepartmens = new GUI_ELEGIR_GENERAR_TOTALES();
+            callToSelecDepartmens.MethodToReceivedAccesToObject(startThePaths, startTheTagsAndDefaults, startFoldersInsideCompany);
+            callToSelecDepartmens.PathToCompany(company);
+            callToSelecDepartmens.ShowDialog();
+            List<string> listDepartments=callToSelecDepartmens.getListOfDepartments();
+            /*
+            string sum = "";
+            foreach(string dept in listDepartments)
+            {
+                sum += dept;
+            }
+            MessageBox.Show(sum);
+            */
         }
 
         private void comboBox1ValueChanged(object sender, EventArgs e)
