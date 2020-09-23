@@ -135,10 +135,16 @@ namespace Sistema_Planillas_Contabilidad
             setHeadsOfDataGridView();
             createColumnsListView();
             sumTheCellsofAll();
+            /*
+            if (configurationExist == true)
+            {
+                
+            }
+            */
             //startChargeData();
             //calculateFormula();
         }
-
+        
         private void setHeadsOfDataGridView()
         {
             buttonBackTotal.Enabled = false;
@@ -311,33 +317,19 @@ namespace Sistema_Planillas_Contabilidad
                 if (path.Contains("SUMA-TOTALES"))
                 {
                     string[] storageLines = File.ReadAllLines(path);
+                    dataGridView5.EnableHeadersVisualStyles = false;
+                    int index = 0;
                     for (int head = 0; head < storageLines.Length; head++)
                     {
                         if (storageLines[head] == tagEndHEad)
                         {
-                            //++head;
-                            /*
-                            int indexOfLine = 0;
-                            for (int line = head; line < storageLines.Length; line++)
-                            {
-                                if (storageLines[line] == tagStartLine)
-                                {
-                                    ++line;
-                                    dataGridView5.Rows.Add(indexOfLine.ToString());
-                                    for (int column = 0; column < dataGridView5.Columns.Count; column++)
-                                    {
-                                        dataGridView5.Rows[indexOfLine].Cells[column].Value = storageLines[line];
-                                        ++line;
-                                    }
-                                }
-
-                            }
-                            */
                             break;
                         }
                         else if (storageLines[head] != tagStartHEad)
                         {
                             dataGridView5.Columns.Add(storageLines[head], storageLines[head]);
+                            dataGridView5.Columns[index].HeaderCell.Style.BackColor = SystemColors.ActiveCaption;
+                            ++index;
                         }
                     }
                     totalExist = true;
@@ -429,8 +421,10 @@ namespace Sistema_Planillas_Contabilidad
 
             if (totalExist == false)
             {
-                string pathTemplate = SpecificPathOfFolderConfigurationTemplates;
+                string pathTemplate = CorePathOfFolderCompaniesSistemaPlanillas+company+"\\"+coreExtraConfiguration+"\\"+template;
                 string[] storageTemplateFiles = Directory.GetFiles(pathTemplate);
+                dataGridView5.EnableHeadersVisualStyles = false;
+                int index = 0;
                 foreach (string path in storageTemplateFiles)
                 {
                     string[] storageLines = File.ReadAllLines(path);
@@ -443,6 +437,8 @@ namespace Sistema_Planillas_Contabilidad
                         else if (line != tagStartHEad)
                         {
                             dataGridView5.Columns.Add(line, line);
+                            dataGridView5.Columns[index].HeaderCell.Style.BackColor = SystemColors.ActiveCaption;
+                            ++index;
                         }
                     }
                     break;
@@ -593,6 +589,7 @@ namespace Sistema_Planillas_Contabilidad
                 listOFDataGridView.Add(dataGridView4);
             }
             int indexAdd = 0;
+            dataGridView5.Rows.Clear();
             generalMethods callToGeneralMethods = new generalMethods();
             generalDataAndAvoidData callToFindAvoidData = new generalDataAndAvoidData();
             generalMultiArrayMethods callToArrayMethod = new generalMultiArrayMethods();
@@ -609,6 +606,7 @@ namespace Sistema_Planillas_Contabilidad
                         if (answer == true)
                         {
                             pivote = dataGridStudy.Columns[column].HeaderText;
+                            //MessageBox.Show(pivote);
                             break;
                         }
                     }
@@ -641,7 +639,7 @@ namespace Sistema_Planillas_Contabilidad
                         }
                     }
                 }
-                if (listOFDataGridView.Count > 1)
+                if (listOFDataGridView.Count >=1)
                 {
                     for (int dataGridPhase2 = 1; dataGridPhase2 < listOFDataGridView.Count; dataGridPhase2++)
                     {
@@ -682,124 +680,136 @@ namespace Sistema_Planillas_Contabilidad
                 }
             }
             
-            for (int column = 0; column < dataGridView5.Columns.Count; column++)
+            try
             {
-                if (dataGridView5.Columns[column].HeaderText == pivote)
-                {
-                    for (int rows = 0; rows < dataGridView5.Rows.Count - 1; rows++)
-                    {
-                        List<DataGridViewRow> lisfOfRows = new List<DataGridViewRow>();
-                        lisfOfRows = callToArrayMethod.getLisfOfRowsWithPivote(listOFDataGridView, dataGridView5.Rows[rows].Cells[column].Value.ToString());
-                        string []storageData=callToArrayMethod.getSumOfLisfRows(lisfOfRows);
-                        for (int replace=0; replace<storageData.Length; replace++)
-                        {
-                           dataGridView5.Rows[rows].Cells[replace].Value = storageData[replace];
-                        }
-                    }
-                    break;
-                }
-            }
 
-            //appliying formulas
-            string pathOfFormulas = CorePathOfFolderCompaniesSistemaPlanillas + company + "\\"+deparment+ "\\" + month + "\\" + "CORE-FORMULAS.txt";
-            if (File.Exists(pathOfFormulas))
-            {
-                string[] storageFormulas = File.ReadAllLines(pathOfFormulas);
-                List<string> resultOfBodyFormula = new List<string>();
-                List<string> copyResultOfBodyFormula = new List<string>();
-                List<string> bodyOfFormula = new List<string>();
-                List<string> copyBodyOfFormula = new List<string>();
-                foreach (string formula in storageFormulas)
+                for (int column = 0; column < dataGridView5.Columns.Count; column++)
                 {
-                    if (formula != tagStartFormula && formula != tagEndFormula)
+                    if (dataGridView5.Columns[column].HeaderText == pivote)
                     {
-                        string[] splitFormula = formula.Split('=');
-                        resultOfBodyFormula.Add(splitFormula[0]);
-                        copyResultOfBodyFormula.Add(splitFormula[0]);
-                        string replaceString = splitFormula[1];
-                        replaceString = replaceString.Replace("+", "?+?");
-                        replaceString = replaceString.Replace("-", "?-?");
-                        replaceString = replaceString.Replace("/", "?/?");
-                        replaceString = replaceString.Replace("*", "?*?");
-                        bodyOfFormula.Add(replaceString);
-                        copyBodyOfFormula.Add(replaceString);
-                    }
-                }
-                for (int formulaPhase1 = 0; formulaPhase1 < bodyOfFormula.Count; formulaPhase1++)
-                {
-                    calculateSystem callToCalculate = new calculateSystem();
-                    for (int row = 0; row < dataGridView5.Rows.Count - 1; row++)
-                    {
-                        string[] splitFormulaPhase2 = bodyOfFormula[formulaPhase1].Split('?');
-                        for (int column = 0; column < dataGridView5.Columns.Count; column++)
+                        for (int rows = 0; rows < dataGridView5.Rows.Count - 1; rows++)
                         {
-                            bool answer = callToFindAvoidData.avoidColumns(dataGridView5.Columns[column].HeaderText);
-                            if (answer == false)
+                            List<DataGridViewRow> lisfOfRows = new List<DataGridViewRow>();
+                            if (dataGridView5.Rows[rows].Cells[column].Value != null)
                             {
-                                for (int formulaPhase2 = 0; formulaPhase2 < splitFormulaPhase2.Length; formulaPhase2++)
+                                lisfOfRows = callToArrayMethod.getLisfOfRowsWithPivote(listOFDataGridView, dataGridView5.Rows[rows].Cells[column].Value.ToString());
+                                string[] storageData = callToArrayMethod.getSumOfLisfRows(lisfOfRows);
+                                for (int replace = 0; replace < storageData.Length; replace++)
                                 {
-                                    if (dataGridView5.Columns[column].HeaderText == splitFormulaPhase2[formulaPhase2])
-                                    {
-                                        if (dataGridView5.Rows[row].Cells[column].Value == null || dataGridView5.Rows[row].Cells[column].Value.ToString() == "" || dataGridView5.Rows[row].Cells[column].Value.ToString() == " ")
-                                        {
-                                            splitFormulaPhase2[formulaPhase2] = "0";
-                                        }
-                                        else
-                                        {
-                                            splitFormulaPhase2[formulaPhase2] = dataGridView5.Rows[row].Cells[column].Value.ToString();
-                                        }
-                                        break;
-                                    }
+                                    dataGridView5.Rows[rows].Cells[replace].Value = storageData[replace];
                                 }
                             }
                         }
-                        string numberAnswer = callToCalculate.recieveArray(splitFormulaPhase2);
-                        for (int column = 0; column < dataGridView5.Columns.Count; column++)
-                        {
-                            if (dataGridView1.Columns[column].HeaderText == resultOfBodyFormula[formulaPhase1])
-                            {
-                                dataGridView5.Rows[row].Cells[column].Value = numberAnswer;
-                                break;
-                            }
-                        }
+                        break;
                     }
-                }
-
-                for (int column = 0; column < dataGridView5.Columns.Count; column++)
-                {
-                    bool answer = callToFindAvoidData.avoidColumns(dataGridView5.Columns[column].HeaderText);
-                    if (answer == false)
-                    {
-                        double sum = 0;
-                        for (int row = 0; row < dataGridView5.Rows.Count - 1; row++)
-                        {
-                            if (dataGridView5.Rows[row].Cells[column].Value.ToString().Contains("-"))
-                            {
-                                sum -= Convert.ToDouble(dataGridView5.Rows[row].Cells[column].Value);
-                            }
-                            else if (dataGridView5.Rows[row].Cells[column].Value == null || dataGridView5.Rows[row].Cells[column].Value.ToString() == "" || dataGridView5.Rows[row].Cells[column].Value.ToString() == " ")
-                            {
-                                sum += 0;
-                            }
-                            else
-                            {
-                                sum += Convert.ToDouble(dataGridView5.Rows[row].Cells[column].Value);
-                            }
-                        }
-                        //sum = Math.Round(sum, 0, MidpointRounding.AwayFromZero);
-                        dataGridView5.Rows[dataGridView5.Rows.Count - 1].Cells[column].Value = sum.ToString();
-                    }
-                    else
-                    {
-                        dataGridView5.Rows[dataGridView5.Rows.Count - 1].Cells[column].Value = "FALSE";
-                    }
-                }
-                dataGridView5.Rows[dataGridView5.Rows.Count - 1].Cells[0].Value = "TOTAL";
-                for (int column = 0; column < dataGridView5.Columns.Count; column++)
-                {
-                    dataGridView5.Rows[dataGridView5.Rows.Count - 1].Cells[column].Style.BackColor = Color.LightGreen;
                 }
             }
+            catch (Exception E)
+            {
+                MessageBox.Show("NO SE APLICARAN LAS FORMULAS POR FALTA DE COLUMNAS PIVOTE");
+            }
+             
+            //appliying formulas
+            string pathOfFormulas = CorePathOfFolderCompaniesSistemaPlanillas + company + "\\" + deparment + "\\" + month + "\\" + "CORE-FORMULAS.txt";
+                if (File.Exists(pathOfFormulas))
+                {
+                    string[] storageFormulas = File.ReadAllLines(pathOfFormulas);
+                    List<string> resultOfBodyFormula = new List<string>();
+                    List<string> copyResultOfBodyFormula = new List<string>();
+                    List<string> bodyOfFormula = new List<string>();
+                    List<string> copyBodyOfFormula = new List<string>();
+                    foreach (string formula in storageFormulas)
+                    {
+                        if (formula != tagStartFormula && formula != tagEndFormula)
+                        {
+                            string[] splitFormula = formula.Split('=');
+                            resultOfBodyFormula.Add(splitFormula[0]);
+                            copyResultOfBodyFormula.Add(splitFormula[0]);
+                            string replaceString = splitFormula[1];
+                            replaceString = replaceString.Replace("+", "?+?");
+                            replaceString = replaceString.Replace("-", "?-?");
+                            replaceString = replaceString.Replace("/", "?/?");
+                            replaceString = replaceString.Replace("*", "?*?");
+                            bodyOfFormula.Add(replaceString);
+                            copyBodyOfFormula.Add(replaceString);
+                        }
+                    }
+                    for (int formulaPhase1 = 0; formulaPhase1 < bodyOfFormula.Count; formulaPhase1++)
+                    {
+                        calculateSystem callToCalculate = new calculateSystem();
+                        for (int row = 0; row < dataGridView5.Rows.Count - 1; row++)
+                        {
+                            string[] splitFormulaPhase2 = bodyOfFormula[formulaPhase1].Split('?');
+                            for (int column = 0; column < dataGridView5.Columns.Count; column++)
+                            {
+                                bool answer = callToFindAvoidData.avoidColumns(dataGridView5.Columns[column].HeaderText);
+                                if (answer == false)
+                                {
+                                    for (int formulaPhase2 = 0; formulaPhase2 < splitFormulaPhase2.Length; formulaPhase2++)
+                                    {
+                                        if (dataGridView5.Columns[column].HeaderText == splitFormulaPhase2[formulaPhase2])
+                                        {
+                                            if (dataGridView5.Rows[row].Cells[column].Value == null || dataGridView5.Rows[row].Cells[column].Value.ToString() == "" || dataGridView5.Rows[row].Cells[column].Value.ToString() == " ")
+                                            {
+                                                splitFormulaPhase2[formulaPhase2] = "0";
+                                            }
+                                            else
+                                            {
+                                                splitFormulaPhase2[formulaPhase2] = dataGridView5.Rows[row].Cells[column].Value.ToString();
+                                            }
+                                            break;
+                                        }
+                                    }
+                                }
+                            }
+                            string numberAnswer = callToCalculate.recieveArray(splitFormulaPhase2);
+                            for (int column = 0; column < dataGridView5.Columns.Count; column++)
+                            {
+                                if (dataGridView1.Columns[column].HeaderText == resultOfBodyFormula[formulaPhase1])
+                                {
+                                    dataGridView5.Rows[row].Cells[column].Value = numberAnswer;
+                                    break;
+                                }
+                            }
+                        }
+                    }
+                    //MessageBox.Show("Here");
+                    for (int column = 0; column < dataGridView5.Columns.Count; column++)
+                    {
+                        bool answer = callToFindAvoidData.avoidColumns(dataGridView5.Columns[column].HeaderText);
+                        if (answer == false)
+                        {
+                            double sum = 0;
+                            for (int row = 0; row < dataGridView5.Rows.Count - 1; row++)
+                            {
+                                if (dataGridView5.Rows[row].Cells[column].Value.ToString().Contains("-"))
+                                {
+                                    sum -= Convert.ToDouble(dataGridView5.Rows[row].Cells[column].Value);
+                                }
+                                else if (dataGridView5.Rows[row].Cells[column].Value == null || dataGridView5.Rows[row].Cells[column].Value.ToString() == "" || dataGridView5.Rows[row].Cells[column].Value.ToString() == " ")
+                                {
+                                    sum += 0;
+                                }
+                                else
+                                {
+                                    sum += Convert.ToDouble(dataGridView5.Rows[row].Cells[column].Value);
+                                }
+                            }
+                            //sum = Math.Round(sum, 0, MidpointRounding.AwayFromZero);
+                            dataGridView5.Rows[dataGridView5.Rows.Count - 1].Cells[column].Value = sum.ToString();
+                        }
+                        else
+                        {
+                            dataGridView5.Rows[dataGridView5.Rows.Count - 1].Cells[column].Value = "FALSE";
+                        }
+                    }
+                    dataGridView5.Rows[dataGridView5.Rows.Count - 1].Cells[0].Value = "TOTAL";
+                    for (int column = 0; column < dataGridView5.Columns.Count; column++)
+                    {
+                        dataGridView5.Rows[dataGridView5.Rows.Count - 1].Cells[column].Style.BackColor = Color.LightGray;
+                    }
+                }
+           
         }
 
         
@@ -1539,7 +1549,7 @@ namespace Sistema_Planillas_Contabilidad
             }
             foreach (string path in storageFiles)
             {
-                if (File.Exists(path))
+                if (File.Exists(path)&&!path.Contains("\\CORE-FORMULAS.txt"))
                 {
                     File.Delete(path);
                 }
@@ -1677,22 +1687,26 @@ namespace Sistema_Planillas_Contabilidad
                     sumString += column.HeaderText + "?";
                 }
                 sumString += tagEndHEad + "?";
+                sumString += tagStartLine + "?";
                 for (int row = 0; row < dataGridView5.Rows.Count; row++)
                 {
-                    sumString += tagStartLine + "?";
-                    for (int column = 0; column < dataGridView5.Columns.Count; column++)
+                    if (dataGridView5.Rows[row].Cells[0].Value.ToString() == "TOTAL")
                     {
-                        if (dataGridView5.Rows[row].Cells[column].Value == null)
+                        for (int column = 0; column < dataGridView5.Columns.Count; column++)
                         {
-                            sumString += " " + "?";
+                            if (dataGridView5.Rows[row].Cells[column].Value == null)
+                            {
+                                sumString += " " + "?";
+                            }
+                            else
+                            {
+                                sumString += dataGridView5.Rows[row].Cells[column].Value + "?";
+                            }
                         }
-                        else
-                        {
-                            sumString += dataGridView5.Rows[row].Cells[column].Value + "?";
-                        }
+                        break;
                     }
-                    sumString += tagEndLine + "?";
                 }
+                sumString += tagEndLine + "?";
                 sumString = sumString.TrimEnd('?');
                 callToWriteInFiles.writeInFiles(pathToWrite, sumString);
             }
@@ -2055,7 +2069,7 @@ namespace Sistema_Planillas_Contabilidad
                 MessageBox.Show("IMPORTADO EXITOSAMENTE");
             }
         }
-
+        /*
         private void buttonReturnScreen_Click(object sender, EventArgs e)
         {
             //this.Hide();
@@ -2063,10 +2077,10 @@ namespace Sistema_Planillas_Contabilidad
             //callingChooseWork.ShowDialog();
             this.Close();
         }
-
+        */
         private void buttonCloseProgram_Click(object sender, EventArgs e)
         {
-            //methodToSave("!ALERT");
+            methodToSave("!ALERT");
             this.Close();
         }
 
@@ -3107,6 +3121,20 @@ namespace Sistema_Planillas_Contabilidad
                 {
                     dataToChargeData.Rows[row].Cells[column].Style.BackColor = Color.White;
                 }
+            }
+        }
+
+        private void tableLayoutPanel1_MouseClick(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Left)
+            {
+                tableLayoutPanel1.RowStyles[0] = new RowStyle(SizeType.Percent, 50);
+                tableLayoutPanel1.RowStyles[1] = new RowStyle(SizeType.Percent, 50);
+            }
+            if (e.Button == MouseButtons.Right)
+            {
+                tableLayoutPanel1.RowStyles[0] = new RowStyle(SizeType.Percent, 86);
+                tableLayoutPanel1.RowStyles[1] = new RowStyle(SizeType.Percent, 13);
             }
         }
     }
