@@ -266,7 +266,7 @@ namespace Sistema_Planillas_Contabilidad
 
         private void buttonEditGlobalSits_Click(object sender, EventArgs e)
         {
-            List<string> sendNothing = new List<string>();
+            //List<string> sendNothing = new List<string>();
             List<string> listOfHeads = new List<string>();
             string storagePathAvoid = startThePaths.SpecificPathOfConfigurationFolderAvoidData + "avoid.txt";
             if (File.Exists(storagePathAvoid))
@@ -274,7 +274,7 @@ namespace Sistema_Planillas_Contabilidad
                 string[] storageHeads = File.ReadAllLines(storagePathAvoid);
                 foreach (string head in storageHeads)
                 {
-                    sendNothing.Add(head);
+                    listOfHeads.Add(head);
                 }
             }
             GUI_SELECCIONAR_ASIENTOS callingCreateFormula = new GUI_SELECCIONAR_ASIENTOS();

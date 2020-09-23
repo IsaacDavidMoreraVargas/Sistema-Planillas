@@ -145,6 +145,7 @@ namespace Sistema_Planillas_Contabilidad
             if (orderGlobalOrLocal == opcion1)
             {
                 comboBox2.Items.Add(opcion1);
+                comboBox2.Items.Add(opcion2);
             }
             else if (orderGlobalOrLocal == opcion2)
             {

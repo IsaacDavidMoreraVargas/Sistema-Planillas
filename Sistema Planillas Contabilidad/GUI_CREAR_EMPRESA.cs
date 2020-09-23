@@ -426,7 +426,43 @@ namespace Sistema_Planillas_Contabilidad
                         writerTemplate.WriteLine(line);
                     }
                     writerTemplate.Close();
-
+                    //adding formula
+                    string pathFormula = SpecificPathOfFolderConfigurationFormulas;
+                    string []storageFormulas = Directory.GetFiles(pathFormula);
+                    foreach(string path in storageFormulas)
+                    {
+                        string pathReadFormula = path;
+                        string nameFomula = path.Replace(pathFormula, "");
+                        nameFomula = nameFomula.Replace("\\","");
+                        string pathWriteFormula = pathCompanyAndNameCompany + "\\" + coreExtraConfiguration + "\\" + formula + "\\" + nameFomula;
+                        string[] storageData = File.ReadAllLines(pathReadFormula);
+                        FileStream fstreamFormula = new FileStream(pathWriteFormula, FileMode.OpenOrCreate, FileAccess.Write);
+                        StreamWriter writerFormula = new StreamWriter(fstreamFormula);
+                        foreach (string line in storageData)
+                        {
+                            writerFormula.WriteLine(line);
+                        }
+                        writerFormula.Close();
+                    }
+                    //adding Sits
+                    string pathSits= SpecificPathOfFolderConfigurationSits;
+                    string []storageSits = Directory.GetFiles(pathSits);
+                    foreach (string path in storageSits)
+                    {
+                        string pathReadSits = path;
+                        string nameSits = path.Replace(pathSits, "");
+                        nameSits = nameSits.Replace("\\", "");
+                        nameSits = nameSits.Replace("GLOBAL", "CORE");
+                        string[] storageData = File.ReadAllLines(pathReadSits);
+                        string pathWriteSits = pathCompanyAndNameCompany + "\\" + coreExtraConfiguration + "\\" + sits + "\\" + nameSits;
+                        FileStream fstreamSits = new FileStream(pathWriteSits, FileMode.OpenOrCreate, FileAccess.Write);
+                        StreamWriter writerSits = new StreamWriter(fstreamSits);
+                        foreach (string line in storageData)
+                        {
+                            writerSits.WriteLine(line);
+                        }
+                        writerSits.Close();
+                    }
                     //here ends the creation of company
                     setDataDefault();
                     MessageBox.Show("EMPRESA CREADA EXITOSAMENTE");

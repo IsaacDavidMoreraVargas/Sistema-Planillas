@@ -1827,6 +1827,21 @@ namespace Sistema_Planillas_Contabilidad
             callingCreateFormula.ShowDialog();
         }
 
+        private void buttonGenerateFormula_Click(object sender, EventArgs e)
+        {
+            List<string> listOfHeads = new List<string>();
+            foreach (DataGridViewColumn column in dataGridView5.Columns)
+            {
+                listOfHeads.Add(column.HeaderText);
+            }
+            GUI_CREATE_FORMULA callingCreateFormula = new GUI_CREATE_FORMULA();
+            callingCreateFormula.MethodToReceivedAccesToObject(startThePaths, startTheTagsAndDefaults, startFoldersInsideCompany);
+            callingCreateFormula.lisftOfHeads(listOfHeads);
+            callingCreateFormula.PathToCompany(company, deparment, month);
+            callingCreateFormula.menuGlobalOrLocal("LOCAL");
+            callingCreateFormula.ShowDialog();
+        }
+
         private void buttonImportDataColumn_Click(object sender, EventArgs e)
         {
             actionHappened = true;
@@ -1845,21 +1860,6 @@ namespace Sistema_Planillas_Contabilidad
         private void buttonNextTotal_Click(object sender, EventArgs e)
         {
             actionHappened = true;
-        }
-
-        private void buttonGenerateFormula_Click(object sender, EventArgs e)
-        {
-            List<string> listOfHeads = new List<string>();
-            foreach(DataGridViewColumn column in dataGridView5.Columns)
-            {
-                listOfHeads.Add(column.HeaderText);
-            }
-            GUI_CREATE_FORMULA callingCreateFormula = new GUI_CREATE_FORMULA();
-            callingCreateFormula.MethodToReceivedAccesToObject(startThePaths, startTheTagsAndDefaults, startFoldersInsideCompany);
-            callingCreateFormula.lisftOfHeads(listOfHeads);
-            callingCreateFormula.PathToCompany(company, deparment, month);
-            callingCreateFormula.menuGlobalOrLocal("LOCAL");
-            callingCreateFormula.ShowDialog();
         }
 
         private void buttonRecalculate_Click(object sender, EventArgs e)

@@ -21,6 +21,7 @@ namespace Sistema_Planillas_Contabilidad
 
         string opcion1 = "LOCAL";
         string opcion2 = "GLOBAL";
+        string opcion3 = "MEDIO";
         string orderGlobalOrLocal = "";
         string edit = "EDITAR";
         string orderAddOrEdit = "";
@@ -126,8 +127,10 @@ namespace Sistema_Planillas_Contabilidad
             {
                 comboBoxCharge.Items.Add(opcion1);
                 comboBoxCharge.Items.Add(opcion2);
+                comboBoxCharge.Items.Add(opcion3);
                 comboBoxSave.Items.Add(opcion1);
                 comboBoxSave.Items.Add(opcion2);
+                comboBoxSave.Items.Add(opcion3);
             }
             else if (orderGlobalOrLocal == opcion2)
             {
@@ -215,19 +218,32 @@ namespace Sistema_Planillas_Contabilidad
                 {
                     path = CorePathOfFolderCompaniesSistemaPlanillas + company + "\\" + deparment + "\\" + month + "\\" + "CORE-FORMULAS.txt";
                 }
-                else if (comboBoxSave.Text == opcion2)
+                else if (comboBoxSave.Text == opcion3)
                 {
                     path = CorePathOfFolderCompaniesSistemaPlanillas + company + "\\" + coreExtraConfiguration + "\\" + formula + "\\" + "GLOBAL-FORMULAS.txt";
+                }
+                else if (comboBoxSave.Text == opcion2)
+                {
+                    path = SpecificPathOfFolderConfigurationFormulas + "GLOBAL-FORMULAS.txt";
                 }
                 if (File.Exists(path))
                 {
                     File.Delete(path);
                 }
+                
                 string addLines = "";
                 foreach(ListViewItem formula in listView1.Items)
                 {
-                    addLines+=tagStartFormula+"?"+formula.Text+"?"+tagEndFormula+"?";
+                    if (formula.Text == "" || formula.Text == " " || formula.Text == "\n")
+                    {
+
+                    }
+                    else
+                    {
+                        addLines += tagStartFormula + "?" + formula.Text + "?" + tagEndFormula + "?";
+                    }
                 }
+                addLines = addLines.TrimEnd('?');
                 generalMethodToWriteInFiles callToWrite = new generalMethodToWriteInFiles();
                 callToWrite.writeInFiles(path, addLines);
                 MessageBox.Show("FORMULAS GUARDADAS EXITOSAMENTE");
@@ -242,8 +258,16 @@ namespace Sistema_Planillas_Contabilidad
                 string addLines = "";
                 foreach (ListViewItem formula in listView1.Items)
                 {
-                    addLines += tagStartFormula + "?" + formula.Text + "?" + tagEndFormula + "?";
+                    if (formula.Text == "" || formula.Text == " " || formula.Text == "\n")
+                    {
+
+                    }
+                    else
+                    {
+                        addLines += tagStartFormula + "?" + formula.Text + "?" + tagEndFormula + "?";
+                    }
                 }
+                addLines = addLines.TrimEnd('?');
                 generalMethodToWriteInFiles callToWrite = new generalMethodToWriteInFiles();
                 callToWrite.writeInFiles(path, addLines);
                 MessageBox.Show("FORMULAS GUARDADAS EXITOSAMENTE");
@@ -312,10 +336,14 @@ namespace Sistema_Planillas_Contabilidad
                 }
                 else if(comboBoxCharge.Text == opcion2)
                 {
-                    path = CorePathOfFolderCompaniesSistemaPlanillas + company + "\\" +coreExtraConfiguration + "\\" + formula + "\\" + "GLOBAL-FORMULAS.txt";
+                    path = SpecificPathOfFolderConfigurationFormulas + "GLOBAL-FORMULAS.txt";
+                }
+                else if (comboBoxCharge.Text == opcion3)
+                {
+                    path = CorePathOfFolderCompaniesSistemaPlanillas + company + "\\" + coreExtraConfiguration + "\\" + formula + "\\" + "GLOBAL-FORMULAS.txt";
                 }
 
-                if(File.Exists(path))
+                if (File.Exists(path))
                 {
                     string[] storageFormulas = File.ReadAllLines(path);
                     listView1.Items.Clear();

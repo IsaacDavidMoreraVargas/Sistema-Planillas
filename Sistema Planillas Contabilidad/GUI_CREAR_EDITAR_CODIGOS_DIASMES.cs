@@ -299,7 +299,7 @@ namespace Sistema_Planillas_Contabilidad
             if (textBox1.Text == "" || textBox1.Text == " ")
             {
                 MessageBox.Show("NO SE AÑADIRA, ESTA EN BLANCO");
-            }else if (!textBox1.Text.Contains(">") && optionMenu == "CODE" || optionMenu == "DAYS")
+            }else if (!textBox1.Text.Contains(">") && optionMenu == "CODE" || !textBox1.Text.Contains(">") && optionMenu == "DAYS")
             {
                 MessageBox.Show("NO SE AÑADIRA, NO CONTIENE LA ESTRUCTURA NECESARIA, EJEMPLO: DATO1>DATO2");
             }
