@@ -176,19 +176,7 @@ namespace Sistema_Planillas_Contabilidad
                 }
                
             }
-            bool positive = numberStudy >= 0;
-            if(positive==true)
-            {
-                string format = numberStudy.ToString();
-                return format;
-            }
-            else
-            {
-                string format = "0";
-                return format;
-            }
-            //string format = String.Format("{0:0,0.000}", numberStudy);
-            
+            return numberStudy.ToString();
         }
 
         public string correctString(string sendData)

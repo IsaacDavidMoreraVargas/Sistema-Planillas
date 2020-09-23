@@ -197,8 +197,7 @@
             this.dataGridView1.Size = new System.Drawing.Size(1008, 80);
             this.dataGridView1.TabIndex = 0;
             this.dataGridView1.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellClick);
-            this.dataGridView1.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.CellRecalculateFinish);
-            this.dataGridView1.Click += new System.EventHandler(this.dataGridView1_Click);
+            this.dataGridView1.Click += new System.EventHandler(this.dataGridView1_Click_1);
             // 
             // INDEX
             // 
@@ -957,7 +956,7 @@
             this.dataGridView4.Size = new System.Drawing.Size(1008, 80);
             this.dataGridView4.TabIndex = 3;
             this.dataGridView4.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView4_CellClick);
-            this.dataGridView4.Click += new System.EventHandler(this.dataGridView4_Click);
+            this.dataGridView4.Click += new System.EventHandler(this.dataGridView4_Click_1);
             // 
             // dataGridView3
             // 
@@ -971,7 +970,7 @@
             this.dataGridView3.Size = new System.Drawing.Size(1008, 80);
             this.dataGridView3.TabIndex = 2;
             this.dataGridView3.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView3_CellClick);
-            this.dataGridView3.Click += new System.EventHandler(this.dataGridView3_Click);
+            this.dataGridView3.Click += new System.EventHandler(this.dataGridView3_Click_1);
             // 
             // dataGridView2
             // 
@@ -985,7 +984,7 @@
             this.dataGridView2.Size = new System.Drawing.Size(1008, 80);
             this.dataGridView2.TabIndex = 1;
             this.dataGridView2.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView2_CellClick);
-            this.dataGridView2.Click += new System.EventHandler(this.dataGridView2_Click);
+            this.dataGridView2.Click += new System.EventHandler(this.dataGridView2_Click_1);
             // 
             // dataGridView5
             // 
@@ -1002,7 +1001,7 @@
             this.dataGridView5.Size = new System.Drawing.Size(1040, 46);
             this.dataGridView5.TabIndex = 2;
             this.dataGridView5.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView5_CellClick);
-            this.dataGridView5.Click += new System.EventHandler(this.dataGridView5_Click);
+            this.dataGridView5.Click += new System.EventHandler(this.dataGridView5_Click_1);
             // 
             // GUI_WORK_COMPANY
             // 

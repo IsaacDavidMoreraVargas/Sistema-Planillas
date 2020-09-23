@@ -15,31 +15,22 @@ namespace Sistema_Planillas_Contabilidad
 {
     public partial class GUI_WORK_COMPANY : Form
     {
-        string[] alphabet = { "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z" };
-        //string[] avoidData = { "INDEX", "CEDULA", "NOMBRE", "APELLIDO", "ORD DIU", "EXT DIU", "ORD NOC", "EXT NOC", "PRE HOR", "TOT ORD", "TOT EXT", "TOTAL SALAR" };
-        string[] avoidData;
-        //string path = "";
         string company = "";
         string deparment = "";
         string month = "";
-        //string week = "";
-        //string file = "";
-        int rowNumber = 0;
+        bool actionHappened = false;
         int indexColumnOfDatagrid = 0;
         int indexRowOfDatagrid = 0;
 
-        //string separator1 = "-----------";
-        string separator2 = "+++++++++++";
-
         bool clickOnDataGrid1 = false;
-        bool clickOnCellDataGrid1 = false;
         bool clickOnDataGrid2 = false;
-        bool clickOnCellDataGrid2 = false;
         bool clickOnDataGrid3 = false;
-        bool clickOnCellDataGrid3 = false;
         bool clickOnDataGrid4 = false;
-        bool clickOnCellDataGrid4 = false;
         bool clickOnDataGrid5 = false;
+        bool clickOnCellDataGrid1 = false;
+        bool clickOnCellDataGrid2 = false;
+        bool clickOnCellDataGrid3 = false;
+        bool clickOnCellDataGrid4 = false;
         bool clickOnCellDataGrid5 = false;
 
         public GUI_WORK_COMPANY()
@@ -84,7 +75,6 @@ namespace Sistema_Planillas_Contabilidad
         SpecificAndCorePaths startThePaths;
         TagsAndDefaultValues startTheTagsAndDefaults;
         FoldersInsideCompany startFoldersInsideCompany;
-        //generalMethods callToGeneralMethods = new generalMethods();
 
         public void MethodToReceivedAccesToObject(SpecificAndCorePaths startThePathsReceived, TagsAndDefaultValues startTheTagsAndDefaultsReceived, FoldersInsideCompany startFoldersInsideCompanyReceived)
         {
@@ -133,16 +123,8 @@ namespace Sistema_Planillas_Contabilidad
         private void GUI_WORK_COMPANY_Load(object sender, EventArgs e)
         {
             setHeadsOfDataGridView();
-            createColumnsListView();
+            createColumnsinDataGridView5();
             sumTheCellsofAll();
-            /*
-            if (configurationExist == true)
-            {
-                
-            }
-            */
-            //startChargeData();
-            //calculateFormula();
         }
         
         private void setHeadsOfDataGridView()
@@ -150,19 +132,6 @@ namespace Sistema_Planillas_Contabilidad
             buttonBackTotal.Enabled = false;
             buttonNextTotal.Enabled = false;
             dataGridView1.Columns.Clear();
-            /*
-            //
-            dataGridView1.Enabled = false;
-            dataGridView2.Enabled = false;
-            dataGridView3.Enabled = false;
-            dataGridView4.Enabled = false;
-            //
-            dataGridView1.Visible= false;
-            dataGridView2.Visible = false;
-            dataGridView3.Visible = false;
-            dataGridView4.Visible = false;
-            //
-            */
             comboBox1.Text = threeLine;
             comboBox2.Text = threeLine;
             //
@@ -172,8 +141,6 @@ namespace Sistema_Planillas_Contabilidad
             {
                 if (path.Contains("1-7"))
                 {
-                    //dataGridView1.Enabled=true;
-                    //dataGridView1.Visible = true;
 
                     string[] storageLines = File.ReadAllLines(path);
                     for (int head = 0; head < storageLines.Length; head++)
@@ -206,8 +173,6 @@ namespace Sistema_Planillas_Contabilidad
                     }
                 } else if (path.Contains("8-14"))
                 {
-                    //dataGridView2.Enabled = true;
-                    //dataGridView2.Visible = true;
 
                     string[] storageLines = File.ReadAllLines(path);
                     for (int head = 0; head < storageLines.Length; head++)
@@ -240,8 +205,6 @@ namespace Sistema_Planillas_Contabilidad
                     }
                 } else if (path.Contains("15-21"))
                 {
-                    //dataGridView3.Enabled = true;
-                    //dataGridView3.Visible = true;
 
                     string[] storageLines = File.ReadAllLines(path);
                     for (int head = 0; head < storageLines.Length; head++)
@@ -274,9 +237,6 @@ namespace Sistema_Planillas_Contabilidad
                     }
                 } else if (path.Contains("22-"))
                 {
-                    //dataGridView4.Enabled = true;
-                    //dataGridView4.Visible = true;
-
                     string[] storageLines = File.ReadAllLines(path);
 
                     for (int head = 0; head < storageLines.Length; head++)
@@ -454,16 +414,15 @@ namespace Sistema_Planillas_Contabilidad
             comboBox1.Items.Add("SEMANA 3");
             comboBox1.Items.Add("SEMANA 4");
 
-            baseResizeDatasGridViewPhase1();
+            baseResizeDatasGridView();
         }
 
-        private void baseResizeDatasGridViewPhase1()
+        private void baseResizeDatasGridView()
         {
             resizeDataGrid1();
             resizeDataGrid2();
             resizeDataGrid3();
             resizeDataGrid4();
-            //methodToHideUnhideDataGridView();
         }
 
 
@@ -476,7 +435,7 @@ namespace Sistema_Planillas_Contabilidad
             {
                 dataGridView1.Location = new Point(0, heigthLocation);
                 dataGridView1.Width = tableLayoutPanel1.Width - 30;
-                int sizeHeight = dataGridView1.ColumnHeadersHeight;
+                int sizeHeight = dataGridView1.ColumnHeadersHeight + 10;
                 if (dataGridView1.Rows.Count > 1)
                 {
                     foreach (DataGridViewRow row in dataGridView1.Rows)
@@ -501,7 +460,7 @@ namespace Sistema_Planillas_Contabilidad
             {
                 dataGridView2.Location = new Point(0, heigthLocation);
                 dataGridView2.Width = tableLayoutPanel1.Width - 30;
-                int sizeHeight = dataGridView2.ColumnHeadersHeight;
+                int sizeHeight = dataGridView2.ColumnHeadersHeight+10;
                 if (dataGridView2.Rows.Count > 1)
                 {
                     foreach (DataGridViewRow row in dataGridView2.Rows)
@@ -526,7 +485,7 @@ namespace Sistema_Planillas_Contabilidad
             {
                 dataGridView3.Location = new Point(0, heigthLocation);
                 dataGridView3.Width = tableLayoutPanel1.Width - 30;
-                int sizeHeight = dataGridView3.ColumnHeadersHeight;
+                int sizeHeight = dataGridView3.ColumnHeadersHeight + 10;
                 if (dataGridView3.Rows.Count > 1)
                 {
                     foreach (DataGridViewRow row in dataGridView3.Rows)
@@ -551,7 +510,7 @@ namespace Sistema_Planillas_Contabilidad
             {
                 dataGridView4.Location = new Point(0, heigthLocation);
                 dataGridView4.Width = tableLayoutPanel1.Width - 30;
-                int sizeHeight = dataGridView4.ColumnHeadersHeight;
+                int sizeHeight = dataGridView4.ColumnHeadersHeight + 10;
                 if (dataGridView4.Rows.Count > 1)
                 {
                     foreach (DataGridViewRow row in dataGridView4.Rows)
@@ -590,7 +549,6 @@ namespace Sistema_Planillas_Contabilidad
             }
             int indexAdd = 0;
             dataGridView5.Rows.Clear();
-            generalMethods callToGeneralMethods = new generalMethods();
             generalDataAndAvoidData callToFindAvoidData = new generalDataAndAvoidData();
             generalMultiArrayMethods callToArrayMethod = new generalMultiArrayMethods();
             string pivote ="";
@@ -606,7 +564,6 @@ namespace Sistema_Planillas_Contabilidad
                         if (answer == true)
                         {
                             pivote = dataGridStudy.Columns[column].HeaderText;
-                            //MessageBox.Show(pivote);
                             break;
                         }
                     }
@@ -679,143 +636,131 @@ namespace Sistema_Planillas_Contabilidad
                     }
                 }
             }
-            
-            try
-            {
 
-                for (int column = 0; column < dataGridView5.Columns.Count; column++)
+            for (int column = 0; column < dataGridView5.Columns.Count; column++)
+            {
+                if (dataGridView5.Columns[column].HeaderText == pivote)
                 {
-                    if (dataGridView5.Columns[column].HeaderText == pivote)
+                    for (int rows = 0; rows < dataGridView5.Rows.Count - 1; rows++)
                     {
-                        for (int rows = 0; rows < dataGridView5.Rows.Count - 1; rows++)
+                        List<DataGridViewRow> lisfOfRows = new List<DataGridViewRow>();
+                        if (dataGridView5.Rows[rows].Cells[column].Value != null)
                         {
-                            List<DataGridViewRow> lisfOfRows = new List<DataGridViewRow>();
-                            if (dataGridView5.Rows[rows].Cells[column].Value != null)
+                            lisfOfRows = callToArrayMethod.getLisfOfRowsWithPivote(listOFDataGridView, dataGridView5.Rows[rows].Cells[column].Value.ToString());
+                            string[] storageData = callToArrayMethod.getSumOfLisfRows(lisfOfRows);
+                            for (int replace = 0; replace < storageData.Length; replace++)
                             {
-                                lisfOfRows = callToArrayMethod.getLisfOfRowsWithPivote(listOFDataGridView, dataGridView5.Rows[rows].Cells[column].Value.ToString());
-                                string[] storageData = callToArrayMethod.getSumOfLisfRows(lisfOfRows);
-                                for (int replace = 0; replace < storageData.Length; replace++)
-                                {
-                                    dataGridView5.Rows[rows].Cells[replace].Value = storageData[replace];
-                                }
+                                dataGridView5.Rows[rows].Cells[replace].Value = storageData[replace];
                             }
                         }
-                        break;
                     }
+                    break;
                 }
-            }
-            catch (Exception E)
-            {
-                MessageBox.Show("NO SE APLICARAN LAS FORMULAS POR FALTA DE COLUMNAS PIVOTE");
             }
              
             //appliying formulas
             string pathOfFormulas = CorePathOfFolderCompaniesSistemaPlanillas + company + "\\" + deparment + "\\" + month + "\\" + "CORE-FORMULAS.txt";
-                if (File.Exists(pathOfFormulas))
+            if (File.Exists(pathOfFormulas))
+            {
+                string[] storageFormulas = File.ReadAllLines(pathOfFormulas);
+                List<string> resultOfBodyFormula = new List<string>();
+                List<string> copyResultOfBodyFormula = new List<string>();
+                List<string> bodyOfFormula = new List<string>();
+                List<string> copyBodyOfFormula = new List<string>();
+                foreach (string formula in storageFormulas)
                 {
-                    string[] storageFormulas = File.ReadAllLines(pathOfFormulas);
-                    List<string> resultOfBodyFormula = new List<string>();
-                    List<string> copyResultOfBodyFormula = new List<string>();
-                    List<string> bodyOfFormula = new List<string>();
-                    List<string> copyBodyOfFormula = new List<string>();
-                    foreach (string formula in storageFormulas)
+                    if (formula != tagStartFormula && formula != tagEndFormula)
                     {
-                        if (formula != tagStartFormula && formula != tagEndFormula)
-                        {
-                            string[] splitFormula = formula.Split('=');
-                            resultOfBodyFormula.Add(splitFormula[0]);
-                            copyResultOfBodyFormula.Add(splitFormula[0]);
-                            string replaceString = splitFormula[1];
-                            replaceString = replaceString.Replace("+", "?+?");
-                            replaceString = replaceString.Replace("-", "?-?");
-                            replaceString = replaceString.Replace("/", "?/?");
-                            replaceString = replaceString.Replace("*", "?*?");
-                            bodyOfFormula.Add(replaceString);
-                            copyBodyOfFormula.Add(replaceString);
-                        }
+                        string[] splitFormula = formula.Split('=');
+                        resultOfBodyFormula.Add(splitFormula[0]);
+                        copyResultOfBodyFormula.Add(splitFormula[0]);
+                        string replaceString = splitFormula[1];
+                        replaceString = replaceString.Replace("+", "?+?");
+                        replaceString = replaceString.Replace("-", "?-?");
+                        replaceString = replaceString.Replace("/", "?/?");
+                        replaceString = replaceString.Replace("*", "?*?");
+                        bodyOfFormula.Add(replaceString);
+                        copyBodyOfFormula.Add(replaceString);
                     }
-                    for (int formulaPhase1 = 0; formulaPhase1 < bodyOfFormula.Count; formulaPhase1++)
+                }
+                for (int formulaPhase1 = 0; formulaPhase1 < bodyOfFormula.Count; formulaPhase1++)
+                {
+                    calculateSystem callToCalculate = new calculateSystem();
+                    for (int row = 0; row < dataGridView5.Rows.Count - 1; row++)
                     {
-                        calculateSystem callToCalculate = new calculateSystem();
-                        for (int row = 0; row < dataGridView5.Rows.Count - 1; row++)
+                        string[] splitFormulaPhase2 = bodyOfFormula[formulaPhase1].Split('?');
+                        for (int column = 0; column < dataGridView5.Columns.Count; column++)
                         {
-                            string[] splitFormulaPhase2 = bodyOfFormula[formulaPhase1].Split('?');
-                            for (int column = 0; column < dataGridView5.Columns.Count; column++)
+                            bool answer = callToFindAvoidData.avoidColumns(dataGridView5.Columns[column].HeaderText);
+                            if (answer == false)
                             {
-                                bool answer = callToFindAvoidData.avoidColumns(dataGridView5.Columns[column].HeaderText);
-                                if (answer == false)
+                                for (int formulaPhase2 = 0; formulaPhase2 < splitFormulaPhase2.Length; formulaPhase2++)
                                 {
-                                    for (int formulaPhase2 = 0; formulaPhase2 < splitFormulaPhase2.Length; formulaPhase2++)
+                                    if (dataGridView5.Columns[column].HeaderText == splitFormulaPhase2[formulaPhase2])
                                     {
-                                        if (dataGridView5.Columns[column].HeaderText == splitFormulaPhase2[formulaPhase2])
+                                        if (dataGridView5.Rows[row].Cells[column].Value == null || dataGridView5.Rows[row].Cells[column].Value.ToString() == "" || dataGridView5.Rows[row].Cells[column].Value.ToString() == " ")
                                         {
-                                            if (dataGridView5.Rows[row].Cells[column].Value == null || dataGridView5.Rows[row].Cells[column].Value.ToString() == "" || dataGridView5.Rows[row].Cells[column].Value.ToString() == " ")
-                                            {
-                                                splitFormulaPhase2[formulaPhase2] = "0";
-                                            }
-                                            else
-                                            {
-                                                splitFormulaPhase2[formulaPhase2] = dataGridView5.Rows[row].Cells[column].Value.ToString();
-                                            }
-                                            break;
+                                            splitFormulaPhase2[formulaPhase2] = "0";
                                         }
+                                        else
+                                        {
+                                            splitFormulaPhase2[formulaPhase2] = dataGridView5.Rows[row].Cells[column].Value.ToString();
+                                        }
+                                        break;
                                     }
                                 }
                             }
-                            string numberAnswer = callToCalculate.recieveArray(splitFormulaPhase2);
-                            for (int column = 0; column < dataGridView5.Columns.Count; column++)
+                        }
+                        string numberAnswer = callToCalculate.recieveArray(splitFormulaPhase2);
+                        for (int column = 0; column < dataGridView5.Columns.Count; column++)
+                        {
+                            if (dataGridView1.Columns[column].HeaderText == resultOfBodyFormula[formulaPhase1])
                             {
-                                if (dataGridView1.Columns[column].HeaderText == resultOfBodyFormula[formulaPhase1])
-                                {
-                                    dataGridView5.Rows[row].Cells[column].Value = numberAnswer;
-                                    break;
-                                }
+                                dataGridView5.Rows[row].Cells[column].Value = numberAnswer;
+                                break;
                             }
                         }
-                    }
-                    //MessageBox.Show("Here");
-                    for (int column = 0; column < dataGridView5.Columns.Count; column++)
-                    {
-                        bool answer = callToFindAvoidData.avoidColumns(dataGridView5.Columns[column].HeaderText);
-                        if (answer == false)
-                        {
-                            double sum = 0;
-                            for (int row = 0; row < dataGridView5.Rows.Count - 1; row++)
-                            {
-                                if (dataGridView5.Rows[row].Cells[column].Value.ToString().Contains("-"))
-                                {
-                                    sum -= Convert.ToDouble(dataGridView5.Rows[row].Cells[column].Value);
-                                }
-                                else if (dataGridView5.Rows[row].Cells[column].Value == null || dataGridView5.Rows[row].Cells[column].Value.ToString() == "" || dataGridView5.Rows[row].Cells[column].Value.ToString() == " ")
-                                {
-                                    sum += 0;
-                                }
-                                else
-                                {
-                                    sum += Convert.ToDouble(dataGridView5.Rows[row].Cells[column].Value);
-                                }
-                            }
-                            //sum = Math.Round(sum, 0, MidpointRounding.AwayFromZero);
-                            dataGridView5.Rows[dataGridView5.Rows.Count - 1].Cells[column].Value = sum.ToString();
-                        }
-                        else
-                        {
-                            dataGridView5.Rows[dataGridView5.Rows.Count - 1].Cells[column].Value = "FALSE";
-                        }
-                    }
-                    dataGridView5.Rows[dataGridView5.Rows.Count - 1].Cells[0].Value = "TOTAL";
-                    for (int column = 0; column < dataGridView5.Columns.Count; column++)
-                    {
-                        dataGridView5.Rows[dataGridView5.Rows.Count - 1].Cells[column].Style.BackColor = Color.LightGray;
                     }
                 }
+
+                for (int column = 0; column < dataGridView5.Columns.Count; column++)
+                {
+                    bool answer = callToFindAvoidData.avoidColumns(dataGridView5.Columns[column].HeaderText);
+                    if (answer == false)
+                    {
+                        double sum = 0;
+                        for (int row = 0; row < dataGridView5.Rows.Count - 1; row++)
+                        {
+                            if (dataGridView5.Rows[row].Cells[column].Value.ToString().Contains("-"))
+                            {
+                                sum -= Convert.ToDouble(dataGridView5.Rows[row].Cells[column].Value);
+                            }
+                            else if (dataGridView5.Rows[row].Cells[column].Value == null || dataGridView5.Rows[row].Cells[column].Value.ToString() == "" || dataGridView5.Rows[row].Cells[column].Value.ToString() == " ")
+                            {
+                                sum += 0;
+                            }
+                            else
+                            {
+                                sum += Convert.ToDouble(dataGridView5.Rows[row].Cells[column].Value);
+                            }
+                        }
+                        //sum = Math.Round(sum, 0, MidpointRounding.AwayFromZero);
+                        dataGridView5.Rows[dataGridView5.Rows.Count - 1].Cells[column].Value = sum.ToString();
+                    }
+                    else
+                    {
+                        dataGridView5.Rows[dataGridView5.Rows.Count - 1].Cells[column].Value = "FALSE";
+                    }
+                }
+                dataGridView5.Rows[dataGridView5.Rows.Count - 1].Cells[0].Value = "TOTAL";
+                for (int column = 0; column < dataGridView5.Columns.Count; column++)
+                {
+                    dataGridView5.Rows[dataGridView5.Rows.Count - 1].Cells[column].Style.BackColor = Color.LightGray;
+                }
+            }
            
         }
-
-        
-
-        
-        private void createColumnsListView()
+        private void createColumnsinDataGridView5()
         {
             foreach (DataGridViewColumn column in dataGridView1.Columns)
             {
@@ -926,7 +871,8 @@ namespace Sistema_Planillas_Contabilidad
                                     dataToChargeData.Rows[index].Cells[colum].Value = data;
                                 }
                             }
-                            baseResizeDatasGridViewPhase1();
+                            actionHappened = true;
+                            baseResizeDatasGridView();
                             break;
                         case DialogResult.No:
                             break;
@@ -964,6 +910,7 @@ namespace Sistema_Planillas_Contabilidad
                                     break;
                                 }
                             }
+                            actionHappened = true;
                             break;
                         case DialogResult.No:
                             answer = MessageBox.Show("¿DESEA IR A LA ULTIMA CELDA EN BLANCO QUE ENCUENTRE?", "OPCIÓN RAPIDA", MessageBoxButtons.YesNo);
@@ -1011,7 +958,7 @@ namespace Sistema_Planillas_Contabilidad
                                             break;
                                         }
                                     }
-
+                                    actionHappened = true;
                                     break;
                                 case DialogResult.No:
                                     break;
@@ -1040,52 +987,58 @@ namespace Sistema_Planillas_Contabilidad
 
             if (allowEnterData == true)
             {
-                string data = Microsoft.VisualBasic.Interaction.InputBox("DAME EL NOMBRE DE LA COLUMNA:");
+                string data = Microsoft.VisualBasic.Interaction.InputBox("DAME EL NOMBRE DE LA COLUMNA: -S/T ABORTAR");
                 data = data.ToUpper();
-                if (clickOnCellDataGrid1 == true || clickOnCellDataGrid2 == true || clickOnCellDataGrid3 == true || clickOnCellDataGrid4 == true || clickOnCellDataGrid5 == true)
+                if (data != "S/T")
                 {
-                    int scrollPositionV = dataToChargeData.FirstDisplayedScrollingRowIndex;
-                    int scrollPositionH = dataToChargeData.FirstDisplayedScrollingColumnIndex;
-                    List<string> listSalmon = new List<string>();
-                    foreach (DataGridViewColumn column in dataToChargeData.Columns)
-                    {
-                        if (column.HeaderCell.Style.BackColor == Color.LightSalmon)
-                        {
-                            listSalmon.Add(column.HeaderText);
-                        }
-                    }
-                    generalMultiArrayMethods calltoMethods = new generalMultiArrayMethods();
-                    string[,] arrayAnswer = calltoMethods.addColum(dataToChargeData, data, indexColumnOfDatagrid, 1);
-                    int rows = arrayAnswer.GetLength(0);
-                    int columns = arrayAnswer.GetLength(1);
-                    dataToChargeData.Columns.Clear();
-                    for (int column = 0; column < columns; column++)
-                    {
-                        dataToChargeData.Columns.Add(arrayAnswer[0, column], arrayAnswer[0, column]);
-                    }
 
-                    for (int row = 0; row < rows - 1; row++)
+
+                    if (clickOnCellDataGrid1 == true || clickOnCellDataGrid2 == true || clickOnCellDataGrid3 == true || clickOnCellDataGrid4 == true || clickOnCellDataGrid5 == true)
                     {
-                        dataToChargeData.Rows.Add(row.ToString());
-                    }
-                    int indexData = 0;
-                    for (int row = 1; row < rows; row++)
-                    {
+                        int scrollPositionV = dataToChargeData.FirstDisplayedScrollingRowIndex;
+                        int scrollPositionH = dataToChargeData.FirstDisplayedScrollingColumnIndex;
+                        List<string> listSalmon = new List<string>();
+                        foreach (DataGridViewColumn column in dataToChargeData.Columns)
+                        {
+                            if (column.HeaderCell.Style.BackColor == Color.LightSalmon)
+                            {
+                                listSalmon.Add(column.HeaderText);
+                            }
+                        }
+                        generalMultiArrayMethods calltoMethods = new generalMultiArrayMethods();
+                        string[,] arrayAnswer = calltoMethods.addColum(dataToChargeData, data, indexColumnOfDatagrid, 1);
+                        int rows = arrayAnswer.GetLength(0);
+                        int columns = arrayAnswer.GetLength(1);
+                        dataToChargeData.Columns.Clear();
                         for (int column = 0; column < columns; column++)
                         {
-                            dataToChargeData.Rows[indexData].Cells[column].Value = arrayAnswer[row, column];
+                            dataToChargeData.Columns.Add(arrayAnswer[0, column], arrayAnswer[0, column]);
                         }
-                        ++indexData;
-                    }
 
-                    dataToChargeData.FirstDisplayedScrollingRowIndex = scrollPositionV;
-                    dataToChargeData.FirstDisplayedScrollingColumnIndex = scrollPositionH;
-                    paintColum(dataToChargeData, indexColumnOfDatagrid);
-                    baseResizeDatasGridViewPhase1();
-                }
-                else
-                {
-                    dataToChargeData.Columns.Add(data, data);
+                        for (int row = 0; row < rows - 1; row++)
+                        {
+                            dataToChargeData.Rows.Add(row.ToString());
+                        }
+                        int indexData = 0;
+                        for (int row = 1; row < rows; row++)
+                        {
+                            for (int column = 0; column < columns; column++)
+                            {
+                                dataToChargeData.Rows[indexData].Cells[column].Value = arrayAnswer[row, column];
+                            }
+                            ++indexData;
+                        }
+
+                        dataToChargeData.FirstDisplayedScrollingRowIndex = scrollPositionV;
+                        dataToChargeData.FirstDisplayedScrollingColumnIndex = scrollPositionH;
+                        paintColum(dataToChargeData, indexColumnOfDatagrid);
+                        baseResizeDatasGridView();
+                    }
+                    else
+                    {
+                        dataToChargeData.Columns.Add(data, data);
+                    }
+                    actionHappened = true;
                 }
             }
         }
@@ -1168,14 +1121,13 @@ namespace Sistema_Planillas_Contabilidad
                     dataToChargeData.FirstDisplayedScrollingRowIndex = scrollPositionV;
                     dataToChargeData.FirstDisplayedScrollingColumnIndex = scrollPositionH;
                     paintRow(dataToChargeData, indexRowOfDatagrid);
-                    baseResizeDatasGridViewPhase1();
+                    baseResizeDatasGridView();
                 }
                 else
                 {
                     dataToChargeData.Rows.Add(dataToChargeData.Rows.Count.ToString());
                 }
-
-                
+                actionHappened = true;
             }
         }
 
@@ -1258,6 +1210,7 @@ namespace Sistema_Planillas_Contabilidad
                         paintColum(dataToChargeData, indexColumnOfDatagrid);
                     }
                 }
+                actionHappened = true;
             }
             else
             {
@@ -1280,10 +1233,12 @@ namespace Sistema_Planillas_Contabilidad
                 MessageBox.Show("NO PUEDES INTRODUCIR DATOS PORQUE LA TABLA NO PERMITE CALCULOS, HAZLA CALCULAR");
                 allowEnterData = false;
             }
-            if (indexColumnOfDatagrid < dataToChargeData.Columns.Count-1)
+
+            if (allowEnterData == true)
             {
-                if (allowEnterData == true)
+                if (indexColumnOfDatagrid < dataToChargeData.Columns.Count - 1)
                 {
+
                     if (clickOnCellDataGrid1 == true || clickOnCellDataGrid2 == true || clickOnCellDataGrid3 == true || clickOnCellDataGrid4 == true || clickOnCellDataGrid5 == true)
                     {
                         int scrollPositionV = dataToChargeData.FirstDisplayedScrollingRowIndex;
@@ -1342,6 +1297,7 @@ namespace Sistema_Planillas_Contabilidad
                         paintColum(dataToChargeData, indexColumnOfDatagrid);
                     }
                 }
+                actionHappened = true;
             }
             else
             {
@@ -1351,24 +1307,25 @@ namespace Sistema_Planillas_Contabilidad
 
         private void buttonMoveUpArrow_Click(object sender, EventArgs e)
         {
-            if (indexRowOfDatagrid > 0)
+            DataGridView dataToChargeData = new DataGridView();
+            bool allowEnterData = true;
+            dataToChargeData = decideDataGridViewWithOutData5(dataToChargeData);
+            if (dataToChargeData.Visible == false)
             {
-                DataGridView dataToChargeData = new DataGridView();
-                bool allowEnterData = true;
-                dataToChargeData = decideDataGridViewWithOutData5(dataToChargeData);
-                if (dataToChargeData.Visible == false)
-                {
-                    MessageBox.Show("NO PUEDES INTRODUCIR DATOS PORQUE LA TABLA NO ES VISIBLE, HAZLA VISIBLE");
-                    allowEnterData = false;
-                }
-                else if (dataToChargeData.Enabled == false)
-                {
-                    MessageBox.Show("NO PUEDES INTRODUCIR DATOS PORQUE LA TABLA NO PERMITE CALCULOS, HAZLA CALCULAR");
-                    allowEnterData = false;
-                }
+                MessageBox.Show("NO PUEDES INTRODUCIR DATOS PORQUE LA TABLA NO ES VISIBLE, HAZLA VISIBLE");
+                allowEnterData = false;
+            }
+            else if (dataToChargeData.Enabled == false)
+            {
+                MessageBox.Show("NO PUEDES INTRODUCIR DATOS PORQUE LA TABLA NO PERMITE CALCULOS, HAZLA CALCULAR");
+                allowEnterData = false;
+            }
 
-                if (allowEnterData == true)
+            if (allowEnterData == true)
+            {
+                if (indexRowOfDatagrid > 0)
                 {
+
                     if (clickOnCellDataGrid1 == true || clickOnCellDataGrid2 == true || clickOnCellDataGrid3 == true || clickOnCellDataGrid4 == true || clickOnCellDataGrid5 == true)
                     {
                         int scrollPositionV = dataToChargeData.FirstDisplayedScrollingRowIndex;
@@ -1421,7 +1378,7 @@ namespace Sistema_Planillas_Contabilidad
                             }
                             ++indexData;
                         }
-                        for (int row = 0; row < dataToChargeData.Rows.Count-1; row++)
+                        for (int row = 0; row < dataToChargeData.Rows.Count - 1; row++)
                         {
                             dataToChargeData.Rows[row].Cells[0].Value = row.ToString();
                         }
@@ -1431,6 +1388,7 @@ namespace Sistema_Planillas_Contabilidad
                         dataToChargeData.FirstDisplayedScrollingColumnIndex = scrollPositionH;
                     }
                 }
+                actionHappened = true;
             }
             else
             {
@@ -1454,19 +1412,20 @@ namespace Sistema_Planillas_Contabilidad
                 MessageBox.Show("NO PUEDES INTRODUCIR DATOS PORQUE LA TABLA NO PERMITE CALCULOS, HAZLA CALCULAR");
                 allowEnterData = false;
             }
-
-            if (indexRowOfDatagrid < dataToChargeData.Rows.Count-2)
+            // 
+            if (allowEnterData == true)
             {
-                if (allowEnterData == true)
+                if (indexRowOfDatagrid < dataToChargeData.Rows.Count - 2)
                 {
+
                     if (clickOnCellDataGrid1 == true || clickOnCellDataGrid2 == true || clickOnCellDataGrid3 == true || clickOnCellDataGrid4 == true || clickOnCellDataGrid5 == true)
                     {
                         int scrollPositionV = dataToChargeData.FirstDisplayedScrollingRowIndex;
                         int scrollPositionH = dataToChargeData.FirstDisplayedScrollingColumnIndex;
                         List<string> listSalmon = new List<string>();
-                        foreach(DataGridViewColumn column in dataToChargeData.Columns)
+                        foreach (DataGridViewColumn column in dataToChargeData.Columns)
                         {
-                            if(column.HeaderCell.Style.BackColor==Color.LightSalmon)
+                            if (column.HeaderCell.Style.BackColor == Color.LightSalmon)
                             {
                                 listSalmon.Add(column.HeaderText);
                             }
@@ -1480,9 +1439,9 @@ namespace Sistema_Planillas_Contabilidad
                         for (int column = 0; column < columns; column++)
                         {
                             bool found = false;
-                            foreach(string compare in listSalmon)
+                            foreach (string compare in listSalmon)
                             {
-                                if(compare== arrayAnswer[0, column])
+                                if (compare == arrayAnswer[0, column])
                                 {
                                     found = true;
                                     break;
@@ -1493,7 +1452,7 @@ namespace Sistema_Planillas_Contabilidad
                             {
                                 dataToChargeData.Columns[column].HeaderCell.Style.BackColor = Color.LightSalmon;
                             }
-                            else if(found == false)
+                            else if (found == false)
                             {
                                 dataToChargeData.Columns[column].HeaderCell.Style.BackColor = Color.LightGray;
                             }
@@ -1502,7 +1461,7 @@ namespace Sistema_Planillas_Contabilidad
                         {
                             dataToChargeData.Rows.Add(row.ToString());
                         }
-                        
+
                         int indexData = 0;
                         for (int row = 1; row < rows; row++)
                         {
@@ -1522,6 +1481,7 @@ namespace Sistema_Planillas_Contabilidad
                         dataToChargeData.FirstDisplayedScrollingColumnIndex = scrollPositionH;
                     }
                 }
+                actionHappened = true;
             }
             else
             {
@@ -1795,6 +1755,7 @@ namespace Sistema_Planillas_Contabilidad
             {
                 MessageBox.Show("ACTUALIZADO EXITOSAMENTE");
             }
+            actionHappened = false;
         }
 
         private void buttonEraseColumn_Click(object sender, EventArgs e)
@@ -1818,6 +1779,7 @@ namespace Sistema_Planillas_Contabilidad
                 dataGridviewToWhite(dataToChargeData);
                 dataToChargeData.Columns.RemoveAt(indexColumnOfDatagrid);
                 paintColum(dataToChargeData, indexColumnOfDatagrid);
+                actionHappened = true;
             }
         }
 
@@ -1845,6 +1807,7 @@ namespace Sistema_Planillas_Contabilidad
                 {
                     dataToChargeData.Rows[row].Cells[0].Value = row.ToString();
                 }
+                actionHappened = true;
                 paintRow(dataToChargeData, indexRowOfDatagrid);
             }
         }
@@ -1864,442 +1827,28 @@ namespace Sistema_Planillas_Contabilidad
             callingCreateFormula.ShowDialog();
         }
 
-
-        public void PathToCompany(string companyReceive, string deptReceive, string monthReceive, string pathReceive)
-        {
-            company = companyReceive;
-            deparment = deptReceive;
-            month = monthReceive;
-        }
-
-        public void recieveListColumn(List<string> listReceived, string head)
-        {
-            List<string> listReceive = new List<string>();
-            listReceive = listReceived;
-            string headReceived = head;
-            int maximunColums = dataGridView1.Columns.Count;
-            int indexFound = 0;
-
-            bool found = false;
-            for (int addCol = 0; addCol < maximunColums; addCol++)
-            {
-                string find = dataGridView1.Columns[addCol].HeaderText;
-                //string find = evaluate.ToString();
-                if (find == headReceived)
-                {
-                    indexFound = addCol;
-                    found = true;
-                    break;
-                }
-            }
-
-            if (found == false)
-            {
-                ++maximunColums;
-                dataGridView1.Columns.Add(alphabet[maximunColums], alphabet[maximunColums]);
-                int indexAdd = 0;
-                int minimunRows = dataGridView1.Rows.Count;
-                --minimunRows;
-                int maximunRows = listReceive.Count;
-                ++maximunRows;
-                if (minimunRows < maximunRows)
-                {
-                    for (int addRow = minimunRows; addRow < maximunRows; addRow++)
-                    {
-                        dataGridView1.Rows.Add(addRow.ToString());
-                    }
-                }
-
-                maximunRows = dataGridView1.Rows.Count;
-                --maximunRows;
-                int cells = dataGridView1.Columns.Count;
-                for (int rows = 1; rows < maximunRows; rows++)
-                {
-                    for (int cell = 1; cell < cells; cell++)
-                    {
-                        if (dataGridView1.Rows[rows].Cells[cell].Value == null)
-                        {
-                            dataGridView1.Rows[rows].Cells[cell].Value = " ";
-                        }
-                    }
-                }
-
-                int pointAdd = cells;
-                --pointAdd;
-                ++cells;//raisign the amount of cells to coinciding with the colum number
-                for (int rows = 1; rows < maximunRows; rows++)
-                {
-                    for (int cell = 1; cell < cells; cell++)
-                    {
-                        if (cell == maximunColums)
-                        {
-                            dataGridView1.Rows[0].Cells[pointAdd].Value = headReceived;
-                            dataGridView1.Rows[rows].Cells[pointAdd].Value = listReceive[indexAdd];
-                            ++indexAdd;
-                            break;
-                        }
-
-                    }
-
-                }
-            }
-            else
-            {
-                int minimunRows = dataGridView1.Rows.Count;
-                int maximunRows = listReceive.Count;
-                if (minimunRows < maximunRows)
-                {
-                    for (int addRow = minimunRows; addRow < maximunRows; addRow++)
-                    {
-                        dataGridView1.Rows.Add(addRow.ToString());
-                    }
-                }
-
-                int cells = dataGridView1.Columns.Count;
-                maximunRows = dataGridView1.Rows.Count;
-                --maximunRows;
-                for (int rows = 0; rows < maximunRows; rows++)
-                {
-                    for (int cell = 1; cell < cells; cell++)
-                    {
-                        if (dataGridView1.Rows[rows].Cells[cell].Value == null)
-                        {
-                            dataGridView1.Rows[rows].Cells[cell].Value = " ";
-                        }
-                    }
-                }
-                int indexAdd = 0;
-                for (int rows = 0; rows < maximunRows; rows++)
-                {
-                    for (int cell = 1; cell < cells; cell++)
-                    {
-                        if (cell == indexFound)
-                        {
-                            dataGridView1.Rows[rows].Cells[cell].Value = listReceive[indexAdd];
-                            ++indexAdd;
-                            break;
-                        }
-
-                    }
-
-                }
-            }
-
-        }
-
-        public void recieveListRow(List<string> listReceived, string head)
-        {
-            List<string> listReceive = new List<string>();
-            listReceive = listReceived;
-            int maximunColums = dataGridView1.Columns.Count;
-            int maximuRows = dataGridView1.Rows.Count;
-
-            if (head == "NUEVA FILA")
-            {
-                --maximunColums;
-                dataGridView1.Rows.Add(maximuRows.ToString());
-                int sizeList = listReceive.Count;
-                if (sizeList > maximunColums)
-                {
-                    for (int addCol = maximunColums; addCol < sizeList; addCol++)
-                    {
-                        dataGridView1.Columns.Add(alphabet[addCol], alphabet[addCol]);
-                    }
-                }
-                int headIndex = dataGridView1.Rows.Count;
-                --headIndex;
-                --headIndex;
-                int index = 0;
-                maximunColums = dataGridView1.Columns.Count;
-                for (int rows = 0; rows < maximuRows; rows++)
-                {
-                    if (rows == headIndex)
-                    {
-                        for (int cell = 1; cell < sizeList; cell++)
-                        {
-                            dataGridView1.Rows[rows].Cells[cell].Value = listReceive[index];
-                            ++index;
-                        }
-                        int start = listReceive.Count;
-                        ++start;
-                        for (int cell = start; cell < maximunColums; cell++)
-                        {
-                            dataGridView1.Rows[rows].Cells[cell].Value = " ";
-                        }
-                        break;
-                    }
-                }
-                MessageBox.Show("IMPORTADO EXITOSAMENTE");
-            }
-            else
-            {
-                int sizeList = listReceive.Count;
-                if (sizeList > maximunColums)
-                {
-                    --maximunColums;
-                    for (int addCol = maximunColums; addCol < sizeList; addCol++)
-                    {
-                        dataGridView1.Columns.Add(alphabet[addCol], alphabet[addCol]);
-                    }
-                }
-
-                int indexFound = Int32.Parse(head);
-                //--indexFound;
-                --maximuRows;
-                int maximunCells = dataGridView1.Columns.Count;
-                int index = 0;
-                for (int row = 0; row < maximuRows; row++)
-                {
-                    if (indexFound == row)
-                    {
-                        for (int cells = 1; cells < listReceive.Count; cells++)
-                        {
-                            dataGridView1.Rows[row].Cells[cells].Value = listReceive[index];
-                            ++index;
-                        }
-                        int start = listReceive.Count;
-                        ++start;
-                        for (int cells = start; cells < maximunCells; cells++)
-                        {
-                            dataGridView1.Rows[row].Cells[cells].Value = " ";
-                        }
-                        break;
-                    }
-                }
-                MessageBox.Show("IMPORTADO EXITOSAMENTE");
-            }
-        }
-        /*
-        private void buttonReturnScreen_Click(object sender, EventArgs e)
-        {
-            //this.Hide();
-            //GUI_ELEGIR__TRABAJAR_EMPRESA callingChooseWork = new GUI_ELEGIR__TRABAJAR_EMPRESA();
-            //callingChooseWork.ShowDialog();
-            this.Close();
-        }
-        */
-        private void buttonCloseProgram_Click(object sender, EventArgs e)
-        {
-            methodToSave("!ALERT");
-            this.Close();
-        }
-
-
-
         private void buttonImportDataColumn_Click(object sender, EventArgs e)
         {
-
-            //setDataAndSend2();
-            using (GUI_ELEGIR_COPIAR_COLUMNA form2 = new GUI_ELEGIR_COPIAR_COLUMNA())
-            {
-                //form2.PathToSave(path);
-                string sendData = "";
-                int maximunColum = dataGridView1.Columns.Count;
-                for (int colum = 0; colum < maximunColum; colum++)
-                {
-                    sendData += dataGridView1.Columns[colum].HeaderText.ToString() + "\n";
-                }
-                form2.dataToSave(sendData);
-                if (form2.ShowDialog() == System.Windows.Forms.DialogResult.Yes)
-                {
-                    List<string> listSave = form2.listR;
-                    string hedSave = form2.Head;
-                    recieveListColumn(listSave, hedSave);
-                    setDataAndSend();
-                }
-            }
-
-
+            actionHappened = true;
         }
 
         private void buttonImportDataArrow_Click(object sender, EventArgs e)
         {
-            //setDataAndSend2();
-            using (GUI_ELEGIR_COPIAR_FILA form2 = new GUI_ELEGIR_COPIAR_FILA())
-            {
-                //form2.PathToSave(path);
-                string sendData = "";
-                int maximunRow = dataGridView1.RowCount;
-                --maximunRow;
-                for (int row = 0; row < maximunRow; row++)
-                {
-                    sendData += dataGridView1.Rows[row].Cells[0].Value.ToString() + "\n";
-                }
-                form2.dataToSave(sendData);
-
-                if (form2.ShowDialog() == System.Windows.Forms.DialogResult.Yes)
-                {
-                    List<string> listSave = form2.listR;
-                    string hedSave = form2.Head;
-                    recieveListRow(listSave, hedSave);
-                    setDataAndSend();
-                }
-            }
+            actionHappened = true;
         }
-        List<string[,]> saveDataGrinOnTime = new List<string[,]>();
-        int indexSaveDataGrinOnTime = 0;
 
         private void buttonBackTotal_Click_1(object sender, EventArgs e)
         {
-            if (indexSaveDataGrinOnTime <= 0)
-            {
-                MessageBox.Show("ES EL INICIO");
-                indexSaveDataGrinOnTime = 0;
-                buttonBackTotal.Enabled = false;
-            }
-            else
-            {
-                --indexSaveDataGrinOnTime;
-                //--indexSaveDataGrinOnTime;
-                getDataAndSend(indexSaveDataGrinOnTime);
-                buttonNextTotal.Enabled = true;
-            }
+            actionHappened = true;
         }
 
         private void buttonNextTotal_Click(object sender, EventArgs e)
         {
-            int end = saveDataGrinOnTime.Count;
-            --end;
-            if (indexSaveDataGrinOnTime >= end)
-            {
-                MessageBox.Show("ES EL FIN");
-                indexSaveDataGrinOnTime = end;
-                buttonNextTotal.Enabled = false;
-            }
-            else
-            {
-                buttonBackTotal.Enabled = true;
-                ++indexSaveDataGrinOnTime;
-                //++indexSaveDataGrinOnTime;
-                getDataAndSend(indexSaveDataGrinOnTime);
-            }
-        }
-
-        private void setDataAndSend()
-        {
-            buttonBackTotal.Enabled = true;
-            buttonNextTotal.Enabled = true;
-            //++indexSaveDataGrinOnTime;
-            int maximunRows = dataGridView1.Rows.Count;
-            int maximunColum = dataGridView1.Columns.Count;
-            string[,] getData = new string[maximunRows, maximunColum];
-            for (int rows = 0; rows < maximunRows; rows++)
-            {
-                if (rows == 0)
-                {
-                    for (int cell = 1; cell < maximunColum; cell++)
-                    {
-                        getData[rows, cell] = dataGridView1.Columns[cell].HeaderText.ToString();
-                    }
-                }
-                else
-                {
-                    for (int cell = 1; cell < maximunColum; cell++)
-                    {
-                        if (dataGridView1.Rows[rows].Cells[cell].Value == null)
-                        {
-                            getData[rows, cell] = " ";
-                        }
-                        else
-                        {
-                            getData[rows, cell] = dataGridView1.Rows[rows].Cells[cell].Value.ToString();
-                        }
-                    }
-                }
-
-            }
-            bool foundArray = false;
-
-            foreach (string[,] item in saveDataGrinOnTime)
-            {
-                if (item == getData)
-                {
-                    foundArray = true;
-                    break;
-                }
-            }
-
-            if (foundArray == false)
-            {
-                ++indexSaveDataGrinOnTime;
-                saveDataGrinOnTime.Add(getData);
-            }
-
-        }
-
-        private void getDataAndSend(int indexSaveDataGrinOnTime)
-        {
-            string[,] getData = saveDataGrinOnTime[indexSaveDataGrinOnTime];
-            int maximunListRows = getData.GetLength(0);
-            int maximunListColums = getData.GetLength(1);
-            int maximunActualRows = dataGridView1.Rows.Count;
-            --maximunActualRows;
-            int maximunActualColums = dataGridView1.Columns.Count;
-            //--maximunActualColums;
-            int indexAlphabet = 0;
-
-            if (maximunActualColums > maximunListColums)
-            {
-                for (int colum = maximunListColums; colum < maximunActualColums; colum++)
-                {
-                    dataGridView1.Columns.RemoveAt(colum);
-                }
-            }
-            else if (maximunActualColums < maximunListColums)
-            {
-                for (int colum = maximunActualColums; colum < maximunListColums; colum++)
-                {
-                    if (colum > alphabet.Length)
-                    {
-                        string addLetter = alphabet[indexAlphabet] + alphabet[indexAlphabet++];
-                        dataGridView1.Columns.Add(addLetter, addLetter);
-                    }
-                    else
-                    {
-                        dataGridView1.Columns.Add(alphabet[colum], alphabet[colum]);
-                    }
-
-                }
-            }
-
-            --maximunListRows;
-            if (maximunActualRows > maximunListRows)
-            {
-                for (int row = maximunListRows; row < maximunActualRows; row++)
-                {
-                    dataGridView1.Rows.RemoveAt(row);
-                }
-            }
-            else if (maximunActualRows < maximunListRows)
-            {
-                for (int row = maximunActualRows; row < maximunListRows; row++)
-                {
-                    dataGridView1.Rows.Add(row.ToString());
-                }
-            }
-
-            for (int rows = 0; rows < maximunListRows; rows++)
-            {
-                if (rows == 0)
-                {
-                    for (int cell = 1; cell < maximunListColums; cell++)
-                    {
-                        dataGridView1.Columns[cell].HeaderText = getData[rows, cell];
-                    }
-                }
-                else
-                {
-                    for (int cell = 1; cell < maximunListColums; cell++)
-                    {
-                        dataGridView1.Rows[rows].Cells[cell].Value = getData[rows, cell];
-                    }
-                }
-            }
+            actionHappened = true;
         }
 
         private void buttonGenerateFormula_Click(object sender, EventArgs e)
         {
-            //this.Hide();
             List<string> listOfHeads = new List<string>();
             foreach(DataGridViewColumn column in dataGridView5.Columns)
             {
@@ -2311,239 +1860,23 @@ namespace Sistema_Planillas_Contabilidad
             callingCreateFormula.PathToCompany(company, deparment, month);
             callingCreateFormula.menuGlobalOrLocal("LOCAL");
             callingCreateFormula.ShowDialog();
-            //this.Show();
-        }
-
-        private void calculateFormula()
-        {
-            string actual = Directory.GetCurrentDirectory();
-            actual = actual.Replace("\\bin\\Debug", "\\configuration");
-            string actualPath = actual + "\\Formulas\\formula.txt";
-            finalCalculate(actualPath);
-
-            actual = Directory.GetCurrentDirectory();
-            actual = actual.Replace("\\bin\\Debug", "\\Companies");
-            actualPath = actual + "\\" + company + "\\configuration\\formula.txt";
-            finalCalculate(actualPath);
-
-        }
-
-        private void finalCalculate(string actualPath)
-        {
-            if (File.Exists(actualPath))
-            {
-                string[] lines = File.ReadAllLines(actualPath);
-                //int chance = 0;
-                string target = "";
-                for (int line = 0; line < lines.Length; line++)
-                {
-                    if (lines[line] == "=")
-                    {
-                        //++chance;
-                        target = lines[--line];
-                        ++line;
-                        ++line;
-                        int numberSpaces = 0;
-                        for (int line2 = line; line2 < lines.Length; line2++)
-                        {
-                            if (lines[line2] == separator2)
-                            {
-                                break;
-                            }
-                            else
-                            {
-                                ++numberSpaces;
-                            }
-                        }
-                        string[] storageRow = new string[numberSpaces];
-                        int index = 0;
-                        for (int line2 = line; line2 < lines.Length; line2++)
-                        {
-                            if (lines[line2] == separator2)
-                            {
-                                break;
-                            }
-                            else if (lines[line2] == " ")
-                            {
-
-                            }
-                            else
-                            {
-                                storageRow[index] = lines[line2];
-                                ++index;
-                            }
-                        }
-                        string[] storageReplace = new string[storageRow.Length];
-                        int maximunColumns = dataGridView1.Columns.Count;
-                        int maximunRows = dataGridView1.Rows.Count;
-                        --maximunRows;
-
-                        for (int row = 0; row < maximunRows; row++)
-                        {
-                            storageRow.CopyTo(storageReplace, 0);
-                            for (int storage = 0; storage < storageRow.Length; storage++)
-                            {
-                                for (int column = 0; column < maximunColumns; column++)
-                                {
-                                    if (dataGridView1.Columns[column].HeaderText == storageRow[storage])
-                                    {
-                                        if (dataGridView1.Rows[row].Cells[column].Value == null)
-                                        {
-                                            storageReplace[storage] = " ";
-                                        }
-                                        else
-                                        {
-                                            string change = dataGridView1.Rows[row].Cells[column].Value.ToString();
-                                            if (change.Length > 3)
-                                            {
-                                                change = change.Replace(".", "");
-                                            }
-                                            if (change.Length <= 3)
-                                            {
-                                                change = change.Replace(".", ",");
-                                            }
-                                            storageReplace[storage] = change;
-                                        }
-
-                                    }
-                                }
-                            }
-                            try
-                            {
-                                calculateSystem callingCalculate = new calculateSystem();
-                                //decimal numberReceveived = callingCalculate.recieveArray(storageReplace);
-                                //string change = numberReceveived.ToString();
-                                string change = callingCalculate.recieveArray(storageReplace);
-                                //string sendData = callingCalculate.convertAndFormatLong(change.ToString());
-                                string sendData = change.ToString();
-                                sendData = Regex.Replace(sendData, @"\p{C}+", string.Empty);
-                                string returnsendData = callingCalculate.correctString(sendData);
-                                if (returnsendData != "false")
-                                {
-                                    sendData = returnsendData;
-                                }
-                                for (int column = 0; column < maximunColumns; column++)
-                                {
-                                    if (dataGridView1.Columns[column].HeaderText == target)
-                                    {
-                                        string evaluate = "";
-                                        if (dataGridView1.Rows[row].Cells[column].Value == null)
-                                        {
-                                            evaluate = " ";
-                                        }
-                                        else
-                                        {
-                                            evaluate = dataGridView1.Rows[row].Cells[column].Value.ToString();
-                                        }
-
-                                        evaluate = evaluate.Replace(" ", "");
-                                        evaluate = evaluate.ToUpper();
-                                        if (evaluate == "NO")
-                                        {
-                                            //DO NOTHING
-                                        }
-                                        {
-                                            //REPLACE
-                                            bool found = false;
-                                            string nameHead = dataGridView1.Columns[column].HeaderText;
-                                            string[] splitNameHead = nameHead.Split(' ');
-                                            foreach (string item in splitNameHead)
-                                            {
-                                                if (item == "TOT")
-                                                {
-                                                    found = true;
-                                                    break;
-                                                }
-                                            }
-                                            if (found == true)
-                                            {
-                                                //sendData = callingCalculate.convertAndFormatSHORT(sendData);
-                                            }
-                                            else
-                                            {
-                                                sendData = callingCalculate.convertAndFormatLONG(sendData);
-                                            }
-                                            dataGridView1.Rows[row].Cells[column].Value = sendData;
-                                            break;
-                                        }
-
-                                    }
-                                }
-                            }
-                            catch (Exception)
-                            { }
-                        }
-                    }
-                }
-            }
         }
 
         private void buttonRecalculate_Click(object sender, EventArgs e)
         {
             sumTheCellsofAll();
-            /*
-            try
-            {
-                calculateFormula();
-            } catch (Exception)
-            {
-                MessageBox.Show("SUCEDIO ALGUN PROBLEMA RECALCULANDO LAS FORMULAS");
-            }
-            */
+            actionHappened = true;
         }
-
-        private void CellRecalculateFinish(object sender, DataGridViewCellEventArgs e)
-        {
-            try
-            {
-                int x = dataGridView1.Rows[e.RowIndex].Cells[e.ColumnIndex].RowIndex;
-                int y = dataGridView1.Rows[e.RowIndex].Cells[e.ColumnIndex].ColumnIndex;
-                string convert = "";
-                if (dataGridView1.Rows[x].Cells[y].Value == null)
-                {
-                    convert = " ";
-                } else
-                {
-                    convert = dataGridView1.Rows[x].Cells[y].Value.ToString();
-                }
-                if (convert.Contains("/") || convert.Contains("+") || convert.Contains("-") || convert.Contains("*"))
-                {
-                    string storage = "";
-                    foreach (char item in convert)
-                    {
-                        if (item == '/' || item == '+' || item == '-' || item == '*')
-                        {
-                            storage += "\n" + item + "\n";
-                        }
-                        else
-                        {
-                            storage += item;
-                        }
-                    }
-                    string[] storageData = storage.Split('\n');
-                    calculateSystem callingCalculate = new calculateSystem();
-                    //decimal numberReceveived = callingCalculate.recieveArray(storageData);
-                    //string sendData = callingCalculate.convertAndFormat(numberReceveived.ToString());
-                    //decimal numberReceveived = callingCalculate.recieveArray(storageData);
-                    //string sendData = numberReceveived.ToString();
-                    string sendData = callingCalculate.recieveArray(storageData);
-                    dataGridView1.Rows[x].Cells[y].Value = sendData;
-                }
-            }
-            catch (Exception)
-            { }
-        }
-
+        
         private void GUI_WORK_COMPANY_Resize(object sender, EventArgs e)
         {
-            baseResizeDatasGridViewPhase1();
+            baseResizeDatasGridView();
         }
 
         string orderDatagrid = "";
         private void checkedListBox1_MouseUp(object sender, MouseEventArgs e)
         {
             checkedListBox2.Items.Clear();
-            //methodToHideUnhideDataGridView();
             foreach (Object item in checkedListBox1.CheckedItems)
             {
                 int index = checkedListBox1.Items.IndexOf(item);
@@ -2764,7 +2097,7 @@ namespace Sistema_Planillas_Contabilidad
                     checkedListBox1.SetItemChecked(index, false);
                 }
                 checkedListBox1.Text = threeLine;
-                baseResizeDatasGridViewPhase1();
+                baseResizeDatasGridView();
             } else if (orderDatagrid == "TODOS")
             {
                 //checkedListBox2.Items.Clear();
@@ -2833,15 +2166,76 @@ namespace Sistema_Planillas_Contabilidad
                 }
             }
             orderDatagrid = "";
+            actionHappened = true;
         }
 
-        private void dataGridView1_Click(object sender, EventArgs e)
+        public void PathToCompany(string companyReceive, string deptReceive, string monthReceive, string pathReceive)
+        {
+            company = companyReceive;
+            deparment = deptReceive;
+            month = monthReceive;
+        }
+
+        private void buttonCloseProgram_Click(object sender, EventArgs e)
+        {
+            if(actionHappened == true)
+            {
+                DialogResult answer = MessageBox.Show("¿HAY CAMBIOS NO GUARDADOS, DESEA GUARDARLOS?", "OPCIÓN RAPIDA", MessageBoxButtons.YesNo);
+                switch (answer)
+                {
+                    case DialogResult.Yes:
+                        methodToSave("!ALERT");
+                    break;
+                    case DialogResult.No:
+                    break;
+                }
+            }
+            this.Close();
+        }
+
+        private void dataGridView1_Click_1(object sender, EventArgs e)
         {
             clickOnDataGrid1 = true;
             clickOnDataGrid2 = false;
             clickOnDataGrid3 = false;
             clickOnDataGrid4 = false;
             clickOnDataGrid5 = false;
+        }
+
+        private void dataGridView2_Click_1(object sender, EventArgs e)
+        {
+            clickOnDataGrid1 = false;
+            clickOnDataGrid2 = true;
+            clickOnDataGrid3 = false;
+            clickOnDataGrid4 = false;
+            clickOnDataGrid5 = false;
+        }
+
+        private void dataGridView3_Click_1(object sender, EventArgs e)
+        {
+            clickOnDataGrid1 = false;
+            clickOnDataGrid2 = false;
+            clickOnDataGrid3 = true;
+            clickOnDataGrid4 = false;
+            clickOnDataGrid5 = false;
+        }
+
+        private void dataGridView4_Click_1(object sender, EventArgs e)
+        {
+            clickOnDataGrid1 = false;
+            clickOnDataGrid2 = false;
+            clickOnDataGrid3 = false;
+            clickOnDataGrid4 = true;
+            clickOnDataGrid5 = false;
+        }
+
+        private void dataGridView5_Click_1(object sender, EventArgs e)
+        {
+            clickOnDataGrid1 = false;
+            clickOnDataGrid2 = false;
+            clickOnDataGrid3 = false;
+            clickOnDataGrid4 = false;
+            clickOnDataGrid5 = true;
         }
 
         private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -2865,15 +2259,6 @@ namespace Sistema_Planillas_Contabilidad
             { MessageBox.Show("FILA NO SE HA SELECCIONANDO "); }
         }
 
-        private void dataGridView2_Click(object sender, EventArgs e)
-        {
-            clickOnDataGrid1 = false;
-            clickOnDataGrid2 = true;
-            clickOnDataGrid3 = false;
-            clickOnDataGrid4 = false;
-            clickOnDataGrid5 = false;
-        }
-
         private void dataGridView2_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             clickOnCellDataGrid1 = false;
@@ -2893,16 +2278,6 @@ namespace Sistema_Planillas_Contabilidad
             }
             catch (Exception)
             { MessageBox.Show("FILA NO SE HA SELECCIONANDO "); }
-        }
-
-        private void dataGridView3_Click(object sender, EventArgs e)
-        {
-            clickOnDataGrid1 = false;
-            clickOnDataGrid2 = false;
-            clickOnDataGrid3 = true;
-            clickOnDataGrid4 = false;
-            clickOnDataGrid5 = false;
-
         }
 
         private void dataGridView3_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -2926,15 +2301,6 @@ namespace Sistema_Planillas_Contabilidad
             { MessageBox.Show("FILA NO SE HA SELECCIONANDO "); }
         }
 
-        private void dataGridView4_Click(object sender, EventArgs e)
-        {
-            clickOnDataGrid1 = false;
-            clickOnDataGrid2 = false;
-            clickOnDataGrid3 = false;
-            clickOnDataGrid4 = true;
-            clickOnDataGrid5 = false;
-        }
-
         private void dataGridView4_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             clickOnCellDataGrid1 = false;
@@ -2954,15 +2320,6 @@ namespace Sistema_Planillas_Contabilidad
             }
             catch (Exception)
             { MessageBox.Show("FILA NO SE HA SELECCIONANDO "); }
-        }
-
-        private void dataGridView5_Click(object sender, EventArgs e)
-        {
-            clickOnDataGrid1 = false;
-            clickOnDataGrid2 = false;
-            clickOnDataGrid3 = false;
-            clickOnDataGrid4 = false;
-            clickOnDataGrid5 = true;
         }
 
         private void dataGridView5_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -3137,5 +2494,6 @@ namespace Sistema_Planillas_Contabilidad
                 tableLayoutPanel1.RowStyles[1] = new RowStyle(SizeType.Percent, 13);
             }
         }
+
     }
 }
