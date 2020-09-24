@@ -712,11 +712,24 @@ namespace Sistema_Planillas_Contabilidad
                             }
                         }
                         string numberAnswer = callToCalculate.recieveArray(splitFormulaPhase2);
+                        //decimal transform = Convert.ToDecimal(numberAnswer);
+                        //string numberAnswer1 = string.Format("{0:0,0.00}", transform);
                         for (int column = 0; column < dataGridView5.Columns.Count; column++)
                         {
                             if (dataGridView1.Columns[column].HeaderText == resultOfBodyFormula[formulaPhase1])
                             {
-                                dataGridView5.Rows[row].Cells[column].Value = numberAnswer;
+                                if (dataGridView1.Columns[column].HeaderText.Contains("TOT") && !dataGridView1.Columns[column].HeaderText.Contains("TOTAL"))
+                                {
+                                    dataGridView5.Rows[row].Cells[column].Value = numberAnswer.ToString();
+                                }
+                                else if(dataGridView1.Columns[column].HeaderText=="SALARIO NETO")
+                                {
+                                    dataGridView5.Rows[row].Cells[column].Value = numberAnswer;//Math.Round(Convert.ToDouble(numberAnswer)).ToString();
+                                }
+                                else
+                                {
+                                    dataGridView5.Rows[row].Cells[column].Value = numberAnswer;
+                                }
                                 break;
                             }
                         }
@@ -745,7 +758,9 @@ namespace Sistema_Planillas_Contabilidad
                             }
                         }
                         //sum = Math.Round(sum, 0, MidpointRounding.AwayFromZero);
-                        dataGridView5.Rows[dataGridView5.Rows.Count - 1].Cells[column].Value = sum.ToString();
+                        //sum = Math.Round(sum);
+                        string numberAnswer1 = string.Format("{0:0,0.00}", sum);
+                        dataGridView5.Rows[dataGridView5.Rows.Count - 1].Cells[column].Value = numberAnswer1;
                     }
                     else
                     {
@@ -1509,7 +1524,7 @@ namespace Sistema_Planillas_Contabilidad
             }
             foreach (string path in storageFiles)
             {
-                if (File.Exists(path)&&!path.Contains("\\CORE-FORMULAS.txt"))
+                if (File.Exists(path)&&!path.Contains("\\CORE-FORMULAS.txt")&& !path.Contains("\\CORE-FORMULAS-SITS.txt"))
                 {
                     File.Delete(path);
                 }
@@ -2493,6 +2508,7 @@ namespace Sistema_Planillas_Contabilidad
                 tableLayoutPanel1.RowStyles[0] = new RowStyle(SizeType.Percent, 86);
                 tableLayoutPanel1.RowStyles[1] = new RowStyle(SizeType.Percent, 13);
             }
+            baseResizeDatasGridView();
         }
 
     }

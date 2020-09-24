@@ -14,7 +14,10 @@ namespace Sistema_Planillas_Contabilidad
         string companyOntime = "";
         string deparmentOntime = "";
         string monthOnTime = "";
-
+        string nameTemplate = "";
+        string option1 = "LOCAL";
+        string option2 = "MEDIO";
+        string option3 = "GLOBAL";
         bool booleanCompany = false;
         bool booleanDeparment = false;
         bool booleanMonth = false;
@@ -93,8 +96,10 @@ namespace Sistema_Planillas_Contabilidad
         private void startChargeData()
         {
             comboBox1.Text = threeLine;
-            comboBox1.Items.Add("LOCAL");
-            comboBox1.Items.Add("GLOBAL");
+            comboBox1.Items.Add(option1);
+            comboBox1.Items.Add(option2);
+            comboBox1.Items.Add(option3);
+
             buttonGenerateSits.Visible = false;
             buttonStart.Visible = false;
             listViewCompany.View = View.Details;
@@ -307,6 +312,7 @@ namespace Sistema_Planillas_Contabilidad
                 List<string> listDepartments = callGenerateSits.getListOfDepartments();
                 callGenerateSits.Close();
                 List<string> listFiles = new List<string>();
+                List<string> listFormulas= new List<string>();
                 string pathCompare = CorePathOfFolderCompaniesSistemaPlanillas + companyOntime;
                 string[] storageComparePhase1 = Directory.GetDirectories(pathCompare);
                 foreach(string path in storageComparePhase1)
@@ -324,8 +330,9 @@ namespace Sistema_Planillas_Contabilidad
                                     if(file.Contains("SUMA-TOTALES.txt"))
                                     {
                                         listFiles.Add(file);
-                                        //MessageBox.Show(file);
-                                        break;
+                                    }else if(file.Contains("CORE-FORMULAS-SITS.txt"))
+                                    {
+                                        listFormulas.Add(file);
                                     }
                                 }
                                 break;
@@ -333,20 +340,19 @@ namespace Sistema_Planillas_Contabilidad
                         }
                     }
                 }
-                GUI_VISTA_ASIENTOS callToViewSits = new GUI_VISTA_ASIENTOS();
-                callToViewSits.MethodToReceivedAccesToObject(startThePaths, startTheTagsAndDefaults, startFoldersInsideCompany);
-                callToViewSits.PathToCompany(companyOntime,deparmentOntime);
-                callToViewSits.orderGlobalOrLocal(comboBox1.Text);
-                callToViewSits.receiveArrayOfFiles(listFiles);
-                callToViewSits.ShowDialog();
-                /*
-                string sum = "";
-                foreach(string dept in listFiles)
+
+                if(comboBox1.Text==option1 && listFiles.Count != listFormulas.Count)
                 {
-                    sum += dept+"\n";
+                    MessageBox.Show("NO SE PUEDE INICIAR, EL NUMERO DE MESES NO ES IGUAL AL NUMERO DE FORMULAS INTERNAS POR CADA MES");
+                }else
+                {
+                    GUI_VISTA_ASIENTOS callToViewSits = new GUI_VISTA_ASIENTOS();
+                    callToViewSits.MethodToReceivedAccesToObject(startThePaths, startTheTagsAndDefaults, startFoldersInsideCompany);
+                    callToViewSits.PathToCompany(companyOntime);
+                    callToViewSits.orderGlobalOrLocal(comboBox1.Text);
+                    callToViewSits.receiveArrayOfFilesAndFormulas(listFiles, listFormulas);
+                    callToViewSits.ShowDialog();
                 }
-                MessageBox.Show(sum);
-                */
             }
         }
 
@@ -369,6 +375,11 @@ namespace Sistema_Planillas_Contabilidad
             {
                 buttonGenerateSits.Visible = true;
             }
+        }
+
+        private void comboBox2_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

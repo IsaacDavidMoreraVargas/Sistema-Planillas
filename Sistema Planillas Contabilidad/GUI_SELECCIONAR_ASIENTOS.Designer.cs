@@ -109,7 +109,7 @@
             this.textBox1.Margin = new System.Windows.Forms.Padding(2);
             this.textBox1.Multiline = true;
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(180, 21);
+            this.textBox1.Size = new System.Drawing.Size(139, 21);
             this.textBox1.TabIndex = 3;
             // 
             // textBox2
@@ -144,7 +144,7 @@
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 36F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 36F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 34F));
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 127F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 130F));
             this.tableLayoutPanel2.Controls.Add(this.buttonKey2, 1, 0);
             this.tableLayoutPanel2.Controls.Add(this.buttonKey1, 0, 0);
             this.tableLayoutPanel2.Controls.Add(this.buttonEliminate, 8, 0);
@@ -165,10 +165,10 @@
             // buttonKey2
             // 
             this.buttonKey2.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.buttonKey2.Location = new System.Drawing.Point(34, 3);
+            this.buttonKey2.Location = new System.Drawing.Point(33, 3);
             this.buttonKey2.Margin = new System.Windows.Forms.Padding(2);
             this.buttonKey2.Name = "buttonKey2";
-            this.buttonKey2.Size = new System.Drawing.Size(28, 22);
+            this.buttonKey2.Size = new System.Drawing.Size(26, 22);
             this.buttonKey2.TabIndex = 1;
             this.buttonKey2.Text = "=";
             this.buttonKey2.UseVisualStyleBackColor = true;
@@ -180,7 +180,7 @@
             this.buttonKey1.Location = new System.Drawing.Point(2, 3);
             this.buttonKey1.Margin = new System.Windows.Forms.Padding(2);
             this.buttonKey1.Name = "buttonKey1";
-            this.buttonKey1.Size = new System.Drawing.Size(28, 22);
+            this.buttonKey1.Size = new System.Drawing.Size(27, 22);
             this.buttonKey1.TabIndex = 0;
             this.buttonKey1.Text = "(";
             this.buttonKey1.UseVisualStyleBackColor = true;
@@ -188,7 +188,7 @@
             // 
             // buttonEliminate
             // 
-            this.buttonEliminate.Location = new System.Drawing.Point(276, 2);
+            this.buttonEliminate.Location = new System.Drawing.Point(273, 2);
             this.buttonEliminate.Margin = new System.Windows.Forms.Padding(2);
             this.buttonEliminate.Name = "buttonEliminate";
             this.buttonEliminate.Size = new System.Drawing.Size(121, 22);
@@ -200,7 +200,7 @@
             // buttonKey3
             // 
             this.buttonKey3.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.buttonKey3.Location = new System.Drawing.Point(66, 3);
+            this.buttonKey3.Location = new System.Drawing.Point(63, 3);
             this.buttonKey3.Margin = new System.Windows.Forms.Padding(2);
             this.buttonKey3.Name = "buttonKey3";
             this.buttonKey3.Size = new System.Drawing.Size(30, 22);
@@ -212,7 +212,7 @@
             // buttonKey5
             // 
             this.buttonKey5.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.buttonKey5.Location = new System.Drawing.Point(136, 3);
+            this.buttonKey5.Location = new System.Drawing.Point(133, 3);
             this.buttonKey5.Margin = new System.Windows.Forms.Padding(2);
             this.buttonKey5.Name = "buttonKey5";
             this.buttonKey5.Size = new System.Drawing.Size(30, 22);
@@ -225,7 +225,7 @@
             // buttonKey6
             // 
             this.buttonKey6.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.buttonKey6.Location = new System.Drawing.Point(170, 3);
+            this.buttonKey6.Location = new System.Drawing.Point(167, 3);
             this.buttonKey6.Margin = new System.Windows.Forms.Padding(2);
             this.buttonKey6.Name = "buttonKey6";
             this.buttonKey6.Size = new System.Drawing.Size(30, 22);
@@ -238,7 +238,7 @@
             // buttonKey4
             // 
             this.buttonKey4.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.buttonKey4.Location = new System.Drawing.Point(101, 3);
+            this.buttonKey4.Location = new System.Drawing.Point(98, 3);
             this.buttonKey4.Margin = new System.Windows.Forms.Padding(2);
             this.buttonKey4.Name = "buttonKey4";
             this.buttonKey4.Size = new System.Drawing.Size(30, 22);
@@ -250,7 +250,7 @@
             // 
             // buttonKey7
             // 
-            this.buttonKey7.Location = new System.Drawing.Point(242, 2);
+            this.buttonKey7.Location = new System.Drawing.Point(239, 2);
             this.buttonKey7.Margin = new System.Windows.Forms.Padding(2);
             this.buttonKey7.Name = "buttonKey7";
             this.buttonKey7.Size = new System.Drawing.Size(30, 22);
@@ -262,7 +262,7 @@
             // 
             // buttonKey8
             // 
-            this.buttonKey8.Location = new System.Drawing.Point(206, 2);
+            this.buttonKey8.Location = new System.Drawing.Point(203, 2);
             this.buttonKey8.Margin = new System.Windows.Forms.Padding(2);
             this.buttonKey8.Name = "buttonKey8";
             this.buttonKey8.Size = new System.Drawing.Size(30, 22);
@@ -375,17 +375,18 @@
             // comboBox2
             // 
             this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Location = new System.Drawing.Point(490, 27);
+            this.comboBox2.Location = new System.Drawing.Point(461, 26);
             this.comboBox2.Margin = new System.Windows.Forms.Padding(2);
             this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(122, 21);
+            this.comboBox2.Size = new System.Drawing.Size(164, 21);
             this.comboBox2.TabIndex = 9;
             this.comboBox2.Text = "----";
+            this.comboBox2.TextChanged += new System.EventHandler(this.comboBox2_TextChanged);
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(487, 11);
+            this.label3.Location = new System.Drawing.Point(458, 11);
             this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(55, 13);
@@ -405,7 +406,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(352, 11);
+            this.label4.Location = new System.Drawing.Point(306, 11);
             this.label4.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(62, 13);
@@ -415,10 +416,10 @@
             // comboBox4
             // 
             this.comboBox4.FormattingEnabled = true;
-            this.comboBox4.Location = new System.Drawing.Point(355, 27);
+            this.comboBox4.Location = new System.Drawing.Point(309, 26);
             this.comboBox4.Margin = new System.Windows.Forms.Padding(2);
             this.comboBox4.Name = "comboBox4";
-            this.comboBox4.Size = new System.Drawing.Size(122, 21);
+            this.comboBox4.Size = new System.Drawing.Size(148, 21);
             this.comboBox4.TabIndex = 15;
             this.comboBox4.Text = "----";
             // 

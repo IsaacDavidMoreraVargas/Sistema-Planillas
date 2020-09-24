@@ -22,8 +22,9 @@ namespace Sistema_Planillas_Contabilidad
             InitializeComponent();
         }
 
-        string opcion1 = "LOCAL";
-        string opcion2 = "GLOBAL";
+        string option1 = "LOCAL";
+        string option2 = "MEDIO";
+        string option3 = "GLOBAL";
         string orderGlobalOrLocal = "";
         string orderAddOrEdit = "CREATE";
         bool clickOnListView1 = false;
@@ -32,12 +33,6 @@ namespace Sistema_Planillas_Contabilidad
 
         string debit = "DEBE";
         string credit = "HABE";
-        string pathListIn = "";
-        string pathListMedium = "";
-        string pathSit = "";
-        string actualPath = "";
-
-        string actual = Directory.GetCurrentDirectory();
 
         private void GUI_SELECCIONAR_ASIENTOS_Load(object sender, EventArgs e)
         {
@@ -142,48 +137,60 @@ namespace Sistema_Planillas_Contabilidad
 
         private void loadDefaultData()
         {
-            if (orderGlobalOrLocal == opcion1)
+            if (orderGlobalOrLocal == option1)
             {
-                comboBox2.Items.Add(opcion1);
-                comboBox2.Items.Add(opcion2);
+                comboBox2.Items.Add(option1);
+                comboBox2.Items.Add(option2);
+                comboBox2.Items.Add(option3);
             }
-            else if (orderGlobalOrLocal == opcion2)
+            else if (orderGlobalOrLocal == option2)
             {
                 buttonGenerate.Visible = false;
                 buttonGenerate.Enabled = false;
-                comboBox2.Items.Add(opcion2);
+                comboBox2.Items.Add(option2);
             }
-                comboBox4.Items.Add(debit);
-                comboBox4.Items.Add(credit);
-                comboBox1.Text = threeLine;
-                comboBox3.Text = threeLine;
+            comboBox4.Items.Add(debit);
+            comboBox4.Items.Add(credit);
+            comboBox1.Text = threeLine;
+            comboBox3.Text = threeLine;
 
-                if (orderGlobalOrLocal == opcion1)
+            if (orderGlobalOrLocal == option1)
+            {
+                string pathReadFormula = CorePathOfFolderCompaniesSistemaPlanillas + company + "\\" + deparment + "\\" + month + "\\" + "CORE-FORMULAS-SITS.txt";
+                if (File.Exists(pathReadFormula))
                 {
-                    string pathReadFormula = CorePathOfFolderCompaniesSistemaPlanillas + company + "\\" + coreExtraConfiguration + "\\" + sits + "\\" + "CORE-FORMULAS-SITS.txt";
-                    if (File.Exists(pathReadFormula))
-                    {
-                        setData(pathReadFormula);
-                    }
-                    else
-                    {
-                        MessageBox.Show("NO ES POSIBLE CARGAR FORMULAS, ARCHIVO NO EXISTE");
-                    }
+                    setData(pathReadFormula);
                 }
-                else if (orderGlobalOrLocal == opcion2)
+                else
                 {
-                    string pathReadFormula = SpecificPathOfFolderConfigurationSits + "GLOBAL-FORMULAS-SITS.txt";
-                    if (File.Exists(pathReadFormula))
-                    {
-                        setData(pathReadFormula);
-                    }
-                    else
-                    {
-                        MessageBox.Show("NO ES POSIBLE CARGAR FORMULAS, ARCHIVO NO EXISTE");
-                    }
+                    MessageBox.Show("NO ES POSIBLE CARGAR FORMULAS, ARCHIVO NO EXISTE");
                 }
-
             }
+            else if (orderGlobalOrLocal == option2)
+            {
+                string pathReadFormula = CorePathOfFolderCompaniesSistemaPlanillas + company + "\\" + coreExtraConfiguration + "\\" + sits + "\\" + "CORE-FORMULAS-SITS.txt";
+                if (File.Exists(pathReadFormula))
+                {
+                    setData(pathReadFormula);
+                }
+                else
+                {
+                    MessageBox.Show("NO ES POSIBLE CARGAR FORMULAS, ARCHIVO NO EXISTE");
+                }
+            }
+            else if (orderGlobalOrLocal == option3)
+            {
+                string pathReadFormula = SpecificPathOfFolderConfigurationSits + "GLOBAL-FORMULAS-SITS.txt";
+                if (File.Exists(pathReadFormula))
+                {
+                    setData(pathReadFormula);
+                }
+                else
+                {
+                    MessageBox.Show("NO ES POSIBLE CARGAR FORMULAS, ARCHIVO NO EXISTE");
+                }
+            }
+        }
 
         private void setData(string pathReadFormula)
         {
@@ -371,6 +378,7 @@ namespace Sistema_Planillas_Contabilidad
         private void buttonUpdate_Click(object sender, EventArgs e)
         {
             string path = "";
+            /*
             if (orderGlobalOrLocal == opcion1)
             {
                 path = CorePathOfFolderCompaniesSistemaPlanillas + company + "\\" + coreExtraConfiguration + "\\" + sits + "\\" + "CORE-FORMULAS-SITS.txt";
@@ -379,9 +387,26 @@ namespace Sistema_Planillas_Contabilidad
             {
                 path = SpecificPathOfFolderConfigurationSits + "GLOBAL-FORMULAS-SITS.txt";
             }
+            */
+            if (orderGlobalOrLocal == option1)
+            {
+                path = CorePathOfFolderCompaniesSistemaPlanillas + company + "\\" + deparment + "\\" + month + "\\" + "CORE-FORMULAS-SITS.txt";
+            }
+            else if (orderGlobalOrLocal == option2)
+            {
+                path = CorePathOfFolderCompaniesSistemaPlanillas + company + "\\" + coreExtraConfiguration + "\\" + sits + "\\" + "CORE-FORMULAS-SITS.txt";
+            }
+            else if (orderGlobalOrLocal == option3)
+            {
+                path = SpecificPathOfFolderConfigurationSits + "GLOBAL-FORMULAS-SITS.txt";
+            }
+
             if (listView1.Items.Count == 0 && listView2.Items.Count == 0)
             {
                 MessageBox.Show("NO PODRAS GUARGAR YA QUE NO HAS CARGADO NINGUNA FORMULA");
+            }else if(textBox2.Text==threeLine)
+            {
+               MessageBox.Show("NO PODRAS GUARGAR YA QUE NO HAS ELEGIDO UN DESTINO PARA GUARDAR");
             }
             else
             {
@@ -415,15 +440,19 @@ namespace Sistema_Planillas_Contabilidad
 
         private void buttonCharge_Click(object sender, EventArgs e)
         {
-            if (orderGlobalOrLocal == opcion1)
+            if (orderGlobalOrLocal == option1)
             {
                 string path = "";
 
-                if(comboBox2.Text==opcion1)
+                if (comboBox2.Text == option1)
+                {
+                    path = CorePathOfFolderCompaniesSistemaPlanillas + company + "\\" + deparment + "\\" + month + "\\" + "CORE-FORMULAS-SITS.txt";
+                }
+                else if (comboBox2.Text == option2)
                 {
                     path = CorePathOfFolderCompaniesSistemaPlanillas + company + "\\" + coreExtraConfiguration + "\\" + sits + "\\" + "CORE-FORMULAS-SITS.txt";
                 }
-                else if (comboBox2.Text == opcion2)
+                else if (comboBox2.Text == option3)
                 {
                     path = SpecificPathOfFolderConfigurationSits + "GLOBAL-FORMULAS-SITS.txt";
                 }
@@ -437,7 +466,7 @@ namespace Sistema_Planillas_Contabilidad
                     MessageBox.Show("NO ES POSIBLE CARGAR FORMULAS, ARCHIVO NO EXISTE");
                 }
             }
-            else if (orderGlobalOrLocal == opcion1)
+            else if (orderGlobalOrLocal == option3)
             {
                 string pathReadFormula = SpecificPathOfFolderConfigurationSits + "GLOBAL-FORMULAS-SITS.txt";
                 if (File.Exists(pathReadFormula))
@@ -458,14 +487,51 @@ namespace Sistema_Planillas_Contabilidad
             callToSelecDepartmens.PathToCompany(company);
             callToSelecDepartmens.ShowDialog();
             List<string> listDepartments=callToSelecDepartmens.getListOfDepartments();
-            /*
-            string sum = "";
-            foreach(string dept in listDepartments)
+            callToSelecDepartmens.Close();
+            List<string> listFiles = new List<string>();
+            List<string> listFormulas = new List<string>();
+            string pathCompare = CorePathOfFolderCompaniesSistemaPlanillas + company;
+            string[] storageComparePhase1 = Directory.GetDirectories(pathCompare);
+            foreach (string path in storageComparePhase1)
             {
-                sum += dept;
+                string[] storageComparePhase2 = Directory.GetDirectories(path);
+                foreach (string pathPhase2 in storageComparePhase2)
+                {
+                    foreach (string compare in listDepartments)
+                    {
+                        if (pathPhase2.Contains(compare))
+                        {
+                            string[] storageFiles = Directory.GetFiles(pathPhase2);
+                            foreach (string file in storageFiles)
+                            {
+                                if (file.Contains("SUMA-TOTALES.txt"))
+                                {
+                                    listFiles.Add(file);
+                                }
+                                else if (file.Contains("CORE-FORMULAS-SITS.txt"))
+                                {
+                                    listFormulas.Add(file);
+                                }
+                            }
+                            break;
+                        }
+                    }
+                }
             }
-            MessageBox.Show(sum);
-            */
+            if (comboBox2.Text == option1 && listFiles.Count != listFormulas.Count)
+            {
+                MessageBox.Show("NO SE PUEDE INICIAR, EL NUMERO DE MESES NO ES IGUAL AL NUMERO DE FORMULAS INTERNAS POR CADA MES");
+            }
+            else
+            {
+                GUI_VISTA_ASIENTOS callToViewSits = new GUI_VISTA_ASIENTOS();
+                callToViewSits.MethodToReceivedAccesToObject(startThePaths, startTheTagsAndDefaults, startFoldersInsideCompany);
+                callToViewSits.PathToCompany(company);
+                callToViewSits.orderGlobalOrLocal(comboBox2.Text);
+                callToViewSits.receiveArrayOfFilesAndFormulas(listFiles, listFormulas);
+                callToViewSits.ShowDialog();
+            }
+
         }
 
         private void comboBox1ValueChanged(object sender, EventArgs e)
@@ -680,6 +746,11 @@ namespace Sistema_Planillas_Contabilidad
         private void buttonCloseProgram_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void comboBox2_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

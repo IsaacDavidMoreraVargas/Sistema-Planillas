@@ -166,5 +166,19 @@ namespace Sistema_Planillas_Contabilidad
             }
             return found;
         }
+
+        public bool findDataInList(List<string> arrayReceived, string valueToFind)
+        {
+            bool found = false;
+            foreach (string data in arrayReceived)
+            {
+                if (data == valueToFind)
+                {
+                    found = true;
+                    break;
+                }
+            }
+            return found;
+        }
     }
 }
