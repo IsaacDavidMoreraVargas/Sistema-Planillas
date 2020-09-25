@@ -5,6 +5,7 @@ using System.Text;
 using System.IO;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Drawing;
 
 namespace Sistema_Planillas_Contabilidad
 {
@@ -74,7 +75,7 @@ namespace Sistema_Planillas_Contabilidad
             return replaceArray;
         }
 
-        public List<string [,]> methodToGetListOfArray(List<string> paths)
+        public List<string[,]> methodToGetListOfArray(List<string> paths)
         {
             List<string[,]> listOfArrays = new List<string[,]>();
             foreach (string path in paths)
@@ -96,7 +97,7 @@ namespace Sistema_Planillas_Contabilidad
                 }
                 for (int line = 0; line < storageData.Length; line++)
                 {
-                    if(storageData[line] == tagStartLine)
+                    if (storageData[line] == tagStartLine)
                     {
                         ++counterRows;
                     }
@@ -111,7 +112,7 @@ namespace Sistema_Planillas_Contabilidad
                     }
                     for (int column = 0; column < counterHeads; column++)
                     {
-                        if(storageData[index]==tagStartHead || storageData[index] ==tagEndHEad || storageData[index] == tagEndLine|| storageData[index] == tagStartLine)
+                        if (storageData[index] == tagStartHead || storageData[index] == tagEndHEad || storageData[index] == tagEndLine || storageData[index] == tagStartLine)
                         {
                             ++index;
                         }
@@ -154,18 +155,19 @@ namespace Sistema_Planillas_Contabilidad
             return returnArray;
         }
 
-        public bool findInRowsDataGridView(DataGridView receivedDataGridView,string flag, string find)
+        public bool findInRowsDataGridView(DataGridView receivedDataGridView, string flag, string find)
         {
-            bool found=false;
-            for (int column=0; column<receivedDataGridView.Columns.Count; column++)
+            bool found = false;
+            for (int column = 0; column < receivedDataGridView.Columns.Count; column++)
             {
-                if(receivedDataGridView.Columns[column].HeaderText==flag)
+                if (receivedDataGridView.Columns[column].HeaderText == flag)
                 {
-                    for(int row=0; row<receivedDataGridView.Rows.Count-1; row++)
+                    for (int row = 0; row < receivedDataGridView.Rows.Count - 1; row++)
                     {
-                        if(receivedDataGridView.Rows[row].Cells[flag].Value==null)
-                        { 
-                        }else if(receivedDataGridView.Rows[row].Cells[flag].Value.ToString()==find)
+                        if (receivedDataGridView.Rows[row].Cells[flag].Value == null)
+                        {
+                        }
+                        else if (receivedDataGridView.Rows[row].Cells[flag].Value.ToString() == find)
                         {
                             found = true;
                             break;
@@ -180,14 +182,14 @@ namespace Sistema_Planillas_Contabilidad
         public List<DataGridViewRow> getLisfOfRowsWithPivote(List<DataGridView> receivedListDataGridView, string flag)
         {
             List<DataGridViewRow> listReturnRows = new List<DataGridViewRow>();
-            for(int dataGridView=0; dataGridView<receivedListDataGridView.Count; dataGridView++)
+            for (int dataGridView = 0; dataGridView < receivedListDataGridView.Count; dataGridView++)
             {
                 DataGridView dataGridToStudy = receivedListDataGridView[dataGridView];
-                for(int row=0; row<dataGridToStudy.Rows.Count-1; row++)
+                for (int row = 0; row < dataGridToStudy.Rows.Count - 1; row++)
                 {
                     for (int column = 0; column < dataGridToStudy.Columns.Count; column++)
                     {
-                        if(dataGridToStudy.Rows[row].Cells[column].Value.ToString()==flag)
+                        if (dataGridToStudy.Rows[row].Cells[column].Value.ToString() == flag)
                         {
                             listReturnRows.Add(dataGridToStudy.Rows[row]);
                             break;
@@ -202,22 +204,24 @@ namespace Sistema_Planillas_Contabilidad
         {
             generalDataAndAvoidData callToHeads = new generalDataAndAvoidData();
             string sumAll = "";
-            List<string> returnList = new List<string>(); 
-            for (int row=0; row<receivedListDataGridViewRows.Count; row++)
+            List<string> returnList = new List<string>();
+            for (int row = 0; row < receivedListDataGridViewRows.Count; row++)
             {
                 for (int cell = 0; cell < receivedListDataGridViewRows[row].Cells.Count; cell++)
                 {
                     bool answer = callToHeads.avoidColumns(receivedListDataGridViewRows[row].Cells[cell].Value.ToString());
-                    if(answer==false)
+                    if (answer == false)
                     {
-                        sumAll+=receivedListDataGridViewRows[row].Cells[cell].Value.ToString()+"?";
-                    }else
+                        sumAll += receivedListDataGridViewRows[row].Cells[cell].Value.ToString() + "?";
+                    }
+                    else
                     {
                         double sum = 0;
-                        if(receivedListDataGridViewRows[row].Cells[cell].Value==null || receivedListDataGridViewRows[row].Cells[cell].Value.ToString()== " " || receivedListDataGridViewRows[row].Cells[cell].Value.ToString() == "")
+                        if (receivedListDataGridViewRows[row].Cells[cell].Value == null || receivedListDataGridViewRows[row].Cells[cell].Value.ToString() == " " || receivedListDataGridViewRows[row].Cells[cell].Value.ToString() == "")
                         {
                             sum += 0;
-                        }else
+                        }
+                        else
                         {
                             sum += Convert.ToDouble(receivedListDataGridViewRows[row].Cells[cell].Value);
                         }
@@ -225,10 +229,11 @@ namespace Sistema_Planillas_Contabilidad
                         {
                             for (int rowPhase2 = 1; rowPhase2 < receivedListDataGridViewRows.Count; rowPhase2++)
                             {
-                                if(receivedListDataGridViewRows[rowPhase2].Cells[cell].Value==null || receivedListDataGridViewRows[rowPhase2].Cells[cell].Value.ToString()==" "|| receivedListDataGridViewRows[rowPhase2].Cells[cell].Value.ToString() == "")
+                                if (receivedListDataGridViewRows[rowPhase2].Cells[cell].Value == null || receivedListDataGridViewRows[rowPhase2].Cells[cell].Value.ToString() == " " || receivedListDataGridViewRows[rowPhase2].Cells[cell].Value.ToString() == "")
                                 {
                                     sum += 0;
-                                }else
+                                }
+                                else
                                 {
                                     sum += Convert.ToDouble(receivedListDataGridViewRows[rowPhase2].Cells[cell].Value);
                                 }
@@ -247,7 +252,7 @@ namespace Sistema_Planillas_Contabilidad
                 break;
             }
             sumAll = sumAll.TrimEnd('?');
-            string []storageData = sumAll.Split('?');
+            string[] storageData = sumAll.Split('?');
             return storageData;
         }
 
@@ -317,9 +322,9 @@ namespace Sistema_Planillas_Contabilidad
         public string[,] MoveDownRow(DataGridView receivedDataGridView, int flag)
         {
             string[,] multiArrayReceived = calculateSizeAndFillArray(receivedDataGridView);
-            int beforeFlag = flag+3;
+            int beforeFlag = flag + 3;
             --beforeFlag;
-            int next=flag+1;
+            int next = flag + 1;
             int numberOfColumns = multiArrayReceived.GetLength(1);
             for (int column = 0; column < numberOfColumns; column++)
             {
@@ -331,7 +336,7 @@ namespace Sistema_Planillas_Contabilidad
             return multiArrayReceived;
         }
 
-        
+
 
         public string[,] eraseColum(DataGridView receivedDataGridView, int flag, int amountSpacesErase)
         {
@@ -422,7 +427,7 @@ namespace Sistema_Planillas_Contabilidad
             string[,] replaceArray = new string[numberOfRows, numberOfColumns];
             for (int rowPhase1 = 0; rowPhase1 < numberOfRows; rowPhase1++)
             {
-                if(rowPhase1 == flagStop)
+                if (rowPhase1 == flagStop)
                 {
                     int indexToMove = flag + 1;
                     for (int rowPhase2 = flag; rowPhase2 < receivedDataGridView.Rows.Count; rowPhase2++)
@@ -437,7 +442,7 @@ namespace Sistema_Planillas_Contabilidad
                     {
                         replaceArray[rowPhase1, column] = " ";
                     }
-                    
+
                     break;
                 }
                 else
@@ -449,6 +454,38 @@ namespace Sistema_Planillas_Contabilidad
                 }
             }
             return replaceArray;
+        }
+
+        public string[,] fillAndGetdataInDataGrid(DataGridView receivedDataGridView)
+        {
+            string[,] newData = new string[receivedDataGridView.Rows.Count,receivedDataGridView.Columns.Count];
+            for(int column=0; column<receivedDataGridView.Columns.Count; column++)
+            {
+                if (receivedDataGridView.Columns[column].HeaderCell.Style.BackColor == Color.LightSalmon)
+                {
+                    newData[0, column] = "SALMON?" + receivedDataGridView.Columns[column].HeaderText;
+                }else if(receivedDataGridView.Columns[column].HeaderCell.Style.BackColor == Color.LightGray)
+                {
+                    newData[0, column] = "GRAY?" + receivedDataGridView.Columns[column].HeaderText;
+                }
+            }
+            int index = 0;
+            for (int row = 1; row < receivedDataGridView.Rows.Count; row++)
+            {
+                for (int column = 0; column < receivedDataGridView.Columns.Count; column++)
+                {
+                    if (receivedDataGridView.Rows[index].Cells[column].Value == null)
+                    {
+                        newData[row, column] = " ";
+                    }
+                    else
+                    {
+                        newData[row, column] = receivedDataGridView.Rows[index].Cells[column].Value.ToString();
+                    }
+                }
+                ++index;
+            }
+            return newData;
         }
     }
 }

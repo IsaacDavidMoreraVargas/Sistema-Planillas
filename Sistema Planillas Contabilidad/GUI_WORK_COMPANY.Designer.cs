@@ -777,7 +777,7 @@
             // 
             // buttonCloseProgram
             // 
-            this.buttonCloseProgram.Location = new System.Drawing.Point(340, 84);
+            this.buttonCloseProgram.Location = new System.Drawing.Point(925, 81);
             this.buttonCloseProgram.Margin = new System.Windows.Forms.Padding(2);
             this.buttonCloseProgram.Name = "buttonCloseProgram";
             this.buttonCloseProgram.Size = new System.Drawing.Size(110, 38);
