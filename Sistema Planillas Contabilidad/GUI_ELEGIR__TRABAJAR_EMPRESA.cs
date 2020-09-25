@@ -308,50 +308,56 @@ namespace Sistema_Planillas_Contabilidad
                 GUI_ELEGIR_GENERAR_TOTALES callGenerateSits = new GUI_ELEGIR_GENERAR_TOTALES();
                 callGenerateSits.MethodToReceivedAccesToObject(startThePaths, startTheTagsAndDefaults, startFoldersInsideCompany);
                 callGenerateSits.PathToCompany(companyOntime);
+                callGenerateSits.ordeOrSitOrImport("SIT");
                 callGenerateSits.ShowDialog();
                 List<string> listDepartments = callGenerateSits.getListOfDepartments();
                 callGenerateSits.Close();
-                List<string> listFiles = new List<string>();
-                List<string> listFormulas= new List<string>();
-                string pathCompare = CorePathOfFolderCompaniesSistemaPlanillas + companyOntime;
-                string[] storageComparePhase1 = Directory.GetDirectories(pathCompare);
-                foreach(string path in storageComparePhase1)
+                if (listDepartments != null && listDepartments.Count > 0)
                 {
-                    string[] storageComparePhase2 = Directory.GetDirectories(path);
-                    foreach (string pathPhase2 in storageComparePhase2)
+                    List<string> listFiles = new List<string>();
+                    List<string> listFormulas = new List<string>();
+                    string pathCompare = CorePathOfFolderCompaniesSistemaPlanillas + companyOntime;
+                    string[] storageComparePhase1 = Directory.GetDirectories(pathCompare);
+                    foreach (string path in storageComparePhase1)
                     {
-                        foreach (string compare in listDepartments)
+                        string[] storageComparePhase2 = Directory.GetDirectories(path);
+                        foreach (string pathPhase2 in storageComparePhase2)
                         {
-                            if (pathPhase2.Contains(compare))
+                            foreach (string compare in listDepartments)
                             {
-                                string[] storageFiles = Directory.GetFiles(pathPhase2);
-                                foreach(string file in storageFiles)
+                                if (pathPhase2.Contains(compare))
                                 {
-                                    if(file.Contains("SUMA-TOTALES.txt"))
+                                    string[] storageFiles = Directory.GetFiles(pathPhase2);
+                                    foreach (string file in storageFiles)
                                     {
-                                        listFiles.Add(file);
-                                    }else if(file.Contains("CORE-FORMULAS-SITS.txt"))
-                                    {
-                                        listFormulas.Add(file);
+                                        if (file.Contains("SUMA-TOTALES.txt"))
+                                        {
+                                            listFiles.Add(file);
+                                        }
+                                        else if (file.Contains("CORE-FORMULAS-SITS.txt"))
+                                        {
+                                            listFormulas.Add(file);
+                                        }
                                     }
+                                    break;
                                 }
-                                break;
                             }
                         }
                     }
-                }
 
-                if(comboBox1.Text==option1 && listFiles.Count != listFormulas.Count)
-                {
-                    MessageBox.Show("NO SE PUEDE INICIAR, EL NUMERO DE MESES NO ES IGUAL AL NUMERO DE FORMULAS INTERNAS POR CADA MES");
-                }else
-                {
-                    GUI_VISTA_ASIENTOS callToViewSits = new GUI_VISTA_ASIENTOS();
-                    callToViewSits.MethodToReceivedAccesToObject(startThePaths, startTheTagsAndDefaults, startFoldersInsideCompany);
-                    callToViewSits.PathToCompany(companyOntime);
-                    callToViewSits.orderGlobalOrLocal(comboBox1.Text);
-                    callToViewSits.receiveArrayOfFilesAndFormulas(listFiles, listFormulas);
-                    callToViewSits.ShowDialog();
+                    if (comboBox1.Text == option1 && listFiles.Count != listFormulas.Count)
+                    {
+                        MessageBox.Show("NO SE PUEDE INICIAR, EL NUMERO DE MESES NO ES IGUAL AL NUMERO DE FORMULAS INTERNAS POR CADA MES");
+                    }
+                    else
+                    {
+                        GUI_VISTA_ASIENTOS callToViewSits = new GUI_VISTA_ASIENTOS();
+                        callToViewSits.MethodToReceivedAccesToObject(startThePaths, startTheTagsAndDefaults, startFoldersInsideCompany);
+                        callToViewSits.PathToCompany(companyOntime);
+                        callToViewSits.orderGlobalOrLocal(comboBox1.Text);
+                        callToViewSits.receiveArrayOfFilesAndFormulas(listFiles, listFormulas);
+                        callToViewSits.ShowDialog();
+                    }
                 }
             }
         }

@@ -15,6 +15,7 @@ namespace Sistema_Planillas_Contabilidad
     public partial class GUI_ELEGIR_GENERAR_TOTALES : Form
     {
         string company = "";
+        string order = "";
 
         public GUI_ELEGIR_GENERAR_TOTALES()
         {
@@ -85,6 +86,19 @@ namespace Sistema_Planillas_Contabilidad
 
         private void loadDefaultData()
         {
+            if (order == "IMPORT-EXPORT")
+            {
+                checkedListBox2.Items.Add("SEMANA 1");
+                checkedListBox2.Items.Add("SEMANA 2"); 
+                checkedListBox2.Items.Add("SEMANA 3");
+                checkedListBox2.Items.Add("SEMANA 4");
+            }
+            else if(order == "SIT")
+            {
+                int size = checkedListBox2.Width;
+                this.Width = this.Width - size - 11;
+                checkedListBox2.Visible = false;
+            }
             string path = CorePathOfFolderCompaniesSistemaPlanillas + company;
             string[] storageDepartments = Directory.GetDirectories(path);
             foreach (string department in storageDepartments)
@@ -93,7 +107,14 @@ namespace Sistema_Planillas_Contabilidad
                 replaceString = replaceString.Replace("\\", "");
                 if (replaceString != coreExtraConfiguration)
                 {
-                    Invoke(new Action(() => checkedListBox4.Items.Add(replaceString, true)));
+                    if (order == "IMPORT-EXPORT")
+                    {
+                        Invoke(new Action(() => checkedListBox4.Items.Add(replaceString, false)));
+                    }
+                    else if (order == "SIT")
+                    {
+                        Invoke(new Action(() => checkedListBox4.Items.Add(replaceString, true)));
+                    }
                 }
             }
 
@@ -114,15 +135,43 @@ namespace Sistema_Planillas_Contabilidad
         List<string> listDepartmens = new List<string>();
         private void buttonCalculate_Click(object sender, EventArgs e)
         {
-            for (int departmen = 0; departmen < checkedListBox4.Items.Count; departmen++)
+            if (order == "IMPORT-EXPORT")
             {
-                if (checkedListBox4.GetItemChecked(departmen) == true)
+                for (int departmen = 0; departmen < checkedListBox4.Items.Count; departmen++)
                 {
-                    for (int month= 0; month < checkedListBox1.Items.Count; month++)
+                    if (checkedListBox4.GetItemChecked(departmen) == true)
                     {
-                        if (checkedListBox1.GetItemChecked(month) == true)
+                        for (int month = 0; month < checkedListBox1.Items.Count; month++)
                         {
-                            listDepartmens.Add(checkedListBox4.Items[departmen].ToString()+ "\\"+ checkedListBox1.Items[month].ToString());
+                            if (checkedListBox1.GetItemChecked(month) == true)
+                            {
+                                for (int week = 0; week < checkedListBox2.Items.Count; week++)
+                                {
+                                    if (checkedListBox2.GetItemChecked(week) == true)
+                                    {
+                                        listDepartmens.Add(checkedListBox4.Items[departmen].ToString() + "\\" + checkedListBox1.Items[month].ToString() + "\\" + checkedListBox2.Items[week].ToString());
+                                        break;
+                                    }
+                                }
+                                break;
+                            }
+                        }
+                        break;
+                    }
+                }
+            }
+            else if (order == "SIT")
+            {
+                for (int departmen = 0; departmen < checkedListBox4.Items.Count; departmen++)
+                {
+                    if (checkedListBox4.GetItemChecked(departmen) == true)
+                    {
+                        for (int month = 0; month < checkedListBox1.Items.Count; month++)
+                        {
+                            if (checkedListBox1.GetItemChecked(month) == true)
+                            {
+                                listDepartmens.Add(checkedListBox4.Items[departmen].ToString() + "\\" + checkedListBox1.Items[month].ToString());
+                            }
                         }
                     }
                 }
@@ -141,6 +190,10 @@ namespace Sistema_Planillas_Contabilidad
             company = company.Replace(" ","_");
         }
 
+        public void ordeOrSitOrImport(string orderReceived)
+        {
+            order=orderReceived;
+        }
         private void buttonCloseProgram_Click(object sender, EventArgs e)
         {
             this.Close();

@@ -93,7 +93,6 @@
             this.buttonMoveNextColumn = new System.Windows.Forms.Button();
             this.buttonNextTotal = new System.Windows.Forms.Button();
             this.buttonImportDataColum = new System.Windows.Forms.Button();
-            this.buttonImportDataRow = new System.Windows.Forms.Button();
             this.buttonEraseColumn = new System.Windows.Forms.Button();
             this.buttonEraseArrow = new System.Windows.Forms.Button();
             this.buttonUpdateTemplate = new System.Windows.Forms.Button();
@@ -717,20 +716,9 @@
             this.buttonImportDataColum.Name = "buttonImportDataColum";
             this.buttonImportDataColum.Size = new System.Drawing.Size(110, 38);
             this.buttonImportDataColum.TabIndex = 14;
-            this.buttonImportDataColum.Text = "Importar Columna";
+            this.buttonImportDataColum.Text = "Importar Filas Y Columnas";
             this.buttonImportDataColum.UseVisualStyleBackColor = true;
             this.buttonImportDataColum.Click += new System.EventHandler(this.buttonImportDataColumn_Click);
-            // 
-            // buttonImportDataRow
-            // 
-            this.buttonImportDataRow.Location = new System.Drawing.Point(226, 43);
-            this.buttonImportDataRow.Margin = new System.Windows.Forms.Padding(2);
-            this.buttonImportDataRow.Name = "buttonImportDataRow";
-            this.buttonImportDataRow.Size = new System.Drawing.Size(110, 38);
-            this.buttonImportDataRow.TabIndex = 15;
-            this.buttonImportDataRow.Text = "Importar Fila";
-            this.buttonImportDataRow.UseVisualStyleBackColor = true;
-            this.buttonImportDataRow.Click += new System.EventHandler(this.buttonImportDataArrow_Click);
             // 
             // buttonEraseColumn
             // 
@@ -778,7 +766,7 @@
             // 
             // buttonRecalculate
             // 
-            this.buttonRecalculate.Location = new System.Drawing.Point(226, 84);
+            this.buttonRecalculate.Location = new System.Drawing.Point(226, 43);
             this.buttonRecalculate.Margin = new System.Windows.Forms.Padding(2);
             this.buttonRecalculate.Name = "buttonRecalculate";
             this.buttonRecalculate.Size = new System.Drawing.Size(110, 38);
@@ -801,7 +789,7 @@
             // 
             // buttonGenerateSits
             // 
-            this.buttonGenerateSits.Location = new System.Drawing.Point(341, 4);
+            this.buttonGenerateSits.Location = new System.Drawing.Point(340, 2);
             this.buttonGenerateSits.Margin = new System.Windows.Forms.Padding(2);
             this.buttonGenerateSits.Name = "buttonGenerateSits";
             this.buttonGenerateSits.Size = new System.Drawing.Size(110, 38);
@@ -841,7 +829,6 @@
             this.panel1.Controls.Add(this.buttonAddArrow);
             this.panel1.Controls.Add(this.buttonAddColumn);
             this.panel1.Controls.Add(this.buttonMoveBackColum);
-            this.panel1.Controls.Add(this.buttonImportDataRow);
             this.panel1.Controls.Add(this.buttonMoveNextColumn);
             this.panel1.Controls.Add(this.buttonEraseArrow);
             this.panel1.Controls.Add(this.buttonGenerateSits);
@@ -1044,7 +1031,6 @@
         private System.Windows.Forms.Button buttonMoveNextColumn;
         private System.Windows.Forms.Button buttonNextTotal;
         private System.Windows.Forms.Button buttonImportDataColum;
-        private System.Windows.Forms.Button buttonImportDataRow;
         private System.Windows.Forms.Button buttonEraseColumn;
         private System.Windows.Forms.Button buttonEraseArrow;
         private System.Windows.Forms.Button buttonUpdateTemplate;

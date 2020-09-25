@@ -60,6 +60,12 @@
     <Compile Include="GUI_CREAR_EDITAR_CODIGOS_DIASMES.Designer.cs">
       <DependentUpon>GUI_CREAR_EDITAR_CODIGOS_DIASMES.cs</DependentUpon>
     </Compile>
+    <Compile Include="GUI_IMPORT_DATA_AND_COLUMNS.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI_IMPORT_DATA_AND_COLUMNS.Designer.cs">
+      <DependentUpon>GUI_IMPORT_DATA_AND_COLUMNS.cs</DependentUpon>
+    </Compile>
     <Compile Include="SpecificAndCorePaths.cs" />
     <Compile Include="generalMethods.cs" />
     <Compile Include="GUI_CREAR_EMPRESA.cs">
@@ -181,6 +187,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="GUI_ELEGIR__TRABAJAR_EMPRESA.resx">
       <DependentUpon>GUI_ELEGIR__TRABAJAR_EMPRESA.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI_IMPORT_DATA_AND_COLUMNS.resx">
+      <DependentUpon>GUI_IMPORT_DATA_AND_COLUMNS.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="GUI_MENU_EDITAR_PLANTILLA.resx">
       <DependentUpon>GUI_MENU_EDITAR_PLANTILLA.cs</DependentUpon>

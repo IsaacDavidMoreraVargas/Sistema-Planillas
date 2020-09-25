@@ -1002,13 +1002,20 @@ namespace Sistema_Planillas_Contabilidad
 
             if (allowEnterData == true)
             {
-                string data = Microsoft.VisualBasic.Interaction.InputBox("DAME EL NOMBRE DE LA COLUMNA: -S/T ABORTAR");
-                data = data.ToUpper();
-                if (data != "S/T")
+                if (clickOnDataGrid1 == true || clickOnDataGrid2 == true || clickOnDataGrid3 == true || clickOnDataGrid4 == true || clickOnDataGrid5 == true)
                 {
-
-
-                    if (clickOnCellDataGrid1 == true || clickOnCellDataGrid2 == true || clickOnCellDataGrid3 == true || clickOnCellDataGrid4 == true || clickOnCellDataGrid5 == true)
+                    string data = Microsoft.VisualBasic.Interaction.InputBox("DAME EL NOMBRE DE LA COLUMNA: -S/T ABORTAR");
+                    data = data.ToUpper();
+                    if (data != "S/T")
+                    {
+                        dataToChargeData.Columns.Add(data, data);
+                    }
+                }
+                else if (clickOnCellDataGrid1 == true || clickOnCellDataGrid2 == true || clickOnCellDataGrid3 == true || clickOnCellDataGrid4 == true || clickOnCellDataGrid5 == true)
+                {
+                    string data = Microsoft.VisualBasic.Interaction.InputBox("DAME EL NOMBRE DE LA COLUMNA: -S/T ABORTAR");
+                    data = data.ToUpper();
+                    if (data != "S/T")
                     {
                         int scrollPositionV = dataToChargeData.FirstDisplayedScrollingRowIndex;
                         int scrollPositionH = dataToChargeData.FirstDisplayedScrollingColumnIndex;
@@ -1043,17 +1050,16 @@ namespace Sistema_Planillas_Contabilidad
                             }
                             ++indexData;
                         }
-
                         dataToChargeData.FirstDisplayedScrollingRowIndex = scrollPositionV;
                         dataToChargeData.FirstDisplayedScrollingColumnIndex = scrollPositionH;
                         paintColum(dataToChargeData, indexColumnOfDatagrid);
                         baseResizeDatasGridView();
+                        actionHappened = true;
                     }
-                    else
-                    {
-                        dataToChargeData.Columns.Add(data, data);
-                    }
-                    actionHappened = true;
+                }
+                else
+                {
+                    MessageBox.Show("SELECCIONA PRIMERO ALGUNA CELDA ANTES DE AÑADIR");
                 }
             }
         }
@@ -1076,7 +1082,11 @@ namespace Sistema_Planillas_Contabilidad
 
             if (allowEnterData == true)
             {
-                if (clickOnCellDataGrid1 == true || clickOnCellDataGrid2 == true || clickOnCellDataGrid3 == true || clickOnCellDataGrid4 == true || clickOnCellDataGrid5 == true)
+                if (clickOnDataGrid1 == true || clickOnDataGrid2 == true || clickOnDataGrid3 == true || clickOnDataGrid4 == true || clickOnDataGrid5 == true)
+                {
+                    dataToChargeData.Rows.Add(dataToChargeData.Rows.Count.ToString());
+                }
+                else if (clickOnCellDataGrid1 == true || clickOnCellDataGrid2 == true || clickOnCellDataGrid3 == true || clickOnCellDataGrid4 == true || clickOnCellDataGrid5 == true)
                 {
                     int scrollPositionV = dataToChargeData.FirstDisplayedScrollingRowIndex;
                     int scrollPositionH = dataToChargeData.FirstDisplayedScrollingColumnIndex;
@@ -1140,7 +1150,7 @@ namespace Sistema_Planillas_Contabilidad
                 }
                 else
                 {
-                    dataToChargeData.Rows.Add(dataToChargeData.Rows.Count.ToString());
+                    MessageBox.Show("SELECCIONA ALGO ANTES DE AÑADIR FILA");  
                 }
                 actionHappened = true;
             }
@@ -1223,13 +1233,17 @@ namespace Sistema_Planillas_Contabilidad
                         dataToChargeData.FirstDisplayedScrollingRowIndex = scrollPositionV;
                         dataToChargeData.FirstDisplayedScrollingColumnIndex = scrollPositionH;
                         paintColum(dataToChargeData, indexColumnOfDatagrid);
+                        actionHappened = true;
+                    }
+                    else
+                    {
+                        MessageBox.Show("IMPOSIBLE MOVER, SELECCIONA ALGO PRIMERO");
                     }
                 }
-                actionHappened = true;
-            }
-            else
-            {
-                MessageBox.Show("IMPOSIBLE MOVER, ESTAS AL INICIO");
+                else
+                {
+                    MessageBox.Show("IMPOSIBLE MOVER, ESTAS AL INICIO");
+                }
             }
         }
 
@@ -1253,7 +1267,6 @@ namespace Sistema_Planillas_Contabilidad
             {
                 if (indexColumnOfDatagrid < dataToChargeData.Columns.Count - 1)
                 {
-
                     if (clickOnCellDataGrid1 == true || clickOnCellDataGrid2 == true || clickOnCellDataGrid3 == true || clickOnCellDataGrid4 == true || clickOnCellDataGrid5 == true)
                     {
                         int scrollPositionV = dataToChargeData.FirstDisplayedScrollingRowIndex;
@@ -1310,14 +1323,18 @@ namespace Sistema_Planillas_Contabilidad
                         dataToChargeData.FirstDisplayedScrollingRowIndex = scrollPositionV;
                         dataToChargeData.FirstDisplayedScrollingColumnIndex = scrollPositionH;
                         paintColum(dataToChargeData, indexColumnOfDatagrid);
+                        actionHappened = true;
+                    }else
+                    {
+                        MessageBox.Show("IMPOSIBLE MOVER, SELECCIONA ALGO PRIMERO");
                     }
                 }
-                actionHappened = true;
+                else
+                {
+                    MessageBox.Show("IMPOSIBLE MOVER, ES EL FIN");
+                }
             }
-            else
-            {
-                MessageBox.Show("IMPOSIBLE MOVER, ES EL FIN");
-            }
+            
         }
 
         private void buttonMoveUpArrow_Click(object sender, EventArgs e)
@@ -1340,7 +1357,6 @@ namespace Sistema_Planillas_Contabilidad
             {
                 if (indexRowOfDatagrid > 0)
                 {
-
                     if (clickOnCellDataGrid1 == true || clickOnCellDataGrid2 == true || clickOnCellDataGrid3 == true || clickOnCellDataGrid4 == true || clickOnCellDataGrid5 == true)
                     {
                         int scrollPositionV = dataToChargeData.FirstDisplayedScrollingRowIndex;
@@ -1401,13 +1417,17 @@ namespace Sistema_Planillas_Contabilidad
                         paintRow(dataToChargeData, indexRowOfDatagrid);
                         dataToChargeData.FirstDisplayedScrollingRowIndex = scrollPositionV;
                         dataToChargeData.FirstDisplayedScrollingColumnIndex = scrollPositionH;
+                        actionHappened = true;
+                    }
+                    else
+                    {
+                        MessageBox.Show("IMPOSIBLE MOVER, NO HAS SELECCIONADO NADA");
                     }
                 }
-                actionHappened = true;
-            }
-            else
-            {
-                MessageBox.Show("IMPOSIBLE MOVER, ESTAS AL INICIO");
+                else
+                {
+                    MessageBox.Show("IMPOSIBLE MOVER, ESTAS AL INICIO");
+                }
             }
         }
 
@@ -1494,14 +1514,19 @@ namespace Sistema_Planillas_Contabilidad
                         paintRow(dataToChargeData, indexRowOfDatagrid);
                         dataToChargeData.FirstDisplayedScrollingRowIndex = scrollPositionV;
                         dataToChargeData.FirstDisplayedScrollingColumnIndex = scrollPositionH;
+                        actionHappened = true;
+                    }
+                    else
+                    {
+                        MessageBox.Show("IMPOSIBLE MOVER, SELECCIONA ALGO PRIMERO");
                     }
                 }
-                actionHappened = true;
+                else
+                {
+                    MessageBox.Show("IMPOSIBLE MOVER, ES EL FIN");
+                }
             }
-            else
-            {
-                MessageBox.Show("IMPOSIBLE MOVER, ES EL FIN");
-            }
+            
         }
 
         private void buttonUpdateTemplate_Click(object sender, EventArgs e)
@@ -1791,10 +1816,16 @@ namespace Sistema_Planillas_Contabilidad
 
             if (allowEnterData == true)
             {
-                dataGridviewToWhite(dataToChargeData);
-                dataToChargeData.Columns.RemoveAt(indexColumnOfDatagrid);
-                paintColum(dataToChargeData, indexColumnOfDatagrid);
-                actionHappened = true;
+                if (clickOnCellDataGrid1 == true || clickOnCellDataGrid2 == true || clickOnCellDataGrid3 == true || clickOnCellDataGrid4 == true || clickOnCellDataGrid5 == true)
+                {
+                    dataGridviewToWhite(dataToChargeData);
+                    dataToChargeData.Columns.RemoveAt(indexColumnOfDatagrid);
+                    paintColum(dataToChargeData, indexColumnOfDatagrid);
+                    actionHappened = true;
+                }else
+                {
+                    MessageBox.Show("SELECCIONA  PRIMERO ALGUNA CELDA ANTES DE ELIMINAR");
+                }
             }
         }
 
@@ -1816,14 +1847,21 @@ namespace Sistema_Planillas_Contabilidad
 
             if (allowEnterData == true)
             {
-                dataGridviewToWhite(dataToChargeData);
-                dataToChargeData.Rows.RemoveAt(indexRowOfDatagrid);
-                for(int row=0; row<dataToChargeData.Rows.Count-1; row++)
+                if (clickOnCellDataGrid1 == true || clickOnCellDataGrid2 == true || clickOnCellDataGrid3 == true || clickOnCellDataGrid4 == true || clickOnCellDataGrid5 == true)
                 {
-                    dataToChargeData.Rows[row].Cells[0].Value = row.ToString();
+                    dataGridviewToWhite(dataToChargeData);
+                    dataToChargeData.Rows.RemoveAt(indexRowOfDatagrid);
+                    for (int row = 0; row < dataToChargeData.Rows.Count - 1; row++)
+                    {
+                        dataToChargeData.Rows[row].Cells[0].Value = row.ToString();
+                    }
+                    actionHappened = true;
+                    paintRow(dataToChargeData, indexRowOfDatagrid);
                 }
-                actionHappened = true;
-                paintRow(dataToChargeData, indexRowOfDatagrid);
+                else
+                {
+                    MessageBox.Show("SELECCIONA PRIMERO ALGUNA CELDA ANTES DE ELIMINAR");
+                }
             }
         }
 
@@ -1859,14 +1897,326 @@ namespace Sistema_Planillas_Contabilidad
 
         private void buttonImportDataColumn_Click(object sender, EventArgs e)
         {
-            actionHappened = true;
-        }
+            GUI_ELEGIR_GENERAR_TOTALES callToSelecDepartmens = new GUI_ELEGIR_GENERAR_TOTALES();
+            callToSelecDepartmens.MethodToReceivedAccesToObject(startThePaths, startTheTagsAndDefaults, startFoldersInsideCompany);
+            callToSelecDepartmens.PathToCompany(company);
+            callToSelecDepartmens.ordeOrSitOrImport("IMPORT-EXPORT");
+            callToSelecDepartmens.ShowDialog();
+            List<string> listDepartments = callToSelecDepartmens.getListOfDepartments();
+            callToSelecDepartmens.Close();
+            if (listDepartments != null && listDepartments.Count > 0)
+            {
+                List<string> changeList = new List<string>();
+                string replaceString = "";
+                foreach(string path in listDepartments)
+                {
+                    if(path.Contains("SEMANA 1"))
+                    {
+                        replaceString = path.Replace("SEMANA 1","1-7");
+                        changeList.Add(replaceString);
+                    }
+                    else if (path.Contains("SEMANA 2"))
+                    {
+                        replaceString = path.Replace("SEMANA 2", "8-14");
+                        changeList.Add(replaceString);
+                    }
+                    else if (path.Contains("SEMANA 3"))
+                    {
+                        replaceString = path.Replace("SEMANA 3", "15-21");
+                        changeList.Add(replaceString);
+                    }
+                    else if (path.Contains("SEMANA 4"))
+                    {
+                        replaceString = path.Replace("SEMANA 4", "22-");
+                        changeList.Add(replaceString);
+                    }
+                }
+                listDepartments = changeList;
+                //List<string> listFiles = new List<string>();
+                string companyPhase2 = CorePathOfFolderCompaniesSistemaPlanillas + company;
+                string []storageDept = Directory.GetDirectories(companyPhase2);
+                string finalPath = "";
+                foreach (string dept in storageDept)
+                {
+                    //MessageBox.Show(dept);
+                    string[] storageMonth = Directory.GetDirectories(dept);
+                    foreach (string month in storageMonth)
+                    {
+                        string[] storageFiles = Directory.GetFiles(month);
+                        foreach (string file in storageFiles)
+                        {
+                            foreach(string compare in listDepartments)
+                            {
+                                if(file.Contains(compare))
+                                {
+                                    finalPath = file;
+                                    break;
+                                }
+                            }
+                        }
+                    }
+                }
+                if (File.Exists(finalPath))
+                {
+                    string replaceColumns = "-REEMPLAZAR COLUMNAS-";
+                    string newColumns = "-AÑADIR COLUMNAS-";
+                    string startColumns = "-NUEVAS COLUMNAS-";
 
-        private void buttonImportDataArrow_Click(object sender, EventArgs e)
-        {
-            actionHappened = true;
-        }
+                    string replaceRows = "-REEMPLAZAR FILAS-";
+                    string newRows = "-AÑADIR FILAS-";
+                    string startRows = "-NUEVAS FILAS-";
 
+                    GUI_IMPORT_DATA_AND_COLUMNS callToImport = new GUI_IMPORT_DATA_AND_COLUMNS();
+                    callToImport.MethodToReceivedAccesToObject(startThePaths, startTheTagsAndDefaults, startFoldersInsideCompany);
+                    callToImport.pathToChargeCompany(finalPath);
+                    callToImport.ShowDialog();
+                    List<string []> listOfColumns = callToImport.getListColumns();
+                    List<string[]> listOfRows = callToImport.getListRows();
+                    string orderColumns = callToImport.getOrderColumns();
+                    string orderRows = callToImport.getOrderRows();
+                    string orderTable = callToImport.getTable();
+                    DataGridView dataToStudy = new DataGridView();
+                    if (orderTable== "TABLA 1")
+                    {
+                        dataGridView1.Visible = true;
+                        dataGridView1.Enabled = true;
+                        dataToStudy = dataGridView1;
+                    }else if(orderTable == "TABLA 2")
+                    {
+                        dataGridView2.Visible = true;
+                        dataGridView2.Enabled = true;
+                        dataToStudy = dataGridView2;
+                    }
+                    else if (orderTable == "TABLA 3")
+                    {
+                        dataGridView3.Visible = true;
+                        dataGridView3.Enabled = true;
+                        dataToStudy = dataGridView3;
+                    }
+                    else if (orderTable == "TABLA 4")
+                    {
+                        dataGridView4.Visible = true;
+                        dataGridView4.Enabled = true;
+                        dataToStudy = dataGridView4;
+                    }
+
+                    if(orderColumns == threeLine)
+                    {
+
+                    }else if (orderColumns == replaceColumns)
+                    {
+                        
+                        for (int dataGrid = 0; dataGrid < listOfColumns.Count; dataGrid++)
+                        {
+                            string[] columnToStudy = listOfColumns[dataGrid];
+                            if (dataToStudy.Rows.Count < columnToStudy.Length)
+                            {
+                                for (int create = dataToStudy.Rows.Count; create < columnToStudy.Length-1; create++)
+                                {
+                                    dataToStudy.Rows.Add(create.ToString());
+                                }
+                            }
+                        }
+                        
+                        for (int dataGrid = 0; dataGrid < listOfColumns.Count; dataGrid++)
+                        {
+                            string[] columnToStudy = listOfColumns[dataGrid];
+                            for (int column = 0; column < dataToStudy.Columns.Count; column++)
+                            {
+                                if (dataToStudy.Columns[column].HeaderText == columnToStudy[0])
+                                {
+                                    int index = 1;
+                                    for (int row = 0; row < dataToStudy.Rows.Count-1; row++)
+                                    {
+                                        dataToStudy.Rows[row].Cells[column].Value = columnToStudy[index];
+                                        ++index;
+                                    }
+                                    break;
+                                }
+                            }
+                        }
+                        
+                        MessageBox.Show("REEMPLAZO COLUMNAS EXITOSA");
+                    }else if(orderColumns == startColumns)
+                    {
+                        dataToStudy.Columns.Clear();
+                        dataToStudy.EnableHeadersVisualStyles = false;
+                        for (int column = 0; column < listOfColumns.Count; column++)
+                        {
+                            string[] columnToStudy = listOfColumns[column];
+                            dataToStudy.Columns.Add(columnToStudy[0], columnToStudy[0]);
+                            dataToStudy.Columns[column].HeaderCell.Style.BackColor = Color.LightGray;
+                        }
+
+                        for (int dataGrid = 0; dataGrid < listOfColumns.Count; dataGrid++)
+                        {
+                            string[] columnToStudy = listOfColumns[dataGrid];
+                            if(dataToStudy.Rows.Count-1<columnToStudy.Length-1)
+                            {
+                                for (int create = 0; create < columnToStudy.Length - 1; create++)
+                                {
+                                    dataToStudy.Rows.Add(create.ToString());
+                                }
+                            }
+                        }
+
+                        for (int column = 0; column < dataToStudy.Columns.Count; column++)
+                        {
+                            string[] columnToStudy = listOfColumns[column];
+                            int index = 1;
+                            for (int row = 0; row < columnToStudy.Length - 1; row++)
+                            {
+                                dataToStudy.Rows[row].Cells[column].Value = columnToStudy[index];
+                                ++index;
+                            }
+                        }
+                        
+                        MessageBox.Show("IMPORTACION COLUMNAS EXITOSA");
+                    }
+                    else if (orderColumns == newColumns)
+                    {
+                        dataToStudy.EnableHeadersVisualStyles = false;
+                        for (int column = 0; column < listOfColumns.Count; column++)
+                        {
+                            string[] columnToStudy = listOfColumns[column];
+                            dataToStudy.Columns.Add(columnToStudy[0], columnToStudy[0]);
+                            dataToStudy.Columns[column].HeaderCell.Style.BackColor = Color.LightGray;
+                        }
+
+                        for (int column = 0; column < listOfColumns.Count; column++)
+                        {
+                            string[] columnToStudy = listOfColumns[column];
+                            if (dataToStudy.Rows.Count - 1 < columnToStudy.Length - 1)
+                            {
+                                for (int create = dataToStudy.Rows.Count - 1; create < columnToStudy.Length - 1; create++)
+                                {
+                                    dataToStudy.Rows.Add(create.ToString());
+                                }
+                            }
+                        }
+
+                        int indexPhase1 = 0;
+                        int start = dataToStudy.Columns.Count - listOfColumns.Count;
+                        for (int column = start; column < dataToStudy.Columns.Count; column++)
+                        {
+                            string[] columnToStudy = listOfColumns[indexPhase1];
+                            int indexPhase2 = 1;
+                            for (int row = 0; row < dataToStudy.Rows.Count-1; row++)
+                            {
+                                dataToStudy.Rows[row].Cells[column].Value = columnToStudy[indexPhase2];
+                                ++indexPhase2;
+                            }
+                            ++indexPhase1;
+                        }
+                        MessageBox.Show("IMPORTACION COLUMNAS EXITOSA");
+                    }
+
+                    if (orderRows == threeLine)
+                    {
+
+                    }
+                    else if (orderRows == replaceRows)
+                    {
+                        for (int dataGrid = 0; dataGrid < listOfRows.Count; dataGrid++)
+                        {
+                            string[] rowToStudy = listOfRows[dataGrid];
+
+                            if (dataToStudy.Columns.Count - 1 < rowToStudy.Length - 1)
+                            {
+                                for (int create = dataToStudy.Columns.Count - 1; create < rowToStudy.Length - 1; create++)
+                                {
+                                    dataToStudy.Columns.Add(create.ToString(), create.ToString());
+                                }
+                            }
+
+                            for (int row = 0; row < dataToStudy.Rows.Count - 1; row++)
+                            {
+                                if (dataToStudy.Rows[row].Cells[0].Value.ToString() == rowToStudy[0])
+                                {
+                                    for (int colum = 1; colum < rowToStudy.Length; colum++)
+                                    {
+                                        dataToStudy.Rows[row].Cells[colum].Value = rowToStudy[colum];
+                                    }
+                                    break;
+                                }
+                            }
+                        }
+                        MessageBox.Show("IMPORTACION FILAS EXITOSA");
+                    }
+                    else if (orderRows == startRows)
+                    {
+                        dataToStudy.Rows.Clear();
+                        dataToStudy.EnableHeadersVisualStyles = false;
+                        for (int row = 0; row < listOfRows.Count; row++)
+                        {
+                            dataToStudy.Rows.Add(row.ToString());
+                        }
+
+                        for (int dataGrid = 0; dataGrid < listOfColumns.Count; dataGrid++)
+                        {
+                            string[] columnToStudy = listOfColumns[dataGrid];
+                            if (dataToStudy.Columns.Count < columnToStudy.Length - 1)
+                            {
+                                for (int column = 0; column < columnToStudy.Length; column++)
+                                {
+                                    dataToStudy.Columns.Add(column.ToString(), column.ToString());
+                                }
+                            }
+                        }
+                        int indexPhase1 = 0;
+                        for (int row = 0; row < dataToStudy.Rows.Count-1; row++)
+                        {
+                            string[] columnToStudy = listOfRows[indexPhase1];
+                            for (int column = 1; column < columnToStudy.Length; column++)
+                            {
+                                dataToStudy.Rows[row].Cells[column].Value = columnToStudy[column];
+                            }
+                            ++indexPhase1;
+                        }
+
+                        MessageBox.Show("IMPORTACION FILAS EXITOSA");
+                    }
+                    else if (orderRows == newRows)
+                    {
+                        for (int create = 0; create < listOfRows.Count; create++)
+                        {
+                            dataToStudy.Rows.Add(create.ToString(), create.ToString());
+                        }
+
+                        for (int dataGrid = 0; dataGrid < listOfRows.Count; dataGrid++)
+                        {
+                            string[] rowToStudy = listOfRows[dataGrid];
+                            if (dataToStudy.Columns.Count - 1 < rowToStudy.Length - 1)
+                            {
+                                for (int create = dataToStudy.Columns.Count - 1; create < rowToStudy.Length - 1; create++)
+                                {
+                                    dataToStudy.Columns.Add(create.ToString(), create.ToString());
+                                }
+                            }
+                        }
+                        int start = dataToStudy.Rows.Count - listOfRows.Count - 1;
+                        int dataGridIndex = 0;
+                        for (int row = start; row < dataToStudy.Rows.Count - 1; row++)
+                        {
+                            string[] rowToStudy = listOfRows[dataGridIndex];
+                            for (int column = 1; column < rowToStudy.Length; column++)
+                            {
+                                dataToStudy.Rows[row].Cells[column].Value = rowToStudy[column];
+                            }
+                            ++dataGridIndex;
+                        }
+                        for (int row = start; row < dataToStudy.Rows.Count - 1; row++)
+                        {
+                            dataToStudy.Rows[row].Cells[0].Value = row.ToString();
+                        }
+                        MessageBox.Show("IMPORTACION FILAS EXITOSA");
+                    }
+                    baseResizeDatasGridView();
+                    actionHappened = true;
+                }
+            }
+                
+        }
         private void buttonBackTotal_Click_1(object sender, EventArgs e)
         {
             actionHappened = true;

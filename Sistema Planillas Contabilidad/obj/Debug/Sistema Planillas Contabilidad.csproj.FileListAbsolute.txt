@@ -72,3 +72,4 @@ C:\Users\Alcatraz\Desktop\Sistema Planillas Contabilidad\Sistema Planillas Conta
 C:\Users\Alcatraz\Desktop\Sistema Planillas Contabilidad\Sistema Planillas Contabilidad\obj\Debug\Sistema Planillas Contabilidad.csproj.CoreCompileInputs.cache
 C:\Users\Alcatraz\Desktop\Sistema Planillas Contabilidad\Sistema Planillas Contabilidad\obj\Debug\Sistema Planillas Contabilidad.exe
 C:\Users\Alcatraz\Desktop\Sistema Planillas Contabilidad\Sistema Planillas Contabilidad\obj\Debug\Sistema Planillas Contabilidad.pdb
+C:\Users\Alcatraz\Desktop\Sistema Planillas Contabilidad\Sistema Planillas Contabilidad\obj\Debug\Sistema_Planillas_Contabilidad.GUI_IMPORT_DATA_AND_COLUMNS.resources
