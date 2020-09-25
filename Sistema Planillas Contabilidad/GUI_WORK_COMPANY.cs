@@ -919,6 +919,7 @@ namespace Sistema_Planillas_Contabilidad
                     switch (answer)
                     {
                         case DialogResult.Yes:
+                            setSaveDatagridOnChanges();
                             int index = dataToChargeData.Rows.Count - 1;
                             dataToChargeData.Rows.Add(index.ToString());
                             for (int colum = 1; colum < dataToChargeData.Columns.Count; colum++)
@@ -927,6 +928,7 @@ namespace Sistema_Planillas_Contabilidad
                                 data = data.ToUpper();
                                 if (data == "S/F")
                                 {
+                                    setSaveDatagridOnChanges();
                                     break;
                                 }
                                 else
@@ -948,6 +950,7 @@ namespace Sistema_Planillas_Contabilidad
                     switch (answer)
                     {
                         case DialogResult.Yes:
+                            setSaveDatagridOnChanges();
                             bool outFromHere = false;
                             for (int row = indexRowOfDatagrid; row < dataToChargeData.Rows.Count - 1; row++)
                             {
@@ -970,6 +973,7 @@ namespace Sistema_Planillas_Contabilidad
                                 }
                                 if (outFromHere == true)
                                 {
+                                    setSaveDatagridOnChanges();
                                     break;
                                 }
                             }
@@ -981,6 +985,7 @@ namespace Sistema_Planillas_Contabilidad
                             {
                                 case DialogResult.Yes:
                                     outFromHere = false;
+                                    setSaveDatagridOnChanges();
                                     for (int row = dataToChargeData.Rows.Count - 2; row > 0; row--)
                                     {
                                         for (int colum = dataToChargeData.Columns.Count - 1; colum > 0; colum--)
@@ -1013,6 +1018,7 @@ namespace Sistema_Planillas_Contabilidad
                                             }
                                             if (outFromHere == true)
                                             {
+                                                setSaveDatagridOnChanges();
                                                 break;
                                             }
                                         }
