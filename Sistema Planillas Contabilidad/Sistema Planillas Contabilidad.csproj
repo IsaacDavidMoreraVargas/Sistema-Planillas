@@ -33,6 +33,12 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="BouncyCastle.Crypto, Version=1.8.6.0, Culture=neutral, PublicKeyToken=0e99375e54769942">
+      <HintPath>..\packages\BouncyCastle.1.8.6.1\lib\BouncyCastle.Crypto.dll</HintPath>
+    </Reference>
+    <Reference Include="itextsharp, Version=5.5.13.2, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL">
+      <HintPath>..\packages\iTextSharp.5.5.13.2\lib\itextsharp.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.VisualBasic" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -50,7 +56,23 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="calculateSystem.cs" />
+    <Compile Include="FoldersInsideCompany.cs" />
     <Compile Include="generalDataAndAvoidData.cs" />
+    <Compile Include="generalMethodToWriteInFiles.cs" />
+    <Compile Include="generalMultiArrayMethods.cs" />
+    <Compile Include="GUI_CREAR_EDITAR_CODIGOS_DIASMES.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI_CREAR_EDITAR_CODIGOS_DIASMES.Designer.cs">
+      <DependentUpon>GUI_CREAR_EDITAR_CODIGOS_DIASMES.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GUI_IMPORT_DATA_AND_COLUMNS.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI_IMPORT_DATA_AND_COLUMNS.Designer.cs">
+      <DependentUpon>GUI_IMPORT_DATA_AND_COLUMNS.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SpecificAndCorePaths.cs" />
     <Compile Include="generalMethods.cs" />
     <Compile Include="GUI_CREAR_EMPRESA.cs">
       <SubType>Form</SubType>
@@ -124,12 +146,6 @@
     <Compile Include="GUI_VISTA_ASIENTOS.Designer.cs">
       <DependentUpon>GUI_VISTA_ASIENTOS.cs</DependentUpon>
     </Compile>
-    <Compile Include="GUI_VISTA_RAPIDA.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="GUI_VISTA_RAPIDA.Designer.cs">
-      <DependentUpon>GUI_VISTA_RAPIDA.cs</DependentUpon>
-    </Compile>
     <Compile Include="GUI_WORK_COMPANY.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -150,6 +166,10 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TagsAndDefaultValues.cs" />
+    <EmbeddedResource Include="GUI_CREAR_EDITAR_CODIGOS_DIASMES.resx">
+      <DependentUpon>GUI_CREAR_EDITAR_CODIGOS_DIASMES.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="GUI_CREAR_EMPRESA.resx">
       <DependentUpon>GUI_CREAR_EMPRESA.cs</DependentUpon>
     </EmbeddedResource>
@@ -174,6 +194,9 @@
     <EmbeddedResource Include="GUI_ELEGIR__TRABAJAR_EMPRESA.resx">
       <DependentUpon>GUI_ELEGIR__TRABAJAR_EMPRESA.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="GUI_IMPORT_DATA_AND_COLUMNS.resx">
+      <DependentUpon>GUI_IMPORT_DATA_AND_COLUMNS.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="GUI_MENU_EDITAR_PLANTILLA.resx">
       <DependentUpon>GUI_MENU_EDITAR_PLANTILLA.cs</DependentUpon>
     </EmbeddedResource>
@@ -185,9 +208,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="GUI_VISTA_ASIENTOS.resx">
       <DependentUpon>GUI_VISTA_ASIENTOS.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="GUI_VISTA_RAPIDA.resx">
-      <DependentUpon>GUI_VISTA_RAPIDA.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="GUI_WORK_COMPANY.resx">
       <DependentUpon>GUI_WORK_COMPANY.cs</DependentUpon>
@@ -207,6 +227,7 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

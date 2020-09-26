@@ -158,37 +158,6 @@ namespace Sistema_Planillas_Contabilidad
             replaceOnTime = comboBoxReplace.Text;
         }
 
-        private void buttonQuickView_Click(object sender, EventArgs e)
-        {
-            string falseAswer = "NO SE PUEDE REALIZAR LA CONSULTA RAPIDA";
-            if (department == false || comboBoxDepartment.Text== startString)
-            {
-                falseAswer += "\n-DEPARTAMENTO NO SLECCIONADO";
-            }
-            else if (month == false || comboBoxMonth.Text == startString)
-            {
-                falseAswer += "\n-MES NO SLECCIONADO";
-            }
-            else if (week == false || comboBoxWeek.Text == startString)
-            {
-                falseAswer += "\n-SEMANA NO SLECCIONADA";
-            }
-
-            if (falseAswer == "NO SE PUEDE REALIZAR LA CONSULTA RAPIDA")
-            {
-                GUI_VISTA_RAPIDA callQuickView = new GUI_VISTA_RAPIDA();
-                string search = pathOnTime + "\\" + departmentOnTime + "\\" + monthOnTime + "\\" + weekOnTime + "\\";
-                string[] storageData = Directory.GetFiles(search);
-                callQuickView.PathToSave(storageData[0]);
-                callQuickView.ShowDialog(); 
-            }
-            else
-            {
-                MessageBox.Show(falseAswer);
-            }
-                
-        }
-
         private void buttonImportData_Click(object sender, EventArgs e)
         {
             string falseAswer = "NO SE PUEDE REALIZAR LA IMPORTACION DE DATOS";

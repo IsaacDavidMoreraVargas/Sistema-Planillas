@@ -42,9 +42,11 @@
             // 
             // buttonGoEditTemplate
             // 
-            this.buttonGoEditTemplate.Location = new System.Drawing.Point(3, 97);
+            this.buttonGoEditTemplate.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.buttonGoEditTemplate.Location = new System.Drawing.Point(2, 54);
+            this.buttonGoEditTemplate.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.buttonGoEditTemplate.Name = "buttonGoEditTemplate";
-            this.buttonGoEditTemplate.Size = new System.Drawing.Size(233, 86);
+            this.buttonGoEditTemplate.Size = new System.Drawing.Size(175, 48);
             this.buttonGoEditTemplate.TabIndex = 1;
             this.buttonGoEditTemplate.Text = "EDITAR";
             this.buttonGoEditTemplate.UseVisualStyleBackColor = true;
@@ -52,9 +54,11 @@
             // 
             // buttonReturnProgram
             // 
-            this.buttonReturnProgram.Location = new System.Drawing.Point(3, 378);
+            this.buttonReturnProgram.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.buttonReturnProgram.Location = new System.Drawing.Point(2, 211);
+            this.buttonReturnProgram.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.buttonReturnProgram.Name = "buttonReturnProgram";
-            this.buttonReturnProgram.Size = new System.Drawing.Size(233, 86);
+            this.buttonReturnProgram.Size = new System.Drawing.Size(175, 48);
             this.buttonReturnProgram.TabIndex = 2;
             this.buttonReturnProgram.Text = "REGRESAR";
             this.buttonReturnProgram.UseVisualStyleBackColor = true;
@@ -62,9 +66,11 @@
             // 
             // buttonCloseProgram
             // 
-            this.buttonCloseProgram.Location = new System.Drawing.Point(3, 470);
+            this.buttonCloseProgram.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.buttonCloseProgram.Location = new System.Drawing.Point(2, 264);
+            this.buttonCloseProgram.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.buttonCloseProgram.Name = "buttonCloseProgram";
-            this.buttonCloseProgram.Size = new System.Drawing.Size(233, 86);
+            this.buttonCloseProgram.Size = new System.Drawing.Size(175, 48);
             this.buttonCloseProgram.TabIndex = 3;
             this.buttonCloseProgram.Text = "SALIR";
             this.buttonCloseProgram.UseVisualStyleBackColor = true;
@@ -76,15 +82,17 @@
             this.PLANTILLAS});
             this.LISTEMPLATE.GridLines = true;
             this.LISTEMPLATE.HideSelection = false;
-            this.LISTEMPLATE.Location = new System.Drawing.Point(13, 13);
+            this.LISTEMPLATE.Location = new System.Drawing.Point(10, 5);
+            this.LISTEMPLATE.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.LISTEMPLATE.Name = "LISTEMPLATE";
-            this.LISTEMPLATE.Size = new System.Drawing.Size(470, 563);
+            this.LISTEMPLATE.Size = new System.Drawing.Size(271, 315);
             this.LISTEMPLATE.TabIndex = 4;
             this.LISTEMPLATE.UseCompatibleStateImageBehavior = false;
             this.LISTEMPLATE.SelectedIndexChanged += new System.EventHandler(this.LISTAPLANTILLAS_SelectedIndexChanged);
             // 
             // tableLayoutPanel1
             // 
+            this.tableLayoutPanel1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.tableLayoutPanel1.ColumnCount = 1;
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel1.Controls.Add(this.buttonGoEditTemplate, 0, 1);
@@ -93,23 +101,26 @@
             this.tableLayoutPanel1.Controls.Add(this.buttonCloseProgram, 0, 5);
             this.tableLayoutPanel1.Controls.Add(this.buttonReturnProgram, 0, 4);
             this.tableLayoutPanel1.Controls.Add(this.buttonEliminateFile, 0, 3);
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(489, 13);
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(285, 5);
+            this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 6;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50.26738F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 49.73262F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 94F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 94F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 92F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 95F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(239, 563);
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 52F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 53F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 53F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 52F));
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(179, 315);
             this.tableLayoutPanel1.TabIndex = 5;
             // 
             // buttonNew
             // 
-            this.buttonNew.Location = new System.Drawing.Point(3, 3);
+            this.buttonNew.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.buttonNew.Location = new System.Drawing.Point(2, 2);
+            this.buttonNew.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.buttonNew.Name = "buttonNew";
-            this.buttonNew.Size = new System.Drawing.Size(233, 86);
+            this.buttonNew.Size = new System.Drawing.Size(175, 48);
             this.buttonNew.TabIndex = 4;
             this.buttonNew.Text = "NUEVO";
             this.buttonNew.UseVisualStyleBackColor = true;
@@ -117,9 +128,11 @@
             // 
             // buttonDuplicate
             // 
-            this.buttonDuplicate.Location = new System.Drawing.Point(3, 190);
+            this.buttonDuplicate.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.buttonDuplicate.Location = new System.Drawing.Point(2, 106);
+            this.buttonDuplicate.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.buttonDuplicate.Name = "buttonDuplicate";
-            this.buttonDuplicate.Size = new System.Drawing.Size(233, 86);
+            this.buttonDuplicate.Size = new System.Drawing.Size(175, 48);
             this.buttonDuplicate.TabIndex = 5;
             this.buttonDuplicate.Text = "DUPLICAR";
             this.buttonDuplicate.UseVisualStyleBackColor = true;
@@ -127,9 +140,11 @@
             // 
             // buttonEliminateFile
             // 
-            this.buttonEliminateFile.Location = new System.Drawing.Point(3, 284);
+            this.buttonEliminateFile.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.buttonEliminateFile.Location = new System.Drawing.Point(2, 158);
+            this.buttonEliminateFile.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.buttonEliminateFile.Name = "buttonEliminateFile";
-            this.buttonEliminateFile.Size = new System.Drawing.Size(233, 86);
+            this.buttonEliminateFile.Size = new System.Drawing.Size(175, 48);
             this.buttonEliminateFile.TabIndex = 6;
             this.buttonEliminateFile.Text = "ELIMINAR";
             this.buttonEliminateFile.UseVisualStyleBackColor = true;
@@ -137,8 +152,9 @@
             // 
             // GUI_MENU_EDITAR_PLANTILLA
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
-            this.ClientSize = new System.Drawing.Size(766, 596);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.ClientSize = new System.Drawing.Size(466, 322);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Controls.Add(this.LISTEMPLATE);
             this.MaximizeBox = false;

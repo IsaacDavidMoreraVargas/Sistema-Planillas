@@ -18,97 +18,191 @@ namespace Sistema_Planillas_Contabilidad
         {
             InitializeComponent();
         }
-        string separator2 = "+++++++++++";
-        string defaultData="----";
-        //string tipo1 = "ASIENTO";
-        //string tipo2 = "CELDA";
+
         string opcion1 = "LOCAL";
         string opcion2 = "GLOBAL";
-        string opcion3 = "LOCAL-GLOBAL";
-        string actualPathOut = "";
-        string actualPathIn = "";
-        List<string> receivedHeads = new List<string>();
-        string actual = Directory.GetCurrentDirectory();
+        string opcion3 = "MEDIO";
+        string orderGlobalOrLocal = "";
+        string edit = "EDITAR";
+        string orderAddOrEdit = "";
+        int indexColumn = 0;
+
         private void GUI_CREATE_FORMULA_Load(object sender, EventArgs e)
         {
-            loadData();
+            loadDefaultData();
         }
 
-        private void loadData()
+        string CorePathOfFolderSistemaPlanillas = "";
+        string CorePathOfFolderCompaniesSistemaPlanillas = "";
+        string CorePathOfCoreConfigurationFolderSistemaPlanillas = "";
+
+        string SpecificPathOfFolderConfigurationAvoidData = "";
+        string SpecificPathOfFolderConfigurationCodesSits = "";
+        string SpecificPathOfFolderConfigurationDaysOfMoths = "";
+        string SpecificPathOfFolderConfigurationFormulas = "";
+        string SpecificPathOfFolderConfigurationSits = "";
+        string SpecificPathOfFolderConfigurationTemplates = "";
+        string SpecificPathOfFolderConfigurationPictures = "";
+
+        string threeLine = "";
+        string deparmentValue = "";
+
+        string coreExtraConfiguration = "";
+        string formula = "";
+        string exclusiveData = "";
+        string sits = "";
+        string template = "";
+        string tagStartHEad = "";
+        string tagEndHEad = "";
+        string tagStartLine = "";
+        string tagEndLine = "";
+        string tagStartDataGrid1 = "";
+        string tagEndDataGrid1 = "";
+        string tagStartDataGrid2 = "";
+        string tagEndDataGrid2 = "";
+        string tagStartDataGrid3 = "";
+        string tagEndDataGrid3 = "";
+        string tagStartDataGrid4 = "";
+        string tagEndDataGrid4 = "";
+        string tagStartFormula = "";
+        string tagEndFormula = "";
+        SpecificAndCorePaths startThePaths;
+        TagsAndDefaultValues startTheTagsAndDefaults;
+        FoldersInsideCompany startFoldersInsideCompany;
+        //generalMethods callToGeneralMethods = new generalMethods();
+
+        public void MethodToReceivedAccesToObject(SpecificAndCorePaths startThePathsReceived, TagsAndDefaultValues startTheTagsAndDefaultsReceived, FoldersInsideCompany startFoldersInsideCompanyReceived)
         {
-            //comboBoxType.Items.Add(tipo1);
-            //comboBoxType.Items.Add(tipo2);
-            foreach (string item in receivedHeads)
-            {
-                comboBox1.Items.Add(item);
-            }
-            //turnOffComboBox();
-            //turnOffButton();
-            textBox1.Text = "";
+            //receiving object reference
+            startThePaths = startThePathsReceived;
+            startTheTagsAndDefaults = startTheTagsAndDefaultsReceived;
+            startFoldersInsideCompany = startFoldersInsideCompanyReceived;
+            //core paths
+            CorePathOfFolderSistemaPlanillas = startThePaths.CorePathOfFolderSistemaPlanillas;
+            CorePathOfFolderCompaniesSistemaPlanillas = startThePaths.CorePathOfCompaniesFolderSistemaPlanillas;
+            CorePathOfCoreConfigurationFolderSistemaPlanillas = startThePaths.CorePathOfConfigurationFolderSistemaPlanillas;
+            //specific paths
+            SpecificPathOfFolderConfigurationAvoidData = startThePaths.SpecificPathOfConfigurationFolderAvoidData;
+            SpecificPathOfFolderConfigurationCodesSits = startThePaths.SpecificPathOfConfigurationFolderCodesSits;
+            SpecificPathOfFolderConfigurationDaysOfMoths = startThePaths.SpecificPathOfConfigurationFolderDaysOfMoths;
+            SpecificPathOfFolderConfigurationFormulas = startThePaths.SpecificPathOfConfigurationFolderFormulas;
+            SpecificPathOfFolderConfigurationSits = startThePaths.SpecificPathOfConfigurationFolderSits;
+            SpecificPathOfFolderConfigurationTemplates = startThePaths.SpecificPathOfConfigurationFolderTemplates;
+            SpecificPathOfFolderConfigurationPictures = startThePaths.SpecificPathOfConfigurationFolderPictures;
+            //default values
+            threeLine = startTheTagsAndDefaults.tripleLine;
+            deparmentValue = startTheTagsAndDefaults.isDeparment;
+            tagStartHEad = startTheTagsAndDefaults.isTagStartHead;
+            tagEndHEad = startTheTagsAndDefaults.isTagEndHead;
+            tagStartLine = startTheTagsAndDefaults.isTagStartLine;
+            tagEndLine = startTheTagsAndDefaults.isTagEndLine;
+            tagStartDataGrid1 = startTheTagsAndDefaults.tagStartDataGrid1;
+            tagEndDataGrid1 = startTheTagsAndDefaults.tagEndDataGrid1;
+            tagStartDataGrid2 = startTheTagsAndDefaults.tagStartDataGrid2;
+            tagEndDataGrid2 = startTheTagsAndDefaults.tagEndDataGrid2;
+            tagStartDataGrid3 = startTheTagsAndDefaults.tagStartDataGrid3;
+            tagEndDataGrid3 = startTheTagsAndDefaults.tagEndDataGrid3;
+            tagStartDataGrid4 = startTheTagsAndDefaults.tagStartDataGrid4;
+            tagEndDataGrid4 = startTheTagsAndDefaults.tagEndDataGrid4;
+            tagStartFormula = startTheTagsAndDefaults.tagStartFormula;
+            tagEndFormula = startTheTagsAndDefaults.tagEndFormula;
+            //folders inside folders
+            coreExtraConfiguration = startFoldersInsideCompany.isCoreExtraConfigurations;
+            formula = startFoldersInsideCompany.isFormula;
+            exclusiveData = startFoldersInsideCompany.isExclusiveData;
+            sits = startFoldersInsideCompany.isSits;
+            template = startFoldersInsideCompany.isTemplate;
+
+        }
+
+        private void loadDefaultData()
+        {
             comboBoxCharge.Items.Clear();
             comboBoxSave.Items.Clear();
-            comboBoxUpdate.Items.Clear();
-            comboBoxCharge.Items.Add("LOCAL");
-            comboBoxCharge.Items.Add("GLOBAL");
-            comboBoxSave.Items.Add("LOCAL");
-            comboBoxSave.Items.Add("GLOBAL");
-            comboBoxSave.Items.Add("LOCAL-GLOBAL");
-            comboBoxUpdate.Items.Add("LOCAL");
-            comboBoxUpdate.Items.Add("GLOBAL");
+            textBox1.Text = "";
+            comboBoxCharge.Text = threeLine;
+            comboBoxSave.Text = threeLine;
+
+            if (orderGlobalOrLocal == opcion1)
+            {
+                comboBoxCharge.Items.Add(opcion1);
+                comboBoxCharge.Items.Add(opcion2);
+                comboBoxCharge.Items.Add(opcion3);
+                comboBoxSave.Items.Add(opcion1);
+                comboBoxSave.Items.Add(opcion2);
+                comboBoxSave.Items.Add(opcion3);
+            }
+            else if (orderGlobalOrLocal == opcion2)
+            {
+                comboBoxCharge.Items.Add(opcion2);
+                comboBoxSave.Items.Add(opcion2);
+            }
+
+            listView1.View = View.Details;
+            listView1.Columns.Add("FORMULAS");
+            listView1.Columns[0].Width = listView1.Width;
+
+            if (orderGlobalOrLocal == opcion1)
+            {
+                string pathReadFormula = CorePathOfFolderCompaniesSistemaPlanillas + company + "\\" + deparment + "\\" + month + "\\" + "CORE-FORMULAS.txt";
+                if (File.Exists(pathReadFormula))
+                {
+                    string[] storageFormulas = File.ReadAllLines(pathReadFormula);
+                    foreach (string formula in storageFormulas)
+                    {
+                        if (formula != tagStartFormula && formula != tagEndFormula)
+                        {
+                            listView1.Items.Add(formula);
+                        }
+                    }
+                    paint(listView1);
+                }
+            }
+            else if (orderGlobalOrLocal == opcion2)
+            {
+                string pathReadFormula = SpecificPathOfFolderConfigurationFormulas + "GLOBAL-FORMULAS.txt"; ;
+                if (File.Exists(pathReadFormula))
+                {
+                    string[] storageFormulas = File.ReadAllLines(pathReadFormula);
+                    foreach (string formula in storageFormulas)
+                    {
+                        if (formula != tagStartFormula && formula != tagEndFormula)
+                        {
+                            listView1.Items.Add(formula);
+                        }
+                    }
+                    paint(listView1);
+                }
+            }
         }
 
-        private void turnOnComboBox()
+        private void buttonAdd_Click(object sender, EventArgs e)
         {
-            comboBoxSave.Enabled = true;
-            comboBoxCharge.Enabled = true;
-            comboBoxUpdate.Enabled = true;
-            comboBoxEliminate.Enabled = true;
-        }
-
-        private void turnOffComboBox()
-        {
-            comboBoxSave.Enabled = false;
-            comboBoxCharge.Enabled = false;
-            comboBoxUpdate.Enabled = false;
-            comboBoxEliminate.Enabled = false;
-        }
-
-        private void turnOnButton()
-        {
-            buttonNew.Enabled = true;
-            buttonSave.Enabled = true;
-            buttonCharge.Enabled = true;
-            buttonUpdate.Enabled = true;
-            buttonEliminate.Enabled = true;
-        }
-
-        private void turnOffButton()
-        {
-            buttonNew.Enabled = false;
-            buttonSave.Enabled = false;
-            buttonCharge.Enabled = false;
-            buttonUpdate.Enabled = false;
-            buttonEliminate.Enabled = false;
+            if (textBox1.Text == " " || textBox1.Text == "")
+            {
+                MessageBox.Show("NO SE AÑADIRA, ESTA VACIO");
+            }
+            else
+            {
+                if (orderAddOrEdit == "EDITAR")
+                {
+                    listView1.Items[indexColumn].Text = textBox1.Text;
+                    orderAddOrEdit = "";
+                    MessageBox.Show("EDITADO EXITOSAMENTE");
+                }
+                else
+                {
+                    listView1.Items.Add(textBox1.Text);
+                }
+                textBox1.Text = "";
+            }
         }
 
         private void buttonNew_Click(object sender, EventArgs e)
         {
             textBox1.Text = "";
-            comboBoxCharge.Items.Clear();
-            comboBoxSave.Items.Clear();
-            comboBoxUpdate.Items.Clear();
-            comboBoxCharge.Items.Add("LOCAL");
-            comboBoxCharge.Items.Add("GLOBAL");
-            comboBoxSave.Items.Add("LOCAL");
-            comboBoxSave.Items.Add("GLOBAL");
-            comboBoxSave.Items.Add("LOCAL-GLOBAL");
-            comboBoxUpdate.Items.Add("LOCAL");
-            comboBoxUpdate.Items.Add("GLOBAL");
-        }
-        
-        private void buttonCloseProgram_Click(object sender, EventArgs e)
-        {
-            this.Close();
+            comboBoxCharge.Text=threeLine;
+            comboBoxSave.Text=threeLine;
         }
 
         private void combox1Add(object sender, EventArgs e)
@@ -116,476 +210,75 @@ namespace Sistema_Planillas_Contabilidad
             textBox1.Text += comboBox1.Text;
         }
 
-        public void receivedData(List<string> listReceived)
-        {
-            receivedHeads = listReceived;
-        }
-
-        private void buttonCloseProgram_Click_1(object sender, EventArgs e)
-        {
-            this.Close();
-        }
-
         private void buttonSave_Click_1(object sender, EventArgs e)
         {
-            if (textBox1.Text == "" || textBox1.Text == " ")
+            string path = "";
+            if(listView1.Items.Count==0)
             {
-                MessageBox.Show("IMPOSIBLE GUARDAR, FORMULA ESTA VACIO");
+                MessageBox.Show("NO SE GUARDARA, NO EXISTEN DATOS A GUARDAR");
+            }else if (comboBoxSave.Text == threeLine)
+            {
+                MessageBox.Show("IMPOSIBLE CARGAR, UBICACION CARGAR NO ELEGIDA");
             }
-            else if (comboBoxSave.Text == defaultData)
+            else if (orderGlobalOrLocal == opcion1)
             {
-                MessageBox.Show("IMPOSIBLE GUARDAR, UBICACION GUARDADO NO ELEGIDA");
+                if (comboBoxSave.Text == opcion1)
+                {
+                    path = CorePathOfFolderCompaniesSistemaPlanillas + company + "\\" + deparment + "\\" + month + "\\" + "CORE-FORMULAS.txt";
+                }
+                else if (comboBoxSave.Text == opcion3)
+                {
+                    path = CorePathOfFolderCompaniesSistemaPlanillas + company + "\\" + coreExtraConfiguration + "\\" + formula + "\\" + "GLOBAL-FORMULAS.txt";
+                }
+                else if (comboBoxSave.Text == opcion2)
+                {
+                    path = SpecificPathOfFolderConfigurationFormulas + "GLOBAL-FORMULAS.txt";
+                }
+                if (File.Exists(path))
+                {
+                    File.Delete(path);
+                }
+                
+                string addLines = "";
+                foreach(ListViewItem formula in listView1.Items)
+                {
+                    if (formula.Text == "" || formula.Text == " " || formula.Text == "\n")
+                    {
+
+                    }
+                    else
+                    {
+                        addLines += tagStartFormula + "?" + formula.Text + "?" + tagEndFormula + "?";
+                    }
+                }
+                addLines = addLines.TrimEnd('?');
+                generalMethodToWriteInFiles callToWrite = new generalMethodToWriteInFiles();
+                callToWrite.writeInFiles(path, addLines);
+                MessageBox.Show("FORMULAS GUARDADAS EXITOSAMENTE");
             }
-            else if (comboBoxSave.Text == opcion2)//global
+            else if (orderGlobalOrLocal == opcion2)
             {
-                if (!File.Exists(actualPathOut))
+                path = SpecificPathOfFolderConfigurationFormulas + "GLOBAL-FORMULAS.txt";
+                if (File.Exists(path))
                 {
-                    MessageBox.Show(actualPathOut);
-                    string storageFinal = "";
-                    foreach (string line in textBox1.Lines)
-                    {
-                        string lineTextStudy = line;
-                        if (lineTextStudy.Contains(separator2))
-                        {
-                            lineTextStudy = lineTextStudy.Replace(separator2, "");
-                        }
-
-                        if (lineTextStudy == " " || lineTextStudy == "")
-                        {
-
-                        }
-                        else
-                        {
-                            foreach (char letter in lineTextStudy)
-                            {
-                                if (letter == '(' || letter == ')' || letter == '+' || letter == '-' || letter == '*' || letter == '/' || letter == '=')
-                                {
-                                    storageFinal += "\n" + letter + "\n";
-                                }
-                                else
-                                {
-                                    storageFinal += letter;
-                                }
-                            }
-                            storageFinal += "\n" + separator2 + "\n";
-                        }
-                    }
-                    storageFinal = storageFinal.ToString();
-                    string[] splitData = storageFinal.Split('\n');
-                    FileStream fs = new FileStream(actualPathOut, FileMode.OpenOrCreate, FileAccess.Write);
-                    StreamWriter writer = new StreamWriter(fs);
-                    foreach (string line in splitData)
-                    {
-                        writer.WriteLine(line);
-                    }
-                    //writer.WriteLine(separator2);
-                    writer.Close();
-                    MessageBox.Show("FORMULA GUARDADA EXITOSAMENTE");
+                    File.Delete(path);
                 }
-                else
+                string addLines = "";
+                foreach (ListViewItem formula in listView1.Items)
                 {
-                    string[] lines = File.ReadAllLines(actualPathOut);
-                    string storage = "";
-                    bool allowedWrite = false;
-                    foreach (string lineTextBox in textBox1.Lines)
+                    if (formula.Text == "" || formula.Text == " " || formula.Text == "\n")
                     {
-                        string lineTextStudy = lineTextBox;
-                        if (lineTextStudy.Contains(separator2))
-                        {
-                            lineTextStudy = lineTextStudy.Replace(separator2,"");
-                        }
 
-                        if (lineTextStudy == " " || lineTextStudy == "")
-                        {
-
-                        }
-                        else
-                        {
-                            for (int line = 0; line < lines.Length; line++)
-                            {
-                                if (lines[line] == separator2)
-                                {
-                                    storage = storage.Replace("\n", "");
-                                    if (storage == lineTextStudy)
-                                    {
-                                        allowedWrite = true;
-                                        break;
-                                    }
-                                    storage = "";
-                                }
-                                else
-                                {
-                                    storage += lines[line];
-                                }
-                            }
-                            if (allowedWrite == false)
-                            {
-                                string storageFinal = "";
-                                foreach (char letter in lineTextStudy)
-                                {
-                                    if (letter == '(' || letter == ')' || letter == '+' || letter == '-' || letter == '*' || letter == '/' || letter == '=')
-                                    {
-                                        storageFinal += "\n" + letter + "\n";
-                                    }
-                                    else
-                                    {
-                                        storageFinal += letter;
-                                    }
-                                }
-                                storageFinal = storageFinal.ToString();
-                                string[] splitData = storageFinal.Split('\n');
-                                TextWriter writer = new StreamWriter(actualPathOut, true);
-                                foreach (string line in splitData)
-                                {
-                                    writer.WriteLine(line);
-                                }
-                                writer.WriteLine(separator2);
-                                writer.Close();
-                                MessageBox.Show("FORMULA GUARDADA EXITOSAMENTE");
-                            }
-                            else
-                            {
-                                MessageBox.Show("NO SE PUEDE AÑADIR FORMULA A GLOBAL, YA EXISTE");
-                            }
-                        }
+                    }
+                    else
+                    {
+                        addLines += tagStartFormula + "?" + formula.Text + "?" + tagEndFormula + "?";
                     }
                 }
-            }
-            else if (comboBoxSave.Text == opcion1)//local
-            {
-                MessageBox.Show(actualPathIn);
-                if (!File.Exists(actualPathIn))
-                {
-                    string storageFinal = "";
-                    foreach (string line in textBox1.Lines)
-                    {
-                        string lineTextStudy = line;
-                        if (lineTextStudy.Contains(separator2))
-                        {
-                            lineTextStudy = lineTextStudy.Replace(separator2, "");
-                        }
-                        if (lineTextStudy == " " || lineTextStudy == "")
-                        {
-
-                        }
-                        else
-                        {
-                            foreach (char letter in lineTextStudy)
-                            {
-                                if (letter == '(' || letter == ')' || letter == '+' || letter == '-' || letter == '*' || letter == '/' || letter == '=')
-                                {
-                                    storageFinal += "\n" + letter + "\n";
-                                }
-                                else
-                                {
-                                    storageFinal += letter;
-                                }
-                            }
-                            storageFinal += "\n" + separator2 + "\n";
-                        }
-                    }
-                    storageFinal = storageFinal.ToString();
-                    string[] splitData = storageFinal.Split('\n');
-                    FileStream fs = new FileStream(actualPathIn, FileMode.OpenOrCreate, FileAccess.Write);
-                    StreamWriter writer = new StreamWriter(fs);
-                    foreach (string line in splitData)
-                    {
-                        writer.WriteLine(line);
-                    }
-                    writer.Close();
-                    MessageBox.Show("FORMULA CREADA EXITOSAMENTE");
-                }
-                else
-                {
-                    string[] lines = File.ReadAllLines(actualPathIn);
-                    string storage = "";
-                    bool allowedWrite = false;
-                    foreach (string lineTextBox in textBox1.Lines)
-                    {
-                        string lineTextStudy = lineTextBox;
-                        if (lineTextStudy.Contains(separator2))
-                        {
-                            lineTextStudy = lineTextStudy.Replace(separator2, "");
-                        }
-
-                        if (lineTextStudy == " " || lineTextStudy == "")
-                        {
-
-                        }
-                        else 
-                        {
-                            for (int line = 0; line < lines.Length; line++)
-                            {
-                                if (lines[line] == separator2)
-                                {
-                                    storage = storage.Replace("\n", "");
-                                    if (storage == lineTextStudy)
-                                    {
-                                        allowedWrite = true;
-                                        break;
-                                    }
-                                    storage = "";
-                                }
-                                else
-                                {
-                                    storage += lines[line];
-                                }
-                            }
-                            if (allowedWrite == false)
-                            {
-                                string storageFinal = "";
-                                foreach (char letter in lineTextStudy)
-                                {
-                                    if (letter == '(' || letter == ')' || letter == '+' || letter == '-' || letter == '*' || letter == '/' || letter == '=')
-                                    {
-                                        storageFinal += "\n" + letter + "\n";
-                                    }
-                                    else
-                                    {
-                                        storageFinal += letter;
-                                    }
-                                }
-                                storageFinal = storageFinal.ToString();
-                                string[] splitData = storageFinal.Split('\n');
-                                TextWriter writer = new StreamWriter(actualPathIn, true);
-                                foreach (string line in splitData)
-                                {
-                                    writer.WriteLine(line);
-                                }
-                                writer.WriteLine(separator2);
-                                writer.Close();
-                                MessageBox.Show("FORMULA AGREGADA EXITOSAMENTE");
-                            }
-                            else
-                            {
-                                MessageBox.Show("NO SE PUEDE AÑADIR FORMULA A LOCAL, YA EXISTE");
-                            }
-                        }
-                    }
-                }
-            }
-            else if (comboBoxSave.Text == opcion3)//LOCAL-GLOBAL
-            {
-                if (!File.Exists(actualPathOut))
-                {
-                    string storageFinal = "";
-                    foreach (string line in textBox1.Lines)
-                    {
-                        string lineTextStudy = line;
-                        if (lineTextStudy.Contains(separator2))
-                        {
-                            lineTextStudy = lineTextStudy.Replace(separator2, "");
-                        }
-                        if (lineTextStudy == " " || lineTextStudy == "")
-                        {
-
-                        }
-                        else
-                        {
-                            foreach (char letter in lineTextStudy)
-                            {
-                                if (letter == '(' || letter == ')' || letter == '+' || letter == '-' || letter == '*' || letter == '/' || letter == '=')
-                                {
-                                    storageFinal += "\n" + letter + "\n";
-                                }
-                                else
-                                {
-                                    storageFinal += letter;
-                                }
-                            }
-                            storageFinal += "\n" + separator2 + "\n";
-                        }
-                    }
-                    storageFinal = storageFinal.ToString();
-                    string[] splitData = storageFinal.Split('\n');
-                    FileStream fs = new FileStream(actualPathOut, FileMode.OpenOrCreate, FileAccess.Write);
-                    StreamWriter writer = new StreamWriter(fs);
-                    foreach (string line in splitData)
-                    {
-                        writer.WriteLine(line);
-                    }
-                    //writer.WriteLine(separator2);
-                    writer.Close();
-                    MessageBox.Show("FORMULA CREADA EXITOSAMENTE");
-                }
-                else
-                {
-                    string[] lines = File.ReadAllLines(actualPathOut);
-                    string storage = "";
-                    bool allowedWrite = false;
-                    foreach (string lineTextBox in textBox1.Lines)
-                    {
-                        string lineTextStudy = lineTextBox;
-                        if (lineTextStudy.Contains(separator2))
-                        {
-                            lineTextStudy = lineTextStudy.Replace(separator2, "");
-                        }
-
-                        if (lineTextStudy == " " || lineTextStudy == "")
-                        {
-
-                        }
-                        else
-                        {
-                            for (int line = 0; line < lines.Length; line++)
-                            {
-                                if (lines[line] == separator2)
-                                {
-                                    storage = storage.Replace("\n", "");
-                                    if (storage == lineTextStudy)
-                                    {
-                                        allowedWrite = true;
-                                        break;
-                                    }
-                                    storage = "";
-                                }
-                                else
-                                {
-                                    storage += lines[line];
-                                }
-                            }
-                            if (allowedWrite == false)
-                            {
-                                string storageFinal = "";
-                                foreach (char letter in lineTextStudy)
-                                {
-                                    if (letter == '(' || letter == ')' || letter == '+' || letter == '-' || letter == '*' || letter == '/' || letter == '=')
-                                    {
-                                        storageFinal += "\n" + letter + "\n";
-                                    }
-                                    else
-                                    {
-                                        storageFinal += letter;
-                                    }
-                                }
-                                storageFinal = storageFinal.ToString();
-                                string[] splitData = storageFinal.Split('\n');
-                                TextWriter writer = new StreamWriter(actualPathOut, true);
-                                foreach (string line in splitData)
-                                {
-                                    writer.WriteLine(line);
-                                }
-                                writer.WriteLine(separator2);
-                                writer.Close();
-                                MessageBox.Show("FORMULA AGREGADA EXITOSAMENTE");
-                            }
-                            else
-                            {
-                                MessageBox.Show("NO SE PUEDE AÑADIR FORMULA A GLOBAL, YA EXISTE");
-                            }
-                        }
-                    }
-                }
-
-                if (!File.Exists(actualPathIn))
-                {
-                    string storageFinal = "";
-                    foreach (string line in textBox1.Lines)
-                    {
-                        string lineTextStudy = line;
-                        if (lineTextStudy.Contains(separator2))
-                        {
-                            lineTextStudy = lineTextStudy.Replace(separator2, "");
-                        }
-                        if (lineTextStudy == " " || lineTextStudy == "")
-                        {
-
-                        }
-                        else
-                        {
-                            foreach (char letter in lineTextStudy)
-                            {
-                                if (letter == '(' || letter == ')' || letter == '+' || letter == '-' || letter == '*' || letter == '/' || letter == '=')
-                                {
-                                    storageFinal += "\n" + letter + "\n";
-                                }
-                                else
-                                {
-                                    storageFinal += letter;
-                                }
-                            }
-                            storageFinal += "\n" + separator2 + "\n";
-                        }
-                    }
-                    storageFinal = storageFinal.ToString();
-                    string[] splitData = storageFinal.Split('\n');
-                    FileStream fs = new FileStream(actualPathIn, FileMode.OpenOrCreate, FileAccess.Write);
-                    StreamWriter writer = new StreamWriter(fs);
-                    foreach (string line in splitData)
-                    {
-                        writer.WriteLine(line);
-                    }
-                    writer.Close();
-                    MessageBox.Show("FORMULA CREADA EXITOSAMENTE");
-                }
-                else
-                {
-                    string[] lines = File.ReadAllLines(actualPathIn);
-                    string storage = "";
-                    bool allowedWrite = false;
-                    foreach (string lineTextBox in textBox1.Lines)
-                    {
-                        string lineTextStudy = lineTextBox;
-                        if (lineTextStudy.Contains(separator2))
-                        {
-                            lineTextStudy = lineTextStudy.Replace(separator2, "");
-                        }
-
-                        if (lineTextStudy == " " || lineTextStudy == "")
-                        {
-
-                        }
-                        else
-                        {
-                            for (int line = 0; line < lines.Length; line++)
-                            {
-                                if (lines[line] == separator2)
-                                {
-                                    storage = storage.Replace("\n", "");
-                                    if (storage == lineTextStudy)
-                                    {
-                                        allowedWrite = true;
-                                        break;
-                                    }
-                                    storage = "";
-                                }
-                                else
-                                {
-                                    storage += lines[line];
-                                }
-                            }
-                            if (allowedWrite == false)
-                            {
-                                string storageFinal = "";
-                                foreach (char letter in lineTextStudy)
-                                {
-                                    if (letter == '(' || letter == ')' || letter == '+' || letter == '-' || letter == '*' || letter == '/' || letter == '=')
-                                    {
-                                        storageFinal += "\n" + letter + "\n";
-                                    }
-                                    else
-                                    {
-                                        storageFinal += letter;
-                                    }
-                                }
-                                storageFinal = storageFinal.ToString();
-                                string[] splitData = storageFinal.Split('\n');
-                                TextWriter writer = new StreamWriter(actualPathIn, true);
-                                foreach (string line in splitData)
-                                {
-                                    writer.WriteLine(line);
-                                }
-                                writer.WriteLine(separator2);
-                                writer.Close();
-                                MessageBox.Show("FORMULA AGREGADA EXITOSAMENTE");
-                            }
-                            else
-                            {
-                                MessageBox.Show("NO SE PUEDE AÑADIR FORMULA A LOCAL, YA EXISTE");
-                            }
-                        }
-                    }
-                }
+                addLines = addLines.TrimEnd('?');
+                generalMethodToWriteInFiles callToWrite = new generalMethodToWriteInFiles();
+                callToWrite.writeInFiles(path, addLines);
+                MessageBox.Show("FORMULAS GUARDADAS EXITOSAMENTE");
             }
         }
 
@@ -633,444 +326,142 @@ namespace Sistema_Planillas_Contabilidad
 
         private void buttonNew_Click_1(object sender, EventArgs e)
         {
-            restarComponents();
+            textBox1.Text = "";
         }
 
         private void buttonCharge_Click(object sender, EventArgs e)
         {
-            if (comboBoxCharge.Text == defaultData)
+            string path = "";
+            
+            if (comboBoxCharge.Text == threeLine)
             {
                 MessageBox.Show("IMPOSIBLE CARGAR, UBICACION CARGAR NO ELEGIDA");
-            }else if (comboBoxCharge.Text == opcion2)
+            }else if (orderGlobalOrLocal == opcion1)
             {
-                textBox1.Text = "";
-                if (File.Exists(actualPathOut))
+                if (comboBoxCharge.Text == opcion1)
                 {
-                    string[] lines = File.ReadAllLines(actualPathOut);
-                    string storage = "";
-                    foreach (string line in lines)
-                    {
-                        if (line == separator2)
-                        {
-                            textBox1.Text += storage + Environment.NewLine + separator2 + Environment.NewLine;
-                            storage = "";
-                        }
-                        else
-                        {
-                            storage += line;
-                        }
+                    path = CorePathOfFolderCompaniesSistemaPlanillas + company + "\\" + deparment + "\\" + month + "\\" + "CORE-FORMULAS.txt";
+                }
+                else if(comboBoxCharge.Text == opcion2)
+                {
+                    path = SpecificPathOfFolderConfigurationFormulas + "GLOBAL-FORMULAS.txt";
+                }
+                else if (comboBoxCharge.Text == opcion3)
+                {
+                    path = CorePathOfFolderCompaniesSistemaPlanillas + company + "\\" + coreExtraConfiguration + "\\" + formula + "\\" + "GLOBAL-FORMULAS.txt";
+                }
 
+                if (File.Exists(path))
+                {
+                    listView1.Items.Clear();
+                    string[] storageFormulas = File.ReadAllLines(path);
+                    foreach(string formula in storageFormulas)
+                    {
+                        if (formula != tagStartFormula && formula != tagEndFormula)
+                        {
+                            listView1.Items.Add(formula);
+                        }
                     }
+                    paint(listView1);
+                }
+                else
+                {
+                    MessageBox.Show("NO SE PUEDEN CARGAR FORMULAS, YA QUE NO EXISTE NINGUN ARCHIVO DE FORMULAS");
+                }
+            }else if (orderGlobalOrLocal == opcion2)
+            {
+                path = SpecificPathOfFolderConfigurationFormulas + "GLOBAL-FORMULAS.txt";
+                if (File.Exists(path))
+                {
+                    string[] storageFormulas = File.ReadAllLines(path);
+                    listView1.Items.Clear();
+                    listView1.View = View.Details;
+                    listView1.Columns.Add("FORMULAS");
+                    listView1.Columns[0].Width = listView1.Width;
+                    foreach (string formula in storageFormulas)
+                    {
+                        if (formula != tagStartFormula && formula != tagEndFormula)
+                        {
+                            listView1.Items.Add(formula);
+                        }
+                    }
+                    paint(listView1);
                 }
                 else
                 {
                     MessageBox.Show("NO SE PUEDEN CARGAR FORMULAS, YA QUE NO EXISTE NINGUN ARCHIVO DE FORMULAS");
                 }
             }
-            else if (comboBoxCharge.Text == opcion1)
-            {
-                textBox1.Text = "";
-                if (File.Exists(actualPathIn))
-                {
-                    string[] lines = File.ReadAllLines(actualPathIn);
-                    string storage = "";
-                    foreach (string line in lines)
-                    {
-                        if (line == separator2)
-                        {
-                            textBox1.Text += storage + Environment.NewLine + separator2 + Environment.NewLine;
-                            storage = "";
-                        }
-                        else
-                        {
-                            storage += line;
-                        }
-
-                    }
-                }
-                else
-                {
-                    MessageBox.Show("NO SE PUEDEN CARGAR FORMULAS, YA QUE NO EXISTE NINGUN ARCHIVO DE FORMULAS");
-                }
-            }
+            
         }
 
-        private void buttonUpdate_Click(object sender, EventArgs e)
-        {
-            DialogResult elimnate = MessageBox.Show("¿ESTAS SEGURO DE ELIMINAR EL ARCHIVO CON ESTAS FORMULAS Y REESCRIBIRLO CON LAS FORMULAS EN PANTALLA? \nNO PODRAN SER RECUPERADAS LAS FORMULAS ANTERIORES", "OPCIÓN RAPIDA", MessageBoxButtons.YesNo);
-            switch (elimnate)
-            {
-                case DialogResult.Yes:
-                    if (comboBoxUpdate.Text == defaultData)
-                    {
-                        MessageBox.Show("IMPOSIBLE ACTUALIZAR, UBICACION ACTUALIZAR NO ELEGIDA");
-                    }
-                    else if (comboBoxUpdate.Text == opcion2)
-                    {
-                        if (comboBoxUpdate.Text.Contains(separator2))
-                        {
-
-                        }
-                        else
-                        {
-                            comboBoxUpdate.Text += Environment.NewLine + separator2;
-                        }
-                        if (File.Exists(actualPathOut))
-                        {
-                            File.Delete(actualPathOut);
-                            FileStream fs = new FileStream(actualPathOut, FileMode.OpenOrCreate, FileAccess.Write);
-                            StreamWriter writer = new StreamWriter(fs);
-                            string storageFinal = "";
-                            int maximunLines = textBox1.Lines.Length;
-                            for (int line = 0; line < maximunLines; line++)
-                            {
-                                if (textBox1.Lines[line] == separator2)
-                                {
-                                    storageFinal = storageFinal.Replace(Environment.NewLine, "");
-                                    writer.WriteLine(storageFinal);
-                                    writer.WriteLine(separator2);
-                                    storageFinal = "";
-                                }
-                                else
-                                {
-                                    foreach (char letter in textBox1.Lines[line])
-                                    {
-                                        if (letter == '(' || letter == ')' || letter == '+' || letter == '-' || letter == '*' || letter == '/' || letter == '=')
-                                        {
-                                            storageFinal += "\n" + letter + "\n";
-                                        }
-                                        else
-                                        {
-                                            storageFinal += letter;
-                                        }
-                                    }
-                                }
-                            }
-                            writer.Close();
-                            MessageBox.Show("FORMULA GLOBAL ACTUALIZADA EXITOSAMENTE");
-                        }
-                        else
-                        {
-                            if (comboBoxUpdate.Text.Contains(separator2))
-                            {
-
-                            }
-                            else
-                            {
-                                comboBoxUpdate.Text += Environment.NewLine + separator2;
-                            }
-                            FileStream fs = new FileStream(actualPathOut, FileMode.OpenOrCreate, FileAccess.Write);
-                            StreamWriter writer = new StreamWriter(fs);
-                            string storageFinal = "";
-                            int maximunLines = textBox1.Lines.Length;
-                            for (int line = 0; line < maximunLines; line++)
-                            {
-                                if (textBox1.Lines[line] == separator2)
-                                {
-                                    storageFinal = storageFinal.Replace(Environment.NewLine, "");
-                                    writer.WriteLine(storageFinal);
-                                    writer.WriteLine(separator2);
-                                    storageFinal = "";
-                                }
-                                else
-                                {
-                                    foreach (char letter in textBox1.Lines[line])
-                                    {
-                                        if (letter == '(' || letter == ')' || letter == '+' || letter == '-' || letter == '*' || letter == '/' || letter == '=')
-                                        {
-                                            storageFinal += "\n" + letter + "\n";
-                                        }
-                                        else
-                                        {
-                                            storageFinal += letter;
-                                        }
-                                    }
-                                }
-                            }
-                            writer.Close();
-                            MessageBox.Show("FORMULA GLOBAL ACTUALIZADA EXITOSAMENTE");
-                        }
-                    }
-                    else if (comboBoxUpdate.Text == opcion1)
-                    {
-                        if (File.Exists(actualPathIn))
-                        {
-                            File.Delete(actualPathIn);
-                            FileStream fs = new FileStream(actualPathIn, FileMode.OpenOrCreate, FileAccess.Write);
-                            StreamWriter writer = new StreamWriter(fs);
-                            string storageFinal = "";
-                            int maximunLines = textBox1.Lines.Length;
-                            for (int line = 0; line < maximunLines; line++)
-                            {
-                                if (textBox1.Lines[line] == separator2)
-                                {
-                                    storageFinal = storageFinal.Replace(Environment.NewLine, "");
-                                    writer.WriteLine(storageFinal);
-                                    writer.WriteLine(separator2);
-                                    storageFinal = "";
-                                }
-                                else
-                                {
-                                    foreach (char letter in textBox1.Lines[line])
-                                    {
-                                        if (letter == '(' || letter == ')' || letter == '+' || letter == '-' || letter == '*' || letter == '/' || letter == '=')
-                                        {
-                                            storageFinal += "\n" + letter + "\n";
-                                        }
-                                        else
-                                        {
-                                            storageFinal += letter;
-                                        }
-                                    }
-                                }
-                            }
-                            writer.Close();
-                            MessageBox.Show("FORMULA LOCAL ACTUALIZADA EXITOSAMENTE");
-                        }
-                        else
-                        {
-                            FileStream fs = new FileStream(actualPathIn, FileMode.OpenOrCreate, FileAccess.Write);
-                            StreamWriter writer = new StreamWriter(fs);
-                            string storageFinal = "";
-                            int maximunLines = textBox1.Lines.Length;
-                            for (int line = 0; line < maximunLines; line++)
-                            {
-                                if (textBox1.Lines[line] == separator2)
-                                {
-                                    storageFinal = storageFinal.Replace(Environment.NewLine, "");
-                                    writer.WriteLine(storageFinal);
-                                    writer.WriteLine(separator2);
-                                    storageFinal = "";
-                                }
-                                else
-                                {
-                                    foreach (char letter in textBox1.Lines[line])
-                                    {
-                                        if (letter == '(' || letter == ')' || letter == '+' || letter == '-' || letter == '*' || letter == '/' || letter == '=')
-                                        {
-                                            storageFinal += "\n" + letter + "\n";
-                                        }
-                                        else
-                                        {
-                                            storageFinal += letter;
-                                        }
-                                    }
-                                }
-                            }
-                            writer.Close();
-                            MessageBox.Show("FORMULA LOCAL ACTUALIZADA EXITOSAMENTE");
-                        }
-                    }
-                    break;
-                    case DialogResult.No:
-                    break;
-            }
-        }
-        string path = "";
-        string company = "";
-        string deparment = "";
-        string month = "";
-        string week = "";
-        string file = "";
-        public void PathToSave(string companyReceive, string deptReceive, string monthReceive, string weekReceive, string fileReceive, string pathReceive)
-        {
-            path = pathReceive;
-            company = companyReceive;
-            deparment = deptReceive;
-            month = monthReceive;
-            week = weekReceive;
-            file = fileReceive;
-        }
-
-        private void restarComponents()
-        {
-            comboBoxCharge.Items.Clear();
-            comboBoxSave.Items.Clear();
-            comboBoxUpdate.Items.Clear();
-            comboBoxEliminate.Items.Clear();
-            textBox1.Text = "";
-            comboBoxCharge.Text = defaultData;
-            comboBoxCharge.Items.Add(opcion1);
-            comboBoxCharge.Items.Add(opcion2);
-            comboBoxSave.Text = defaultData;
-            comboBoxSave.Items.Add(opcion1);
-            comboBoxSave.Items.Add(opcion2);
-            comboBoxSave.Items.Add(opcion3);
-            comboBoxUpdate.Text = defaultData;
-            comboBoxUpdate.Items.Add(opcion1);
-            comboBoxUpdate.Items.Add(opcion2);
-            comboBoxEliminate.Text = defaultData;
-            comboBoxEliminate.Items.Add(opcion1);
-            comboBoxEliminate.Items.Add(opcion2);
-            comboBoxEliminate.Items.Add(opcion3);
-            comboBoxSave.Enabled = true;
-            buttonSave.Enabled = true;
-            comboBoxCharge.Enabled = true;
-            buttonCharge.Enabled = true;
-            comboBoxUpdate.Enabled = false;
-            buttonUpdate.Enabled = false;
-        }
-
-        private void CellChangedSave(object sender, EventArgs e)
-        {
-            comboBoxCharge.Enabled = false;
-            buttonCharge.Enabled = false;
-            comboBoxUpdate.Enabled = false;
-            buttonUpdate.Enabled = false;
-            if (comboBoxSave.Text == opcion1)
-            {
-                //local
-                actualPathIn = actual.Replace("\\bin\\Debug", "\\Companies");
-                actualPathIn +="\\" + company + "\\configuration\\formula.txt";
-                //chargeComponentes();
-                comboBoxUpdate.Enabled = false;
-                buttonUpdate.Enabled = false;
-            }
-            else if (comboBoxSave.Text == opcion2)
-            {
-                //global
-                actualPathOut = actual.Replace("\\bin\\Debug", "\\configuration");
-                actualPathOut += "\\Formulas\\formula.txt";
-                //chargeComponentes();
-                comboBoxUpdate.Enabled = false;
-                buttonUpdate.Enabled = false;
-            }
-        }
-
-        private void CellChangedUpdate(object sender, EventArgs e)
-        {
-            comboBoxSave.Enabled = false;
-            buttonSave.Enabled = false;
-            comboBoxCharge.Enabled = false;
-            buttonCharge.Enabled = false;
-            if (comboBoxCharge.Text == opcion1)
-            {
-                actualPathIn = actual.Replace("\\bin\\Debug", "\\Companies");
-                actualPathIn += "\\" + company + "\\configuration\\formula.txt";
-                //MessageBox.Show(actualPathIn);
-            }
-            else if (comboBoxCharge.Text == opcion2)
-            {
-                actualPathOut = actual.Replace("\\bin\\Debug", "\\configuration");
-                actualPathOut += "\\Formulas\\formula.txt";
-            }
-        }
-
-        private void CellChangedCharge(object sender, EventArgs e)
-        {
-            //comboBoxSave.Enabled = false;
-            //buttonSave.Enabled = false;
-            comboBoxUpdate.Enabled = true;
-            buttonUpdate.Enabled = true;
-            if (comboBoxCharge.Text == opcion1)
-            {
-                actualPathIn = actual.Replace("\\bin\\Debug", "\\Companies");
-                actualPathIn += "\\" + company + "\\configuration\\formula.txt";
-                //MessageBox.Show(actualPathIn);
-            }
-            else if (comboBoxCharge.Text == opcion2)
-            {
-                actualPathOut = actual.Replace("\\bin\\Debug", "\\configuration");
-                actualPathOut += "\\Formulas\\formula.txt";
-            }
-        }
-
-        private void buttonRestar_Click(object sender, EventArgs e)
-        {
-            restarComponents();
-        }
 
         private void buttonEliminate_Click(object sender, EventArgs e)
         {
-            DialogResult elimnate = MessageBox.Show("¿ESTAS SEGURO DE ELIMINAR EL ARCHIVO CON ESTAS FORMULAS?  \nNO PODRA SER RECUPERADO", "OPCIÓN RAPIDA", MessageBoxButtons.YesNo);
-            switch (elimnate)
+            DialogResult eliminate = MessageBox.Show("¿ESTAS SEGURO DE ELIMINAR LA FORMULA "+listView1.Items[indexColumn].Text+" ?", "OPCIÓN RAPIDA", MessageBoxButtons.YesNo);
+            switch (eliminate)
             {
                 case DialogResult.Yes:
-                    if (comboBoxEliminate.Text == defaultData)
-                    {
-                        MessageBox.Show("IMPOSIBLE ELIMINAR, UBICACION ELIMINAR NO ELEGIDA");
-                    }
-                    else if (comboBoxEliminate.Text == opcion1)
-                    {
-                        if (File.Exists(actualPathIn))
-                        {
-                            File.Delete(actualPathIn);
-                            MessageBox.Show("ELIMINADO FORMULAS LOCALES EXITOSAMENTE");
-                        }
-                        else
-                        {
-                            MessageBox.Show("ELIMINAR FORMULAS LOCALES FALLIDO, ARCHIVO NO EXISTE");
-                        }
-
-                    }
-                    else if (comboBoxEliminate.Text == opcion2)
-                    {
-                        if (File.Exists(actualPathOut))
-                        {
-                            File.Delete(actualPathOut);
-                            MessageBox.Show("ELIMINADO FORMULAS GLOBALES EXITOSAMENTE");
-                        }
-                        else
-                        {
-                            MessageBox.Show("ELIMINAR FORMULAS GLOBALES FALLIDO, ARCHIVO NO EXISTE");
-                        }
-                    }
-                    else if (comboBoxEliminate.Text == opcion3)
-                    {
-                        if (File.Exists(actualPathIn))
-                        {
-                            File.Delete(actualPathIn);
-                            MessageBox.Show("ELIMINADO FORMULAS LOCALES EXITOSAMENTE");
-                        }
-                        else
-                        {
-                            MessageBox.Show("ELIMINAR FORMULAS LOCALES FALLIDO, ARCHIVO NO EXISTE");
-                        }
-                        if (File.Exists(actualPathOut))
-                        {
-                            File.Delete(actualPathOut);
-                            MessageBox.Show("ELIMINADO FORMULAS GLOBALES EXITOSAMENTE");
-                        }
-                        else
-                        {
-                            MessageBox.Show("ELIMINAR FORMULAS GLOBALES FALLIDO, ARCHIVO NO EXISTE");
-                        }
-                    }
+                    listView1.Items.RemoveAt(indexColumn);
+                    MessageBox.Show("FORMULA ELIMINADA EXITOSAMENTE");
                     break;
                 case DialogResult.No:
-                    break;
+                break;
             }
         }
 
-        private void chargeComponentes()
+        private void listView1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            comboBoxSave.Items.Clear();
-            comboBoxCharge.Items.Clear();
-            comboBoxUpdate.Items.Clear();
-            comboBoxEliminate.Items.Clear();
-            comboBoxSave.Text = defaultData;
-            comboBoxCharge.Text = defaultData;
-            comboBoxUpdate.Text = defaultData;
-            comboBoxEliminate.Text = defaultData;
-            turnOnComboBox();
-            //turnOffComboBox();
-            turnOnButton();
-            //turnOffButton();
-            comboBoxSave.Items.Add(opcion1);
-            comboBoxSave.Items.Add(opcion2);
-            comboBoxSave.Items.Add(opcion3);
-            comboBoxCharge.Items.Add(opcion1);
-            comboBoxCharge.Items.Add(opcion2);
-            comboBoxUpdate.Items.Add(opcion1);
-            comboBoxUpdate.Items.Add(opcion2);
-            comboBoxEliminate.Items.Add(opcion1);
-            comboBoxEliminate.Items.Add(opcion2);
-            comboBoxEliminate.Items.Add(opcion3);
+            indexColumn = listView1.FocusedItem.Index;
         }
-        private void buttonType_Click(object sender, EventArgs e)
+
+        public void lisftOfHeads(List<string> listReceived)
         {
-            
-            
+            foreach (string head in listReceived)
+            {
+                comboBox1.Items.Add(head);
+            }
         }
+
+        string company = "";
+        string deparment = "";
+        string month = "";
+        public void PathToCompany(string companyReceive, string deptReceive, string monthReceive)
+        {
+            company = companyReceive;
+            deparment = deptReceive;
+            month = monthReceive;
+        }
+
+        public void menuGlobalOrLocal(string orderReceiVed)
+        {
+            orderGlobalOrLocal = orderReceiVed;
+        }
+
+        private void buttonEdit_Click(object sender, EventArgs e)
+        {
+            textBox1.Text = "";
+            textBox1.Text = listView1.Items[indexColumn].Text;
+            orderAddOrEdit = "EDITAR";
+        }
+
+        private void paint(ListView listToPaint)
+        {
+            int index = 0;
+            foreach (ListViewItem item in listToPaint.Items)
+            {
+                if ((index % 2) == 0)
+                {
+                    item.BackColor = Color.LightBlue;
+                }
+                ++index;
+            }
+        }
+
+        private void buttonCloseProgram_Click_1(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
     }
 }

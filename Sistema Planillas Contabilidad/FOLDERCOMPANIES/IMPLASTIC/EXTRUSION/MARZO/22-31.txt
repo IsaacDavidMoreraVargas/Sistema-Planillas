@@ -1,0 +1,285 @@
+<startHeads>
+INDEX
+CEDULA
+NOMBRE
+APELLIDO 1
+APELLIDO 2
+FECHA INGRESO
+ORD DIU LUN
+EXT DIU LUN
+ORD NOC LUN
+EXT NOC LUN
+ORD DIU MAR
+EXT DIU MAR
+ORD NOC MAR
+EXT NOC MAR
+ORD DIU MIE
+EXT DIU MIE
+ORD NOC MIE
+EXT NOC MIE
+ORD DIU JUE
+EXT DIU JUE
+ORD NOC JUE
+EXT NOC JUE
+ORD DIU VIE
+EXT DIU VIE
+ORD NOC VIE
+EXT NOC VIE
+ORD DIU SAB
+EXT DIU SAB
+ORD NOC SAB
+EXT NOC SAB
+ORD DIU DOM
+EXT DIU DOM
+ORD NOC DOM
+EXT NOC DOM
+PRE HOR DIU
+PRE HOR NOC
+TOT HOR ORD DIU
+TOT HOR EXT DIU
+TOT HOR ORD NOC
+TOT HOR EXT NOC
+COST ORD DIU
+COST EXT DIU
+COST ORD NOC
+COST EXT NOC
+TOTAL SALAR
+VACACIONES
+REAJUSTES
+INCAPACIDAD
+TOTAL SALAR BRU
+OTRAS DEDUCCIONES
+FUNERARIA
+C.C.S.S
+PRESTAMOS
+VARIOS
+SALARIO NETO
+</endHeads>
+<startNewLine>
+0
+402250378
+Leslie Javier
+Bolaños
+Arguedas
+24 JUN 2019
+8,0
+4,0
+ 
+ 
+8,0
+4,0
+ 
+ 
+8,0
+4,0
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+1450,0
+2175,0
+24,0
+12,0
+0
+0
+34 800,00
+26 100,00
+00,00
+00,00
+60 900,00
+ 
+ 
+ 
+60 900,00
+ 
+ 
+7177,82
+ 
+ 
+53 722,18
+</endNewline>
+<startNewLine>
+1
+155809339732
+Reynaldo
+Davila
+Altamirano
+2 MAR 2017
+ 
+ 
+6,0
+6,0
+ 
+ 
+6,0
+6,0
+ 
+ 
+6,0
+6,0
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+1600,0
+2400,0
+0
+0
+18,0
+18,0
+00,00
+00,00
+43 200,00
+64 800,00
+108 000,00
+ 
+ 
+ 
+108 000,00
+ 
+ 
+7153,58
+ 
+ 
+100 846,42
+</endNewline>
+<startNewLine>
+2
+155823608208
+Harold
+Rivera
+López
+11 AGO 2003
+8,0
+4,0
+ 
+ 
+8,0
+4,0
+ 
+ 
+8,0
+4,0
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+1700,0
+2550,0
+24,0
+12,0
+0
+0
+40 800,00
+30 600,00
+00,00
+00,00
+71 400,00
+ 
+ 
+ 
+71 400,00
+ 
+ 
+7274,82
+ 
+ 
+64 125,18
+</endNewline>
+<startNewLine>
+3
+502970195
+Leandro Jesus
+Rodriguez
+Chaves
+7 NOV 2019
+8,0
+4,0
+ 
+ 
+8,0
+4,0
+ 
+ 
+8,0
+4,0
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+1450,0
+2175,0
+24,0
+12,0
+0
+0
+34 800,00
+26 100,00
+00,00
+00,00
+60 900,00
+ 
+ 
+ 
+60 900,00
+ 
+ 
+7153,58
+ 
+ 
+53 746,42
+</endNewline>
