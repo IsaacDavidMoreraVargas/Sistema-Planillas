@@ -2942,13 +2942,15 @@ namespace Sistema_Planillas_Contabilidad
                 indexColumnOfDatagrid = dataGridView1.Rows[e.RowIndex].Cells[e.ColumnIndex].ColumnIndex;
             }
             catch (Exception)
-            { MessageBox.Show("COLUMNA NO SE HA SELECCIONANDO "); }
+            { //MessageBox.Show("COLUMNA NO SE HA SELECCIONANDO "); 
+            }
             try
             {
                 indexRowOfDatagrid = dataGridView1.Rows[e.RowIndex].Cells[e.ColumnIndex].RowIndex;
             }
             catch (Exception)
-            { MessageBox.Show("FILA NO SE HA SELECCIONANDO "); }
+            { //MessageBox.Show("FILA NO SE HA SELECCIONANDO "); 
+            }
         }
 
         private void dataGridView2_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -2963,13 +2965,15 @@ namespace Sistema_Planillas_Contabilidad
                 indexColumnOfDatagrid = dataGridView2.Rows[e.RowIndex].Cells[e.ColumnIndex].ColumnIndex;
             }
             catch (Exception)
-            { MessageBox.Show("COLUMNA NO SE HA SELECCIONANDO "); }
+            { //MessageBox.Show("COLUMNA NO SE HA SELECCIONANDO "); 
+            }
             try
             {
                 indexRowOfDatagrid = dataGridView2.Rows[e.RowIndex].Cells[e.ColumnIndex].RowIndex;
             }
             catch (Exception)
-            { MessageBox.Show("FILA NO SE HA SELECCIONANDO "); }
+            { //MessageBox.Show("FILA NO SE HA SELECCIONANDO "); 
+            }
         }
 
         private void dataGridView3_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -2984,13 +2988,15 @@ namespace Sistema_Planillas_Contabilidad
                 indexColumnOfDatagrid = dataGridView3.Rows[e.RowIndex].Cells[e.ColumnIndex].ColumnIndex;
             }
             catch (Exception)
-            { MessageBox.Show("COLUMNA NO SE HA SELECCIONANDO "); }
+            { //MessageBox.Show("COLUMNA NO SE HA SELECCIONANDO "); 
+            }
             try
             {
                 indexRowOfDatagrid = dataGridView3.Rows[e.RowIndex].Cells[e.ColumnIndex].RowIndex;
             }
             catch (Exception)
-            { MessageBox.Show("FILA NO SE HA SELECCIONANDO "); }
+            { //MessageBox.Show("FILA NO SE HA SELECCIONANDO "); 
+            }
         }
 
         private void dataGridView4_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -3005,13 +3011,16 @@ namespace Sistema_Planillas_Contabilidad
                 indexColumnOfDatagrid = dataGridView4.Rows[e.RowIndex].Cells[e.ColumnIndex].ColumnIndex;
             }
             catch (Exception)
-            { MessageBox.Show("COLUMNA NO SE HA SELECCIONANDO "); }
+            { 
+                //MessageBox.Show("COLUMNA NO SE HA SELECCIONANDO "); 
+            }
             try
             {
                 indexRowOfDatagrid = dataGridView4.Rows[e.RowIndex].Cells[e.ColumnIndex].RowIndex;
             }
             catch (Exception)
-            { MessageBox.Show("FILA NO SE HA SELECCIONANDO "); }
+            { //MessageBox.Show("FILA NO SE HA SELECCIONANDO "); 
+            }
         }
 
         private void dataGridView5_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -3026,13 +3035,15 @@ namespace Sistema_Planillas_Contabilidad
                 indexColumnOfDatagrid = dataGridView5.Rows[e.RowIndex].Cells[e.ColumnIndex].ColumnIndex;
             }
             catch (Exception)
-            { MessageBox.Show("COLUMNA NO SE HA SELECCIONANDO "); }
+            { //MessageBox.Show("COLUMNA NO SE HA SELECCIONANDO "); 
+            }
             try
             {
                 indexRowOfDatagrid = dataGridView5.Rows[e.RowIndex].Cells[e.ColumnIndex].RowIndex;
             }
             catch (Exception)
-            { MessageBox.Show("FILA NO SE HA SELECCIONANDO "); }
+            { //MessageBox.Show("FILA NO SE HA SELECCIONANDO "); 
+            }
         }
 
         private void paintColum(DataGridView dataToChange, int flag)
