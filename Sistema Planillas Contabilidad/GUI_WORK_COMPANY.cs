@@ -11,6 +11,10 @@ using System.IO;
 using System.Data.SqlTypes;
 using System.Text.RegularExpressions;
 
+using iTextSharp.text;
+using iTextSharp.text.pdf;
+
+
 namespace Sistema_Planillas_Contabilidad
 {
     public partial class GUI_WORK_COMPANY : Form
@@ -3199,5 +3203,190 @@ namespace Sistema_Planillas_Contabilidad
             baseResizeDatasGridView();
         }
 
+        private void buttonPrint_Click(object sender, EventArgs e)
+        {
+            if (clickOnDataGrid1 == true || clickOnDataGrid2 == true || clickOnDataGrid3 == true || clickOnDataGrid4 == true || clickOnDataGrid5 == true)
+            {
+                DataGridView dataToChargeData = new DataGridView();
+                dataToChargeData = decideDataGridViewWithData5(dataToChargeData);
+                if (dataToChargeData.Enabled == false)
+                {
+                    MessageBox.Show("NO PUEDES IMPRIMIR PORQUE LA TABLA NO PERMITE CALCULOS, HAZLA CALCULAR");
+                }
+                else
+                {
+                    SaveFileDialog sfd = new SaveFileDialog();
+                    sfd.Filter = "PDF (*.pdf)|*.pdf";
+                    string name = company + "-" + deparment + "-" + month +"-"+ "Output.pdf";
+                    sfd.FileName = name;
+                    bool fileError = false;
+                    if (sfd.ShowDialog() == DialogResult.OK || sfd.ShowDialog() == DialogResult.Cancel)
+                    {
+                        int number = 0;
+                        if (File.Exists(sfd.FileName))
+                        {
+                            sfd.FileName = sfd.FileName.Replace("Output.pdf", "Output(" + number.ToString() + ").pdf");
+                            if (File.Exists(sfd.FileName))
+                            {
+                                bool outHere = false;
+                                string newFile = sfd.FileName;
+                                while (outHere ==false)
+                                {
+                                    string[] splitName = newFile.Split('(');
+                                    string[] splitNamePhase2 = splitName[1].Split(')');
+                                    string numberFind = sfd.FileName.Replace("Output(", "");
+                                    numberFind = numberFind.Replace(").pdf", "");
+                                    number = Convert.ToInt32(splitNamePhase2[0]);
+                                    string erase="Output("+number.ToString()+").pdf";
+                                    string eraseFind = newFile.Replace(erase, "");
+                                    number += 1;
+                                    string newFileCreate = eraseFind + "Output(" + number.ToString() + ").pdf";
+                                    if (!File.Exists(newFileCreate))
+                                    {
+                                        sfd.FileName= newFileCreate;
+                                        outHere = true;
+                                    }else
+                                    {
+                                        newFile = newFileCreate;
+                                    }
+                                }
+                            }
+                        }
+                        if (fileError==false)
+                        {
+                            try
+                            {
+                                int amountColumns = 0;
+                                foreach (DataGridViewColumn column in dataToChargeData.Columns)
+                                {
+                                    if (column.Visible)
+                                    {
+                                        amountColumns += 1;
+                                    }
+                                }
+                                Document document = new Document(); 
+                                double multiplaying = 0;
+                                int sizeFONT = 0;
+                                int sizeHead = 25;
+                                MessageBox.Show(amountColumns.ToString());
+                                if (amountColumns >= 40)
+                                {
+                                    multiplaying = 0.2;
+                                    document = new Document(iTextSharp.text.PageSize.A1.Rotate());
+                                    sizeFONT = Convert.ToInt32(amountColumns * multiplaying - 3);
+                                }
+                                else if (amountColumns <= 39 && amountColumns >29)
+                                {
+                                    multiplaying = 0.3;
+                                    document = new Document(iTextSharp.text.PageSize.A2.Rotate());
+                                    sizeFONT = Convert.ToInt32(amountColumns * multiplaying - 3);
+                                }
+                                else if (amountColumns <= 29 && amountColumns > 19)
+                                {
+                                    multiplaying = 1;
+                                    document = new Document(iTextSharp.text.PageSize.A5.Rotate());
+                                    sizeFONT = Convert.ToInt32(amountColumns * multiplaying);
+                                    if (sizeFONT > 10)
+                                    {
+                                        sizeHead = 22;
+                                        sizeFONT = 4;
+                                    }
+                                }
+                                else if (amountColumns <= 19 && amountColumns>=10)
+                                {
+                                    multiplaying = 1.9;
+                                    document = new Document(iTextSharp.text.PageSize.A6.Rotate());
+                                    sizeFONT = Convert.ToInt32(amountColumns * multiplaying);
+                                    if(sizeFONT>10)
+                                    {
+                                        sizeHead = 19;
+                                        sizeFONT = 3;
+                                    }
+                                }
+                                else if (amountColumns <= 9)
+                                {
+                                    multiplaying = 2.1;
+                                    document = new Document(iTextSharp.text.PageSize.A7.Rotate());
+                                    sizeFONT = Convert.ToInt32(amountColumns * multiplaying);
+                                    if (sizeFONT >10)
+                                    {
+                                        sizeHead = 15;
+                                        sizeFONT = 3;
+                                    }
+                                }
+
+                                //
+                                iTextSharp.text.Font headFont = new iTextSharp.text.Font((iTextSharp.text.Font.FontFamily)iTextSharp.text.Font.BOLD, sizeHead, iTextSharp.text.Font.NORMAL);
+                                string headOfTitle = company + "-" + deparment + "-" + month;
+                                PdfPCell headCell = new PdfPCell(new Phrase(headOfTitle, headFont));
+                                headCell.HorizontalAlignment = Element.ALIGN_CENTER;
+                                headCell.BackgroundColor = new iTextSharp.text.BaseColor(224, 224, 224);
+                                PdfPTable fatherTable = new PdfPTable(1);
+                                fatherTable.WidthPercentage = 100;
+                                fatherTable.AddCell(headCell);
+                                //
+                                
+                                //
+                                iTextSharp.text.Font fontColumn = new iTextSharp.text.Font((iTextSharp.text.Font.FontFamily)iTextSharp.text.Font.BOLD, sizeFONT, iTextSharp.text.Font.NORMAL);
+                                iTextSharp.text.Font fontRow = new iTextSharp.text.Font((iTextSharp.text.Font.FontFamily)iTextSharp.text.Font.BOLD, sizeFONT, iTextSharp.text.Font.NORMAL);
+                                PdfWriter wri = PdfWriter.GetInstance(document, new FileStream(sfd.FileName, FileMode.Create));
+                                //Open Document to write
+                                document.Open();
+                                //Create table by setting table value
+                                PdfPTable childTable = new PdfPTable(amountColumns);
+                                childTable.WidthPercentage = 100;
+                                foreach (DataGridViewColumn column in dataToChargeData.Columns)
+                                {
+                                    if (column.Visible==true)
+                                    {
+                                        PdfPCell cellOfColumn = new PdfPCell(new Phrase(column.HeaderText, fontColumn));
+                                        cellOfColumn.BackgroundColor = new iTextSharp.text.BaseColor(180, 211, 235);
+                                        childTable.AddCell(cellOfColumn);
+                                    }
+                                }
+                                int index = 0;
+                                for (int row = 0; row < dataToChargeData.Rows.Count - 1; row++)
+                                {
+                                    for (int column = 0; column < dataToChargeData.Columns.Count; column++)
+                                    {
+                                        PdfPCell cellOfRow = new PdfPCell();
+                                        if (dataToChargeData.Rows[row].Cells[column].Value == null && dataToChargeData.Rows[row].Cells[column].Visible == true)
+                                        {
+                                            cellOfRow = new PdfPCell(new Phrase(" ", fontRow));
+                                            if ((index % 2) == 0)
+                                            {
+                                                cellOfRow.BackgroundColor = new iTextSharp.text.BaseColor(224, 224, 224);
+                                            }
+                                            childTable.AddCell(cellOfRow);
+                                        }
+                                        else if (dataToChargeData.Rows[row].Cells[column].Value != null && dataToChargeData.Rows[row].Cells[column].Visible == true)
+                                        {
+                                            cellOfRow = new PdfPCell(new Phrase(dataToChargeData.Rows[row].Cells[column].Value.ToString(), fontRow));
+                                            if ((index % 2) == 0)
+                                            {
+                                                cellOfRow.BackgroundColor = new iTextSharp.text.BaseColor(224, 224, 224);
+                                            }
+                                            childTable.AddCell(cellOfRow);
+                                        }
+                                        
+                                    }
+                                    ++index;
+                                }
+                                  
+                                fatherTable.AddCell(childTable);
+                                document.Add(fatherTable);
+                                document.Close();
+                                MessageBox.Show("IMPRESO A PDF CORRECTAMENTE");
+                            }
+                            catch (Exception){ }
+                        }
+                    }
+                }
+            }
+            else
+            {
+                MessageBox.Show("IMPOSIBLE IMPRIMIR, ELIGE UNA TABLA PRIMERO");
+            }
+        }
     }
 }
