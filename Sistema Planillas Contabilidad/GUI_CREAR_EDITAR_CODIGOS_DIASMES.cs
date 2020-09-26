@@ -195,7 +195,11 @@ namespace Sistema_Planillas_Contabilidad
 
         private void buttonUpdateTemplate_Click(object sender, EventArgs e)
         {
-            if (orderSaveOfSaveFile == "SAVECHANGE")
+            if(listView1.Items.Count==0)
+            {
+                MessageBox.Show("NO SE GUARDARA, NO EXISTEN DATOS A GUARDAR");
+
+            }else if (orderSaveOfSaveFile == "SAVECHANGE")
             {
                 if (optionMenu == "HEADS")
                 {

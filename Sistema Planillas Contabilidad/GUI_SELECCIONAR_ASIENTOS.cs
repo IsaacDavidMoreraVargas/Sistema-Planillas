@@ -148,6 +148,11 @@ namespace Sistema_Planillas_Contabilidad
                 buttonGenerate.Visible = false;
                 buttonGenerate.Enabled = false;
                 comboBox2.Items.Add(option2);
+            }else if(orderGlobalOrLocal == option3)
+            {
+                buttonGenerate.Visible = false;
+                buttonGenerate.Enabled = false;
+                comboBox2.Items.Add(option3);
             }
             comboBox4.Items.Add(debit);
             comboBox4.Items.Add(credit);
@@ -163,6 +168,16 @@ namespace Sistema_Planillas_Contabilidad
                 }
                 else
                 {
+                    listView1.View = View.Details;
+                    listView1.Columns.Add("DEBE");
+                    listView1.Columns[0].Width = listView1.Width;
+                    listView2.View = View.Details;
+                    listView2.Columns.Add("HABE");
+                    listView2.Columns[0].Width = listView1.Width;
+                    paint("WHITE", listView1);
+                    paint("WHITE", listView2);
+                    paint("COLOR", listView1);
+                    paint("COLOR", listView2);
                     MessageBox.Show("NO ES POSIBLE CARGAR FORMULAS, ARCHIVO NO EXISTE");
                 }
             }
@@ -175,6 +190,16 @@ namespace Sistema_Planillas_Contabilidad
                 }
                 else
                 {
+                    listView1.View = View.Details;
+                    listView1.Columns.Add("DEBE");
+                    listView1.Columns[0].Width = listView1.Width;
+                    listView2.View = View.Details;
+                    listView2.Columns.Add("HABE");
+                    listView2.Columns[0].Width = listView1.Width;
+                    paint("WHITE", listView1);
+                    paint("WHITE", listView2);
+                    paint("COLOR", listView1);
+                    paint("COLOR", listView2);
                     MessageBox.Show("NO ES POSIBLE CARGAR FORMULAS, ARCHIVO NO EXISTE");
                 }
             }
@@ -187,6 +212,16 @@ namespace Sistema_Planillas_Contabilidad
                 }
                 else
                 {
+                    listView1.View = View.Details;
+                    listView1.Columns.Add("DEBE");
+                    listView1.Columns[0].Width = listView1.Width;
+                    listView2.View = View.Details;
+                    listView2.Columns.Add("HABE");
+                    listView2.Columns[0].Width = listView1.Width;
+                    paint("WHITE", listView1);
+                    paint("WHITE", listView2);
+                    paint("COLOR", listView1);
+                    paint("COLOR", listView2);
                     MessageBox.Show("NO ES POSIBLE CARGAR FORMULAS, ARCHIVO NO EXISTE");
                 }
             }
@@ -323,11 +358,7 @@ namespace Sistema_Planillas_Contabilidad
                 {
                     MessageBox.Show("FORMULA VACIA");
                 }
-                else if (comboBox2.Text == threeLine)
-                {
-                    MessageBox.Show("IMPOSIBLE CREAR ASIENTO, LOCACION NO VALIDA");
-                }
-                else if (comboBox4.Text == threeLine)
+                if (comboBox4.Text == threeLine)
                 {
                     MessageBox.Show("IMPOSIBLE CREAR ASIENTO, DEBE O HABE NO ELEGIDO PARA ASIENTO");
                 }
@@ -380,15 +411,15 @@ namespace Sistema_Planillas_Contabilidad
             string path = "";
             if (orderGlobalOrLocal == option1)
             {
-                if(textBox2.Text==option1)
+                if(comboBox2.Text==option1)
                 {
                     path = CorePathOfFolderCompaniesSistemaPlanillas + company + "\\" + deparment + "\\" + month + "\\" + "CORE-FORMULAS-SITS.txt";
                 }
-                else if (textBox2.Text == option2)
+                else if (comboBox2.Text == option2)
                 {
                     path = CorePathOfFolderCompaniesSistemaPlanillas + company + "\\" + coreExtraConfiguration + "\\" + sits + "\\" + "CORE-FORMULAS-SITS.txt";
 
-                }else if(textBox2.Text == option3)
+                }else if(comboBox2.Text == option3)
                 {
                     path = SpecificPathOfFolderConfigurationSits + "GLOBAL-FORMULAS-SITS.txt";
                 }
@@ -436,10 +467,9 @@ namespace Sistema_Planillas_Contabilidad
 
         private void buttonCharge_Click(object sender, EventArgs e)
         {
+            string path = "";
             if (orderGlobalOrLocal == option1)
             {
-                string path = "";
-
                 if (comboBox2.Text == option1)
                 {
                     path = CorePathOfFolderCompaniesSistemaPlanillas + company + "\\" + deparment + "\\" + month + "\\" + "CORE-FORMULAS-SITS.txt";

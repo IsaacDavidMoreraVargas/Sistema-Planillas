@@ -307,13 +307,22 @@ namespace Sistema_Planillas_Contabilidad
             }
             else
             {
-
                 if (menuOption == "CREATE")
                 {
+                    bool allowdCreateCompany=true;
+                    string MessagePoblem = "NO SE CREARA LA EMPRESA: ";
+                    string []storageNumberDays = new string[0];
                     List<string> listFoldersCreate = new List<string>();
                     //get number days of months
                     string pathDays = SpecificPathOfFolderConfigurationDaysOfMoths + "days.txt";
-                    string[] storageNumberDays = File.ReadAllLines(pathDays);
+                    if (File.Exists(pathDays))
+                    {
+                        storageNumberDays = File.ReadAllLines(pathDays);
+                    }else
+                    {
+                        MessagePoblem += "-NO EXISTEN MESES Y DIAS DEL AÑO\n";
+                        allowdCreateCompany = false;
+                    }
                     //getting the path to create company
                     string pathCompanyAndNameCompany = textBoxNameCompany.Text.ToUpper();
                     pathCompanyAndNameCompany = pathCompanyAndNameCompany.Replace(" ","_");
@@ -353,119 +362,128 @@ namespace Sistema_Planillas_Contabilidad
                             storageMonths.Add(months[month]);
                         }
                     }
-                    List<string []> storageDays = new List<string[]>();
-                    for(int month=0; month<storageNumberDays.Length; month++)
+
+                    if (allowdCreateCompany == true)
                     {
-                        foreach(string numbers in storageMonths)
+                        List<string[]> storageDays = new List<string[]>();
+                        for (int month = 0; month < storageNumberDays.Length; month++)
                         {
-                            if(storageNumberDays[month] == numbers)
+                            foreach (string numbers in storageMonths)
                             {
-                                ++month;
-                                string[] dividedFolders = callToGeneralMethods.getFoldersOFWeeks(storageNumberDays[month]);
-                                storageDays.Add(dividedFolders);
+                                if (storageNumberDays[month] == numbers)
+                                {
+                                    ++month;
+                                    string[] dividedFolders = callToGeneralMethods.getFoldersOFWeeks(storageNumberDays[month]);
+                                    storageDays.Add(dividedFolders);
+                                }
                             }
                         }
-                    }
-                    //add the deparments and months to the company
-                    foreach (string deparment in storageDeparments)
-                    {
-                        foreach (string month in storageMonths)
+                        //add the deparments and months to the company
+                        foreach (string deparment in storageDeparments)
                         {
-                            string pathCompanyAndNameCompanyAndMonth = pathCompanyAndNameCompany + "\\" + deparment + "\\" + month;
-                            listFoldersCreate.Add(pathCompanyAndNameCompanyAndMonth);
-                        }
-                    }
-                    //create list of Files with for every week number to write the data of tempalte
-                    List<string> listFilesCreate = new List<string>();
-                    foreach (string deparment in storageDeparments)
-                    {
-                        for (int month = 0; month < storageMonths.Count; month++)
-                        {
-                            string[] storageDaysOfMonths = storageDays[month];
-                            foreach (string days in storageDaysOfMonths)
+                            foreach (string month in storageMonths)
                             {
-                                string pathCompanyAndNameCompanyAndMonthAndDays = pathCompanyAndNameCompany + "\\" + deparment + "\\" + storageMonths[month]+ "\\" + days+".txt";
-                                listFilesCreate.Add(pathCompanyAndNameCompanyAndMonthAndDays);
+                                string pathCompanyAndNameCompanyAndMonth = pathCompanyAndNameCompany + "\\" + deparment + "\\" + month;
+                                listFoldersCreate.Add(pathCompanyAndNameCompanyAndMonth);
                             }
                         }
-                    }
-                    //path to get template
-                    string templateName = comboBoxChargeTemplate.Text;
-                    templateName = templateName.Replace(" ","_");
-                    string pathTemplate = SpecificPathOfFolderConfigurationTemplates + "\\" + templateName+".txt";
-                    string[] storageDataOfTemplate = File.ReadAllLines(pathTemplate);
-                    //create all folders
-                    foreach (string createThisDirectory in listFoldersCreate)
-                    {
-                        Directory.CreateDirectory(createThisDirectory);
-                    }
-                    //create all files
-                    foreach (string createThisFile in listFilesCreate)
-                    {
-                        FileStream fstreamFile = new FileStream(createThisFile, FileMode.OpenOrCreate, FileAccess.Write);
-                        StreamWriter writerFile = new StreamWriter(fstreamFile);
+                        //create list of Files with for every week number to write the data of tempalte
+                        List<string> listFilesCreate = new List<string>();
+                        foreach (string deparment in storageDeparments)
+                        {
+                            for (int month = 0; month < storageMonths.Count; month++)
+                            {
+                                string[] storageDaysOfMonths = storageDays[month];
+                                foreach (string days in storageDaysOfMonths)
+                                {
+                                    string pathCompanyAndNameCompanyAndMonthAndDays = pathCompanyAndNameCompany + "\\" + deparment + "\\" + storageMonths[month] + "\\" + days + ".txt";
+                                    listFilesCreate.Add(pathCompanyAndNameCompanyAndMonthAndDays);
+                                }
+                            }
+                        }
+                        //path to get template
+                        string templateName = comboBoxChargeTemplate.Text;
+                        templateName = templateName.Replace(" ", "_");
+                        string pathTemplate = SpecificPathOfFolderConfigurationTemplates + "\\" + templateName + ".txt";
+                        string[] storageDataOfTemplate = File.ReadAllLines(pathTemplate);
+                        //create all folders
+                        foreach (string createThisDirectory in listFoldersCreate)
+                        {
+                            Directory.CreateDirectory(createThisDirectory);
+                        }
+                        //create all files
+                        foreach (string createThisFile in listFilesCreate)
+                        {
+                            FileStream fstreamFile = new FileStream(createThisFile, FileMode.OpenOrCreate, FileAccess.Write);
+                            StreamWriter writerFile = new StreamWriter(fstreamFile);
+                            foreach (string line in storageDataOfTemplate)
+                            {
+                                writerFile.WriteLine(line);
+                            }
+                            writerFile.Close();
+                        }
+                        //adding Id To File
+                        string ID = textBoxLegalID.Text;
+                        string pathId = pathCompanyAndNameCompany + "\\" + coreExtraConfiguration + "\\" + exclusiveData + "\\" + "exclusive.txt";
+                        FileStream fstreamId = new FileStream(pathId, FileMode.OpenOrCreate, FileAccess.Write);
+                        StreamWriter writerId = new StreamWriter(fstreamId);
+                        writerId.WriteLine(ID);
+                        writerId.Close();
+                        //adding data To Template folder
+                        string pathGetTemplate = pathCompanyAndNameCompany + "\\" + coreExtraConfiguration + "\\" + template + "\\" + templateName + ".txt";
+                        FileStream fstreamTemplate = new FileStream(pathGetTemplate, FileMode.OpenOrCreate, FileAccess.Write);
+                        StreamWriter writerTemplate = new StreamWriter(fstreamTemplate);
                         foreach (string line in storageDataOfTemplate)
                         {
-                            writerFile.WriteLine(line);
+                            writerTemplate.WriteLine(line);
                         }
-                        writerFile.Close();
-                    }
-                    //adding Id To File
-                    string ID = textBoxLegalID.Text;
-                    string pathId = pathCompanyAndNameCompany + "\\" +coreExtraConfiguration+ "\\" + exclusiveData + "\\" + "exclusive.txt";
-                    FileStream fstreamId = new FileStream(pathId, FileMode.OpenOrCreate, FileAccess.Write);
-                    StreamWriter writerId = new StreamWriter(fstreamId);
-                    writerId.WriteLine(ID);
-                    writerId.Close();
-                    //adding data To Template folder
-                    string pathGetTemplate = pathCompanyAndNameCompany + "\\" + coreExtraConfiguration + "\\" + template + "\\" + templateName+ ".txt";
-                    FileStream fstreamTemplate = new FileStream(pathGetTemplate, FileMode.OpenOrCreate, FileAccess.Write);
-                    StreamWriter writerTemplate = new StreamWriter(fstreamTemplate);
-                    foreach (string line in storageDataOfTemplate)
-                    {
-                        writerTemplate.WriteLine(line);
-                    }
-                    writerTemplate.Close();
-                    //adding formula
-                    string pathFormula = SpecificPathOfFolderConfigurationFormulas;
-                    string []storageFormulas = Directory.GetFiles(pathFormula);
-                    foreach(string path in storageFormulas)
-                    {
-                        string pathReadFormula = path;
-                        string nameFomula = path.Replace(pathFormula, "");
-                        nameFomula = nameFomula.Replace("\\","");
-                        string pathWriteFormula = pathCompanyAndNameCompany + "\\" + coreExtraConfiguration + "\\" + formula + "\\" + nameFomula;
-                        string[] storageData = File.ReadAllLines(pathReadFormula);
-                        FileStream fstreamFormula = new FileStream(pathWriteFormula, FileMode.OpenOrCreate, FileAccess.Write);
-                        StreamWriter writerFormula = new StreamWriter(fstreamFormula);
-                        foreach (string line in storageData)
+                        writerTemplate.Close();
+                        //adding core formula
+                        string pathFormula = SpecificPathOfFolderConfigurationFormulas;
+                        string[] storageFormulas = Directory.GetFiles(pathFormula);
+                        foreach (string path in storageFormulas)
                         {
-                            writerFormula.WriteLine(line);
+                            string pathReadFormula = path;
+                            string nameFomula = path.Replace(pathFormula, "");
+                            nameFomula = nameFomula.Replace("\\", "");
+                            string pathWriteFormula = pathCompanyAndNameCompany + "\\" + coreExtraConfiguration + "\\" + formula + "\\" + nameFomula;
+                            string[] storageData = File.ReadAllLines(pathReadFormula);
+                            FileStream fstreamFormula = new FileStream(pathWriteFormula, FileMode.OpenOrCreate, FileAccess.Write);
+                            StreamWriter writerFormula = new StreamWriter(fstreamFormula);
+                            foreach (string line in storageData)
+                            {
+                                writerFormula.WriteLine(line);
+                            }
+                            writerFormula.Close();
                         }
-                        writerFormula.Close();
-                    }
-                    //adding Sits
-                    string pathSits= SpecificPathOfFolderConfigurationSits;
-                    string []storageSits = Directory.GetFiles(pathSits);
-                    foreach (string path in storageSits)
-                    {
-                        string pathReadSits = path;
-                        string nameSits = path.Replace(pathSits, "");
-                        nameSits = nameSits.Replace("\\", "");
-                        nameSits = nameSits.Replace("GLOBAL", "CORE");
-                        string[] storageData = File.ReadAllLines(pathReadSits);
-                        string pathWriteSits = pathCompanyAndNameCompany + "\\" + coreExtraConfiguration + "\\" + sits + "\\" + nameSits;
-                        FileStream fstreamSits = new FileStream(pathWriteSits, FileMode.OpenOrCreate, FileAccess.Write);
-                        StreamWriter writerSits = new StreamWriter(fstreamSits);
-                        foreach (string line in storageData)
+                        //adding formula Sits
+                        string pathSits = SpecificPathOfFolderConfigurationSits;
+                        string[] storageSits = Directory.GetFiles(pathSits);
+                        foreach (string path in storageSits)
                         {
-                            writerSits.WriteLine(line);
+                            string pathReadSits = path;
+                            string nameSits = path.Replace(pathSits, "");
+                            nameSits = nameSits.Replace("\\", "");
+                            nameSits = nameSits.Replace("GLOBAL", "CORE");
+                            string[] storageData = File.ReadAllLines(pathReadSits);
+                            string pathWriteSits = pathCompanyAndNameCompany + "\\" + coreExtraConfiguration + "\\" + sits + "\\" + nameSits;
+                            FileStream fstreamSits = new FileStream(pathWriteSits, FileMode.OpenOrCreate, FileAccess.Write);
+                            StreamWriter writerSits = new StreamWriter(fstreamSits);
+                            foreach (string line in storageData)
+                            {
+                                writerSits.WriteLine(line);
+                            }
+                            writerSits.Close();
                         }
-                        writerSits.Close();
+                   
+                        //here ends the creation of company
+                        setDataDefault();
+                        MessageBox.Show("EMPRESA CREADA EXITOSAMENTE");
+                    }else
+                    {
+                        MessageBox.Show(MessagePoblem);
                     }
-                    //here ends the creation of company
-                    setDataDefault();
-                    MessageBox.Show("EMPRESA CREADA EXITOSAMENTE");
+                    
                 }
                 else if (menuOption == "EDIT")
                 {

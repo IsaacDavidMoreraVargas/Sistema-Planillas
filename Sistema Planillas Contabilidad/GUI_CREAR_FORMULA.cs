@@ -138,11 +138,12 @@ namespace Sistema_Planillas_Contabilidad
                 comboBoxSave.Items.Add(opcion2);
             }
 
+            listView1.View = View.Details;
+            listView1.Columns.Add("FORMULAS");
+            listView1.Columns[0].Width = listView1.Width;
+
             if (orderGlobalOrLocal == opcion1)
             {
-                listView1.View = View.Details;
-                listView1.Columns.Add("FORMULAS");
-                listView1.Columns[0].Width = listView1.Width;
                 string pathReadFormula = CorePathOfFolderCompaniesSistemaPlanillas + company + "\\" + deparment + "\\" + month + "\\" + "CORE-FORMULAS.txt";
                 if (File.Exists(pathReadFormula))
                 {
@@ -159,9 +160,6 @@ namespace Sistema_Planillas_Contabilidad
             }
             else if (orderGlobalOrLocal == opcion2)
             {
-                listView1.View = View.Details;
-                listView1.Columns.Add("FORMULAS");
-                listView1.Columns[0].Width = listView1.Width;
                 string pathReadFormula = SpecificPathOfFolderConfigurationFormulas + "GLOBAL-FORMULAS.txt"; ;
                 if (File.Exists(pathReadFormula))
                 {
@@ -180,24 +178,31 @@ namespace Sistema_Planillas_Contabilidad
 
         private void buttonAdd_Click(object sender, EventArgs e)
         {
-            if (orderAddOrEdit == "EDITAR")
+            if (textBox1.Text == " " || textBox1.Text == "")
             {
-                listView1.Items[indexColumn].Text = textBox1.Text;
-                orderAddOrEdit = "";
-                MessageBox.Show("EDITADO EXITOSAMENTE");
+                MessageBox.Show("NO SE AÑADIRA, ESTA VACIO");
             }
             else
             {
-                listView1.Items.Add(textBox1.Text);
+                if (orderAddOrEdit == "EDITAR")
+                {
+                    listView1.Items[indexColumn].Text = textBox1.Text;
+                    orderAddOrEdit = "";
+                    MessageBox.Show("EDITADO EXITOSAMENTE");
+                }
+                else
+                {
+                    listView1.Items.Add(textBox1.Text);
+                }
+                textBox1.Text = "";
             }
-            textBox1.Text = "";
         }
 
         private void buttonNew_Click(object sender, EventArgs e)
         {
             textBox1.Text = "";
             comboBoxCharge.Text=threeLine;
-            comboBoxSave.Text = threeLine;
+            comboBoxSave.Text=threeLine;
         }
 
         private void combox1Add(object sender, EventArgs e)
@@ -208,7 +213,10 @@ namespace Sistema_Planillas_Contabilidad
         private void buttonSave_Click_1(object sender, EventArgs e)
         {
             string path = "";
-            if (comboBoxSave.Text == threeLine)
+            if(listView1.Items.Count==0)
+            {
+                MessageBox.Show("NO SE GUARDARA, NO EXISTEN DATOS A GUARDAR");
+            }else if (comboBoxSave.Text == threeLine)
             {
                 MessageBox.Show("IMPOSIBLE CARGAR, UBICACION CARGAR NO ELEGIDA");
             }
@@ -345,11 +353,8 @@ namespace Sistema_Planillas_Contabilidad
 
                 if (File.Exists(path))
                 {
-                    string[] storageFormulas = File.ReadAllLines(path);
                     listView1.Items.Clear();
-                    listView1.View = View.Details;
-                    listView1.Columns.Add("FORMULAS");
-                    listView1.Columns[0].Width = listView1.Width;
+                    string[] storageFormulas = File.ReadAllLines(path);
                     foreach(string formula in storageFormulas)
                     {
                         if (formula != tagStartFormula && formula != tagEndFormula)
