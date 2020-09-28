@@ -3215,12 +3215,34 @@ namespace Sistema_Planillas_Contabilidad
                 }
                 else
                 {
+                    string week = "";
+                    if (clickOnCellDataGrid1 == true)
+                    {
+                        week = "SEMANA 1";
+                    }
+                    else if (clickOnCellDataGrid2 == true)
+                    {
+                        week = "SEMANA 2";
+                    }
+                    else if (clickOnCellDataGrid3 == true)
+                    {
+                        week = "SEMANA 3";
+                    }
+                    else if (clickOnCellDataGrid4 == true)
+                    {
+                        week = "SEMANA 4";
+                    }
+                    else if (clickOnCellDataGrid5 == true)
+                    {
+                        week = "TOTAL";
+                    }
+
                     SaveFileDialog sfd = new SaveFileDialog();
                     sfd.Filter = "PDF (*.pdf)|*.pdf";
-                    string name = company + "-" + deparment + "-" + month +"-"+ "Output.pdf";
+                    string name = company + "-" + deparment + "-" + month +"-"+ week + "-" +"Output.pdf";
                     sfd.FileName = name;
                     bool fileError = false;
-                    if (sfd.ShowDialog() == DialogResult.OK || sfd.ShowDialog() == DialogResult.Cancel)
+                    if (sfd.ShowDialog() == DialogResult.OK)
                     {
                         int number = 0;
                         if (File.Exists(sfd.FileName))
@@ -3268,7 +3290,7 @@ namespace Sistema_Planillas_Contabilidad
                                 double multiplaying = 0;
                                 int sizeFONT = 0;
                                 int sizeHead = 25;
-                                MessageBox.Show(amountColumns.ToString());
+
                                 if (amountColumns >= 40)
                                 {
                                     multiplaying = 0.2;
@@ -3316,8 +3338,18 @@ namespace Sistema_Planillas_Contabilidad
                                 }
 
                                 //
+                                string id = CorePathOfFolderCompaniesSistemaPlanillas + company + "\\" + coreExtraConfiguration + "\\" + exclusiveData + "\\"+"exclusive.txt";
+                                string[] storageID;
+                                if(File.Exists(id))
+                                {
+                                    storageID = File.ReadAllLines(id);
+                                    id = " - CEDULA: "+ storageID[0];
+                                }else
+                                {
+                                    id = "";
+                                }
                                 iTextSharp.text.Font headFont = new iTextSharp.text.Font((iTextSharp.text.Font.FontFamily)iTextSharp.text.Font.BOLD, sizeHead, iTextSharp.text.Font.NORMAL);
-                                string headOfTitle = company + "-" + deparment + "-" + month;
+                                string headOfTitle = company+ id;
                                 PdfPCell headCell = new PdfPCell(new Phrase(headOfTitle, headFont));
                                 headCell.HorizontalAlignment = Element.ALIGN_CENTER;
                                 headCell.BackgroundColor = new iTextSharp.text.BaseColor(224, 224, 224);
@@ -3325,7 +3357,22 @@ namespace Sistema_Planillas_Contabilidad
                                 fatherTable.WidthPercentage = 100;
                                 fatherTable.AddCell(headCell);
                                 //
-                                
+                                iTextSharp.text.Font secondHeadFont = new iTextSharp.text.Font((iTextSharp.text.Font.FontFamily)iTextSharp.text.Font.BOLD, 12, iTextSharp.text.Font.NORMAL);
+                                string headDept = deparment;
+                                string headMonth = month;
+                                PdfPCell secondHeadCell = new PdfPCell(new Phrase(headDept, secondHeadFont));
+                                secondHeadCell.HorizontalAlignment = Element.ALIGN_CENTER;
+                                secondHeadCell.BackgroundColor = new iTextSharp.text.BaseColor(180, 211, 235);
+                                PdfPTable secondFatherTable = new PdfPTable(3);
+                                secondFatherTable.WidthPercentage = 100;
+                                secondFatherTable.AddCell(secondHeadCell);
+                                secondHeadCell = new PdfPCell(new Phrase(headMonth, secondHeadFont));
+                                secondHeadCell.BackgroundColor = new iTextSharp.text.BaseColor(224, 224, 224);
+                                secondFatherTable.AddCell(secondHeadCell);
+                                secondHeadCell = new PdfPCell(new Phrase(week, secondHeadFont));
+                                secondHeadCell.BackgroundColor = new iTextSharp.text.BaseColor(180, 211, 235);
+                                secondFatherTable.AddCell(secondHeadCell);
+                                fatherTable.AddCell(secondFatherTable);
                                 //
                                 iTextSharp.text.Font fontColumn = new iTextSharp.text.Font((iTextSharp.text.Font.FontFamily)iTextSharp.text.Font.BOLD, sizeFONT, iTextSharp.text.Font.NORMAL);
                                 iTextSharp.text.Font fontRow = new iTextSharp.text.Font((iTextSharp.text.Font.FontFamily)iTextSharp.text.Font.BOLD, sizeFONT, iTextSharp.text.Font.NORMAL);
