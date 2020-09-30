@@ -1,0 +1,676 @@
+<startDataGrid1>
+True
+False
+INDEX
+True
+False
+CEDULA
+True
+False
+NOMBRE
+True
+False
+APELLIDO 1
+True
+False
+APELLIDO 2
+True
+False
+FECHA INGRESO
+True
+False
+ORD DIU LUN
+True
+False
+EXT DIU LUN
+True
+False
+ORD NOC LUN
+True
+False
+EXT NOC LUN
+True
+False
+ORD DIU MAR
+True
+False
+EXT DIU MAR
+True
+False
+ORD NOC MAR
+True
+False
+EXT NOC MAR
+True
+False
+ORD DIU MIE
+True
+False
+EXT DIU MIE
+True
+False
+ORD NOC MIE
+True
+False
+EXT NOC MIE
+True
+False
+ORD DIU JUE
+True
+False
+EXT DIU JUE
+True
+False
+ORD NOC JUE
+True
+False
+EXT NOC JUE
+True
+False
+ORD DIU VIE
+True
+False
+EXT DIU VIE
+True
+False
+ORD NOC VIE
+True
+False
+EXT NOC VIE
+True
+False
+ORD DIU SAB
+True
+False
+EXT DIU SAB
+True
+False
+ORD NOC SAB
+True
+False
+EXT NOC SAB
+True
+False
+ORD DIU DOM
+True
+False
+EXT DIU DOM
+True
+False
+ORD NOC DOM
+True
+False
+EXT NOC DOM
+True
+False
+PRE HOR DIU
+True
+False
+PRE HOR NOC
+True
+False
+TOT HOR ORD DIU
+True
+False
+TOT HOR EXT DIU
+True
+False
+TOT HOR ORD NOC
+True
+False
+TOT HOR EXT NOC
+True
+False
+COST ORD DIU
+True
+False
+COST EXT DIU
+True
+False
+COST ORD NOC
+True
+False
+COST EXT NOC
+True
+False
+TOTAL SALAR
+True
+False
+VACACIONES
+True
+False
+REAJUSTES
+True
+False
+INCAPACIDAD
+True
+False
+TOTAL SALAR BRU
+True
+False
+OTRAS DEDUCCIONES
+True
+False
+FUNERARIA
+True
+False
+C.C.S.S
+True
+False
+PRESTAMOS
+True
+False
+VARIOS
+True
+False
+SALARIO NETO
+True
+False
+</endDataGrid1>
+<startDataGrid2>
+True
+False
+INDEX
+True
+False
+CEDULA
+True
+False
+NOMBRE
+True
+False
+APELLIDO 1
+True
+False
+APELLIDO 2
+True
+False
+FECHA INGRESO
+True
+False
+ORD DIU LUN
+True
+False
+EXT DIU LUN
+True
+False
+ORD NOC LUN
+True
+False
+EXT NOC LUN
+True
+False
+ORD DIU MAR
+True
+False
+EXT DIU MAR
+True
+False
+ORD NOC MAR
+True
+False
+EXT NOC MAR
+True
+False
+ORD DIU MIE
+True
+False
+EXT DIU MIE
+True
+False
+ORD NOC MIE
+True
+False
+EXT NOC MIE
+True
+False
+ORD DIU JUE
+True
+False
+EXT DIU JUE
+True
+False
+ORD NOC JUE
+True
+False
+EXT NOC JUE
+True
+False
+ORD DIU VIE
+True
+False
+EXT DIU VIE
+True
+False
+ORD NOC VIE
+True
+False
+EXT NOC VIE
+True
+False
+ORD DIU SAB
+True
+False
+EXT DIU SAB
+True
+False
+ORD NOC SAB
+True
+False
+EXT NOC SAB
+True
+False
+ORD DIU DOM
+True
+False
+EXT DIU DOM
+True
+False
+ORD NOC DOM
+True
+False
+EXT NOC DOM
+True
+False
+PRE HOR DIU
+True
+False
+PRE HOR NOC
+True
+False
+TOT HOR ORD DIU
+True
+False
+TOT HOR EXT DIU
+True
+False
+TOT HOR ORD NOC
+True
+False
+TOT HOR EXT NOC
+True
+False
+COST ORD DIU
+True
+False
+COST EXT DIU
+True
+False
+COST ORD NOC
+True
+False
+COST EXT NOC
+True
+False
+TOTAL SALAR
+True
+False
+VACACIONES
+True
+False
+REAJUSTES
+True
+False
+INCAPACIDAD
+True
+False
+TOTAL SALAR BRU
+True
+False
+OTRAS DEDUCCIONES
+True
+False
+FUNERARIA
+True
+False
+C.C.S.S
+True
+False
+PRESTAMOS
+True
+False
+VARIOS
+True
+False
+SALARIO NETO
+True
+False
+</endDataGrid2>
+<startDataGrid3>
+True
+True
+INDEX
+True
+False
+CEDULA
+True
+False
+NOMBRE
+True
+False
+APELLIDO 1
+True
+False
+APELLIDO 2
+True
+False
+FECHA INGRESO
+True
+False
+ORD DIU LUN
+True
+True
+EXT DIU LUN
+True
+True
+ORD NOC LUN
+True
+True
+EXT NOC LUN
+True
+True
+ORD DIU MAR
+True
+True
+EXT DIU MAR
+True
+True
+ORD NOC MAR
+True
+True
+EXT NOC MAR
+True
+True
+ORD DIU MIE
+True
+True
+EXT DIU MIE
+True
+True
+ORD NOC MIE
+True
+True
+EXT NOC MIE
+True
+True
+ORD DIU JUE
+True
+True
+EXT DIU JUE
+True
+True
+ORD NOC JUE
+True
+True
+EXT NOC JUE
+True
+True
+ORD DIU VIE
+True
+True
+EXT DIU VIE
+True
+True
+ORD NOC VIE
+True
+True
+EXT NOC VIE
+True
+True
+ORD DIU SAB
+True
+True
+EXT DIU SAB
+True
+True
+ORD NOC SAB
+True
+True
+EXT NOC SAB
+True
+True
+ORD DIU DOM
+True
+True
+EXT DIU DOM
+True
+True
+ORD NOC DOM
+True
+True
+EXT NOC DOM
+True
+True
+PRE HOR DIU
+True
+True
+PRE HOR NOC
+True
+True
+TOT HOR ORD DIU
+True
+True
+TOT HOR EXT DIU
+True
+True
+TOT HOR ORD NOC
+True
+True
+TOT HOR EXT NOC
+True
+True
+COST ORD DIU
+True
+True
+COST EXT DIU
+True
+True
+COST ORD NOC
+True
+True
+COST EXT NOC
+True
+True
+TOTAL SALAR
+True
+True
+VACACIONES
+True
+True
+REAJUSTES
+True
+True
+INCAPACIDAD
+True
+True
+TOTAL SALAR BRU
+True
+True
+OTRAS DEDUCCIONES
+True
+True
+FUNERARIA
+True
+True
+C.C.S.S
+True
+True
+PRESTAMOS
+True
+True
+VARIOS
+True
+True
+SALARIO NETO
+True
+True
+</endDataGrid3>
+<startDataGrid4>
+True
+True
+INDEX
+True
+False
+CEDULA
+True
+False
+NOMBRE
+True
+False
+APELLIDO 1
+True
+False
+APELLIDO 2
+True
+False
+FECHA INGRESO
+True
+False
+ORD DIU LUN
+True
+True
+EXT DIU LUN
+True
+True
+ORD NOC LUN
+True
+True
+EXT NOC LUN
+True
+True
+ORD DIU MAR
+True
+True
+EXT DIU MAR
+True
+True
+ORD NOC MAR
+True
+True
+EXT NOC MAR
+True
+True
+ORD DIU MIE
+True
+True
+EXT DIU MIE
+True
+True
+ORD NOC MIE
+True
+True
+EXT NOC MIE
+True
+True
+ORD DIU JUE
+True
+True
+EXT DIU JUE
+True
+True
+ORD NOC JUE
+True
+True
+EXT NOC JUE
+True
+True
+ORD DIU VIE
+True
+True
+EXT DIU VIE
+True
+True
+ORD NOC VIE
+True
+True
+EXT NOC VIE
+True
+True
+ORD DIU SAB
+True
+True
+EXT DIU SAB
+True
+True
+ORD NOC SAB
+True
+True
+EXT NOC SAB
+True
+True
+ORD DIU DOM
+True
+True
+EXT DIU DOM
+True
+True
+ORD NOC DOM
+True
+True
+EXT NOC DOM
+True
+True
+PRE HOR DIU
+True
+False
+PRE HOR NOC
+True
+False
+TOT HOR ORD DIU
+True
+True
+TOT HOR EXT DIU
+True
+True
+TOT HOR ORD NOC
+True
+True
+TOT HOR EXT NOC
+True
+True
+COST ORD DIU
+True
+True
+COST EXT DIU
+True
+True
+COST ORD NOC
+True
+True
+COST EXT NOC
+True
+True
+TOTAL SALAR
+True
+True
+VACACIONES
+True
+True
+REAJUSTES
+True
+True
+INCAPACIDAD
+True
+False
+TOTAL SALAR BRU
+True
+True
+OTRAS DEDUCCIONES
+True
+True
+FUNERARIA
+True
+True
+C.C.S.S
+True
+False
+PRESTAMOS
+True
+False
+VARIOS
+True
+True
+SALARIO NETO
+True
+True
+</endDataGrid4>

@@ -31,9 +31,12 @@ namespace Sistema_Planillas_Contabilidad
         private void StartPaths()
         {
             string[] arrowCreateFirstTimeGeneralFolders = { "FOLDERCOMPANIES", "CORECONFIGURATIONCOMPANIES"};
-            string path = Directory.GetCurrentDirectory();
-            //principal core path
-            path = path.Replace("\\bin\\Debug", "\\");
+            string path = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\" + "Sistema Planillas Contabilidad";
+            if (!Directory.Exists(path))
+            {
+                Directory.CreateDirectory(path);
+            }
+            path += "\\";
             startThePaths.CorePathOfFolderSistemaPlanillas = path;
             //other core path
             int sizeArray = arrowCreateFirstTimeGeneralFolders.Length;
