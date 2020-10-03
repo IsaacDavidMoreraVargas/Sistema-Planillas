@@ -68,8 +68,9 @@
             // 
             // checkedListBox1
             // 
-            this.checkedListBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
+            this.checkedListBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.checkedListBox1.CheckOnClick = true;
             this.checkedListBox1.FormattingEnabled = true;
             this.checkedListBox1.HorizontalScrollbar = true;
@@ -150,7 +151,7 @@
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 36F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 36F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 34F));
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 133F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 134F));
             this.tableLayoutPanel2.Controls.Add(this.buttonKey2, 1, 0);
             this.tableLayoutPanel2.Controls.Add(this.buttonKey1, 0, 0);
             this.tableLayoutPanel2.Controls.Add(this.buttonEliminate, 8, 0);
@@ -177,7 +178,7 @@
             this.buttonKey2.Location = new System.Drawing.Point(31, 2);
             this.buttonKey2.Margin = new System.Windows.Forms.Padding(2);
             this.buttonKey2.Name = "buttonKey2";
-            this.buttonKey2.Size = new System.Drawing.Size(25, 25);
+            this.buttonKey2.Size = new System.Drawing.Size(24, 25);
             this.buttonKey2.TabIndex = 1;
             this.buttonKey2.Text = "=";
             this.buttonKey2.UseVisualStyleBackColor = true;
@@ -204,10 +205,10 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.buttonEliminate.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.buttonEliminate.Location = new System.Drawing.Point(270, 2);
+            this.buttonEliminate.Location = new System.Drawing.Point(269, 2);
             this.buttonEliminate.Margin = new System.Windows.Forms.Padding(2);
             this.buttonEliminate.Name = "buttonEliminate";
-            this.buttonEliminate.Size = new System.Drawing.Size(130, 25);
+            this.buttonEliminate.Size = new System.Drawing.Size(131, 25);
             this.buttonEliminate.TabIndex = 13;
             this.buttonEliminate.Text = "ELIMINAR FORMULA";
             this.buttonEliminate.UseVisualStyleBackColor = true;
@@ -219,7 +220,7 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.buttonKey3.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.buttonKey3.Location = new System.Drawing.Point(60, 2);
+            this.buttonKey3.Location = new System.Drawing.Point(59, 2);
             this.buttonKey3.Margin = new System.Windows.Forms.Padding(2);
             this.buttonKey3.Name = "buttonKey3";
             this.buttonKey3.Size = new System.Drawing.Size(31, 25);
@@ -234,7 +235,7 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.buttonKey5.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.buttonKey5.Location = new System.Drawing.Point(130, 2);
+            this.buttonKey5.Location = new System.Drawing.Point(129, 2);
             this.buttonKey5.Margin = new System.Windows.Forms.Padding(2);
             this.buttonKey5.Name = "buttonKey5";
             this.buttonKey5.Size = new System.Drawing.Size(30, 25);
@@ -250,7 +251,7 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.buttonKey6.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.buttonKey6.Location = new System.Drawing.Point(164, 2);
+            this.buttonKey6.Location = new System.Drawing.Point(163, 2);
             this.buttonKey6.Margin = new System.Windows.Forms.Padding(2);
             this.buttonKey6.Name = "buttonKey6";
             this.buttonKey6.Size = new System.Drawing.Size(32, 25);
@@ -266,7 +267,7 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.buttonKey4.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.buttonKey4.Location = new System.Drawing.Point(95, 2);
+            this.buttonKey4.Location = new System.Drawing.Point(94, 2);
             this.buttonKey4.Margin = new System.Windows.Forms.Padding(2);
             this.buttonKey4.Name = "buttonKey4";
             this.buttonKey4.Size = new System.Drawing.Size(31, 25);
@@ -282,7 +283,7 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.buttonKey7.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.buttonKey7.Location = new System.Drawing.Point(236, 2);
+            this.buttonKey7.Location = new System.Drawing.Point(235, 2);
             this.buttonKey7.Margin = new System.Windows.Forms.Padding(2);
             this.buttonKey7.Name = "buttonKey7";
             this.buttonKey7.Size = new System.Drawing.Size(30, 25);
@@ -298,7 +299,7 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.buttonKey8.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.buttonKey8.Location = new System.Drawing.Point(200, 2);
+            this.buttonKey8.Location = new System.Drawing.Point(199, 2);
             this.buttonKey8.Margin = new System.Windows.Forms.Padding(2);
             this.buttonKey8.Name = "buttonKey8";
             this.buttonKey8.Size = new System.Drawing.Size(32, 25);
@@ -439,8 +440,9 @@
             // 
             // comboBox2
             // 
-            this.comboBox2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
+            this.comboBox2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.comboBox2.FormattingEnabled = true;
             this.comboBox2.Location = new System.Drawing.Point(461, 26);
             this.comboBox2.Margin = new System.Windows.Forms.Padding(2);
@@ -496,6 +498,8 @@
             // 
             // listView1
             // 
+            this.listView1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.listView1.HideSelection = false;
             this.listView1.Location = new System.Drawing.Point(166, 54);
             this.listView1.Name = "listView1";
@@ -553,6 +557,7 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "GUI_SELECCIONAR_ASIENTOS";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "SISTEMA SELECCIONAR ASIENTOS";
             this.Load += new System.EventHandler(this.GUI_SELECCIONAR_ASIENTOS_Load);
             this.tableLayoutPanel2.ResumeLayout(false);

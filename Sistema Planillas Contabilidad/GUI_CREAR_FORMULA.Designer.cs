@@ -59,7 +59,7 @@
             // comboBox1
             // 
             this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(2, 6);
+            this.comboBox1.Location = new System.Drawing.Point(5, 82);
             this.comboBox1.Margin = new System.Windows.Forms.Padding(2);
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(315, 21);
@@ -69,8 +69,6 @@
             // tableLayoutPanel1
             // 
             this.tableLayoutPanel1.AllowDrop = true;
-            this.tableLayoutPanel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.tableLayoutPanel1.AutoScroll = true;
             this.tableLayoutPanel1.AutoSize = true;
             this.tableLayoutPanel1.ColumnCount = 7;
@@ -90,13 +88,13 @@
             this.tableLayoutPanel1.Controls.Add(this.comboBoxSave, 3, 0);
             this.tableLayoutPanel1.Controls.Add(this.buttonSave, 3, 1);
             this.tableLayoutPanel1.Controls.Add(this.buttonEdit, 2, 1);
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(2, 35);
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(5, 110);
             this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(2);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 2;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(666, 82);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(674, 82);
             this.tableLayoutPanel1.TabIndex = 3;
             // 
             // buttonNew
@@ -137,7 +135,7 @@
             this.buttonCloseProgram.Location = new System.Drawing.Point(548, 27);
             this.buttonCloseProgram.Margin = new System.Windows.Forms.Padding(2);
             this.buttonCloseProgram.Name = "buttonCloseProgram";
-            this.buttonCloseProgram.Size = new System.Drawing.Size(116, 53);
+            this.buttonCloseProgram.Size = new System.Drawing.Size(124, 53);
             this.buttonCloseProgram.TabIndex = 4;
             this.buttonCloseProgram.Text = "SALIR";
             this.buttonCloseProgram.UseVisualStyleBackColor = true;
@@ -243,12 +241,12 @@
             this.tableLayoutPanel2.Controls.Add(this.buttonKey5, 3, 0);
             this.tableLayoutPanel2.Controls.Add(this.buttonKey6, 4, 0);
             this.tableLayoutPanel2.Controls.Add(this.buttonKey4, 3, 0);
-            this.tableLayoutPanel2.Location = new System.Drawing.Point(321, 2);
+            this.tableLayoutPanel2.Location = new System.Drawing.Point(324, 77);
             this.tableLayoutPanel2.Margin = new System.Windows.Forms.Padding(2);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
             this.tableLayoutPanel2.RowCount = 1;
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(239, 29);
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(255, 29);
             this.tableLayoutPanel2.TabIndex = 4;
             // 
             // buttonKey2
@@ -350,12 +348,12 @@
             // 
             this.textBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox1.Location = new System.Drawing.Point(3, 222);
+            this.textBox1.Location = new System.Drawing.Point(5, 11);
             this.textBox1.Margin = new System.Windows.Forms.Padding(2);
             this.textBox1.Multiline = true;
             this.textBox1.Name = "textBox1";
             this.textBox1.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.textBox1.Size = new System.Drawing.Size(669, 62);
+            this.textBox1.Size = new System.Drawing.Size(674, 62);
             this.textBox1.TabIndex = 5;
             this.textBox1.WordWrap = false;
             // 
@@ -367,7 +365,7 @@
             this.listView1.HideSelection = false;
             this.listView1.Location = new System.Drawing.Point(3, 2);
             this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(669, 215);
+            this.listView1.Size = new System.Drawing.Size(685, 215);
             this.listView1.TabIndex = 6;
             this.listView1.UseCompatibleStateImageBehavior = false;
             this.listView1.SelectedIndexChanged += new System.EventHandler(this.listView1_SelectedIndexChanged);
@@ -381,10 +379,11 @@
             this.panel1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.panel1.Controls.Add(this.tableLayoutPanel1);
             this.panel1.Controls.Add(this.comboBox1);
+            this.panel1.Controls.Add(this.textBox1);
             this.panel1.Controls.Add(this.tableLayoutPanel2);
-            this.panel1.Location = new System.Drawing.Point(3, 289);
+            this.panel1.Location = new System.Drawing.Point(3, 223);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(669, 119);
+            this.panel1.Size = new System.Drawing.Size(685, 199);
             this.panel1.TabIndex = 7;
             // 
             // GUI_CREATE_FORMULA
@@ -392,13 +391,13 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.ClientSize = new System.Drawing.Size(677, 410);
+            this.ClientSize = new System.Drawing.Size(693, 421);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.listView1);
-            this.Controls.Add(this.textBox1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "GUI_CREATE_FORMULA";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "SISTEMA CREAR FORMULA";
             this.Load += new System.EventHandler(this.GUI_CREATE_FORMULA_Load);
             this.tableLayoutPanel1.ResumeLayout(false);
@@ -406,7 +405,6 @@
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
