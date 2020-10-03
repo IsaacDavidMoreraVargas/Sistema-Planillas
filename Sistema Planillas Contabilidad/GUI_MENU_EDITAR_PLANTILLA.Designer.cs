@@ -182,6 +182,8 @@
             this.Controls.Add(this.tableLayoutPanel1);
             this.Controls.Add(this.LISTEMPLATE);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "GUI_MENU_EDITAR_PLANTILLA";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "MENU SELECCION EDITAR PLANTILLA";
