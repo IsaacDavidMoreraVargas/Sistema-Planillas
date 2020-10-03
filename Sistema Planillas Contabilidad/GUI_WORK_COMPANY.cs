@@ -2236,6 +2236,7 @@ namespace Sistema_Planillas_Contabilidad
                         }
                         setSaveDatagridOnChanges();
                         MessageBox.Show("IMPORTACION FILAS EXITOSA");
+                        actionHappened = true;
                     }
                     else if (orderRows == startRows)
                     {
@@ -2269,6 +2270,7 @@ namespace Sistema_Planillas_Contabilidad
                         }
                         setSaveDatagridOnChanges();
                         MessageBox.Show("IMPORTACION FILAS EXITOSA");
+                        actionHappened = true;
                     }
                     else if (orderRows == newRows)
                     {
@@ -2305,9 +2307,10 @@ namespace Sistema_Planillas_Contabilidad
                         }
                         setSaveDatagridOnChanges();
                         MessageBox.Show("IMPORTACION FILAS EXITOSA");
+                        actionHappened = true;
                     }
                     baseResizeDatasGridView();
-                    actionHappened = true;
+                    
                 }
             }
 

@@ -9,7 +9,7 @@ using System.Windows.Forms;
 
 namespace Sistema_Planillas_Contabilidad
 {
-    public partial class GUI_MENU_EDITAR_PLANTILLA : Sistema_Planillas_Contabilidad.MACHOTE_GENERAL_MENUS
+    public partial class GUI_MENU_EDITAR_PLANTILLA : Form
     {
         bool AllowEdit = false;
         public GUI_MENU_EDITAR_PLANTILLA()

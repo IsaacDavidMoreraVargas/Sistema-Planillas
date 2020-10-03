@@ -51,9 +51,10 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.label1.BackColor = System.Drawing.Color.Transparent;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F);
-            this.label1.Location = new System.Drawing.Point(3, 95);
+            this.label1.Location = new System.Drawing.Point(2, 79);
+            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(633, 52);
+            this.label1.Size = new System.Drawing.Size(475, 42);
             this.label1.TabIndex = 0;
             this.label1.Text = "PLANILLA SEMANAL OPERARIOS";
             this.label1.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
@@ -66,9 +67,10 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.labelWeek.BackColor = System.Drawing.Color.Transparent;
             this.labelWeek.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F);
-            this.labelWeek.Location = new System.Drawing.Point(3, 155);
+            this.labelWeek.Location = new System.Drawing.Point(2, 127);
+            this.labelWeek.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.labelWeek.Name = "labelWeek";
-            this.labelWeek.Size = new System.Drawing.Size(633, 52);
+            this.labelWeek.Size = new System.Drawing.Size(475, 42);
             this.labelWeek.TabIndex = 1;
             this.labelWeek.Text = "PLANILLA SEMANAL DEL AL";
             this.labelWeek.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
@@ -78,9 +80,10 @@
             // 
             this.labelCompany.BackColor = System.Drawing.Color.Transparent;
             this.labelCompany.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F);
-            this.labelCompany.Location = new System.Drawing.Point(3, 0);
+            this.labelCompany.Location = new System.Drawing.Point(2, 0);
+            this.labelCompany.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.labelCompany.Name = "labelCompany";
-            this.labelCompany.Size = new System.Drawing.Size(598, 21);
+            this.labelCompany.Size = new System.Drawing.Size(448, 17);
             this.labelCompany.TabIndex = 2;
             this.labelCompany.Text = "EMPRESA";
             this.labelCompany.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
@@ -93,9 +96,10 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.labelID.BackColor = System.Drawing.Color.Transparent;
             this.labelID.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F);
-            this.labelID.Location = new System.Drawing.Point(3, 37);
+            this.labelID.Location = new System.Drawing.Point(2, 32);
+            this.labelID.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.labelID.Name = "labelID";
-            this.labelID.Size = new System.Drawing.Size(633, 25);
+            this.labelID.Size = new System.Drawing.Size(475, 20);
             this.labelID.TabIndex = 3;
             this.labelID.Text = "CEDULA JURIDICA";
             this.labelID.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
@@ -115,13 +119,14 @@
             this.DEBET,
             this.CREDIT});
             this.dataGridView1.GridColor = System.Drawing.SystemColors.HotTrack;
-            this.dataGridView1.Location = new System.Drawing.Point(3, 248);
+            this.dataGridView1.Location = new System.Drawing.Point(2, 202);
+            this.dataGridView1.Margin = new System.Windows.Forms.Padding(2);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
             this.dataGridView1.RowHeadersVisible = false;
             this.dataGridView1.RowHeadersWidth = 51;
             this.dataGridView1.RowTemplate.Height = 24;
-            this.dataGridView1.Size = new System.Drawing.Size(633, 440);
+            this.dataGridView1.Size = new System.Drawing.Size(475, 358);
             this.dataGridView1.TabIndex = 4;
             // 
             // CODE
@@ -130,7 +135,7 @@
             this.CODE.MinimumWidth = 6;
             this.CODE.Name = "CODE";
             this.CODE.ReadOnly = true;
-            this.CODE.Width = 92;
+            this.CODE.Width = 74;
             // 
             // DESCRIPTION
             // 
@@ -138,7 +143,7 @@
             this.DESCRIPTION.MinimumWidth = 6;
             this.DESCRIPTION.Name = "DESCRIPTION";
             this.DESCRIPTION.ReadOnly = true;
-            this.DESCRIPTION.Width = 129;
+            this.DESCRIPTION.Width = 105;
             // 
             // DEBET
             // 
@@ -146,7 +151,7 @@
             this.DEBET.MinimumWidth = 6;
             this.DEBET.Name = "DEBET";
             this.DEBET.ReadOnly = true;
-            this.DEBET.Width = 88;
+            this.DEBET.Width = 72;
             // 
             // CREDIT
             // 
@@ -154,13 +159,15 @@
             this.CREDIT.MinimumWidth = 6;
             this.CREDIT.Name = "CREDIT";
             this.CREDIT.ReadOnly = true;
-            this.CREDIT.Width = 98;
+            this.CREDIT.Width = 80;
             // 
             // buttonCloseProgram
             // 
-            this.buttonCloseProgram.Location = new System.Drawing.Point(3, 694);
+            this.buttonCloseProgram.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.buttonCloseProgram.Location = new System.Drawing.Point(2, 564);
+            this.buttonCloseProgram.Margin = new System.Windows.Forms.Padding(2);
             this.buttonCloseProgram.Name = "buttonCloseProgram";
-            this.buttonCloseProgram.Size = new System.Drawing.Size(95, 31);
+            this.buttonCloseProgram.Size = new System.Drawing.Size(71, 25);
             this.buttonCloseProgram.TabIndex = 5;
             this.buttonCloseProgram.Text = "SALIR";
             this.buttonCloseProgram.UseVisualStyleBackColor = true;
@@ -169,6 +176,7 @@
             // tableLayoutPanel1
             // 
             this.tableLayoutPanel1.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.tableLayoutPanel1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.tableLayoutPanel1.BackColor = System.Drawing.Color.Transparent;
             this.tableLayoutPanel1.ColumnCount = 1;
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
@@ -178,33 +186,36 @@
             this.tableLayoutPanel1.Controls.Add(this.label1, 0, 3);
             this.tableLayoutPanel1.Controls.Add(this.labelWeek, 0, 5);
             this.tableLayoutPanel1.Controls.Add(this.labelID, 0, 1);
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(21, 6);
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(16, 5);
+            this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(2);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 9;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 33F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 52F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 8F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 52F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 38F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 446F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 37F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(639, 728);
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 27F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 42F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 6F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 42F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 31F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 362F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(479, 592);
             this.tableLayoutPanel1.TabIndex = 6;
             // 
             // GUI_VISTA_ASIENTOS
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.ClientSize = new System.Drawing.Size(660, 746);
+            this.ClientSize = new System.Drawing.Size(495, 606);
             this.Controls.Add(this.tableLayoutPanel1);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
-            this.MaximizeBox = false;
-            this.MinimizeBox = false;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "GUI_VISTA_ASIENTOS";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "SISTEMA MOSTRAR ASIENTOS";
             this.Load += new System.EventHandler(this.GUI_VISTA_ASIENTOS_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();

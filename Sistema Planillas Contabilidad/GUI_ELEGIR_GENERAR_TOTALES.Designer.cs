@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(GUI_ELEGIR_GENERAR_TOTALES));
             this.buttonCalculate = new System.Windows.Forms.Button();
             this.buttonCloseProgram = new System.Windows.Forms.Button();
             this.checkedListBox4 = new System.Windows.Forms.CheckedListBox();
@@ -38,6 +39,7 @@
             // buttonCalculate
             // 
             this.buttonCalculate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.buttonCalculate.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.buttonCalculate.Location = new System.Drawing.Point(2, 364);
             this.buttonCalculate.Margin = new System.Windows.Forms.Padding(2);
             this.buttonCalculate.Name = "buttonCalculate";
@@ -49,7 +51,8 @@
             // 
             // buttonCloseProgram
             // 
-            this.buttonCloseProgram.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.buttonCloseProgram.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.buttonCloseProgram.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.buttonCloseProgram.Location = new System.Drawing.Point(338, 364);
             this.buttonCloseProgram.Margin = new System.Windows.Forms.Padding(2);
             this.buttonCloseProgram.Name = "buttonCloseProgram";
@@ -74,9 +77,11 @@
             // 
             // checkedListBox1
             // 
+            this.checkedListBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
             this.checkedListBox1.FormattingEnabled = true;
             this.checkedListBox1.HorizontalScrollbar = true;
-            this.checkedListBox1.Location = new System.Drawing.Point(190, 11);
+            this.checkedListBox1.Location = new System.Drawing.Point(189, 10);
             this.checkedListBox1.Name = "checkedListBox1";
             this.checkedListBox1.ScrollAlwaysVisible = true;
             this.checkedListBox1.Size = new System.Drawing.Size(182, 349);
@@ -84,9 +89,11 @@
             // 
             // checkedListBox2
             // 
+            this.checkedListBox2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
             this.checkedListBox2.FormattingEnabled = true;
             this.checkedListBox2.HorizontalScrollbar = true;
-            this.checkedListBox2.Location = new System.Drawing.Point(379, 11);
+            this.checkedListBox2.Location = new System.Drawing.Point(377, 10);
             this.checkedListBox2.Name = "checkedListBox2";
             this.checkedListBox2.ScrollAlwaysVisible = true;
             this.checkedListBox2.Size = new System.Drawing.Size(182, 349);
@@ -96,12 +103,15 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.ClientSize = new System.Drawing.Size(569, 421);
             this.Controls.Add(this.checkedListBox2);
             this.Controls.Add(this.checkedListBox1);
             this.Controls.Add(this.checkedListBox4);
             this.Controls.Add(this.buttonCloseProgram);
             this.Controls.Add(this.buttonCalculate);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "GUI_ELEGIR_GENERAR_TOTALES";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;

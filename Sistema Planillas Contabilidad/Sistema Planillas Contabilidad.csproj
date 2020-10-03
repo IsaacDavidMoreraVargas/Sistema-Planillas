@@ -98,18 +98,6 @@
     <Compile Include="GUI_EDITAR_PLANTILLA.Designer.cs">
       <DependentUpon>GUI_EDITAR_PLANTILLA.cs</DependentUpon>
     </Compile>
-    <Compile Include="GUI_ELEGIR_COPIAR_COLUMNA.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="GUI_ELEGIR_COPIAR_COLUMNA.Designer.cs">
-      <DependentUpon>GUI_ELEGIR_COPIAR_COLUMNA.cs</DependentUpon>
-    </Compile>
-    <Compile Include="GUI_ELEGIR_COPIAR_FILA.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="GUI_ELEGIR_COPIAR_FILA.Designer.cs">
-      <DependentUpon>GUI_ELEGIR_COPIAR_FILA.cs</DependentUpon>
-    </Compile>
     <Compile Include="GUI_ELEGIR_GENERAR_TOTALES.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -181,12 +169,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="GUI_EDITAR_PLANTILLA.resx">
       <DependentUpon>GUI_EDITAR_PLANTILLA.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="GUI_ELEGIR_COPIAR_COLUMNA.resx">
-      <DependentUpon>GUI_ELEGIR_COPIAR_COLUMNA.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="GUI_ELEGIR_COPIAR_FILA.resx">
-      <DependentUpon>GUI_ELEGIR_COPIAR_FILA.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="GUI_ELEGIR_GENERAR_TOTALES.resx">
       <DependentUpon>GUI_ELEGIR_GENERAR_TOTALES.cs</DependentUpon>

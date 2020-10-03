@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(GUI_WORK_COMPANY));
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.INDEX = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.CEDULA = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -102,6 +103,7 @@
             this.buttonGenerateSits = new System.Windows.Forms.Button();
             this.buttonIntroduceData = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.buttonPrint = new System.Windows.Forms.Button();
             this.comboBox2 = new System.Windows.Forms.ComboBox();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.checkedListBox2 = new System.Windows.Forms.CheckedListBox();
@@ -113,7 +115,6 @@
             this.dataGridView3 = new System.Windows.Forms.DataGridView();
             this.dataGridView2 = new System.Windows.Forms.DataGridView();
             this.dataGridView5 = new System.Windows.Forms.DataGridView();
-            this.buttonPrint = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.panel1.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
@@ -817,7 +818,7 @@
             this.panel1.AutoScroll = true;
             this.panel1.AutoScrollMargin = new System.Drawing.Size(0, 100);
             this.panel1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.panel1.BackColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.panel1.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.panel1.Controls.Add(this.buttonPrint);
             this.panel1.Controls.Add(this.comboBox2);
             this.panel1.Controls.Add(this.comboBox1);
@@ -845,6 +846,16 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(1054, 127);
             this.panel1.TabIndex = 3;
+            // 
+            // buttonPrint
+            // 
+            this.buttonPrint.Location = new System.Drawing.Point(226, 84);
+            this.buttonPrint.Name = "buttonPrint";
+            this.buttonPrint.Size = new System.Drawing.Size(110, 37);
+            this.buttonPrint.TabIndex = 26;
+            this.buttonPrint.Text = "Imprimir";
+            this.buttonPrint.UseVisualStyleBackColor = true;
+            this.buttonPrint.Click += new System.EventHandler(this.buttonPrint_Click);
             // 
             // comboBox2
             // 
@@ -900,8 +911,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.tableLayoutPanel1.AutoScroll = true;
             this.tableLayoutPanel1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.tableLayoutPanel1.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.tableLayoutPanel1.CellBorderStyle = System.Windows.Forms.TableLayoutPanelCellBorderStyle.InsetDouble;
+            this.tableLayoutPanel1.BackColor = System.Drawing.SystemColors.Info;
             this.tableLayoutPanel1.ColumnCount = 1;
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel1.Controls.Add(this.panel3, 0, 0);
@@ -927,10 +937,10 @@
             this.panel3.Controls.Add(this.dataGridView3);
             this.panel3.Controls.Add(this.dataGridView2);
             this.panel3.Controls.Add(this.dataGridView1);
-            this.panel3.Location = new System.Drawing.Point(6, 6);
+            this.panel3.Location = new System.Drawing.Point(3, 3);
             this.panel3.MinimumSize = new System.Drawing.Size(10, 10);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(1040, 332);
+            this.panel3.Size = new System.Drawing.Size(1046, 340);
             this.panel3.TabIndex = 1;
             // 
             // dataGridView4
@@ -983,35 +993,26 @@
             this.dataGridView5.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.ColumnHeader;
             this.dataGridView5.BackgroundColor = System.Drawing.SystemColors.ControlDarkDark;
             this.dataGridView5.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView5.Location = new System.Drawing.Point(6, 347);
+            this.dataGridView5.Location = new System.Drawing.Point(3, 349);
             this.dataGridView5.Name = "dataGridView5";
             this.dataGridView5.ReadOnly = true;
             this.dataGridView5.RowHeadersVisible = false;
-            this.dataGridView5.Size = new System.Drawing.Size(1040, 46);
+            this.dataGridView5.Size = new System.Drawing.Size(1046, 47);
             this.dataGridView5.TabIndex = 2;
             this.dataGridView5.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView5_CellClick);
             this.dataGridView5.Click += new System.EventHandler(this.dataGridView5_Click_1);
-            // 
-            // buttonPrint
-            // 
-            this.buttonPrint.Location = new System.Drawing.Point(226, 84);
-            this.buttonPrint.Name = "buttonPrint";
-            this.buttonPrint.Size = new System.Drawing.Size(110, 37);
-            this.buttonPrint.TabIndex = 26;
-            this.buttonPrint.Text = "Imprimir";
-            this.buttonPrint.UseVisualStyleBackColor = true;
-            this.buttonPrint.Click += new System.EventHandler(this.buttonPrint_Click);
             // 
             // GUI_WORK_COMPANY
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
-            this.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.ClientSize = new System.Drawing.Size(1062, 533);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "GUI_WORK_COMPANY";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;

@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(GUI_ELEGIR__TRABAJAR_EMPRESA));
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.listViewCompany = new System.Windows.Forms.ListView();
             this.EMPRESAS = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -47,10 +48,15 @@
             // 
             // tableLayoutPanel1
             // 
+            this.tableLayoutPanel1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.tableLayoutPanel1.AutoScroll = true;
+            this.tableLayoutPanel1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.tableLayoutPanel1.ColumnCount = 3;
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 159F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 141F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
             this.tableLayoutPanel1.Controls.Add(this.listViewCompany, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.listViewMonth, 2, 0);
             this.tableLayoutPanel1.Controls.Add(this.listViewDeparment, 1, 0);
@@ -58,7 +64,7 @@
             this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(2);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 1;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel1.Size = new System.Drawing.Size(456, 446);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
@@ -88,10 +94,10 @@
             this.MESES});
             this.listViewMonth.GridLines = true;
             this.listViewMonth.HideSelection = false;
-            this.listViewMonth.Location = new System.Drawing.Point(317, 2);
+            this.listViewMonth.Location = new System.Drawing.Point(314, 2);
             this.listViewMonth.Margin = new System.Windows.Forms.Padding(2);
             this.listViewMonth.Name = "listViewMonth";
-            this.listViewMonth.Size = new System.Drawing.Size(137, 442);
+            this.listViewMonth.Size = new System.Drawing.Size(140, 442);
             this.listViewMonth.TabIndex = 3;
             this.listViewMonth.UseCompatibleStateImageBehavior = false;
             this.listViewMonth.Visible = false;
@@ -109,7 +115,7 @@
             this.listViewDeparment.Location = new System.Drawing.Point(158, 2);
             this.listViewDeparment.Margin = new System.Windows.Forms.Padding(2);
             this.listViewDeparment.Name = "listViewDeparment";
-            this.listViewDeparment.Size = new System.Drawing.Size(155, 442);
+            this.listViewDeparment.Size = new System.Drawing.Size(152, 442);
             this.listViewDeparment.TabIndex = 1;
             this.listViewDeparment.UseCompatibleStateImageBehavior = false;
             this.listViewDeparment.Visible = false;
@@ -117,10 +123,14 @@
             // 
             // buttonStart
             // 
+            this.buttonStart.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.buttonStart.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.buttonStart.Location = new System.Drawing.Point(2, 148);
             this.buttonStart.Margin = new System.Windows.Forms.Padding(2);
             this.buttonStart.Name = "buttonStart";
-            this.buttonStart.Size = new System.Drawing.Size(80, 70);
+            this.buttonStart.Size = new System.Drawing.Size(82, 70);
             this.buttonStart.TabIndex = 1;
             this.buttonStart.Text = "INICIAR";
             this.buttonStart.UseVisualStyleBackColor = true;
@@ -128,10 +138,14 @@
             // 
             // buttonReturnProgram
             // 
+            this.buttonReturnProgram.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.buttonReturnProgram.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.buttonReturnProgram.Location = new System.Drawing.Point(2, 222);
             this.buttonReturnProgram.Margin = new System.Windows.Forms.Padding(2);
             this.buttonReturnProgram.Name = "buttonReturnProgram";
-            this.buttonReturnProgram.Size = new System.Drawing.Size(81, 70);
+            this.buttonReturnProgram.Size = new System.Drawing.Size(82, 70);
             this.buttonReturnProgram.TabIndex = 2;
             this.buttonReturnProgram.Text = "REGRESAR";
             this.buttonReturnProgram.UseVisualStyleBackColor = true;
@@ -139,10 +153,14 @@
             // 
             // buttonCloseProgram
             // 
+            this.buttonCloseProgram.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.buttonCloseProgram.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.buttonCloseProgram.Location = new System.Drawing.Point(2, 296);
             this.buttonCloseProgram.Margin = new System.Windows.Forms.Padding(2);
             this.buttonCloseProgram.Name = "buttonCloseProgram";
-            this.buttonCloseProgram.Size = new System.Drawing.Size(81, 70);
+            this.buttonCloseProgram.Size = new System.Drawing.Size(82, 75);
             this.buttonCloseProgram.TabIndex = 4;
             this.buttonCloseProgram.Text = "SALIR";
             this.buttonCloseProgram.UseVisualStyleBackColor = true;
@@ -150,10 +168,14 @@
             // 
             // buttonGenerateSits
             // 
+            this.buttonGenerateSits.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.buttonGenerateSits.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.buttonGenerateSits.Location = new System.Drawing.Point(2, 72);
             this.buttonGenerateSits.Margin = new System.Windows.Forms.Padding(2);
             this.buttonGenerateSits.Name = "buttonGenerateSits";
-            this.buttonGenerateSits.Size = new System.Drawing.Size(80, 69);
+            this.buttonGenerateSits.Size = new System.Drawing.Size(82, 72);
             this.buttonGenerateSits.TabIndex = 5;
             this.buttonGenerateSits.Text = "GENERAR ASIENTOS";
             this.buttonGenerateSits.UseVisualStyleBackColor = true;
@@ -161,10 +183,11 @@
             // 
             // comboBox1
             // 
-            this.comboBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            this.comboBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(3, 46);
+            this.comboBox1.Location = new System.Drawing.Point(3, 3);
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(80, 21);
             this.comboBox1.TabIndex = 6;
@@ -172,6 +195,10 @@
             // 
             // tableLayoutPanel2
             // 
+            this.tableLayoutPanel2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.tableLayoutPanel2.AutoScroll = true;
+            this.tableLayoutPanel2.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.tableLayoutPanel2.ColumnCount = 1;
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel2.Controls.Add(this.buttonCloseProgram, 0, 4);
@@ -192,13 +219,15 @@
             // 
             // GUI_ELEGIR__TRABAJAR_EMPRESA
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.ClientSize = new System.Drawing.Size(563, 466);
             this.Controls.Add(this.tableLayoutPanel2);
             this.Controls.Add(this.tableLayoutPanel1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "GUI_ELEGIR__TRABAJAR_EMPRESA";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "SISTEMA ELEGIR EMPRESA";
             this.Load += new System.EventHandler(this.GUI_ELEGIR__TRABAJAR_EMPRESA_Load);
             this.tableLayoutPanel1.ResumeLayout(false);

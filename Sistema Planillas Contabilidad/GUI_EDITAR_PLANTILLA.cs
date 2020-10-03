@@ -9,7 +9,7 @@ using System.IO;
 
 namespace Sistema_Planillas_Contabilidad
 {
-    public partial class GUI_EDITAR_PLANTILLA : Sistema_Planillas_Contabilidad.MACHOTE_GENERAL_PLANILLA
+    public partial class GUI_EDITAR_PLANTILLA : Form
     {
         string[] alphabet = { "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z" };
         int indexColumn = 0;

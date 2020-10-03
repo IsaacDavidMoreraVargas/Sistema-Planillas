@@ -59,8 +59,6 @@ C:\Users\Alcatraz\Desktop\Sistema Planillas Contabilidad\Sistema Planillas Conta
 C:\Users\Alcatraz\Desktop\Sistema Planillas Contabilidad\Sistema Planillas Contabilidad\obj\Debug\Sistema_Planillas_Contabilidad.GUI_CREATE_FORMULA.resources
 C:\Users\Alcatraz\Desktop\Sistema Planillas Contabilidad\Sistema Planillas Contabilidad\obj\Debug\Sistema_Planillas_Contabilidad.GUI_DUPLICAR_COPIAR_ELIMINAR_COMPANY.resources
 C:\Users\Alcatraz\Desktop\Sistema Planillas Contabilidad\Sistema Planillas Contabilidad\obj\Debug\Sistema_Planillas_Contabilidad.GUI_EDITAR_PLANTILLA.resources
-C:\Users\Alcatraz\Desktop\Sistema Planillas Contabilidad\Sistema Planillas Contabilidad\obj\Debug\Sistema_Planillas_Contabilidad.GUI_ELEGIR_COPIAR_COLUMNA.resources
-C:\Users\Alcatraz\Desktop\Sistema Planillas Contabilidad\Sistema Planillas Contabilidad\obj\Debug\Sistema_Planillas_Contabilidad.GUI_ELEGIR_COPIAR_FILA.resources
 C:\Users\Alcatraz\Desktop\Sistema Planillas Contabilidad\Sistema Planillas Contabilidad\obj\Debug\Sistema_Planillas_Contabilidad.GUI_ELEGIR_GENERAR_TOTALES.resources
 C:\Users\Alcatraz\Desktop\Sistema Planillas Contabilidad\Sistema Planillas Contabilidad\obj\Debug\Sistema_Planillas_Contabilidad.GUI_ELEGIR__TRABAJAR_EMPRESA.resources
 C:\Users\Alcatraz\Desktop\Sistema Planillas Contabilidad\Sistema Planillas Contabilidad\obj\Debug\Sistema_Planillas_Contabilidad.GUI_IMPORT_DATA_AND_COLUMNS.resources

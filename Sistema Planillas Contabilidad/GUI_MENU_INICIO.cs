@@ -9,7 +9,7 @@ using System.Windows.Forms;
 
 namespace Sistema_Planillas_Contabilidad
 {
-    public partial class GUI_MENU_INICIO : Sistema_Planillas_Contabilidad.MACHOTE_GENERAL_MENUS
+    public partial class GUI_MENU_INICIO : Form
     {
         public GUI_MENU_INICIO()
         {

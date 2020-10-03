@@ -10,7 +10,7 @@ using System.Windows.Forms.VisualStyles;
 
 namespace Sistema_Planillas_Contabilidad
 {
-    public partial class GUI_CREAR_EMPRESA : Sistema_Planillas_Contabilidad.MACHOTE_GENERAL_MENUS
+    public partial class GUI_CREAR_EMPRESA : Form
     {
 
         public GUI_CREAR_EMPRESA()

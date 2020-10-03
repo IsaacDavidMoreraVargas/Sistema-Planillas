@@ -9,7 +9,7 @@ using System.IO;
 
 namespace Sistema_Planillas_Contabilidad
 {
-    public partial class GUI_ELEGIR__TRABAJAR_EMPRESA : Sistema_Planillas_Contabilidad.MACHOTE_GENERAL_MENUS
+    public partial class GUI_ELEGIR__TRABAJAR_EMPRESA : Form
     {
         string companyOntime = "";
         string deparmentOntime = "";
